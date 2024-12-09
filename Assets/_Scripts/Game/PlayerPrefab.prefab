@@ -93,7 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8303905784497790103}
   - component: {fileID: 7866182005936586349}
-  - component: {fileID: 1332087570160081322}
   - component: {fileID: 7086761737223978608}
   - component: {fileID: 4734182657867989483}
   - component: {fileID: -5988957301142052349}
@@ -101,8 +100,9 @@ GameObject:
   - component: {fileID: 582123772871185199}
   - component: {fileID: 3406286427884560434}
   - component: {fileID: -3383683011983046706}
+  - component: {fileID: 414024518099419950}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,47 +207,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1332087570160081322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7477643650623274892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23a37a3cf715f440ad054d68eb3ce85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 5
-  accelerationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  accelerationTime: 2
-  dogRigidbody: {fileID: 7086761737223978608}
-  dogAnimator: {fileID: 0}
-  speedMultiplier: 1
 --- !u!54 &7086761737223978608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -376,3 +335,44 @@ MonoBehaviour:
   dashForce: 10
   rangeIncrease: 1.2
   abilityDuration: 1
+--- !u!114 &414024518099419950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcac4c0d5d9e144ca65e64a4ff38437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 5
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  accelerationTime: 2
+  dogRigidbody: {fileID: 7086761737223978608}
+  dogAnimator: {fileID: 0}
+  speedMultiplier: 1

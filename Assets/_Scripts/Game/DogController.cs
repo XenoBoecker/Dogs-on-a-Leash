@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class DogController : MonoBehaviour
+public abstract class DogController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float maxSpeed = 5f; // Maximum speed of the dog
@@ -13,7 +12,7 @@ public class DogController : MonoBehaviour
     public Rigidbody dogRigidbody; // Reference to the Rigidbody
     public Animator dogAnimator; // Optional animator for animations
 
-    private Vector2 movementInput; // Current input values
+    protected Vector2 movementInput; // Current input values
     private float currentSpeed; // Current speed
     private float accelerationTimer; // Timer for animation curve
 
@@ -21,48 +20,6 @@ public class DogController : MonoBehaviour
     // Ability variables
     public event Action OnZoomieStart;
     public float speedMultiplier = 1;
-
-    private void OnEnable()
-    {
-        // Ensure PlayerInput component is enabled
-        var playerInput = GetComponentInParent<PlayerInput>();
-        if (playerInput)
-        {
-            playerInput.onActionTriggered += OnActionTriggered;
-        }
-    }
-
-    private void OnDisable()
-    {
-        // Unsubscribe from the PlayerInput events
-        var playerInput = GetComponentInParent<PlayerInput>();
-        if (playerInput)
-        {
-            playerInput.onActionTriggered -= OnActionTriggered;
-        }
-    }
-
-    private void OnActionTriggered(InputAction.CallbackContext context)
-    {
-        if (context.action.name == "Move")
-        {
-            if (context.phase == InputActionPhase.Performed)
-            {
-                movementInput = context.ReadValue<Vector2>();
-            }
-            else if (context.phase == InputActionPhase.Canceled)
-            {
-                movementInput = Vector2.zero;
-            }
-        }
-        else if (context.action.name == "Zoomie")
-        {
-            if (context.phase == InputActionPhase.Performed)
-            {
-                OnZoomieStart?.Invoke();
-            }
-        }
-    }
 
     private void FixedUpdate()
     {
@@ -115,5 +72,10 @@ public class DogController : MonoBehaviour
                 dogAnimator.SetFloat("Speed", 0f);
             }
         }
+    }
+
+    protected void ZoomieStart()
+    {
+        OnZoomieStart?.Invoke();
     }
 }

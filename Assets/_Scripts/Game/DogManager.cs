@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 public class DogManager : MonoBehaviour
 {
+
+    [SerializeField] GameObject aiDogPrefab;
+
     public event Action<Transform> OnDogSpawned;
     public event Action<Transform> OnDogDespawned;
 
@@ -21,5 +24,12 @@ public class DogManager : MonoBehaviour
 
             OnDogSpawned?.Invoke(dogController.transform);
         }
+
+        SpawnAIDogs();
+    }
+
+    private void SpawnAIDogs()
+    {
+        
     }
 }
