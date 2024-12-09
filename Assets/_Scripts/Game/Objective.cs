@@ -3,9 +3,14 @@
 
 public enum ObjectiveType
 {
-    Tree,
-    Puddle,
-    Stick
+    Red,
+    Green,
+    Blue,
+    Yellow,
+    Orange,
+    Purple,
+    Teal,
+    Pink
 }
 
 public class Objective : MonoBehaviour

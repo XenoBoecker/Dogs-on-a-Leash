@@ -7,6 +7,8 @@ public class DogManager : MonoBehaviour
 
     [SerializeField] AIDogController aiDogPrefab;
 
+    [SerializeField] DogData[] allDogDatas; // will later just be taken from whats chosen in the lobby
+
     public event Action<Transform> OnDogSpawned;
     public event Action<Transform> OnDogDespawned;
 
@@ -25,7 +27,8 @@ public class DogManager : MonoBehaviour
             dogController.GetComponentInParent<PlayerInput>().currentActionMap = dogController.GetComponentInParent<PlayerInput>().actions.FindActionMap("Player");
             dogController.enabled = true;
             dogController.GetComponentInParent<LobbyPlayer>().enabled = false;
-            dogController.GetComponent<Rigidbody>().useGravity = true;
+
+            dogController.GetComponent<Dog>().SetDogData(allDogDatas[Array.IndexOf(dogControllers, dogController)]);
 
             OnDogSpawned?.Invoke(dogController.transform);
         }
@@ -38,6 +41,8 @@ public class DogManager : MonoBehaviour
         for (int i = 0; i < totalDogCount - playerCount; i++)
         {
             AIDogController aiDog = Instantiate(aiDogPrefab);
+
+            aiDog.GetComponent<Dog>().SetDogData(allDogDatas[playerCount + i]);
 
             OnDogSpawned?.Invoke(aiDog.transform);
         }

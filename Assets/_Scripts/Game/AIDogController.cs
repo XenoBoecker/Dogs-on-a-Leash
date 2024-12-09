@@ -10,7 +10,7 @@ public class AIDogController : DogController
     [SerializeField] float dodgeDogDistance = 2f;
 
 
-    [SerializeField] float randomDirRange = 0.1f;
+    [SerializeField] float randomFactor = 0.1f;
 
     private Vector3 smoothDirection;
 
@@ -46,14 +46,14 @@ public class AIDogController : DogController
         targetDirection += MoveDirectionOfGroup();
         targetDirection += MoveAwayFromClosestDogs();
 
-        targetDirection += RandomFactor();
+        targetDirection += RandomFactor() * randomFactor;
 
         return targetDirection.normalized;
     }
 
     private Vector3 RandomFactor()
     {
-        return new Vector3(Random.Range(-randomDirRange, randomDirRange), 0, Random.Range(-randomDirRange, randomDirRange));
+        return new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
     }
 
     private Vector3 MoveTowardsClosestObjective()
