@@ -1,26 +1,43 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AIDogController : DogController
 {
+    DogGroupObserver dogGroupObserver;
+
+
+    [SerializeField] float dodgeDogDistance = 2f;
+
+
+    [SerializeField] float randomDirRange = 0.1f;
+
+    private Vector3 smoothDirection;
+
+    private void Start()
+    {
+        dogGroupObserver = FindObjectOfType<DogGroupObserver>();
+    }
+
     private void Update()
     {
-        InvokeRepeating(nameof(ScanSurroundings), 0, 1);
-
-        movementInput = CalculateMoveDirection();
+        InvokeRepeating(nameof(ScanSurroundings), 0.5f, 1);
+        
+        smoothDirection = Vector3.Lerp(smoothDirection, CalculateMoveDirection(), Time.deltaTime * 2); // Smooth transition
+        movementInput = smoothDirection;
     }
 
     void ScanSurroundings()
     {
-    
+        
     }
 
-    private Vector2 CalculateMoveDirection()
+    private Vector3 CalculateMoveDirection()
     {
-        Vector2 targetDirection = Vector2.zero;
+        Vector3 targetDirection = Vector3.zero;
 
         // Objectives
-        targetDirection += MoveTowardsClosestObjective();
+        targetDirection += MoveTowardsClosestObjective(); // multipliers for each!
         targetDirection += MoveAwayFromOtherDogsObjectives();
         // Obstacles
         targetDirection += MoveAwayFromClosestObstacle();
@@ -29,36 +46,57 @@ public class AIDogController : DogController
         targetDirection += MoveDirectionOfGroup();
         targetDirection += MoveAwayFromClosestDogs();
 
-        return targetDirection;
+        targetDirection += RandomFactor();
+
+        return targetDirection.normalized;
     }
 
-    private Vector2 MoveTowardsClosestObjective()
+    private Vector3 RandomFactor()
     {
-        throw new NotImplementedException();
+        return new Vector3(Random.Range(-randomDirRange, randomDirRange), 0, Random.Range(-randomDirRange, randomDirRange));
     }
 
-    private Vector2 MoveAwayFromOtherDogsObjectives()
+    private Vector3 MoveTowardsClosestObjective()
     {
-        throw new NotImplementedException();
+        return Vector3.zero;
     }
 
-    private Vector2 MoveAwayFromClosestObstacle()
+    private Vector3 MoveAwayFromOtherDogsObjectives()
     {
-        throw new NotImplementedException();
+        return Vector3.zero;
     }
 
-    private Vector2 DirectionToCenterOfGroup()
+    private Vector3 MoveAwayFromClosestObstacle()
     {
-        throw new NotImplementedException();
+        return Vector3.zero;
     }
 
-    private Vector2 MoveDirectionOfGroup()
+    private Vector3 DirectionToCenterOfGroup()
     {
-        throw new NotImplementedException();
+        return (dogGroupObserver.AvgDogPosition - transform.position).normalized;
     }
 
-    private Vector2 MoveAwayFromClosestDogs()
+    private Vector3 MoveDirectionOfGroup()
     {
-        throw new NotImplementedException();
+        return (dogGroupObserver.AvgDogDirection - transform.forward).normalized;
+    }
+
+    private Vector3 MoveAwayFromClosestDogs()
+    {
+        Vector3 combinedDodgeDirection = Vector3.zero;
+
+        foreach (Transform dog in dogGroupObserver.allDogs)
+        {
+            if (dog == transform) continue;
+
+            float distance = Vector3.Distance(transform.position, dog.position);
+
+            if (distance < dodgeDogDistance)
+            {
+                combinedDodgeDirection += (dog.position - transform.position).normalized / distance;
+            }
+        }
+
+        return combinedDodgeDirection;
     }
 }

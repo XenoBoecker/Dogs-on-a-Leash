@@ -5,15 +5,20 @@ using UnityEngine.InputSystem;
 public class DogManager : MonoBehaviour
 {
 
-    [SerializeField] GameObject aiDogPrefab;
+    [SerializeField] AIDogController aiDogPrefab;
 
     public event Action<Transform> OnDogSpawned;
     public event Action<Transform> OnDogDespawned;
 
+
+    [SerializeField] int totalDogCount = 8;
+    int playerCount;
+
     private void Start()
     {
         DogController[] dogControllers = FindObjectsOfType<DogController>(true);
-        
+        playerCount = dogControllers.Length;
+
         foreach (DogController dogController in dogControllers)
         {
             dogController.gameObject.SetActive(true);
@@ -30,6 +35,11 @@ public class DogManager : MonoBehaviour
 
     private void SpawnAIDogs()
     {
-        
+        for (int i = 0; i < totalDogCount - playerCount; i++)
+        {
+            AIDogController aiDog = Instantiate(aiDogPrefab);
+
+            OnDogSpawned?.Invoke(aiDog.transform);
+        }
     }
 }

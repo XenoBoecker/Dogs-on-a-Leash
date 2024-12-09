@@ -949,6 +949,7 @@ GameObject:
   - component: {fileID: 950691615}
   - component: {fileID: 950691616}
   - component: {fileID: 950691617}
+  - component: {fileID: 950691618}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -1067,7 +1068,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae8ed446361bf84180f8b98832e1d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiDogPrefab: {fileID: 0}
+  aiDogPrefab: {fileID: -3283657551346625148, guid: a65a87c91f5a431478c3cc76f03eae76,
+    type: 3}
+  totalDogCount: 8
+--- !u!114 &950691618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950691611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9caceea81c3d64c92db0dcf56bde87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allDogs: []
 --- !u!1 &1029259634
 GameObject:
   m_ObjectHideFlags: 0

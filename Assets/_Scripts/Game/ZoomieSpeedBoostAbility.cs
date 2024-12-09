@@ -5,6 +5,9 @@ public class ZoomieSpeedBoostAbility : Ability
 
     [SerializeField] float abilityDuration = 3f;
 
+
+    [SerializeField] float speedMultiplier = 1.5f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -15,7 +18,7 @@ public class ZoomieSpeedBoostAbility : Ability
     {
         base.ActivateAbility();
 
-        dog.speedMultiplier = 1.5f;
+        dog.speedMultiplier = speedMultiplier;
 
 
         Debug.Log("Zoomie now");
