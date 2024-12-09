@@ -25,7 +25,7 @@ public class DogController : MonoBehaviour
     private void OnEnable()
     {
         // Ensure PlayerInput component is enabled
-        var playerInput = GetComponent<PlayerInput>();
+        var playerInput = GetComponentInParent<PlayerInput>();
         if (playerInput)
         {
             playerInput.onActionTriggered += OnActionTriggered;
@@ -35,7 +35,7 @@ public class DogController : MonoBehaviour
     private void OnDisable()
     {
         // Unsubscribe from the PlayerInput events
-        var playerInput = GetComponent<PlayerInput>();
+        var playerInput = GetComponentInParent<PlayerInput>();
         if (playerInput)
         {
             playerInput.onActionTriggered -= OnActionTriggered;

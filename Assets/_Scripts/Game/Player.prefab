@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4121876804562692501}
   - component: {fileID: 7920661839240914293}
   - component: {fileID: 1634429978596153126}
-  - component: {fileID: 6890042701495223839}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -84,29 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6890042701495223839
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95552454058814040}
-  m_Material: {fileID: 13400000, guid: 4e9b76a6aff9c0644b8febaed7a666b6, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7477643650623274892
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +98,9 @@ GameObject:
   - component: {fileID: 4734182657867989483}
   - component: {fileID: -5988957301142052349}
   - component: {fileID: -1239040096986255218}
+  - component: {fileID: 582123772871185199}
+  - component: {fileID: 3406286427884560434}
+  - component: {fileID: -3383683011983046706}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -340,9 +319,60 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7477643650623274892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16aafab351baea246a54aca295bea186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDuration: 3
+--- !u!114 &582123772871185199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4dd955d0fb003b4ca32e4200f0ed366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashForce: 10
+--- !u!136 &3406286427884560434
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Material: {fileID: 13400000, guid: 4e9b76a6aff9c0644b8febaed7a666b6, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3383683011983046706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88cd000da2ac7fe489f7318e3c2eccee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashForce: 10
+  rangeIncrease: 1.2
+  abilityDuration: 1

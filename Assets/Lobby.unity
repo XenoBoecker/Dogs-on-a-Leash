@@ -2619,6 +2619,7 @@ GameObject:
   - component: {fileID: 2085313390}
   - component: {fileID: 2085313389}
   - component: {fileID: 2085313391}
+  - component: {fileID: 2085313392}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -2699,9 +2700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSceneName: Game
-  availableDogs:
-  - {fileID: 11400000, guid: 22d62d261a137ca42b7c9f2fe1f8d8e1, type: 2}
-  - {fileID: 11400000, guid: aeeb0028cd68c234697c78ed73fc3aca, type: 2}
   lobbyDogSelectors:
   - {fileID: 1779693086}
   - {fileID: 1462778660}
@@ -2711,6 +2709,21 @@ MonoBehaviour:
   - {fileID: 1211039633}
   - {fileID: 1483708818}
   - {fileID: 1091848193}
+--- !u!114 &2085313392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085313388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d092076fdc1197b48813d40294bfa5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableDogs:
+  - {fileID: 11400000, guid: 22d62d261a137ca42b7c9f2fe1f8d8e1, type: 2}
+  - {fileID: 11400000, guid: aeeb0028cd68c234697c78ed73fc3aca, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

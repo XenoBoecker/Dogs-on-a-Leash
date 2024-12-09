@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 
-public class ZoomieAbility : Ability
+public class ZoomieSpeedBoostAbility : Ability
 {
-    DogController dog;
 
     [SerializeField] float abilityDuration = 3f;
 
-    private void Awake()
+    protected override void Awake()
     {
-        dog = GetComponent<DogController>();
+        base.Awake();
 
         dog.OnZoomieStart += UseAbility;
     }

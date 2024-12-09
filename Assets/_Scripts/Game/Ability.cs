@@ -4,14 +4,15 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
+    protected DogController dog;
+    
     float chargeNeeded = 5;
 
     float currentCharge = Mathf.Infinity;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
-        
+        dog = GetComponent<DogController>();
     }
 
     // Update is called once per frame

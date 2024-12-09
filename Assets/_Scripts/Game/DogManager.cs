@@ -13,9 +13,10 @@ public class DogManager : MonoBehaviour
         
         foreach (DogController dogController in dogControllers)
         {
-            dogController.GetComponent<PlayerInput>().currentActionMap = dogController.GetComponent<PlayerInput>().actions.FindActionMap("Player");
+            dogController.gameObject.SetActive(true);
+            dogController.GetComponentInParent<PlayerInput>().currentActionMap = dogController.GetComponentInParent<PlayerInput>().actions.FindActionMap("Player");
             dogController.enabled = true;
-            dogController.GetComponent<LobbyPlayer>().enabled = false;
+            dogController.GetComponentInParent<LobbyPlayer>().enabled = false;
             dogController.GetComponent<Rigidbody>().useGravity = true;
 
             OnDogSpawned?.Invoke(dogController.transform);
