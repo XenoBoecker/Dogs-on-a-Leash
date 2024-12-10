@@ -3,17 +3,21 @@ using UnityEngine;
 
 public class ObjectiveCollector: MonoBehaviour
 {
-    [SerializeField]
-    ObjectiveType objectiveType;
+    Dog dog;
 
     int scoreCount;
     public int ScoreCount => scoreCount;
 
     public event Action OnScoreChanged;
 
+    private void Awake()
+    {
+        dog = GetComponent<Dog>();
+    }
+
     internal bool TryCollectObjective(Objective objective)
     {
-        if(objective.ObjectiveType == objectiveType)
+        if(objective.ObjectiveType == dog.DogData.objectiveType)
         {
             CollectObjective(objective);
 
