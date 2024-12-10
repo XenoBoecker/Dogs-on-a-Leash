@@ -28,6 +28,7 @@ public class Objective : MonoBehaviour
     public ObjectiveType ObjectiveType => objectiveType;
 
     public event Action OnTypeChanged;
+    public event Action<Objective> OnObjectiveCollected;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,6 +41,8 @@ public class Objective : MonoBehaviour
 
     private void RemoveObjective()
     {
+        OnObjectiveCollected?.Invoke(this);
+
         Destroy(gameObject);
     }
 

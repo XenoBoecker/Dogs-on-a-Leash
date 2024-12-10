@@ -8,8 +8,13 @@ public class GroupCameraManager : MonoBehaviour
     DogManager dogManager;
     TestDogManager testDogManager;
 
+    DogGroupObserver dogGroupObserver;
+
     [SerializeField] Transform human;
     [SerializeField] CinemachineTargetGroup cinemachineTargetGroup;
+
+
+    [SerializeField] float rotSmoothFactor = 1f;
 
     List<CinemachineTargetGroup.Target> dogTargets = new List<CinemachineTargetGroup.Target>();
 
@@ -22,6 +27,8 @@ public class GroupCameraManager : MonoBehaviour
             dogManager.OnDogSpawned += AddTarget;
             dogManager.OnDogDespawned += RemoveTarget;
         }
+
+        dogGroupObserver = FindObjectOfType<DogGroupObserver>();
 
         TestAwake();
     }
@@ -39,6 +46,29 @@ public class GroupCameraManager : MonoBehaviour
     private void Start()
     {
         AddTarget(human);
+    }
+
+    private void Update()
+    {
+        // RotateCameraWithGroupDirection(); // inputs need to rotate aswell if we do this
+    }
+
+    private void RotateCameraWithGroupDirection()
+    {
+
+        // Convert 2D direction back to 3D
+        Vector3 targetDirection = new Vector3(dogGroupObserver.AvgDogDirection.x, 0, dogGroupObserver.AvgDogDirection.z);
+
+        // Smoothly rotate the Cinemachine camera towards the movement direction
+        if (targetDirection.sqrMagnitude > 0.01f) // Avoid unnecessary rotation when the direction is nearly zero
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            cinemachineTargetGroup.transform.rotation = Quaternion.Slerp(
+                cinemachineTargetGroup.transform.rotation,
+                targetRotation,
+                Time.deltaTime * rotSmoothFactor // Smooth factor, tweak as needed
+            );
+        }
     }
 
     public void AddTarget(Transform dogTransform)

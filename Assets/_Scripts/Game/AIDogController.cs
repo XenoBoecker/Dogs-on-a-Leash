@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,9 +10,13 @@ public class AIDogController : DogController
 
 
     [SerializeField] float dodgeDogDistance = 2f;
-
-
+    
     [SerializeField] float randomFactor = 0.1f;
+
+    [SerializeField] float objectiveFactor = 3f;
+
+    List<Objective> myObjectives = new List<Objective>();
+    Objective closestObjective;
 
     private Vector3 smoothDirection;
 
@@ -29,7 +35,41 @@ public class AIDogController : DogController
 
     void ScanSurroundings()
     {
-        
+        if(myObjectives.Count == 0)
+        {
+            myObjectives = FindObjectsOfType<Objective>().Where(o => o.ObjectiveType == GetComponent<Dog>().DogData.objectiveType).ToList<Objective>();
+
+            for (int i = 0; i < myObjectives.Count; i++)
+            {
+                myObjectives[i].OnObjectiveCollected += RemoveObjective;
+            }
+        }
+
+        if (myObjectives.Count == 0)
+        {
+            Debug.Log("No more Objectives to be found");
+            return;
+        }
+
+        closestObjective = myObjectives[0];
+        float closestDistance = Vector3.Distance(transform.position, closestObjective.transform.position);
+
+        for (int i = 1; i < myObjectives.Count; i++)
+        {
+            float dist = Vector3.Distance(transform.position, myObjectives[i].transform.position);
+
+            if (dist < closestDistance)
+            {
+                closestObjective = myObjectives[i];
+
+                closestDistance = dist;
+            }
+        }
+    }
+
+    private void RemoveObjective(Objective objective)
+    {
+        myObjectives.Remove(objective);
     }
 
     private Vector3 CalculateMoveDirection()
@@ -37,7 +77,7 @@ public class AIDogController : DogController
         Vector3 targetDirection = Vector3.zero;
 
         // Objectives
-        targetDirection += MoveTowardsClosestObjective(); // multipliers for each!
+        targetDirection += MoveTowardsClosestObjective() * objectiveFactor; // multipliers for each!
         targetDirection += MoveAwayFromOtherDogsObjectives();
         // Obstacles
         targetDirection += MoveAwayFromClosestObstacle();
@@ -58,7 +98,9 @@ public class AIDogController : DogController
 
     private Vector3 MoveTowardsClosestObjective()
     {
-        return Vector3.zero;
+        if (closestObjective == null) ScanSurroundings();
+
+        return (closestObjective.transform.position - transform.position).normalized;
     }
 
     private Vector3 MoveAwayFromOtherDogsObjectives()
