@@ -33,4 +33,9 @@ public abstract class Ability : MonoBehaviour
 
         currentCharge = 0;
     }
+
+    public float CurrentChargePercentage()
+    {
+        return currentCharge / chargeNeeded;
+    }
 }

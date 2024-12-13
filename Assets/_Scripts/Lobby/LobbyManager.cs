@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
+    LobbyData lobbyData;
 
     [SerializeField] string gameSceneName;
 
@@ -13,6 +14,11 @@ public class LobbyManager : MonoBehaviour
 
     int currentPlayerCount;
     int aiCount;
+
+    private void Awake()
+    {
+        lobbyData = FindObjectOfType<LobbyData>();
+    }
 
     private void Start()
     {
@@ -51,6 +57,13 @@ public class LobbyManager : MonoBehaviour
 
     private void StartGame()
     {
+        PlayerPrefs.SetInt("AICount", aiCount);
+
+        for (int i = 0; i < lobbyDogSelectors.Length; i++)
+        {
+            PlayerPrefs.SetInt("Dog_" + i, Array.IndexOf(lobbyData.AvailableDogs, lobbyDogSelectors[i].GetDogData()));
+        }
+
         SceneManager.LoadScene(gameSceneName);
     }
 

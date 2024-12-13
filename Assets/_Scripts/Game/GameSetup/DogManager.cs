@@ -11,9 +11,7 @@ public class DogManager : MonoBehaviour
 
     public event Action<Transform> OnDogSpawned;
     public event Action<Transform> OnDogDespawned;
-
-
-    [SerializeField] int totalDogCount = 8;
+    
     int playerCount;
 
     private void Start()
@@ -38,11 +36,11 @@ public class DogManager : MonoBehaviour
 
     private void SpawnAIDogs()
     {
-        for (int i = 0; i < totalDogCount - playerCount; i++)
+        for (int i = playerCount; i < playerCount + PlayerPrefs.GetInt("AICount"); i++)
         {
             AIDogController aiDog = Instantiate(aiDogPrefab);
 
-            aiDog.GetComponent<Dog>().SetDogData(allDogDatas[playerCount + i]);
+            aiDog.GetComponent<Dog>().SetDogData(allDogDatas[i]);
 
             OnDogSpawned?.Invoke(aiDog.transform);
         }
