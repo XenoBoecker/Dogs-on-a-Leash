@@ -727,11 +727,11 @@ MonoBehaviour:
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
   m_ScreenX: 0.5
-  m_ScreenY: 0.383
+  m_ScreenY: 0.5
   m_DeadZoneWidth: 0.386
-  m_DeadZoneHeight: 0.387
+  m_DeadZoneHeight: 0.37
   m_SoftZoneWidth: 0.647
-  m_SoftZoneHeight: 0.676
+  m_SoftZoneHeight: 0.55
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -1057,6 +1057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   human: {fileID: 557170363}
   cinemachineTargetGroup: {fileID: 427582368}
+  rotSmoothFactor: 1
 --- !u!114 &950691617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,7 +1303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectivePrefab: {fileID: 2706520820608808200, guid: be73da355898dc247b7c4a4235b2b8ec,
     type: 3}
-  objectivesPerDog: 15
+  objectivesPerDog: 40
   allDogs:
   - {fileID: 11400000, guid: 22d62d261a137ca42b7c9f2fe1f8d8e1, type: 2}
   - {fileID: 11400000, guid: aeeb0028cd68c234697c78ed73fc3aca, type: 2}

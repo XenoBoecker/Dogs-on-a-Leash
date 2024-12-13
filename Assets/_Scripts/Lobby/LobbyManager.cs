@@ -12,8 +12,15 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] LobbyDogSelector[] lobbyDogSelectors;
 
     int currentPlayerCount;
+    int aiCount;
 
-    public event Action OnPlayerCountChanged;
+    private void Start()
+    {
+        foreach (LobbyDogSelector selector in lobbyDogSelectors)
+        {
+            selector.gameObject.SetActive(false);
+        }
+    }
 
     public void RegisterPlayer(LobbyPlayer player)
     {
@@ -27,9 +34,9 @@ public class LobbyManager : MonoBehaviour
 
         player.OnConfirmSelectionChanged += CheckAllPlayerConfirmed;
 
-        currentPlayerCount++;
+        lobbyDogSelectors[currentPlayerCount + aiCount].gameObject.SetActive(true);
 
-        OnPlayerCountChanged?.Invoke();
+        currentPlayerCount++;
     }
 
     private void CheckAllPlayerConfirmed()
@@ -45,5 +52,23 @@ public class LobbyManager : MonoBehaviour
     private void StartGame()
     {
         SceneManager.LoadScene(gameSceneName);
+    }
+
+    public void AddAI()
+    {
+        if (aiCount + players.Count >= lobbyDogSelectors.Length) return;
+
+        lobbyDogSelectors[currentPlayerCount + aiCount].gameObject.SetActive(true);
+
+        aiCount++;
+    }
+
+    public void RemoveAI()
+    {
+        if (aiCount <= 0) return;
+
+        aiCount--;
+
+        lobbyDogSelectors[currentPlayerCount + aiCount].gameObject.SetActive(false);
     }
 }
