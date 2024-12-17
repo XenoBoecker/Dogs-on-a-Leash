@@ -53,6 +53,8 @@ public class MapGenerator : MonoBehaviour
             path.Add(chosenTile);
             occupiedPositions.Add(currentPosition);
 
+            Debug.Log("Add " + currentPosition) ;
+
             // Calculate the next position and direction
             currentPosition += tileScript.exitDirection;
             currentDirection = tileScript.exitDirection;

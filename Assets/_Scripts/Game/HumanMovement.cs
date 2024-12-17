@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HumanMovement : MonoBehaviour
@@ -8,6 +9,9 @@ public class HumanMovement : MonoBehaviour
     private Queue<Transform> waypoints = new Queue<Transform>(); // Queue of waypoints
 
     private Transform currentTarget; // Current target waypoint
+
+    float stunTime;
+    bool isStunned => stunTime > 0;
 
     void Awake()
     {
@@ -20,6 +24,10 @@ public class HumanMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        stunTime -= Time.fixedDeltaTime;
+
+        if (isStunned) return;
+
         if (currentTarget != null)
         {
             MoveTowardsCurrentTarget();
@@ -32,6 +40,11 @@ public class HumanMovement : MonoBehaviour
 
     private void MoveTowardsCurrentTarget()
     {
+        if (isStunned)
+        {
+            return;
+        }
+
         Vector3 direction = (currentTarget.position - transform.position).normalized;
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
 
@@ -64,5 +77,10 @@ public class HumanMovement : MonoBehaviour
         {
             currentTarget = null;
         }
+    }
+
+    internal void Stun(float stunTime)
+    {
+        this.stunTime = stunTime;
     }
 }

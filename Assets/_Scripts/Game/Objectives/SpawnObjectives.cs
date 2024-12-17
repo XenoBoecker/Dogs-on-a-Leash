@@ -28,7 +28,7 @@ public class SpawnObjectives : MonoBehaviour
                 if (position != Vector3.zero)
                 {
                     // Instantiate the objective
-                    Objective objective = Instantiate(objectivePrefab, position, Quaternion.identity);
+                    Objective objective = Instantiate(objectivePrefab, position + transform.position, Quaternion.identity);
 
                     // Assign objective type to match the current dog
                     objective.SetObjectiveType(dog.objectiveType);
