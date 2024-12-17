@@ -108,9 +108,15 @@ public class MapGenerator : MonoBehaviour
                 continue;
             }
 
-            Vector3 exitPosition = position + tileScript.exitDirection;
+            // Simulate the tile's rotation based on the current direction
+            Vector3 adjustedEntryDirection = direction == Vector3.zero ? tileScript.entryDirection : -direction;
+            float rotationAngle = Vector3.SignedAngle(tileScript.entryDirection, adjustedEntryDirection, Vector3.up);
 
-            if (direction == Vector3.zero) // start tile
+            // Calculate the world-space exitDirection
+            Vector3 rotatedExitDirection = Quaternion.Euler(0, rotationAngle, 0) * tileScript.exitDirection;
+            Vector3 exitPosition = position + rotatedExitDirection;
+
+            if (direction == Vector3.zero) // First tile (start position)
             {
                 if (tileScript.entryDirection == Vector3.zero)
                 {
@@ -119,13 +125,12 @@ public class MapGenerator : MonoBehaviour
             }
             else
             {
-                // Check if the tile placement overlaps non-crossable positions, and dont take start tiles
+                // Check if the exitPosition is not already occupied and avoid start tiles
                 if (!occupiedPositions.Contains(exitPosition) && tileScript.entryDirection != Vector3.zero)
                 {
                     suitableTiles.Add(tilePrefab);
                 }
             }
-
         }
 
         if (suitableTiles.Count > 0)
@@ -135,4 +140,5 @@ public class MapGenerator : MonoBehaviour
 
         return null;
     }
+
 }

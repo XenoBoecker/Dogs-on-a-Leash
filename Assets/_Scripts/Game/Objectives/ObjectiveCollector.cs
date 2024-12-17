@@ -5,10 +5,7 @@ public class ObjectiveCollector: MonoBehaviour
 {
     Dog dog;
 
-    int scoreCount;
-    public int ScoreCount => scoreCount;
-
-    public event Action OnScoreChanged;
+    public event Action<int> OnScoreChanged;
 
     private void Awake()
     {
@@ -29,8 +26,6 @@ public class ObjectiveCollector: MonoBehaviour
 
     private void CollectObjective(Objective objective)
     {
-        scoreCount++;
-
-        OnScoreChanged?.Invoke();
+        OnScoreChanged?.Invoke(objective.scoreCount);
     }
 }

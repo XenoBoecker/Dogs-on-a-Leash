@@ -25,6 +25,9 @@ public class Objective : MonoBehaviour
 {
     [SerializeField]
     ObjectiveType objectiveType;
+
+
+    public int scoreCount = 100;
     public ObjectiveType ObjectiveType => objectiveType;
 
     public event Action OnTypeChanged;
