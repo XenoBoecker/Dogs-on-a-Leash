@@ -33,16 +33,7 @@ public class Objective : MonoBehaviour
     public event Action OnTypeChanged;
     public event Action<Objective> OnObjectiveCollected;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        ObjectiveCollector objectiveCollector = other.GetComponent<ObjectiveCollector>();
-        if (objectiveCollector != null)
-        {
-            if (objectiveCollector.TryCollectObjective(this)) RemoveObjective();
-        }
-    }
-
-    private void RemoveObjective()
+    public void RemoveObjective()
     {
         OnObjectiveCollected?.Invoke(this);
 

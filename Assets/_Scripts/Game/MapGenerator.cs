@@ -9,6 +9,13 @@ public class MapGenerator : MonoBehaviour
 
     private List<Vector3> occupiedPositions = new List<Vector3>(); // Track occupied positions
 
+    enum TilePosition
+    {
+        Start,
+        Middle,
+        End
+    }
+
     void Start()
     {
         GenerateMap();
@@ -30,7 +37,12 @@ public class MapGenerator : MonoBehaviour
 
         for (int i = 0; i < numberOfTiles; i++)
         {
-            GameObject chosenTile = ChooseTile(currentPosition, currentDirection);
+            GameObject chosenTile;
+            if(i == 0) chosenTile = ChooseTile(currentPosition, currentDirection, TilePosition.Start);
+            else if(i == numberOfTiles-1) chosenTile = ChooseTile(currentPosition, currentDirection, TilePosition.End);
+            else chosenTile = ChooseTile(currentPosition, currentDirection, TilePosition.Middle);
+
+            
             if (chosenTile == null)
             {
                 Debug.LogWarning("Path generation failed. Regenerating...");
@@ -53,7 +65,7 @@ public class MapGenerator : MonoBehaviour
             path.Add(chosenTile);
             occupiedPositions.Add(currentPosition);
 
-            Debug.Log("Add " + currentPosition) ;
+            Debug.Log("Add " + currentPosition);
 
             // Calculate the next position and direction
             currentPosition += tileScript.exitDirection;
@@ -95,7 +107,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    GameObject ChooseTile(Vector3 position, Vector3 direction)
+    GameObject ChooseTile(Vector3 position, Vector3 direction, TilePosition tilePosition)
     {
         List<GameObject> suitableTiles = new List<GameObject>();
 
@@ -116,9 +128,15 @@ public class MapGenerator : MonoBehaviour
             Vector3 rotatedExitDirection = Quaternion.Euler(0, rotationAngle, 0) * tileScript.exitDirection;
             Vector3 exitPosition = position + rotatedExitDirection;
 
-            if (direction == Vector3.zero) // First tile (start position)
+            if (tilePosition == TilePosition.Start) // First tile (start position)
             {
                 if (tileScript.entryDirection == Vector3.zero)
+                {
+                    suitableTiles.Add(tilePrefab);
+                }
+            }else if(tilePosition == TilePosition.End)
+            {
+                if (tileScript.exitDirection == Vector3.zero)
                 {
                     suitableTiles.Add(tilePrefab);
                 }

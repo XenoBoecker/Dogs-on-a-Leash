@@ -15,12 +15,12 @@ public class Obstacle : MonoBehaviour
 
         if (!rb) return;
 
-        rb.AddForce((other.transform.position - transform.position).normalized * pushBackForce, ForceMode.Impulse);
-
         HumanMovement human = other.GetComponent<HumanMovement>();
 
         if (human)
         {
+            rb.AddForce((other.transform.position - transform.position).normalized * pushBackForce, ForceMode.Impulse);
+
             human.Stun(stunTime);
         }
     }

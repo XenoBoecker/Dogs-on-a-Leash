@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
+    HumanMovement human;
+
+
+    [SerializeField] string endGameSceneName = "GameOver";
 
     [SerializeField] TMP_Text timeText;
 
@@ -20,6 +25,9 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        human = FindObjectOfType<HumanMovement>();
+        human.OnEndGame += EndGame;
+        
         objectiveCollectors = FindObjectsOfType<ObjectiveCollector>();
 
         foreach (ObjectiveCollector objectiveCollector in objectiveCollectors)
@@ -43,5 +51,13 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         timeText.text = "Time: " + (Time.time - startTime).ToString("F2");
+    }
+
+    void EndGame()
+    {
+        PlayerPrefs.SetInt("Score", totalScore);
+        PlayerPrefs.SetFloat("Time", Time.time - startTime);
+
+        SceneManager.LoadScene(endGameSceneName);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HumanMovement : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class HumanMovement : MonoBehaviour
 
     float stunTime;
     bool isStunned => stunTime > 0;
+
+    public event Action OnEndGame;
 
     void Awake()
     {
@@ -32,7 +35,7 @@ public class HumanMovement : MonoBehaviour
         {
             MoveTowardsCurrentTarget();
         }
-        else if (waypoints.Count > 0)
+        else
         {
             SetNextWaypoint();
         }
@@ -59,6 +62,10 @@ public class HumanMovement : MonoBehaviour
         {
             currentTarget = waypoints.Dequeue();
         }
+        else
+        {
+            EndGame();
+        }
     }
 
     public void AddWaypoints(List<Transform> newWaypoints)
@@ -82,5 +89,12 @@ public class HumanMovement : MonoBehaviour
     internal void Stun(float stunTime)
     {
         this.stunTime = stunTime;
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("Game OVer");
+
+        OnEndGame?.Invoke();
     }
 }

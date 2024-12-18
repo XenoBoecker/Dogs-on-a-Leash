@@ -12,20 +12,14 @@ public class ObjectiveCollector: MonoBehaviour
         dog = GetComponent<Dog>();
     }
 
-    internal bool TryCollectObjective(Objective objective)
+    private void OnTriggerEnter(Collider other)
     {
-        if(objective.ObjectiveType == dog.DogData.objectiveType)
+        Objective objective = other.GetComponent<Objective>();
+        if (objective != null && objective.ObjectiveType == dog.DogData.objectiveType)
         {
-            CollectObjective(objective);
+            OnScoreChanged?.Invoke(objective.scoreCount);
 
-            return true;
+            objective.RemoveObjective();
         }
-
-        return false;
-    }
-
-    private void CollectObjective(Objective objective)
-    {
-        OnScoreChanged?.Invoke(objective.scoreCount);
     }
 }
