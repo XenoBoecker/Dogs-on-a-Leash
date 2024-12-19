@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7021033355a8f154cb561476ffdba982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
 --- !u!1 &599085322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,6 +1745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2502d40e6dcabba4f84b3a25a22d8c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endGameSceneName: GameOver
   timeText: {fileID: 224081559}
   scoreText: {fileID: 599085324}
 --- !u!1660057539 &9223372036854775807
