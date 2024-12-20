@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class HumanMovement : MonoBehaviour
 {
+
+    [SerializeField] float minSpeed = 1f;
     public float speed = 5f; // Speed of movement
     private Rigidbody rb; // Rigidbody for physical movement
     private Queue<Transform> waypoints = new Queue<Transform>(); // Queue of waypoints
@@ -28,6 +30,8 @@ public class HumanMovement : MonoBehaviour
     void FixedUpdate()
     {
         stunTime -= Time.fixedDeltaTime;
+        
+        rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0); // only  y rotation
 
         if (isStunned) return;
 
@@ -39,6 +43,8 @@ public class HumanMovement : MonoBehaviour
         {
             SetNextWaypoint();
         }
+
+        if (rb.velocity.x < minSpeed) rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
     }
 
     private void MoveTowardsCurrentTarget()

@@ -1558,7 +1558,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!145 &4734182657867989483
 SpringJoint:
@@ -1673,7 +1673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dcac4c0d5d9e144ca65e64a4ff38437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1698,10 +1697,35 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelerationTime: 2
-  dogRigidbody: {fileID: 7086761737223978608}
-  dogAnimator: {fileID: 0}
+  decelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.07643453
+      outSlope: -0.07643453
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.12249858
+    - serializedVersion: 3
+      time: 1.0075684
+      value: -0.002357483
+      inSlope: -3.3119218
+      outSlope: -3.3119218
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.032511227
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSpeed: 5
   speedMultiplier: 1
+  turnSpeed: 5
+  accelerationTime: 0.8
+  decelerationTime: 0.2
 --- !u!114 &5067752993703601959
 MonoBehaviour:
   m_ObjectHideFlags: 0

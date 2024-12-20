@@ -19,9 +19,13 @@ public class Obstacle : MonoBehaviour
 
         if (human)
         {
-            rb.AddForce((other.transform.position - transform.position).normalized * pushBackForce, ForceMode.Impulse);
+            Vector3 dir = other.transform.position - transform.position;
+
+            dir.y = 0;
 
             human.Stun(stunTime);
+
+            rb.AddForce(dir.normalized * pushBackForce, ForceMode.Impulse);
         }
     }
 }
