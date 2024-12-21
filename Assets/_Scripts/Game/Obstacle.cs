@@ -5,9 +5,31 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
 
-    [SerializeField] float pushBackForce = 50f;
+    public float pushBackForce = 50f;
+    public float CurrentPushBackForce => pushBackForce * (playerCollisionCounter + 1);
 
-    [SerializeField] float stunTime = 0.5f;
+    public float stunTime = 0.5f;
+
+
+    [SerializeField] float pushBackCD = 2f;
+    float pushBackTimer;
+
+    public int scoreValue = -100;
+    public int CurrentScoreValue => scoreValue * (playerCollisionCounter + 1);
+
+    int playerCollisionCounter;
+
+    HumanMovement human;
+
+    private void Update()
+    {
+        pushBackTimer -= Time.deltaTime;
+
+        if (human && pushBackTimer <= 0)
+        {
+            DoCollision();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,17 +37,29 @@ public class Obstacle : MonoBehaviour
 
         if (!rb) return;
 
-        HumanMovement human = other.GetComponent<HumanMovement>();
+        human = other.GetComponent<HumanMovement>();
 
-        if (human)
+        if (human && pushBackTimer > 0)
         {
-            Vector3 dir = other.transform.position - transform.position;
+            DoCollision();
+        }
+    }
 
-            dir.y = 0;
+    void DoCollision()
+    {
+        human.ObstacleCollision(this);
 
-            human.Stun(stunTime);
+        playerCollisionCounter++;
+        pushBackTimer = pushBackCD;
 
-            rb.AddForce(dir.normalized * pushBackForce, ForceMode.Impulse);
+        Debug.Log("Obstacle push Human");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<HumanMovement>() == human)
+        {
+            human = null;
         }
     }
 }

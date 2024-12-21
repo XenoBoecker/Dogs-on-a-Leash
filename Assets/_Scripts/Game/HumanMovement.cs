@@ -17,6 +17,7 @@ public class HumanMovement : MonoBehaviour
     bool isStunned => stunTime > 0;
 
     public event Action OnEndGame;
+    public event Action<Obstacle> OnHitObstacle;
 
     void Awake()
     {
@@ -43,8 +44,6 @@ public class HumanMovement : MonoBehaviour
         {
             SetNextWaypoint();
         }
-
-        if (rb.velocity.x < minSpeed) rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
     }
 
     private void MoveTowardsCurrentTarget()
@@ -54,10 +53,15 @@ public class HumanMovement : MonoBehaviour
             return;
         }
 
-        Vector3 direction = (currentTarget.position - transform.position).normalized;
+        //Vector3 direction = (currentTarget.position - transform.position).normalized;
+
+        Vector3 direction = Vector3.right;
+        
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
 
-                // Optional: Rotate towards the target
+        if (rb.velocity.x < minSpeed) rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
+
+        // Optional: Rotate towards the target
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * speed));
     }
@@ -84,17 +88,31 @@ public class HumanMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger enter: " + other.name);
-
         if (currentTarget != null && other.transform == currentTarget)
         {
             currentTarget = null;
         }
     }
 
-    internal void Stun(float stunTime)
+    public void ObstacleCollision(Obstacle obstacle)
+    {
+        Debug.Log("Human obstacle collision: stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce);
+
+        Vector3 dir = (transform.position - obstacle.transform.position).normalized;
+
+        dir.y = 0;
+
+        Stun(obstacle.stunTime);
+
+        rb.AddForce(dir * obstacle.CurrentPushBackForce, ForceMode.Impulse);
+
+        OnHitObstacle?.Invoke(obstacle);
+    }
+
+    void Stun(float stunTime)
     {
         this.stunTime = stunTime;
+
     }
 
     private void EndGame()

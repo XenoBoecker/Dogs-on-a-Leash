@@ -27,6 +27,7 @@ public class ScoreManager : MonoBehaviour
     {
         human = FindObjectOfType<HumanMovement>();
         human.OnEndGame += EndGame;
+        human.OnHitObstacle += SubtractObstaclePoints;
         
         objectiveCollectors = FindObjectsOfType<ObjectiveCollector>();
 
@@ -40,9 +41,16 @@ public class ScoreManager : MonoBehaviour
         AddScore(0);
     }
 
+    private void SubtractObstaclePoints(Obstacle obstacle)
+    {
+        AddScore(obstacle.scoreValue);
+    }
+
     private void AddScore(int score)
     {
         totalScore += score;
+
+        if (totalScore < 0) totalScore = 0;
 
         scoreText.text = "Score: " + totalScore;
     }

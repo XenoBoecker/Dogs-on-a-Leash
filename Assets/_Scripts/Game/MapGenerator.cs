@@ -5,11 +5,14 @@ public class MapGenerator : MonoBehaviour
 {
     HumanMovement humanMovement;
 
+
+    [SerializeField] int seed;
+
     [SerializeField] List<Tile> startTiles;
     [SerializeField] List<Tile> availableTiles; // List of available tile prefabs
     [SerializeField] List<Tile> endTiles;
 
-    [SerializeField] int levelLength = 120;
+    public int levelLength = 120;
 
     int currentPathLength;
 
@@ -25,6 +28,8 @@ public class MapGenerator : MonoBehaviour
     private void Awake()
     {
         humanMovement = FindObjectOfType<HumanMovement>();
+
+        Random.InitState(seed);
     }
 
     void Start()
@@ -50,12 +55,12 @@ public class MapGenerator : MonoBehaviour
 
     private void PlaceNextTile()
     {
-        PlaceTile(availableTiles[Random.Range(0, startTiles.Count)]);
+        PlaceTile(availableTiles[Random.Range(0, availableTiles.Count)]);
     }
 
     private void PlaceEndTile()
     {
-        PlaceTile(endTiles[Random.Range(0, startTiles.Count)]);
+        PlaceTile(endTiles[Random.Range(0, endTiles.Count)]);
     }
 
     void PlaceTile(Tile tile)
