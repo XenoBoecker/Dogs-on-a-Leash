@@ -12,7 +12,7 @@ public class DogController : MonoBehaviour
     public float accelerationTime = 1f; // Time to reach max speed
     public float decelerationTime = 1f; // Time to stop from max speed
 
-    float finalSpeed;
+    float speedBeforeDecelleration;
 
     protected Vector2 movementInput; // Current input values (set externally)
 
@@ -50,7 +50,7 @@ public class DogController : MonoBehaviour
 
             currentSpeed = Mathf.Max(currentSpeed, rb.velocity.magnitude);
 
-            finalSpeed = currentSpeed;
+            speedBeforeDecelleration = currentSpeed;
         }
         else
         {
@@ -60,7 +60,7 @@ public class DogController : MonoBehaviour
             decelerationTimer = Mathf.Clamp(decelerationTimer, 0f, decelerationTime);
 
             // Get speed based on deceleration curve
-            currentSpeed = decelerationCurve.Evaluate(decelerationTimer / decelerationTime) * finalSpeed;
+            currentSpeed = decelerationCurve.Evaluate(decelerationTimer / decelerationTime) * speedBeforeDecelleration;
         }
     }
 
@@ -76,6 +76,11 @@ public class DogController : MonoBehaviour
         // Move the dog forward based on current speed
         Vector3 forwardVelocity = rb.transform.forward * currentSpeed;
         rb.velocity = forwardVelocity;
+
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
     protected void ZoomieStart()
     {

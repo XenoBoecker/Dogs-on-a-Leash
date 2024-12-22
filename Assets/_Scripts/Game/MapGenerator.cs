@@ -32,7 +32,7 @@ public class MapGenerator : MonoBehaviour
         Random.InitState(seed);
     }
 
-    void Start()
+    protected virtual void Start()
     {
         GenerateMap();
     }
@@ -48,12 +48,12 @@ public class MapGenerator : MonoBehaviour
         PlaceEndTile();
     }
 
-    private void PlaceStartTile()
+    protected void PlaceStartTile()
     {
         PlaceTile(startTiles[Random.Range(0, startTiles.Count)]);
     }
 
-    private void PlaceNextTile()
+    protected void PlaceNextTile()
     {
         PlaceTile(availableTiles[Random.Range(0, availableTiles.Count)]);
     }

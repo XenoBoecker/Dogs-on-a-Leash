@@ -10,7 +10,7 @@ public class DogLineRenderer : MonoBehaviour
 
     private void Awake()
     {
-        humanObject = GameObject.Find("Human").transform;
+        humanObject = GameObject.FindObjectOfType<HumanMovement>().transform;
         lineRenderer = GetComponent<LineRenderer>();
 
         lineRenderer.enabled = true;

@@ -10,7 +10,7 @@ public class GroupCameraManager : MonoBehaviour
 
     DogGroupObserver dogGroupObserver;
 
-    [SerializeField] Transform human;
+    Transform human;
     [SerializeField] CinemachineTargetGroup cinemachineTargetGroup;
 
 
@@ -21,6 +21,8 @@ public class GroupCameraManager : MonoBehaviour
 
     private void Awake()
     {
+        human = FindObjectOfType<HumanMovement>().transform;
+
         dogManager = GetComponent<DogManager>();
         if (dogManager != null)
         {

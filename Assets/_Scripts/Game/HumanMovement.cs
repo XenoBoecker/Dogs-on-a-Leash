@@ -10,6 +10,7 @@ public class HumanMovement : MonoBehaviour
     public float speed = 5f; // Speed of movement
     private Rigidbody rb; // Rigidbody for physical movement
     private Queue<Transform> waypoints = new Queue<Transform>(); // Queue of waypoints
+    public int CurrentWaypointCount => waypoints.Count;
 
     private Transform currentTarget; // Current target waypoint
 
