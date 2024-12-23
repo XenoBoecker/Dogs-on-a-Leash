@@ -2,11 +2,15 @@
 
 public class CameraMovement : MonoBehaviour
 {
-
-    [SerializeField] Transform human;
+    Transform human;
 
 
     [SerializeField] float lerpSpeed = 2f;
+
+    private void Awake()
+    {
+        human = FindObjectOfType<HumanMovement>().transform;
+    }
 
     private void LateUpdate()
     {
