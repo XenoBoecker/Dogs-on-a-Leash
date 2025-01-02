@@ -36,6 +36,13 @@ public class LobbyDogSelector : MonoBehaviour
         DataChanged();
     }
 
+    public void SetSelectedDogIndex(int i)
+    {
+        currentSelectedDogIndex = i;
+
+        DataChanged();
+    }
+
     public void DataChanged()
     {
         OnDataChanged?.Invoke();

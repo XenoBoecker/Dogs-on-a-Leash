@@ -12,6 +12,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] List<Tile> availableTiles; // List of available tile prefabs
     [SerializeField] List<Tile> endTiles;
 
+
+    [SerializeField] Transform tileParent;
+
     public int levelLength = 120;
 
     int currentPathLength;
@@ -66,6 +69,9 @@ public class MapGenerator : MonoBehaviour
     void PlaceTile(Tile tile)
     {
         Tile newTile = Instantiate(tile, currentPathLength * Vector3.right, Quaternion.identity);
+
+        newTile.transform.SetParent(tileParent);
+
         currentPathLength += tile.tileLength;
 
         humanMovement.AddWaypoints(newTile.pathWaypoints);

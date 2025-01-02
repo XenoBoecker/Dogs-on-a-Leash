@@ -16,7 +16,7 @@ public class DogManager : MonoBehaviour
 
     private void Start()
     {
-        DogController[] dogControllers = FindObjectsOfType<DogController>(true);
+        DogController[] dogControllers = FindObjectsOfType<DogController>(true); // find input scripts (only local dogs), spawn dogs on network
         playerCount = dogControllers.Length;
 
         foreach (DogController dogController in dogControllers)

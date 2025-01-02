@@ -10,6 +10,9 @@ public class SpawnObjectives : MonoBehaviour
     [SerializeField] float minDistBetweenObjectives = 2f; // Minimum distance between objectives
     [SerializeField] float minDistToCenter = 5f; // Minimum distance to the center
 
+
+    [SerializeField] Transform objectiveParent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,8 @@ public class SpawnObjectives : MonoBehaviour
                 {
                     // Instantiate the objective
                     Objective objective = Instantiate(objectivePrefab, position + transform.position, Quaternion.identity);
+
+                    objective.transform.SetParent(objectiveParent);
 
                     // Assign objective type to match the current dog
                     objective.SetObjectiveType(dog.objectiveType);

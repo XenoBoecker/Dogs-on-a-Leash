@@ -26,11 +26,11 @@ public class TestDogManager : MonoBehaviour
 
     private void OnPlayerJoined(PlayerInput input)
     {
-        OnDogSpawned.Invoke(input.transform);
+        OnDogSpawned?.Invoke(input.transform);
     }
 
     private void OnPlayerLeft(PlayerInput input)
     {
-        OnDogDespawned.Invoke(input.transform);
+        OnDogDespawned?.Invoke(input.transform);
     }
 }

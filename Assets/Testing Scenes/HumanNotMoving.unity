@@ -739,7 +739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d3e1e6ed642d342bf58fc35a01c34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  human: {fileID: 557170363}
   lerpSpeed: 2
 --- !u!1 &410087039
 GameObject:
@@ -1334,6 +1333,7 @@ MonoBehaviour:
   - {fileID: 1356847988385133073, guid: 493fe89f2130c1644aed636ea96a2628, type: 3}
   endTiles:
   - {fileID: 3360506625757157340, guid: 2f51e550c98ee584a9def3470c232829, type: 3}
+  tileParent: {fileID: 0}
   levelLength: 120
 --- !u!1 &654640622
 GameObject:
@@ -1935,7 +1935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31754acf525ff09409e51d3606347c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  human: {fileID: 557170363}
   cinemachineTargetGroup: {fileID: 427582368}
   rotSmoothFactor: 1
 --- !u!114 &950691617
@@ -1986,7 +1985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb218e738dcd024394c66371dddca6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  human: {fileID: 0}
   testingNoDogAttachment: 0
 --- !u!1 &955260877
 GameObject:
@@ -2567,6 +2565,13 @@ MonoBehaviour:
     GateFit: 2
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
+    Iso: 200
+    ShutterSpeed: 0.005
+    Aperture: 16
+    BladeCount: 5
+    Curvature: {x: 2, y: 11}
+    BarrelClipping: 0.25
+    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3326,6 +3331,7 @@ MonoBehaviour:
   mapSize: {x: 100, y: 100}
   minDistBetweenObjectives: 3
   minDistToCenter: 10
+  objectiveParent: {fileID: 0}
 --- !u!4 &1973408249
 Transform:
   m_ObjectHideFlags: 0

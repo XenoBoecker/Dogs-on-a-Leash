@@ -5,12 +5,15 @@ using UnityEngine.InputSystem;
 
 public class LobbyPlayer : MonoBehaviour
 {
+    photonMenuLobby.LobbyManager lobbyManager;
+
     PlayerInput playerInput;
 
     string playerName;
     public string PlayerName => playerName;
 
-    DogData dogData;
+
+    [SerializeField] DogData dogData;
     public DogData DogData => dogData;
 
     LobbyDogSelector lobbyDogSelector;
@@ -27,7 +30,14 @@ public class LobbyPlayer : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<LobbyManager>()?.RegisterPlayer(this);
+        FindObjectOfType<LocalLobbyManager>()?.RegisterPlayer(this);
+
+        lobbyManager = FindObjectOfType<photonMenuLobby.LobbyManager>();
+        if (lobbyManager == null) Debug.LogError("No Lobby Manager found");
+        lobbyManager.
+            GetLocalClient()
+            .AddLocalPlayer();
+        //transform.SetParent(lobbyManager.playerItemParent);
     }
 
     private void OnEnable()
@@ -110,7 +120,7 @@ public class LobbyPlayer : MonoBehaviour
     {
         isSelectionConfirmed = !isSelectionConfirmed;
 
-        lobbyDogSelector.SetConfirmSelection(isSelectionConfirmed);
+        lobbyDogSelector?.SetConfirmSelection(isSelectionConfirmed);
 
         OnConfirmSelectionChanged?.Invoke();
     }

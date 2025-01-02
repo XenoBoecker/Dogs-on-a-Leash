@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerDogController : DogController
 {
+    PlayerInput playerInput;
+    
     private void OnEnable()
     {
         // Ensure PlayerInput component is enabled
-        var playerInput = GetComponentInParent<PlayerInput>();
+        playerInput = GetComponentInParent<PlayerInput>();
         if (playerInput)
         {
             playerInput.onActionTriggered += OnActionTriggered;
@@ -16,7 +18,7 @@ public class PlayerDogController : DogController
     private void OnDisable()
     {
         // Unsubscribe from the PlayerInput events
-        var playerInput = GetComponentInParent<PlayerInput>();
+        playerInput = GetComponentInParent<PlayerInput>();
         if (playerInput)
         {
             playerInput.onActionTriggered -= OnActionTriggered;
@@ -43,5 +45,14 @@ public class PlayerDogController : DogController
                 ZoomieStart();
             }
         }
+    }
+
+    public void SetPlayerInput(PlayerInput input)
+    {
+        if (playerInput) playerInput.onActionTriggered -= OnActionTriggered;
+
+        playerInput = input;
+
+        playerInput.onActionTriggered += OnActionTriggered;
     }
 }

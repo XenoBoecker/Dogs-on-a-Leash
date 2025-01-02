@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Dog : MonoBehaviour
 {
@@ -11,5 +12,10 @@ public class Dog : MonoBehaviour
         DogData = dogData;
 
         OnDogDataChanged?.Invoke();
+    }
+
+    internal void SetPlayerInput(PlayerInput playerInput)
+    {
+        GetComponent<PlayerDogController>().SetPlayerInput(playerInput);
     }
 }
