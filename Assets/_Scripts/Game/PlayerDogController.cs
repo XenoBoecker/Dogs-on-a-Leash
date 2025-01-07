@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerDogController : DogController
 {
     PlayerInput playerInput;
+
+    public event Action OnInteract;
     
     private void OnEnable()
     {
@@ -45,6 +48,13 @@ public class PlayerDogController : DogController
                 ZoomieStart();
             }
         }
+        else if(context.action.name == "Interact")
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                OnInteract?.Invoke();
+            }
+        }
     }
 
     public void SetPlayerInput(PlayerInput input)
@@ -54,5 +64,17 @@ public class PlayerDogController : DogController
         playerInput = input;
 
         playerInput.onActionTriggered += OnActionTriggered;
+    }
+
+    internal void StopMovement()
+    {
+        // rb.velocity = Vector2.zero;
+        
+        this.enabled = false;
+    }
+
+    internal void StartMovement()
+    {
+        this.enabled = true;
     }
 }

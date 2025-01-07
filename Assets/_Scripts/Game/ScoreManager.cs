@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     HumanMovement human;
-
+    MapManager mapManager;
 
     [SerializeField] string endGameSceneName = "GameOver";
 
@@ -26,8 +26,10 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         human = FindObjectOfType<HumanMovement>();
-        human.OnEndGame += EndGame;
         human.OnHitObstacle += SubtractObstaclePoints;
+
+        mapManager = FindObjectOfType<MapManager>();
+        mapManager.OnGameEnd += EndGame;
         
         objectiveCollectors = FindObjectsOfType<ObjectiveCollector>();
 

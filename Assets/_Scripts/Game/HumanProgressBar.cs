@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HumanProgressBar : MonoBehaviour
 {
     HumanMovement human;
-    MapGenerator mapGen;
+    MapManager mapGen;
 
 
     [SerializeField] Slider slider;
@@ -12,7 +12,7 @@ public class HumanProgressBar : MonoBehaviour
     private void Awake()
     {
         human = FindObjectOfType<HumanMovement>();
-        mapGen = FindObjectOfType<MapGenerator>();
+        mapGen = FindObjectOfType<MapManager>();
     }
 
     private void Update()

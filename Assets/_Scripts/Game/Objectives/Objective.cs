@@ -1,17 +1,14 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using UnityEngine;
 
 
 public enum ObjectiveType
 {
-    Red,
-    Green,
-    Blue,
-    Yellow,
-    Orange,
-    Purple,
-    Teal,
-    Pink
+    SingleDog,
+    TwoDogs,
+
+    ObjectiveTypeCount
 }
 
 [System.Serializable]
@@ -23,6 +20,8 @@ public struct VisualByType
 
 public class Objective : MonoBehaviour
 {
+    PhotonView photonView;
+
     [SerializeField]
     ObjectiveType objectiveType;
 
@@ -33,6 +32,11 @@ public class Objective : MonoBehaviour
     public event Action OnTypeChanged;
     public event Action<Objective> OnObjectiveCollected;
 
+    private void Awake()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
+
     public void RemoveObjective()
     {
         OnObjectiveCollected?.Invoke(this);
@@ -40,10 +44,18 @@ public class Objective : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetObjectiveType(ObjectiveType type)
+
+
+    [PunRPC]
+    public void SetObjectiveTypeRPC(ObjectiveType type)
     {
         objectiveType = type;
 
         OnTypeChanged?.Invoke();
+    }
+
+    public void SetObjectiveType(ObjectiveType type)
+    {
+        photonView.RPC(nameof(SetObjectiveTypeRPC), RpcTarget.All, type);
     }
 }

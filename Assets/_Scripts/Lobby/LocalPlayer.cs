@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 // TODO: Assign Lobby player to LobbyDogSelector
 
-public class LobbyPlayer : MonoBehaviour
+public class LocalPlayer : MonoBehaviour
 {
     photonMenuLobby.LobbyManager lobbyManager;
 

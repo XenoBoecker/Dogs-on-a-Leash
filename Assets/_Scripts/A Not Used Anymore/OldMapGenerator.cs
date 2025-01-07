@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class OldMapGenerator : MonoBehaviour
 {
     public List<GameObject> availableTiles; // List of available tile prefabs
@@ -162,3 +162,4 @@ public class OldMapGenerator : MonoBehaviour
     }
 
 }
+*/

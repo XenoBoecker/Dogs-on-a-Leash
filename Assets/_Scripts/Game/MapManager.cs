@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Photon.Pun;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MapGenerator : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
     HumanMovement humanMovement;
 
@@ -17,9 +19,9 @@ public class MapGenerator : MonoBehaviour
 
     public int levelLength = 120;
 
-    int currentPathLength;
+    protected int currentPathLength;
 
-    
+    public event Action OnGameEnd;
 
     enum TilePosition
     {
@@ -32,12 +34,24 @@ public class MapGenerator : MonoBehaviour
     {
         humanMovement = FindObjectOfType<HumanMovement>();
 
-        Random.InitState(seed);
+        UnityEngine.Random.InitState(seed);
     }
 
     protected virtual void Start()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+
         GenerateMap();
+    }
+
+    private void Update()
+    {
+        if (humanMovement.transform.position.x >= levelLength) EndGame();
+    }
+
+    private void EndGame()
+    {
+        OnGameEnd?.Invoke();
     }
 
     void GenerateMap()
@@ -53,28 +67,27 @@ public class MapGenerator : MonoBehaviour
 
     protected void PlaceStartTile()
     {
-        PlaceTile(startTiles[Random.Range(0, startTiles.Count)]);
+        PlaceTile(startTiles[UnityEngine.Random.Range(0, startTiles.Count)]);
     }
 
     protected void PlaceNextTile()
     {
-        PlaceTile(availableTiles[Random.Range(0, availableTiles.Count)]);
+        PlaceTile(availableTiles[UnityEngine.Random.Range(0, availableTiles.Count)]);
     }
 
     private void PlaceEndTile()
     {
-        PlaceTile(endTiles[Random.Range(0, endTiles.Count)]);
+        PlaceTile(endTiles[UnityEngine.Random.Range(0, endTiles.Count)]);
     }
 
     void PlaceTile(Tile tile)
     {
-        Tile newTile = Instantiate(tile, currentPathLength * Vector3.right, Quaternion.identity);
+        Tile newTile = PhotonNetwork.Instantiate(tile.name, currentPathLength * Vector3.right, Quaternion.identity).GetComponent<Tile>();
 
         newTile.transform.SetParent(tileParent);
 
-        currentPathLength += tile.tileLength;
+        newTile.Setup();
 
-        humanMovement.AddWaypoints(newTile.pathWaypoints);
+        currentPathLength += tile.tileLength;
     }
-    
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class HumanConnectionManager : MonoBehaviour
 {
-    DogManager dogManager;
     OnlineDogSpawner dogSpawner;
 
     TestDogManager testDogManager;
@@ -23,9 +22,6 @@ public class HumanConnectionManager : MonoBehaviour
         {
             dogSpawner.OnDogSpawned += AttachDogToHuman;
         }
-
-        dogManager = GetComponent<DogManager>();
-        if(dogManager != null) dogManager.OnDogSpawned += AttachDogToHuman;
 
         TestAwake();
     }

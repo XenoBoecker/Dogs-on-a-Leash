@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+/*
 public class DogManager : MonoBehaviour
 {
 
@@ -46,3 +46,4 @@ public class DogManager : MonoBehaviour
         }
     }
 }
+*/

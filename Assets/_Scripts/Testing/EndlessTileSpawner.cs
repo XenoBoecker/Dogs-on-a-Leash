@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndlessTileSpawner : MapGenerator
+public class EndlessTileSpawner : MapManager
 {
     HumanMovement human;
 
@@ -17,7 +17,7 @@ public class EndlessTileSpawner : MapGenerator
     // Update is called once per frame
     void Update()
     {
-        if (human.CurrentWaypointCount < 5)
+        if (currentPathLength - human.transform.position.x < 50)
         {
             PlaceNextTile();
         }

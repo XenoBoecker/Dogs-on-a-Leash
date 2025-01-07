@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class GroupCameraManager : MonoBehaviour
 {
     DogManager dogManager;
@@ -105,4 +105,4 @@ public class GroupCameraManager : MonoBehaviour
             cinemachineTargetGroup.m_Targets[i] = dogTargets[i];
         }
     }
-}
+}*/

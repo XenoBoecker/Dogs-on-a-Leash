@@ -11,7 +11,7 @@ public class OnlineDogSpawner : MonoBehaviour
     
     private void Start()
     {
-        LobbyPlayer[] localPlayers = FindObjectsOfType<LobbyPlayer>();
+        LocalPlayer[] localPlayers = FindObjectsOfType<LocalPlayer>();
 
         for (int i = 0; i < localPlayers.Length; i++)
         {

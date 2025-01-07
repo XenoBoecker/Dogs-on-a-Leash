@@ -1,6 +1,7 @@
 
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor.PackageManager;
@@ -28,7 +29,8 @@ namespace photonMenuLobby
 
 
 
-        public List<Client> clients = new List<Client>();
+        List<Client> clients = new List<Client>();
+        public List<Client> Clients => clients;
 
         [SerializeField] Client clientPrefab;
 
@@ -47,6 +49,8 @@ namespace photonMenuLobby
         [SerializeField] string gameSceneName = "Game";
 
         [SerializeField] bool testing;
+
+        public event Action OnPlayerListChanged;
 
         private void Start()
         {
@@ -205,6 +209,8 @@ namespace photonMenuLobby
                     playerItemsList.Add(newPlayerItem);
                 }
             }
+
+            OnPlayerListChanged?.Invoke();
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -222,18 +228,6 @@ namespace photonMenuLobby
             PhotonNetwork.LoadLevel(gameSceneName);
         }
 
-        public List<Player> GetClients()
-        {
-            List<Player> clients = new List<Player>();
-
-            foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
-            {
-                clients.Add(player.Value);
-            }
-
-            return clients;
-        }
-
         public Client GetLocalClient()
         {
             for (int i = 0; i < clients.Count; i++)
@@ -241,6 +235,38 @@ namespace photonMenuLobby
                 if (clients[i].IsLocal) return clients[i];
             }
             return null;
+        }
+    }
+
+    public class LobbyPlayersUI : MonoBehaviour
+    {
+        LobbyManager lobbyManager;
+
+        [SerializeField] List<LobbyShowDog> lobbyShowDogObjects;
+
+        private void Awake()
+        {
+            lobbyManager = FindObjectOfType<LobbyManager>();
+            lobbyManager.OnPlayerListChanged += UpdateUI;
+        }
+
+        private void UpdateUI()
+        {
+            for (int i = 0; i < lobbyShowDogObjects.Count; i++)
+            {
+                lobbyShowDogObjects[i].gameObject.SetActive(false);
+            }
+
+            int index = 0;
+
+            for (int i = 0; i < lobbyManager.Clients.Count; i++)
+            {
+                for (int j = 0; j < lobbyManager.Clients[i].localPlayers.Count; j++)
+                {
+                    lobbyShowDogObjects[index++].SetPlayerData(lobbyManager.Clients[i].localPlayers[j]);
+                    lobbyShowDogObjects[index++].gameObject.SetActive(true);
+                }
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class DogGroupObserver : MonoBehaviour
 {
     DogManager dogManager;
@@ -42,4 +42,4 @@ public class DogGroupObserver : MonoBehaviour
     {
         allDogs.Add(dog);
     }
-}
+}*/

@@ -1,46 +1,38 @@
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnObjectives : MonoBehaviour
 {
     [SerializeField] Objective objectivePrefab;
-    [SerializeField] int objectivesPerDog = 10;
-    [SerializeField] DogData[] allDogs;
+    [SerializeField] int objectiveCount = 10;
+
     [SerializeField] Vector2 mapSize = new Vector2(50,50);
-    [SerializeField] float minDistBetweenObjectives = 2f; // Minimum distance between objectives
+    [SerializeField] float minDistBetweenObjectives = 5f; // Minimum distance between objectives
     [SerializeField] float minDistToCenter = 5f; // Minimum distance to the center
 
 
     [SerializeField] Transform objectiveParent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SpawnAllObjectives();
-    }
-
-    void SpawnAllObjectives()
+    public void SpawnAllObjectives()
     {
         List<Vector3> placedPositions = new List<Vector3>();
 
-        foreach (var dog in allDogs)
+        for (int i = 0; i < objectiveCount; i++)
         {
-            for (int i = 0; i < objectivesPerDog; i++)
+            Vector3 position = GenerateValidPosition(placedPositions);
+            if (position != Vector3.zero)
             {
-                Vector3 position = GenerateValidPosition(placedPositions);
-                if (position != Vector3.zero)
-                {
-                    // Instantiate the objective
-                    Objective objective = Instantiate(objectivePrefab, position + transform.position, Quaternion.identity);
+                // Instantiate the objective
+                Objective objective = PhotonNetwork.Instantiate(objectivePrefab.name, position + transform.position, Quaternion.identity).GetComponent<Objective>();
 
-                    objective.transform.SetParent(objectiveParent);
+                objective.transform.SetParent(objectiveParent);
 
-                    // Assign objective type to match the current dog
-                    objective.SetObjectiveType(dog.objectiveType);
+                // Assign objective type to match the current dog
+                objective.SetObjectiveType((ObjectiveType)Random.Range(0, (int)ObjectiveType.ObjectiveTypeCount));
 
-                    // Add the position to the placed list
-                    placedPositions.Add(position);
-                }
+                // Add the position to the placed list
+                placedPositions.Add(position);
             }
         }
     }
@@ -58,8 +50,11 @@ public class SpawnObjectives : MonoBehaviour
             );
 
             // Check if the position is too close to the center
-            if (position.magnitude < minDistToCenter)
+            if (position.z < minDistToCenter && position.z > -minDistToCenter)
+            {
+                Debug.Log("Too close to center: " + position.z);
                 continue;
+            }
 
             // Check if the position is too close to existing objectives
             bool isTooClose = false;
@@ -67,6 +62,7 @@ public class SpawnObjectives : MonoBehaviour
             {
                 if (Vector3.Distance(position, placedPosition) < minDistBetweenObjectives)
                 {
+                    Debug.Log("too close to existing");
                     isTooClose = true;
                     break;
                 }

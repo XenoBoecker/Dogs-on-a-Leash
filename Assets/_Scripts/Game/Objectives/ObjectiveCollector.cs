@@ -15,7 +15,7 @@ public class ObjectiveCollector: MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Objective objective = other.GetComponent<Objective>();
-        if (objective != null && objective.ObjectiveType == dog.DogData.objectiveType)
+        if (objective != null)
         {
             OnScoreChanged?.Invoke(objective.scoreCount);
 

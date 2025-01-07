@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using photonMenuLobby;
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +13,11 @@ public class LobbyShowDog : MonoBehaviour
     [SerializeField] TMP_Text playerNameText;
     [SerializeField] TMPro.TextMeshProUGUI dogNameText;
     [SerializeField] UnityEngine.UI.Image dogImage;
+
+    internal void SetPlayerData(PlayerData playerData)
+    {
+        throw new NotImplementedException();
+    }
 
     private void Awake()
     {
@@ -41,7 +48,7 @@ public class LobbyShowDog : MonoBehaviour
 
         DogData dogData = lobbyDogSelector.GetDogData();
 
-        dogNameText.text = dogData.dogName;
+        dogNameText.text = dogData.name;
         dogImage.sprite = dogData.dogSprite;
     }
 }

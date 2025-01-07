@@ -9,7 +9,7 @@ public class LocalLobbyManager : MonoBehaviour
 
     [SerializeField] string gameSceneName;
 
-    List<LobbyPlayer> players = new List<LobbyPlayer>();
+    List<LocalPlayer> players = new List<LocalPlayer>();
     [SerializeField] LobbyDogSelector[] lobbyDogSelectors;
 
     int currentPlayerCount;
@@ -28,7 +28,7 @@ public class LocalLobbyManager : MonoBehaviour
         }
     }
 
-    public void RegisterPlayer(LobbyPlayer player)
+    public void RegisterPlayer(LocalPlayer player)
     {
         Debug.Log("Register player");
 
@@ -47,7 +47,7 @@ public class LocalLobbyManager : MonoBehaviour
 
     private void CheckAllPlayerConfirmed()
     {
-        foreach (LobbyPlayer player in players)
+        foreach (LocalPlayer player in players)
         {
             if (!player.IsSelectionConfirmed) return;
         }

@@ -26,10 +26,7 @@ namespace photonMenuLobby
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                if (player == PhotonNetwork.LocalPlayer) AddLocalPlayer();
-            }
+            
         }
 
         public void AddLocalPlayer()
