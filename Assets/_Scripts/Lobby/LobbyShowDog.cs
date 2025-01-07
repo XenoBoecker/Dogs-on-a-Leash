@@ -16,7 +16,7 @@ public class LobbyShowDog : MonoBehaviour
 
     internal void SetPlayerData(PlayerData playerData)
     {
-        throw new NotImplementedException();
+        
     }
 
     private void Awake()
