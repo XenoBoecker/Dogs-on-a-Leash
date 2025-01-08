@@ -6,12 +6,12 @@ public class InteractableDetector : MonoBehaviour
 {
     PlayerDogController playerDogController;
     
-    private List<IInteractable> _interactablesInRange = new List<IInteractable>();
+    private List<Interactable> _interactablesInRange = new List<Interactable>();
 
-    IInteractable currentClosestInteractable;
+    Interactable currentClosestInteractable;
 
-    IInteractable currentInteractingInteractable;
-    public IInteractable CurrentInteractingInteractable => currentInteractingInteractable;
+    Interactable currentInteractingInteractable;
+    public Interactable CurrentInteractingInteractable => currentInteractingInteractable;
 
     public delegate void OnInteracted();
     public OnInteracted onInteracted;
@@ -20,7 +20,7 @@ public class InteractableDetector : MonoBehaviour
 
     private void Start()
     {
-        playerDogController = GetComponent<PlayerDogController>();
+        playerDogController = GetComponentInParent<PlayerDogController>();
         playerDogController.OnInteract += OnInteract;
     }
 
@@ -36,7 +36,7 @@ public class InteractableDetector : MonoBehaviour
 
     private void ShowClosestInteractable()
     {
-        IInteractable closestInteractable = GetClosestInteractable();
+        Interactable closestInteractable = GetClosestInteractable();
 
         if (currentClosestInteractable != closestInteractable)
         {
@@ -51,18 +51,27 @@ public class InteractableDetector : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
-        IInteractable interactable = other.GetComponent<IInteractable>();
+        Debug.Log("Trigger enter: " + other.name);
+        Interactable interactable = other.GetComponent<Interactable>();
 
         if (interactable == null) return;
 
         _interactablesInRange.Add(interactable);
+
+        if (currentInteractingInteractable != null) Debug.Log("has interaction a lreaty");
+
+        if (currentInteractingInteractable == null && interactable.Task == null)
+        {
+            Debug.Log("Interact automatically");
+            interactable.Interact(); // auto interact if no task todo 
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
-        IInteractable interactable = other.GetComponent<IInteractable>();
+        Interactable interactable = other.GetComponent<Interactable>();
 
         if (interactable == null) return;
 
@@ -93,13 +102,13 @@ public class InteractableDetector : MonoBehaviour
         OnInteractEnded?.Invoke();
     }
 
-    IInteractable GetClosestInteractable()
+    Interactable GetClosestInteractable()
     {
         float closestDistance = float.MaxValue;
 
-        IInteractable closestInteractable = null;
+        Interactable closestInteractable = null;
 
-        foreach (IInteractable interactable in _interactablesInRange)
+        foreach (Interactable interactable in _interactablesInRange)
         {
             if (!IsVisible(interactable)) continue;
 
@@ -118,7 +127,7 @@ public class InteractableDetector : MonoBehaviour
     Vector3 hitPoint;
     Vector3 dir;
     float mag;
-    private bool IsVisible(IInteractable interactable)
+    private bool IsVisible(Interactable interactable)
     {
         // cast ray to interactable
 
@@ -134,9 +143,9 @@ public class InteractableDetector : MonoBehaviour
 
         if (hit.collider == null) return false;
 
-        if (hit.collider.GetComponent<IInteractable>() == null) return false;
+        if (hit.collider.GetComponent<Interactable>() == null) return false;
 
-        if (hit.collider.GetComponent<IInteractable>() != interactable) return false;
+        if (hit.collider.GetComponent<Interactable>() != interactable) return false;
 
         return true;
     }

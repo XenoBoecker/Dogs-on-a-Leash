@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnObjectives : MonoBehaviour
 {
-    [SerializeField] Objective objectivePrefab;
+    [SerializeField] GameObject objectivePrefab;
     [SerializeField] int objectiveCount = 10;
 
     [SerializeField] Vector2 mapSize = new Vector2(50,50);
@@ -24,12 +24,12 @@ public class SpawnObjectives : MonoBehaviour
             if (position != Vector3.zero)
             {
                 // Instantiate the objective
-                Objective objective = PhotonNetwork.Instantiate(objectivePrefab.name, position + transform.position, Quaternion.identity).GetComponent<Objective>();
+                GameObject objective = PhotonNetwork.Instantiate(objectivePrefab.name, position + transform.position, Quaternion.identity);
 
                 objective.transform.SetParent(objectiveParent);
 
                 // Assign objective type to match the current dog
-                objective.SetObjectiveType((ObjectiveType)Random.Range(0, (int)ObjectiveType.ObjectiveTypeCount));
+                // objective.SetObjectiveType((ObjectiveType)Random.Range(0, (int)ObjectiveType.ObjectiveTypeCount));
 
                 // Add the position to the placed list
                 placedPositions.Add(position);

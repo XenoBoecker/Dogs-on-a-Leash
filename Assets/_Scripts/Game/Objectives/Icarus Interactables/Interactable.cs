@@ -1,11 +1,10 @@
 using System;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour, IInteractable
-{
-    HoldButtonTask repairTask;
-    
+public class Interactable : MonoBehaviour
+{    
     [SerializeField] Task task;
+    public Task Task => task;
 
     [SerializeField] GameObject showInteractable;
 
@@ -22,13 +21,11 @@ public class Interactable : MonoBehaviour, IInteractable
 
     protected virtual void Awake()
     {
-        repairTask = FindObjectOfType<HoldButtonTask>();
         MyTransform = transform;
     }
 
     private void Start()
     {
-        repairTask.OnInteractEnd += InteractEnd;
         if(task != null) task.OnInteractEnd += InteractEnd;
 
         HideInteractable();
@@ -43,7 +40,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
         if (task == null)
         {
-            InteractEnd();
+            CompleteTask();
             return;
         }
 
@@ -61,12 +58,12 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void ShowInteractable()
     {
-        showInteractable.SetActive(true);
+        if (showInteractable != null) showInteractable.SetActive(true);
     }
 
     public void HideInteractable()
     {
-        showInteractable.SetActive(false);
+        if(showInteractable != null) showInteractable.SetActive(false);
     }
 
     internal virtual void CompleteTask()
@@ -76,7 +73,6 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void CancelTask()
     {
-        repairTask.EndTask();
         if(task != null) task.EndTask();
     }
 }

@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static ScoreManager Instance;
+
     HumanMovement human;
     MapManager mapManager;
 
@@ -21,6 +24,11 @@ public class ScoreManager : MonoBehaviour
     int totalScore;
 
     float startTime;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +56,7 @@ public class ScoreManager : MonoBehaviour
         AddScore(obstacle.scoreValue);
     }
 
-    private void AddScore(int score)
+    public void AddScore(int score)
     {
         totalScore += score;
 
