@@ -1,20 +1,20 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HumanMovement : MonoBehaviour
 {
+
+    [SerializeField] float minSpeed = 1f;
     public float speed = 5f; // Speed of movement
     private Rigidbody rb; // Rigidbody for physical movement
-    private Queue<Transform> waypoints = new Queue<Transform>(); // Queue of waypoints
-
-    private Transform currentTarget; // Current target waypoint
 
     float stunTime;
     bool isStunned => stunTime > 0;
 
-    public event Action OnEndGame;
+    public event Action<Obstacle> OnHitObstacle;
 
     void Awake()
     {
@@ -27,74 +27,59 @@ public class HumanMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+
         stunTime -= Time.fixedDeltaTime;
+        
+        rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0); // constrain to only y rotation
 
         if (isStunned) return;
 
-        if (currentTarget != null)
-        {
-            MoveTowardsCurrentTarget();
-        }
-        else
-        {
-            SetNextWaypoint();
-        }
+        MoveForward();
     }
 
-    private void MoveTowardsCurrentTarget()
+    private void MoveForward()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+
         if (isStunned)
         {
             return;
         }
 
-        Vector3 direction = (currentTarget.position - transform.position).normalized;
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        Vector3 direction = Vector3.right;
+        
+        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction);
 
-                // Optional: Rotate towards the target
+        if (rb.velocity.x < minSpeed) rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
+
+        // decrease z velocity
+
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z * 0.99f);
+
+
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * speed));
     }
 
-    private void SetNextWaypoint()
+    public void ObstacleCollision(Obstacle obstacle)
     {
-        if (waypoints.Count > 0)
-        {
-            currentTarget = waypoints.Dequeue();
-        }
-        else
-        {
-            EndGame();
-        }
+        Debug.Log("Human obstacle collision: stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce);
+
+        Vector3 dir = (transform.position - obstacle.transform.position).normalized;
+
+        dir.y = 0;
+
+        Stun(obstacle.stunTime);
+
+        rb.AddForce(dir * obstacle.CurrentPushBackForce, ForceMode.Impulse);
+
+        OnHitObstacle?.Invoke(obstacle);
     }
 
-    public void AddWaypoints(List<Transform> newWaypoints)
-    {
-        foreach (var waypoint in newWaypoints)
-        {
-            waypoints.Enqueue(waypoint);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger enter: " + other.name);
-
-        if (currentTarget != null && other.transform == currentTarget)
-        {
-            currentTarget = null;
-        }
-    }
-
-    internal void Stun(float stunTime)
+    void Stun(float stunTime)
     {
         this.stunTime = stunTime;
-    }
 
-    private void EndGame()
-    {
-        Debug.Log("Game OVer");
-
-        OnEndGame?.Invoke();
     }
 }

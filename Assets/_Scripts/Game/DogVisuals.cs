@@ -2,12 +2,9 @@
 
 public class DogVisuals : MonoBehaviour
 {
-
-
     Dog dog;
 
-
-    [SerializeField] VisualByType[] dogVisuals;
+    [SerializeField] GameObject[] dogVisuals;
 
     private void Awake()
     {
@@ -17,10 +14,6 @@ public class DogVisuals : MonoBehaviour
 
     private void UpdateVisuals()
     {
-        foreach (VisualByType dw in dogVisuals)
-        {
-            if (dw.type == dog.DogData.objectiveType) dw.obj.SetActive(true);
-            else dw.obj.SetActive(false);
-        }
+
     }
 }

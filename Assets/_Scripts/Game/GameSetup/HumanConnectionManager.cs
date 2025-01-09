@@ -3,17 +3,25 @@ using UnityEngine;
 
 public class HumanConnectionManager : MonoBehaviour
 {
-    DogManager dogManager;
+    OnlineDogSpawner dogSpawner;
 
     TestDogManager testDogManager;
 
 
-    [SerializeField] Transform human;
+    Transform human;
+
+
+    [SerializeField] bool testingNoDogAttachment;
 
     private void Awake()
     {
-        dogManager = GetComponent<DogManager>();
-        if(dogManager != null) dogManager.OnDogSpawned += AttachDogToHuman;
+        human = FindObjectOfType<HumanMovement>().transform;
+
+        dogSpawner = FindObjectOfType<OnlineDogSpawner>();
+        if (dogSpawner != null)
+        {
+            dogSpawner.OnDogSpawned += AttachDogToHuman;
+        }
 
         TestAwake();
     }
@@ -29,6 +37,12 @@ public class HumanConnectionManager : MonoBehaviour
 
     private void AttachDogToHuman(Transform dogTransform)
     {
+        if (testingNoDogAttachment)
+        {
+            Destroy(dogTransform.GetComponent<SpringJoint>());
+            return;
+        }
+
         dogTransform.GetComponent<SpringJoint>().connectedBody = human.GetComponent<Rigidbody>();
     }
 }

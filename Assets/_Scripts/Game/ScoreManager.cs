@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    HumanMovement human;
+    public static ScoreManager Instance;
 
+    HumanMovement human;
+    MapManager mapManager;
 
     [SerializeField] string endGameSceneName = "GameOver";
 
@@ -22,11 +25,19 @@ public class ScoreManager : MonoBehaviour
 
     float startTime;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         human = FindObjectOfType<HumanMovement>();
-        human.OnEndGame += EndGame;
+        human.OnHitObstacle += SubtractObstaclePoints;
+
+        mapManager = FindObjectOfType<MapManager>();
+        mapManager.OnGameEnd += EndGame;
         
         objectiveCollectors = FindObjectsOfType<ObjectiveCollector>();
 
@@ -40,9 +51,16 @@ public class ScoreManager : MonoBehaviour
         AddScore(0);
     }
 
-    private void AddScore(int score)
+    private void SubtractObstaclePoints(Obstacle obstacle)
+    {
+        AddScore(obstacle.scoreValue);
+    }
+
+    public void AddScore(int score)
     {
         totalScore += score;
+
+        if (totalScore < 0) totalScore = 0;
 
         scoreText.text = "Score: " + totalScore;
     }

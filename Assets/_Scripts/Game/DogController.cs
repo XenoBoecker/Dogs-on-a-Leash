@@ -1,79 +1,110 @@
+using Photon.Pun;
 using System;
 using UnityEngine;
 
-public abstract class DogController : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class DogController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    public float maxSpeed = 5f; // Maximum speed of the dog
-    public AnimationCurve accelerationCurve; // Define acceleration based on time
-    public float accelerationTime = 2f; // Time to reach max speed
+    PhotonView view;
 
-    [Header("References")]
-    public Rigidbody dogRigidbody; // Reference to the Rigidbody
-    public Animator dogAnimator; // Optional animator for animations
+    public AnimationCurve accelerationCurve; // Controls speed increase
+    public AnimationCurve decelerationCurve; // Controls speed decrease
+    public float maxSpeed = 10f; // Maximum speed
+    public float speedMultiplier = 1f;
+    public float turnSpeed = 5f; // How quickly the dog rotates
+    public float accelerationTime = 1f; // Time to reach max speed
+    public float decelerationTime = 1f; // Time to stop from max speed
 
-    protected Vector2 movementInput; // Current input values
-    private float currentSpeed; // Current speed
-    private float accelerationTimer; // Timer for animation curve
+    float speedBeforeDecelleration;
 
+    protected Vector2 movementInput; // Current input values (set externally)
 
-    // Ability variables
+    protected Rigidbody rb;
+    
+    private float currentSpeed = 0f; // Current speed magnitude
+    private float accelerationTimer = 0f; // Timer for acceleration curve
+    private float decelerationTimer = 0f; // Timer for deceleration curve
+    private Vector3 targetDirection;
+
     public event Action OnZoomieStart;
-    public float speedMultiplier = 1;
 
-    private void FixedUpdate()
+    void Awake()
     {
-        MoveDog();
+        view = GetComponent<PhotonView>();
+        rb = GetComponent<Rigidbody>();
+        targetDirection = transform.forward; // Initially face forward
+
+        if (PhotonNetwork.IsConnected && !view.IsMine) rb.isKinematic = true;
     }
 
-    private void MoveDog()
+    void Update()
     {
-        // Calculate the input magnitude
-        float inputMagnitude = movementInput.magnitude;
+        Vector3 inputDirection = new Vector3(movementInput.x, 0f, movementInput.y).normalized;
 
-        if (inputMagnitude > 0.1f) // If there's movement input
+        if (inputDirection != Vector3.zero)
         {
-            // Increment acceleration timer and clamp to the duration
-            accelerationTimer += Time.fixedDeltaTime / accelerationTime;
-            accelerationTimer = Mathf.Clamp01(accelerationTimer);
+            // Update target direction based on input
+            targetDirection = inputDirection;
 
-            // Get the current speed from the animation curve
-            currentSpeed = accelerationCurve.Evaluate(accelerationTimer) * maxSpeed * speedMultiplier;
+            // Reset deceleration and start acceleration
+            decelerationTimer = 0f;
+            accelerationTimer += Time.deltaTime;
+            accelerationTimer = Mathf.Clamp(accelerationTimer, 0f, accelerationTime);
 
-            // Calculate movement direction
-            Vector3 direction = new Vector3(movementInput.x, 0f, movementInput.y).normalized;
+            // Get speed based on acceleration curve
+            currentSpeed = accelerationCurve.Evaluate(accelerationTimer / accelerationTime) * maxSpeed;
 
-            // Apply velocity to the Rigidbody
-            dogRigidbody.velocity = direction * currentSpeed + new Vector3(0f, dogRigidbody.velocity.y, 0f);
+            currentSpeed = Mathf.Max(currentSpeed, rb.velocity.magnitude);
 
-            // Rotate the dog towards movement direction
-            if (direction != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                dogRigidbody.rotation = Quaternion.Slerp(dogRigidbody.rotation, targetRotation, Time.fixedDeltaTime * 10f);
-            }
-
-            // Set animator parameters if applicable
-            if (dogAnimator)
-            {
-                dogAnimator.SetFloat("Speed", currentSpeed / maxSpeed);
-            }
+            speedBeforeDecelleration = currentSpeed;
         }
         else
         {
-            // Reset acceleration timer and reduce speed when input stops
+            // Reset acceleration and start deceleration
             accelerationTimer = 0f;
-            currentSpeed = 0f;
-            dogRigidbody.velocity = new Vector3(0f, dogRigidbody.velocity.y, 0f);
+            decelerationTimer += Time.deltaTime;
+            decelerationTimer = Mathf.Clamp(decelerationTimer, 0f, decelerationTime);
 
-            // Update animator
-            if (dogAnimator)
-            {
-                dogAnimator.SetFloat("Speed", 0f);
-            }
+            // Get speed based on deceleration curve
+            currentSpeed = decelerationCurve.Evaluate(decelerationTimer / decelerationTime) * speedBeforeDecelleration;
         }
     }
 
+    void FixedUpdate()
+    {
+
+        if (PhotonNetwork.IsConnected && !view.IsMine) return;
+
+        // Smoothly rotate towards the target direction
+        if (targetDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            transform.rotation = rotation;
+            
+            // Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            // Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            // rb.rotation = rotation;
+        }
+
+        Vector3 forwardVelocity = transform.forward * currentSpeed;
+
+        if (forwardVelocity.magnitude > maxSpeed)
+        {
+            forwardVelocity = forwardVelocity.normalized * maxSpeed;
+        }
+        
+        transform.Translate(forwardVelocity * Time.fixedDeltaTime, Space.World);
+
+        // Move the dog forward based on current speed
+        // Vector3 forwardVelocity = rb.transform.forward * currentSpeed;
+        // rb.velocity = forwardVelocity;
+        // 
+        // if (rb.velocity.magnitude > maxSpeed)
+        // {
+        //     rb.velocity = rb.velocity.normalized * maxSpeed;
+        // }
+    }
     protected void ZoomieStart()
     {
         OnZoomieStart?.Invoke();
