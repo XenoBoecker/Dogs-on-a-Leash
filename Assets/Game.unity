@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028422, g: 0.22571401, b: 0.30692416, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -749,7 +749,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.24
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -798,13 +798,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.41468278, y: 0.17480405, z: -0.081511274, w: 0.8892906}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 22.241, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,12 +1010,11 @@ MonoBehaviour:
   startTiles:
   - {fileID: 4143699337203293510, guid: 56f9443f11d9fad4f9155981382a0270, type: 3}
   availableTiles:
-  - {fileID: 8099731765652890730, guid: 2b44643633607ce44bc4469df5167675, type: 3}
-  - {fileID: 1356847988385133073, guid: 493fe89f2130c1644aed636ea96a2628, type: 3}
+  - {fileID: 2321187972685368563, guid: 20be35a9cd02d6749b1ce815c46eaca9, type: 3}
+  - {fileID: 1285224991620974283, guid: 2d978702df6b14d45af2ed9081cd3bb7, type: 3}
   endTiles:
   - {fileID: 3360506625757157340, guid: 2f51e550c98ee584a9def3470c232829, type: 3}
   tileParent: {fileID: 642770901}
-  gameOverSceneName: GameOver
   levelLength: 120
 --- !u!1 &765856835
 GameObject:

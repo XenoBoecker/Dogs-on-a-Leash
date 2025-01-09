@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9adbfcd389e6eb742bd9591d463f299a,
         type: 3}
       propertyPath: m_Name
-      value: Car
+      value: Car_Blue
       objectReference: {fileID: 0}
     - target: {fileID: 1286661609562623946, guid: 9adbfcd389e6eb742bd9591d463f299a,
         type: 3}
@@ -96,5 +96,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9adbfcd389e6eb742bd9591d463f299a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 905795877602542972}
   m_SourcePrefab: {fileID: 100100000, guid: 9adbfcd389e6eb742bd9591d463f299a, type: 3}
+--- !u!1 &8236377358847694924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9adbfcd389e6eb742bd9591d463f299a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9118685611470021917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &905795877602542972
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236377358847694924}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9035354, y: 1.4989798, z: 2.6355639}
+  m_Center: {x: -0.0030197194, y: 0.95609987, z: -0.14866287}
