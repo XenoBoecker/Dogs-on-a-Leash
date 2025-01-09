@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {    
-    [SerializeField] Task task;
+    Task task;
     public Task Task => task;
 
     [SerializeField] GameObject showInteractable;
@@ -22,6 +22,7 @@ public class Interactable : MonoBehaviour
     protected virtual void Awake()
     {
         MyTransform = transform;
+        task = GetComponent<Task>();
     }
 
     private void Start()

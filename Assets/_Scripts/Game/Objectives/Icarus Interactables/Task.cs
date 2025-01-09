@@ -40,6 +40,13 @@ public abstract class Task : MonoBehaviour
         OnStartTask?.Invoke();
     }
 
+    public void CompleteTask()
+    {
+        interactable.CompleteTask();
+
+        EndTask();
+    }
+
     public virtual void EndTask() // On Cancel just call this
     {
         if (!isInteracting) return;

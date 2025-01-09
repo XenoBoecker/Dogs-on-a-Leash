@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnObjectives : MonoBehaviour
 {
-    [SerializeField] GameObject objectivePrefab;
+    [SerializeField] GameObject[] objectivePrefabs;
     [SerializeField] int objectiveCount = 10;
 
     [SerializeField] Vector2 mapSize = new Vector2(50,50);
@@ -23,8 +23,10 @@ public class SpawnObjectives : MonoBehaviour
             Vector3 position = GenerateValidPosition(placedPositions);
             if (position != Vector3.zero)
             {
+                GameObject randomObjective = objectivePrefabs[Random.Range(0, objectivePrefabs.Length)];
+
                 // Instantiate the objective
-                GameObject objective = PhotonNetwork.Instantiate(objectivePrefab.name, position + transform.position, Quaternion.identity);
+                GameObject objective = PhotonNetwork.Instantiate(randomObjective.name, position + transform.position, Quaternion.identity);
 
                 objective.transform.SetParent(objectiveParent);
 

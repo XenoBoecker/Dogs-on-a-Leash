@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class AbilityUI : MonoBehaviour
 {
-
-    [SerializeField] Canvas canvas;
     [SerializeField] Image image;
     [SerializeField] Ability ability;
 
@@ -13,6 +11,6 @@ public class AbilityUI : MonoBehaviour
         // Update the fill amount based on ability charge
         image.fillAmount = ability.CurrentChargePercentage();
 
-        canvas.transform.LookAt(Camera.main.transform);
+        
     }
 }

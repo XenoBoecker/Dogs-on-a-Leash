@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HoldButtonTask : Task
 {
-    [SerializeField] Slider slider;
+    [SerializeField] Image fillImage;
     [SerializeField] float holdDownTime = 3f;
     [HideInInspector] public float interactSpeedMultiplier = 1f;
 
@@ -20,10 +20,11 @@ public class HoldButtonTask : Task
 
         if (isInteracting) HoldingDown();
 
-        slider.value = currentTime / holdDownTime;
+        fillImage.fillAmount = currentTime / holdDownTime;
 
         if (currentTime >= holdDownTime)
         {
+            CompleteTask();
             EndTask();
         }
     }
@@ -38,6 +39,6 @@ public class HoldButtonTask : Task
         base.StartTask(interactable);
 
         currentTime = 0f;
-        slider.value = 0f;
+        fillImage.fillAmount = 0f;
     }
 }
