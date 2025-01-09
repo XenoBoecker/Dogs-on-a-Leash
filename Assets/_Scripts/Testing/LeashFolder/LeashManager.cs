@@ -15,10 +15,24 @@ public class LeashManager : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
+    Rigidbody myDogRigidbody;
+
+    Rigidbody humanRigidbody;
+
     [Header("Leash settings")]
     public float leashSegmentLengthMinimum = 0.5f;
     public float maxLeashLength = 10f;
     public float leashSegmentAngle = 30f;
+    public float leashPullForce = 10f;
+    public float humanPullForce = 2f;
+
+    float currentLength = 0f;
+
+    void Start()
+    {
+        myDogRigidbody = gameObject.GetComponent<Rigidbody>();
+        humanRigidbody = leashTarget.GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -30,6 +44,8 @@ public class LeashManager : MonoBehaviour
 
             CheckLeashSegmentDogSide();
             CheckLeashSegmentHumanSide();
+
+            
         }
         else
         {
@@ -37,18 +53,23 @@ public class LeashManager : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        ApplyPhysics();
+    }
+
     void UpdateLeashSegmentsDogSide()
     {
         if(Physics.Raycast(gameObject.transform.position,  leashSegments[0].transform.position - gameObject.transform.position, out RaycastHit hit, Vector3.Distance(gameObject.transform.position, leashSegments[0].transform.position), intersectableObjects))
         {
             //If we hit something between the dog and the last leash segment we check for the angle and then maybe create a new leash segment
-            Debug.Log("Hit something");
+            // Debug.Log("Hit something");
 
             if(Vector3.Distance(leashSegments[0].transform.position, hit.point) > leashSegmentLengthMinimum)
             {
                 if(Vector3.Angle(leashSegments[0].GetComponent<LeashSegment>().nextSegment.position - leashSegments[0].transform.position, hit.point - leashSegments[0].transform.position) < leashSegmentAngle)
                 {
-                    Debug.Log("Angle is too small Dog Side");
+                    // Debug.Log("Angle is too small Dog Side");
                     return;
                 }
 
@@ -58,12 +79,12 @@ public class LeashManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Too close to the last segment");
+                // Debug.Log("Too close to the last segment");
             }
         }
         else
         {
-            Debug.Log("Hit nothing DOG CHECK");
+            // Debug.Log("Hit nothing DOG CHECK");
         }
     }
 
@@ -79,7 +100,7 @@ public class LeashManager : MonoBehaviour
         }
         
 
-        Debug.Log("No hit so we remove that shiii");
+        // Debug.Log("No hit so we remove that shiii");
 
         if(leashSegments.Count == 1)
         {
@@ -101,13 +122,13 @@ public class LeashManager : MonoBehaviour
         if(Physics.Raycast(leashTarget.position, leashTarget.position - leashSegments[leashSegments.Count - 1].transform.position,  out RaycastHit hit, Vector3.Distance(leashTarget.position, leashSegments[leashSegments.Count - 1].transform.position), intersectableObjects))
         {
             //If we hit something between the human and the first leash segment we check for the angle and then maybe create a new leash segment
-            Debug.Log("Hit something");
+            // Debug.Log("Hit something");
 
             if(Vector3.Distance(leashSegments[leashSegments.Count-1].transform.position, hit.point) > leashSegmentLengthMinimum)
             {
                 if(Vector3.Angle(leashSegments[leashSegments.Count - 1].GetComponent<LeashSegment>().previousSegment.position - leashSegments[0].transform.position, hit.point - leashSegments[0].transform.position) < leashSegmentAngle)
                 {
-                    Debug.Log("Angle is too small Human Side");
+                    // Debug.Log("Angle is too small Human Side");
                     return;
                 }
 
@@ -117,12 +138,12 @@ public class LeashManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Too close to the first segment");
+                // Debug.Log("Too close to the first segment");
             }
         }
         else
         {
-            Debug.Log("Hit nothing");
+            // Debug.Log("Hit nothing");
         }
     }
 
@@ -139,7 +160,7 @@ public class LeashManager : MonoBehaviour
 
         
         
-        Debug.Log("No hit so we remove that shiii");
+        // Debug.Log("No hit so we remove that shiii");
 
         if(leashSegments.Count == 1)
         {
@@ -160,14 +181,14 @@ public class LeashManager : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, leashTarget.position - transform.position, out RaycastHit hit, Vector3.Distance(transform.position, leashTarget.position), intersectableObjects))
         {
-            Debug.Log("Hit something");
+            // Debug.Log("Hit something");
             GameObject leashSegment = Instantiate(LeashSegmentPrefab, hit.point, Quaternion.identity);
             leashSegments.Add(leashSegment);    
             PopulateLeashSegment(leashSegment, null);
         }
         else
         {
-            Debug.Log("Hit nothing");
+            // Debug.Log("Hit nothing");
         }
     }
 
@@ -220,23 +241,64 @@ public class LeashManager : MonoBehaviour
             lineRenderer.SetPosition(0, gameObject.transform.position);
             lineRenderer.SetPosition(1, leashTarget.position);
 
-            Debug.Log("No leash segments");
+            // Debug.Log("No leash segments");
             return;
         }
-        Debug.Log("Updating line renderer1");
+        // Debug.Log("Updating line renderer1");
         lineRenderer.positionCount = leashSegments.Count + 2;
         lineRenderer.SetPosition(0, gameObject.transform.position);
         
         for(int i = 0; i < leashSegments.Count; i++)
         {
-            Debug.Log("Updating line renderer::" + i);
+            // Debug.Log("Updating line renderer::" + i);
             lineRenderer.SetPosition(i + 1, leashSegments[i].transform.position);
             if(i == leashSegments.Count - 1)
             {
-                Debug.Log("Last segment");
+                // Debug.Log("Last segment");
                 lineRenderer.SetPosition(i + 2, leashTarget.position);
             }
         }
 
+    }
+
+    
+
+    void ApplyPhysics()
+    {
+        currentLength = 0f;
+        if(leashSegments.Count == 0)
+        {
+            currentLength += Vector3.Distance(gameObject.transform.position, leashTarget.position);
+        }
+        else
+        {
+            currentLength += Vector3.Distance(gameObject.transform.position, leashSegments[0].transform.position);
+        }
+
+        for(int i = 0; i <leashSegments.Count; i++)
+        {
+            currentLength += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
+
+        }
+
+        if(currentLength > maxLeashLength)
+        {
+            if(leashSegments.Count > 0)
+            {
+                myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce);
+                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce);
+            }
+            else
+            {
+                myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce);
+                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce);
+            }
+
+            
+
+            
+        }
+
+        Debug.Log("Current length::" + currentLength); 
     }
 }
