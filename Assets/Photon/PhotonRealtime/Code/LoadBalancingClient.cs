@@ -402,12 +402,12 @@ namespace Photon.Realtime
         /// If the fallback is impossible or if that connection also fails, the app logic must handle the case.
         /// It might even make sense to just try the same connection settings once more (or ask the user to do something about
         /// the network connectivity, firewalls, etc).
-        /// 
+        ///
         /// The fallback will use the default Name Server port as defined by ProtocolToNameServerPort.
         /// </remarks>
         public bool EnableProtocolFallback { get; set; }
 
-        /// <summary>The currently used server address (if any). The type of server is define by Server property.</summary>
+        /// <summary>The currently used server address (if any). The type of server is defined by Server property.</summary>
         public string CurrentServerAddress { get { return this.LoadBalancingPeer.ServerAddress; } }
 
         /// <summary>Your Master Server address. In PhotonCloud, call ConnectToRegionMaster() to find your Master Server.</summary>
@@ -419,6 +419,13 @@ namespace Photon.Realtime
 
         /// <summary>The game server's address for a particular room. In use temporarily, as assigned by master.</summary>
         public string GameServerAddress { get; protected internal set; }
+
+        /// <summary>Provides a custom function to re-write server addresses in case the client must use a third party relay.</summary>
+        /// <remarks>
+        /// Discord Activities can only communicate with the domain discord.com.
+        /// A forwarding system based on paths is used to replace addresses that are not on that domain.
+        /// </remarks>
+        public Func<string, ServerConnection, string> AddressRewriter;
 
         /// <summary>The server this client is currently connected or connecting to.</summary>
         /// <remarks>
@@ -834,7 +841,7 @@ namespace Photon.Realtime
         public int NameServerPortInAppSettings;
 
         /// <summary>
-        /// Gets the NameServer Address (with prefix and port), based on the set protocol (this.LoadBalancingPeer.UsedProtocol).
+        /// Gets the NameServer Address (with prefix and port), based on the set protocol (this.LoadBalancingPeer.TransportProtocol).
         /// </summary>
         /// <returns>NameServer Address (with prefix and port).</returns>
         private string GetNameServerAddress()
@@ -853,18 +860,17 @@ namespace Photon.Realtime
                 protocolPort = this.ServerPortOverrides.NameServerPort;
             }
 
-
             return this.ToProtocolAddress(this.NameServerHost, protocolPort, this.LoadBalancingPeer.TransportProtocol);
         }
 
 
-        /// <summary>Build URI from address, use Scheme, Host and Path but set the port as defined by port-field or default port.</summary>
+        /// <summary>Build URI from address, use Scheme, Host and Path but set the port as defined by port-field or default port. Calls AddressRewriter if set.</summary>
         /// <exception cref="ArgumentException"></exception>
         private string ToProtocolAddress(string address, int port, ConnectionProtocol protocol)
         {
             string protocolScheme = String.Empty;
 
-            switch (this.LoadBalancingPeer.TransportProtocol)
+            switch (protocol)
             {
                 case ConnectionProtocol.Udp:
                 case ConnectionProtocol.Tcp:
@@ -883,7 +889,12 @@ namespace Photon.Realtime
 
             Uri uri = new Uri(protocolScheme + address);
             string result = $"{uri.Scheme}://{uri.Host}:{port}{uri.AbsolutePath}";
-            //Debug.Log("ToProtocolAddress: "+result);
+
+            if (this.AddressRewriter != null)
+            {
+                result = this.AddressRewriter(result, ServerConnection.NameServer);
+            }
+
             return result;
         }
 
@@ -1353,7 +1364,7 @@ namespace Photon.Realtime
             this.Disconnect(DisconnectCause.DisconnectByClientLogic);
         }
 
-        
+
         /// <summary>Disconnects the client / peer from a server or stays disconnected. Internal method that sets the DisconnectedCause as well.</summary>
         internal void Disconnect(DisconnectCause cause)
         {
@@ -2813,6 +2824,13 @@ namespace Photon.Realtime
 
                         if (this.Server == ServerConnection.NameServer)
                         {
+                            if (this.AuthMode == AuthModeOption.AuthOnceWss && this.ExpectedProtocol != null)
+                            {
+                                this.DebugReturn(DebugLevel.INFO, string.Format("AuthOnceWss mode. Auth response switches TransportProtocol to ExpectedProtocol: {0}.", this.ExpectedProtocol));
+                                this.LoadBalancingPeer.TransportProtocol = (ConnectionProtocol)this.ExpectedProtocol;
+                                this.ExpectedProtocol = null;
+                            }
+
                             string receivedCluster = operationResponse[ParameterCode.Cluster] as string;
                             if (!string.IsNullOrEmpty(receivedCluster))
                             {
@@ -2823,17 +2841,13 @@ namespace Photon.Realtime
                             this.MasterServerAddress = operationResponse[ParameterCode.Address] as string;
                             if (this.ServerPortOverrides.MasterServerPort != 0)
                             {
-                                //Debug.LogWarning("Incoming MasterServer Address: "+this.MasterServerAddress);
                                 this.MasterServerAddress = ReplacePortWithAlternative(this.MasterServerAddress, this.ServerPortOverrides.MasterServerPort);
-                                //Debug.LogWarning("New MasterServer Address: "+this.MasterServerAddress);
+                            }
+                            if (this.AddressRewriter != null)
+                            {
+                                this.MasterServerAddress = this.AddressRewriter(this.MasterServerAddress, ServerConnection.MasterServer);
                             }
 
-                            if (this.AuthMode == AuthModeOption.AuthOnceWss && this.ExpectedProtocol != null)
-                            {
-                                this.DebugReturn(DebugLevel.INFO, string.Format("AuthOnceWss mode. Auth response switches TransportProtocol to ExpectedProtocol: {0}.", this.ExpectedProtocol));
-                                this.LoadBalancingPeer.TransportProtocol = (ConnectionProtocol)this.ExpectedProtocol;
-                                this.ExpectedProtocol = null;
-                            }
                             this.DisconnectToReconnect();
                         }
                         else if (this.Server == ServerConnection.MasterServer)
@@ -2923,7 +2937,7 @@ namespace Photon.Realtime
                         return; // in this particular case, we suppress the duplicate GetRegion response. we don't want a callback for this, cause there is a warning already.
                     }
 
-                    this.RegionHandler.SetRegions(operationResponse);
+                    this.RegionHandler.SetRegions(operationResponse, this);
                     this.ConnectionCallbackTargets.OnRegionListReceived(this.RegionHandler);
 
                     if (this.connectToBestRegion)
@@ -2961,9 +2975,11 @@ namespace Photon.Realtime
                             this.GameServerAddress = (string)operationResponse[ParameterCode.Address];
                             if (this.ServerPortOverrides.GameServerPort != 0)
                             {
-                                //Debug.LogWarning("Incoming GameServer Address: " + this.GameServerAddress);
                                 this.GameServerAddress = ReplacePortWithAlternative(this.GameServerAddress, this.ServerPortOverrides.GameServerPort);
-                                //Debug.LogWarning("New GameServer Address: " + this.GameServerAddress);
+                            }
+                            if (this.AddressRewriter != null)
+                            {
+                                this.GameServerAddress = this.AddressRewriter(this.GameServerAddress, ServerConnection.GameServer);
                             }
 
                             string roomName = operationResponse[ParameterCode.RoomName] as string;
@@ -3528,6 +3544,11 @@ namespace Photon.Realtime
 
         protected internal static string ReplacePortWithAlternative(string address, ushort replacementPort)
         {
+            if (string.IsNullOrEmpty(address) || replacementPort == 0)
+            {
+                return address;
+            }
+
             bool webSocket = address.StartsWith("ws");
             if (webSocket)
             {
@@ -3537,7 +3558,7 @@ namespace Photon.Realtime
             }
             else
             {
-                UriBuilder urib = new UriBuilder(string.Format("scheme://{0}", address));
+                UriBuilder urib = new UriBuilder($"scheme://{address}");
                 return string.Format("{0}:{1}", urib.Host, replacementPort);
             }
         }
