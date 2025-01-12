@@ -30,19 +30,6 @@ public class MapManager : MonoBehaviour
         End
     }
 
-    private void Awake()
-    {
-        humanMovement = FindObjectOfType<HumanMovement>();
-
-        UnityEngine.Random.InitState(seed);
-    }
-
-    protected virtual void Start()
-    {
-        if (!PhotonNetwork.IsMasterClient) return;
-
-        GenerateMap();
-    }
 
     private void Update()
     {
@@ -56,6 +43,8 @@ public class MapManager : MonoBehaviour
 
     void GenerateMap()
     {
+        UnityEngine.Random.InitState(seed);
+
         currentPathLength = 0;
 
         PlaceStartTile();
@@ -82,12 +71,23 @@ public class MapManager : MonoBehaviour
 
     void PlaceTile(Tile tile)
     {
-        Tile newTile = PhotonNetwork.Instantiate(tile.name, currentPathLength * Vector3.right, Quaternion.identity).GetComponent<Tile>();
+        Tile newTile;
+        if (PhotonNetwork.IsConnected) newTile = PhotonNetwork.Instantiate(tile.name, currentPathLength * Vector3.right, Quaternion.identity).GetComponent<Tile>();
+        else newTile = Instantiate(tile, currentPathLength * Vector3.right, Quaternion.identity).GetComponent<Tile>();
 
         newTile.transform.SetParent(tileParent);
 
         newTile.Setup();
 
         currentPathLength += tile.tileLength;
+    }
+
+    internal virtual void Setup()
+    {
+        humanMovement = FindObjectOfType<HumanMovement>();
+
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        GenerateMap();
     }
 }

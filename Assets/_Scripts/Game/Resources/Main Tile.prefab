@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 4763599462624240251}
   - component: {fileID: 525457211503048650}
   m_Layer: 0
-  m_Name: Tile Straight
+  m_Name: Main Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,8 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659edeff33cc4a148b1b68f89c3feb2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectivePrefab: {fileID: 7590577020436174935, guid: 7fd0e7eb8a57e26458aee2226a1f2f4d,
-    type: 3}
+  objectivePrefabs:
+  - {fileID: 7590577020436174935, guid: 7fd0e7eb8a57e26458aee2226a1f2f4d, type: 3}
+  - {fileID: 7590577020436174935, guid: 67bca0b58adf484428a011fcf2a56822, type: 3}
   objectiveCount: 10
   mapSize: {x: 30, y: 30}
   minDistBetweenObjectives: 2

@@ -19,8 +19,6 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] TMP_Text scoreText;
 
-    ObjectiveCollector[] objectiveCollectors;
-
     int totalScore;
 
     float startTime;
@@ -38,13 +36,6 @@ public class ScoreManager : MonoBehaviour
 
         mapManager = FindObjectOfType<MapManager>();
         mapManager.OnGameEnd += EndGame;
-        
-        objectiveCollectors = FindObjectsOfType<ObjectiveCollector>();
-
-        foreach (ObjectiveCollector objectiveCollector in objectiveCollectors)
-        {
-            objectiveCollector.OnScoreChanged += AddScore;
-        }
 
         startTime = Time.time;
 

@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableDetector : MonoBehaviour
 {
+    PhotonView view;
+
     PlayerDogController playerDogController;
     
     private List<Interactable> _interactablesInRange = new List<Interactable>();
@@ -18,10 +21,16 @@ public class InteractableDetector : MonoBehaviour
 
     public event Action OnInteractEnded;
 
+    private void Awake()
+    {
+        view = GetComponentInParent<PhotonView>();
+        if (!view.IsMine) this.enabled = false;
+    }
+
     private void Start()
     {
         playerDogController = GetComponentInParent<PlayerDogController>();
-        playerDogController.OnInteract += OnInteract;
+        playerDogController.OnInteract += InteractWithClosestInteractable;
     }
 
     private void Update()
@@ -65,7 +74,7 @@ public class InteractableDetector : MonoBehaviour
         if (currentInteractingInteractable == null && interactable.Task == null)
         {
             Debug.Log("Interact automatically");
-            interactable.Interact(); // auto interact if no task todo 
+            StartInteraction(interactable);
         }
     }
 
@@ -82,21 +91,28 @@ public class InteractableDetector : MonoBehaviour
         _interactablesInRange.Remove(interactable);
     }
 
-    void OnInteract()
+    void StartInteraction(Interactable interactable)
+    {
+        currentInteractingInteractable = interactable;
+        currentInteractingInteractable.OnInteractEnd += EndCurrentInteraction;
+        playerDogController.StopMovement();
+
+        currentInteractingInteractable.Interact();
+        // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
+        if (currentInteractingInteractable != null) onInteracted?.Invoke(); 
+    }
+
+    void InteractWithClosestInteractable()
     {
         if (currentClosestInteractable == null) return;
 
-        currentInteractingInteractable = currentClosestInteractable;
-        currentInteractingInteractable.OnInteractEnd += OnInteractEnd;
-        playerDogController.StopMovement();
-        currentInteractingInteractable.Interact();
-
-        if(currentInteractingInteractable != null) onInteracted?.Invoke(); // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
+        StartInteraction(currentClosestInteractable);        
     }
 
-    public void OnInteractEnd()
+    public void EndCurrentInteraction()
     {
         currentInteractingInteractable = null;
+
         playerDogController.StartMovement();
 
         OnInteractEnded?.Invoke();
@@ -110,7 +126,7 @@ public class InteractableDetector : MonoBehaviour
 
         foreach (Interactable interactable in _interactablesInRange)
         {
-            if (!IsVisible(interactable)) continue;
+            if (interactable == null) continue;
 
             float distance = Vector2.Distance(transform.position, interactable.MyTransform.position);
 
@@ -123,43 +139,4 @@ public class InteractableDetector : MonoBehaviour
 
         return closestInteractable;
     }
-
-    Vector3 hitPoint;
-    Vector3 dir;
-    float mag;
-    private bool IsVisible(Interactable interactable)
-    {
-        // cast ray to interactable
-
-        Vector2 direction = interactable.MyTransform.position - transform.position;
-
-        // LayerMask wallLayerMask = LayerMask.GetMask("Wall");
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Vector3.Magnitude(direction));
-
-        hitPoint = hit.point;
-        dir = direction;
-        mag = Vector3.Magnitude(direction);
-
-        if (hit.collider == null) return false;
-
-        if (hit.collider.GetComponent<Interactable>() == null) return false;
-
-        if (hit.collider.GetComponent<Interactable>() != interactable) return false;
-
-        return true;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + dir.normalized * mag);
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, hitPoint);
-    }
-
-    // internal void InteractInput()
-    // {
-    //     print("DoInteract");
-    // }
 }

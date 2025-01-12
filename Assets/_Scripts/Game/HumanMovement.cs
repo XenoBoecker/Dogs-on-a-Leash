@@ -27,7 +27,7 @@ public class HumanMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
 
         stunTime -= Time.fixedDeltaTime;
         
@@ -40,7 +40,7 @@ public class HumanMovement : MonoBehaviour
 
     private void MoveForward()
     {
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
 
         if (isStunned)
         {

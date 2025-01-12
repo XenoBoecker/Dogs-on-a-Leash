@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+/*
 public class ObjectiveVisuals : MonoBehaviour
 {
     Objective objective;
@@ -21,4 +21,4 @@ public class ObjectiveVisuals : MonoBehaviour
             else dw.obj.SetActive(false);
         }
     }
-}
+}*/

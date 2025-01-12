@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HumanProgressBar : MonoBehaviour
@@ -9,7 +10,7 @@ public class HumanProgressBar : MonoBehaviour
 
     [SerializeField] Slider slider;
 
-    private void Awake()
+    internal void Setup()
     {
         human = FindObjectOfType<HumanMovement>();
         mapGen = FindObjectOfType<MapManager>();
@@ -17,6 +18,8 @@ public class HumanProgressBar : MonoBehaviour
 
     private void Update()
     {
+        if (!human) return;
+
         float progressPercentage = human.transform.position.x / mapGen.levelLength;
 
         slider.value = progressPercentage;
