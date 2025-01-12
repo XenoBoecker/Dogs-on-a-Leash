@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-
+/*
 public enum ObjectiveType
 {
     SingleDog,
@@ -59,3 +59,4 @@ public class Objective : MonoBehaviour
         photonView.RPC(nameof(SetObjectiveTypeRPC), RpcTarget.All, type);
     }
 }
+*/

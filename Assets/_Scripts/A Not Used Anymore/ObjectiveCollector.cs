@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+/*
 public class ObjectiveCollector: MonoBehaviour
 {
     Dog dog;
@@ -23,3 +23,4 @@ public class ObjectiveCollector: MonoBehaviour
         }
     }
 }
+*/
