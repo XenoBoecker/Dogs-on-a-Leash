@@ -2,8 +2,8 @@
 
 public class GameSetup : MonoBehaviour
 {
-    MapManager mm;
     HumanSpawner hs;
+    MapManager mm;
     OnlineDogSpawner ds;
     HumanConnectionManager hcm;
 
@@ -12,19 +12,25 @@ public class GameSetup : MonoBehaviour
 
     private void Awake()
     {
-        mm = FindObjectOfType<MapManager>();
         hs = FindObjectOfType<HumanSpawner>();
-        ds = FindObjectOfType<OnlineDogSpawner>();
+        mm = FindObjectOfType<MapManager>();
         hcm = FindObjectOfType<HumanConnectionManager>();
+        ds = FindObjectOfType<OnlineDogSpawner>();
 
         cm = FindObjectOfType<CameraMovement>();
         hpb = FindObjectOfType<HumanProgressBar>();
 
-        if (mm != null) mm.Setup();
         if (hs != null) hs.Setup();
+        else Debug.Log("No HumanSpawner found");
+        if (mm != null) mm.Setup();
+        else Debug.Log("No MapManager found");
         if (hcm != null) hcm.Setup();
+        else Debug.Log("No HumanConnectionManager found");
         if (ds != null) ds.Setup();
+        else Debug.Log("No OnlineDogSpawner found");
         if (cm != null) cm.Setup();
+        else Debug.Log("No CameraMovement found");
         if (hpb != null) hpb.Setup();
+        else Debug.Log("No HumanProgressBar found");
     }
 }

@@ -33,6 +33,8 @@ public class MapManager : MonoBehaviour
 
     private void Update()
     {
+        if (!humanMovement) return;
+
         if (humanMovement.transform.position.x >= levelLength) EndGame();
     }
 

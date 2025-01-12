@@ -18,7 +18,11 @@ public class HumanProgressBar : MonoBehaviour
 
     private void Update()
     {
-        if (!human) return;
+        if (!human)
+        {
+            Debug.Log("No human for progress bar");
+            return;
+        }
 
         float progressPercentage = human.transform.position.x / mapGen.levelLength;
 
