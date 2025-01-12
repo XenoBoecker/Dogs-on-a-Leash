@@ -7,7 +7,7 @@ public class EndlessTileSpawner : MapManager
     HumanMovement human;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected void Start()
     {
         human = FindObjectOfType<HumanMovement>();
 
@@ -21,5 +21,10 @@ public class EndlessTileSpawner : MapManager
         {
             PlaceNextTile();
         }
+    }
+
+    internal override void Setup()
+    {
+       
     }
 }

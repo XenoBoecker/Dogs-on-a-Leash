@@ -26,7 +26,9 @@ public class SpawnObjectives : MonoBehaviour
                 GameObject randomObjective = objectivePrefabs[Random.Range(0, objectivePrefabs.Length)];
 
                 // Instantiate the objective
-                GameObject objective = PhotonNetwork.Instantiate(randomObjective.name, position + transform.position, Quaternion.identity);
+                GameObject objective;
+                if (PhotonNetwork.IsConnected) objective = PhotonNetwork.Instantiate(randomObjective.name, position + transform.position, Quaternion.identity);
+                else objective = Instantiate(randomObjective, position + transform.position, Quaternion.identity);
 
                 objective.transform.SetParent(objectiveParent);
 
@@ -54,7 +56,6 @@ public class SpawnObjectives : MonoBehaviour
             // Check if the position is too close to the center
             if (position.z < minDistToCenter && position.z > -minDistToCenter)
             {
-                Debug.Log("Too close to center: " + position.z);
                 continue;
             }
 
@@ -64,7 +65,6 @@ public class SpawnObjectives : MonoBehaviour
             {
                 if (Vector3.Distance(position, placedPosition) < minDistBetweenObjectives)
                 {
-                    Debug.Log("too close to existing");
                     isTooClose = true;
                     break;
                 }
