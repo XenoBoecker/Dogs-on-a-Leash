@@ -13,19 +13,6 @@ public class HumanConnectionManager : MonoBehaviour
 
     [SerializeField] bool testingNoDogAttachment;
 
-    private void Awake()
-    {
-        human = FindObjectOfType<HumanMovement>().transform;
-
-        dogSpawner = FindObjectOfType<OnlineDogSpawner>();
-        if (dogSpawner != null)
-        {
-            dogSpawner.OnDogSpawned += AttachDogToHuman;
-        }
-
-        TestAwake();
-    }
-
     private void TestAwake()
     {
         testDogManager = GetComponent<TestDogManager>();
@@ -44,5 +31,18 @@ public class HumanConnectionManager : MonoBehaviour
         }
 
         dogTransform.GetComponent<SpringJoint>().connectedBody = human.GetComponent<Rigidbody>();
+    }
+
+    internal void Setup()
+    {
+        human = FindObjectOfType<HumanMovement>().transform;
+
+        dogSpawner = FindObjectOfType<OnlineDogSpawner>();
+        if (dogSpawner != null)
+        {
+            dogSpawner.OnDogSpawned += AttachDogToHuman;
+        }
+
+        TestAwake();
     }
 }

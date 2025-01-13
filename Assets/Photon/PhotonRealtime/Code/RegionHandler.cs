@@ -153,7 +153,7 @@ namespace Photon.Realtime
         }
 
         /// <summary>Initializes the regions of this RegionHandler with values provided from the Name Server (as OperationResponse for OpGetRegions).</summary>
-        public void SetRegions(OperationResponse opGetRegions)
+        public void SetRegions(OperationResponse opGetRegions, LoadBalancingClient loadBalancingClient = null)
         {
             if (opGetRegions.OperationCode != OperationCode.GetRegions)
             {
@@ -169,8 +169,10 @@ namespace Photon.Realtime
             string[] servers = opGetRegions[ParameterCode.Address] as string[];
             if (regions == null || servers == null || regions.Length != servers.Length)
             {
-                //TODO: log error
-                //Debug.LogError("The region arrays from Name Server are not ok. Must be non-null and same length. " + (regions == null) + " " + (servers == null) + "\n" + opGetRegions.ToStringFull());
+                if (loadBalancingClient != null)
+                {
+                    loadBalancingClient.DebugReturn(DebugLevel.ERROR, "RegionHandler.SetRegions() failed. Received regions and servers must be non null and of equal length. Could not read regions.");
+                }
                 return;
             }
 
@@ -183,6 +185,11 @@ namespace Photon.Realtime
                 if (PortToPingOverride != 0)
                 {
                     server = LoadBalancingClient.ReplacePortWithAlternative(servers[i], PortToPingOverride);
+                }
+
+                if (loadBalancingClient != null && loadBalancingClient.AddressRewriter != null)
+                {
+                    server = loadBalancingClient.AddressRewriter(server, ServerConnection.MasterServer);
                 }
 
                 Region tmp = new Region(regions[i], server);
@@ -718,7 +725,7 @@ namespace Photon.Realtime
             //Debug.Log("Done: "+ this.region.Code);
             this.Done = true;
             this.ping.Dispose();
-            
+
             if (this.rttResults.Count > 1 && replyCount > 0)
             {
                 int bestRtt = this.rttResults.Min();

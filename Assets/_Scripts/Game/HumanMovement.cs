@@ -27,7 +27,7 @@ public class HumanMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
 
         stunTime -= Time.fixedDeltaTime;
         
@@ -40,7 +40,7 @@ public class HumanMovement : MonoBehaviour
 
     private void MoveForward()
     {
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
 
         if (isStunned)
         {
@@ -64,7 +64,7 @@ public class HumanMovement : MonoBehaviour
 
     public void ObstacleCollision(Obstacle obstacle)
     {
-        Debug.Log("Human obstacle collision: stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce);
+        Debug.Log("Human obstacle collision: stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce * rb.mass);
 
         Vector3 dir = (transform.position - obstacle.transform.position).normalized;
 
