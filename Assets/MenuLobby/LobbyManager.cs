@@ -55,6 +55,7 @@ namespace photonMenuLobby
         private void Start()
         {
             roomPanel.SetActive(false);
+            lobbyPanel.SetActive(true);
 
             PhotonNetwork.JoinLobby();
         }
