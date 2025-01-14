@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,8 @@ public class OnlineDogSpawner : MonoBehaviour
     [SerializeField] Dog dogPrefab;
 
     public event Action<Transform> OnDogSpawned;
+
+    public List<GameObject> dogModels = new List<GameObject>();
 
     internal void Setup()
     {
@@ -21,9 +24,13 @@ public class OnlineDogSpawner : MonoBehaviour
 
             dog.SetDogData(localPlayers[i].DogData);
 
+            dog.GetComponent<MeshFilter>().mesh = dogModels[i].GetComponent<MeshFilter>().sharedMesh;
+
             dog.SetPlayerInput(localPlayers[i].GetComponent<PlayerInput>());
 
             OnDogSpawned?.Invoke(dog.transform);
         }
+
+        
     }
 }
