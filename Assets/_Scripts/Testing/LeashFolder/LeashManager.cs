@@ -102,8 +102,20 @@ public class LeashManager : MonoBehaviour
 
         // Debug.Log("No hit so we remove that shiii");
 
-        if(leashSegments.Count == 1)
+        if (leashSegments.Count == 1)
         {
+            Vector3 dogToSegment = leashSegments[0].transform.position - gameObject.transform.position;
+            Vector3 segmentToHuman = leashTarget.position - leashSegments[0].transform.position;
+
+            float angle = Vector3.Angle(dogToSegment, segmentToHuman);
+
+            Debug.Log("AngleDog::" + angle);
+            // If the angle is too small, do not remove the segment
+            if (angle > 15)
+            {
+                return;
+            }
+
             GameObject myBuffer = leashSegments[0];
             leashSegments.RemoveAt(0);
             Destroy(myBuffer);
@@ -162,14 +174,25 @@ public class LeashManager : MonoBehaviour
         
         // Debug.Log("No hit so we remove that shiii");
 
-        if(leashSegments.Count == 1)
+        if (leashSegments.Count == 1)
         {
-            
-            GameObject myBuffer = leashSegments[0];
-            leashSegments.RemoveAt(0);
+            Vector3 humanToSegment = leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position;
+            Vector3 segmentToDog = gameObject.transform.position - leashSegments[leashSegments.Count - 1].transform.position;
+
+            float angle = Vector3.Angle(humanToSegment, segmentToDog);
+
+            Debug.Log("AngleHuman::" + angle);
+            // If the angle is too small, do not remove the segment
+            if (angle < 85)
+            {
+                return;
+            }
+
+            GameObject myBuffer = leashSegments[leashSegments.Count - 1];
+            leashSegments.RemoveAt(leashSegments.Count - 1);
             Destroy(myBuffer);
             return;
-        }
+        }   
 
         leashSegments[leashSegments.Count - 2].GetComponent<LeashSegment>().nextSegment = leashTarget;
         GameObject buffer = leashSegments[leashSegments.Count - 1];
