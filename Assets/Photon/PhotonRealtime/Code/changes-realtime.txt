@@ -3,8 +3,14 @@ Photon Realtime C# Client - Changelog
 www.photonengine.com  -  Join our Discord Server: https://dashboard.photonengine.com/account/profile
 
 
+Version 4.1.8.13 (09. January 2025 - rev7815)
+    Changed: RealtimeFallback() will no longer call client.Disconnect if the client is disconnecting already.
+    Changed: ChangeLocalID() to not change the LocalPlayer.UserId, unless it is null or empty. This improves a change in v4.1.8.9, which could set the LocalPlayer.UserId to null.
+    Added: LoadBalancingClient.ConnectCount as count of connections made to any server (in one "session"). Purely statistical.
+    Added: LoadBalancingClient.DisconnectMessage (for debugging / logging). Set when the client receives a disconnect info message with a debug string.
+    Added: PHOTON_LOCATION and PHOTON_TELEMETRY for upcoming features (not included in this release).
 
-Version 4.1.8.12 (16. December 2024 - rev7796)
+Version 4.1.8.12 (16. December 2024 - rev7801)
     Added: ParameterCode.ReportQos. Preparation for upcoming connection quality reports.
     Added: Timestamp logging to SupportLogger basics log. So far, it was only logging the timespan for the connection.
     Changed: Operations that contain any UserId will be sent encrypted if they do. This improves security on the network layer. Affected: OpCreateRoom, OpJoinRoom, OpJoinRandomRoom, OpJoinRandomOrCreateRoom and OpFindFriends.
