@@ -361,6 +361,11 @@ public class LeashManager : MonoBehaviour
             }
         }
 
+        if(currentLength >= (maxLeashLength -= 0.5f))
+        {
+            leashTarget.GetComponent<Rigidbody>().AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+        }
+
 
 
         // Debug.Log("Current length::" + currentLength); 
