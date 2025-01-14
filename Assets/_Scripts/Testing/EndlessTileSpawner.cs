@@ -7,7 +7,7 @@ public class EndlessTileSpawner : MapManager
     HumanMovement human;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected void Start()
     {
         human = FindObjectOfType<HumanMovement>();
 
@@ -17,9 +17,14 @@ public class EndlessTileSpawner : MapManager
     // Update is called once per frame
     void Update()
     {
-        if (currentPathLength - human.transform.position.x < 50)
+        if (currentPathLength - human.transform.position.x < 50 || currentPathLength - Camera.main.transform.position.x < 50)
         {
             PlaceNextTile();
         }
+    }
+
+    internal override void Setup()
+    {
+       
     }
 }

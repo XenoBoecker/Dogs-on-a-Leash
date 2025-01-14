@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 5526126640239797836}
   - component: {fileID: 8253964175443044203}
   - component: {fileID: 7177606689547424760}
+  - component: {fileID: 4581385581044796705}
   m_Layer: 0
   m_Name: Stamm
   m_TagString: Untagged
@@ -114,6 +115,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4581385581044796705
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2372176135757404050}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7877891113228304007, guid: 3b528f526a2450f4ba0f2ab48ab638a1, type: 3}
 --- !u!1 &4498611292383040084
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6763438133955886227}
+  - component: {fileID: 7382219347022924231}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -239,7 +263,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.61115414, z: 0, w: 0.79151165}
   m_LocalPosition: {x: -9.9, y: -0.2, z: 19.1}
-  m_LocalScale: {x: 3.7620933, y: 3.7620933, z: 3.7620933}
+  m_LocalScale: {x: 1.5009247, y: 1.5009247, z: 1.5009247}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7251440265467236529}
@@ -264,6 +288,29 @@ Transform:
   - {fileID: 5526126640239797836}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 75.346, z: 0}
+--- !u!136 &7382219347022924231
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7306525507517938690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7784912378054979313
 GameObject:
   m_ObjectHideFlags: 0
