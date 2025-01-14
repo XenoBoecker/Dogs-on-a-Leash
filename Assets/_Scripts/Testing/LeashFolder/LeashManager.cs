@@ -353,11 +353,11 @@ public class LeashManager : MonoBehaviour
                 {
                     currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
                 }
-                gameObject.transform.position = leashSegments[0].transform.position - (leashSegments[0].transform.position - gameObject.transform.position).normalized * (maxLeashLength - currentLengthh);
+                gameObject.transform.position = leashSegments[0].transform.position - (leashSegments[0].transform.position - gameObject.transform.position).normalized * ((maxLeashLength - currentLengthh * 0.99f));
             }
             else
             {
-                gameObject.transform.position = leashTarget.position - (leashTarget.position - gameObject.transform.position).normalized * maxLeashLength;
+                gameObject.transform.position = leashTarget.position - (leashTarget.position - gameObject.transform.position).normalized * (maxLeashLength * 0.99f) ;
             }
         }
 
