@@ -6,12 +6,15 @@ public class DogVisuals : MonoBehaviour
 
     [SerializeField] GameObject[] dogVisuals;
 
+    static int dogCount;
+
     private void Awake()
     {
         dog = GetComponent<Dog>();
         dog.OnDogDataChanged += UpdateVisuals;
 
         int rand = Random.Range(0, dogVisuals.Length);
+        rand = dogCount++;
 
         for (int i = 0; i < dogVisuals.Length; i++)
         {
