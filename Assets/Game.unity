@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9297513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9297514}
+  m_Layer: 0
+  m_Name: TileParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9297514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9297513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24926784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb218e738dcd024394c66371dddca6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingNoDogAttachment: 1
+  testingNoDogAttachment: 0
 --- !u!114 &950691619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1342,7 +1373,7 @@ MonoBehaviour:
   - {fileID: 5957918517378465101, guid: a03d44f1ae8cc7d489a2bfc55b37189a, type: 3}
   endTiles:
   - {fileID: 3360506625757157340, guid: 2f51e550c98ee584a9def3470c232829, type: 3}
-  tileParent: {fileID: 0}
+  tileParent: {fileID: 9297514}
   levelLength: 120
 --- !u!114 &950691621
 MonoBehaviour:
@@ -1764,3 +1795,4 @@ SceneRoots:
   - {fileID: 1973408249}
   - {fileID: 262966022}
   - {fileID: 765856838}
+  - {fileID: 9297514}

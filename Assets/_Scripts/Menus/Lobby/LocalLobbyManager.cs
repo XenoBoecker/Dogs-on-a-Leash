@@ -33,8 +33,6 @@ public class LocalLobbyManager : MonoBehaviour
         Debug.Log("Register player");
 
         players.Add(player);
-
-        if (player.PlayerName == "") player.SetPlayerName("P" + (currentPlayerCount+1));
         
         player.SetLobbyDogSelector(lobbyDogSelectors[currentPlayerCount]);
 

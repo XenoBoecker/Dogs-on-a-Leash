@@ -7,9 +7,8 @@ public class LobbyDogSelector : MonoBehaviour
 
     public string PlayerName;
     int currentSelectedDogIndex;
+    public int CurrentSelectedDogIndex => currentSelectedDogIndex;
 
-    bool isPlayerControlled;
-    public bool IsPlayerControlled => isPlayerControlled;
     bool isSelectionConfirmed;
     public bool IsSelectionConfirmed => isSelectionConfirmed;
 
@@ -51,11 +50,6 @@ public class LobbyDogSelector : MonoBehaviour
     internal DogData GetDogData()
     {
         return lobbyData.AvailableDogs[currentSelectedDogIndex];
-    }
-
-    internal void SetIsPlayerControlled(bool isAIControlled)
-    {
-        this.isPlayerControlled = isAIControlled;
     }
 
     internal void SetConfirmSelection(bool isSelectionConfirmed)

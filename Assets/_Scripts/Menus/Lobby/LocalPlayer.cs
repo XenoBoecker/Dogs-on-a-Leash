@@ -12,9 +12,10 @@ public class LocalPlayer : MonoBehaviour
     string playerName;
     public string PlayerName => playerName;
 
-
     [SerializeField] DogData dogData;
     public DogData DogData => dogData;
+
+    public int ColorIndex;
 
     LobbyDogSelector lobbyDogSelector;
 
@@ -38,6 +39,10 @@ public class LocalPlayer : MonoBehaviour
             GetLocalClient()
             .AddLocalPlayer();
         //transform.SetParent(lobbyManager.playerItemParent);
+
+        SetLobbyDogSelector(lobbyManager.ChooseDogSelectors[lobbyManager.GetCurrentPlayerCount() - 1]);
+
+        ColorIndex = lobbyManager.GetCurrentPlayerCount() - 1;
     }
 
     private void OnEnable()
@@ -85,16 +90,9 @@ public class LocalPlayer : MonoBehaviour
         }
     }
 
-    public void SetPlayerName(string name)
-    {
-        playerName = name;
-    }
-
     public void SetLobbyDogSelector(LobbyDogSelector selector)
     {
         lobbyDogSelector = selector;
-        lobbyDogSelector.PlayerName = playerName;
-        lobbyDogSelector.SetIsPlayerControlled(true);
 
         lobbyDogSelector.OnDataChanged += UpdateDogData;
 
@@ -104,6 +102,8 @@ public class LocalPlayer : MonoBehaviour
     private void UpdateDogData()
     {
         dogData = lobbyDogSelector.GetDogData();
+
+        Debug.Log("Local player Dog data changed: " + dogData.id);
     }
 
     public void SelectNextDog()

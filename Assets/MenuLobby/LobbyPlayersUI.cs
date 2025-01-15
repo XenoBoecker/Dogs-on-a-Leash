@@ -7,7 +7,7 @@ namespace photonMenuLobby
     {
         LobbyManager lobbyManager;
 
-        [SerializeField] List<LobbyShowDog> lobbyShowDogObjects;
+        [SerializeField] List<GameObject> pawShowPlayerConnected;
 
         private void Awake()
         {
@@ -15,17 +15,17 @@ namespace photonMenuLobby
             lobbyManager.OnPlayerListChanged += UpdateUI;
 
 
-            for (int i = 0; i < lobbyShowDogObjects.Count; i++)
+            for (int i = 0; i < pawShowPlayerConnected.Count; i++)
             {
-                lobbyShowDogObjects[i].gameObject.SetActive(false);
+                pawShowPlayerConnected[i].gameObject.SetActive(false);
             }
         }
 
         private void UpdateUI()
         {
-            for (int i = 0; i < lobbyShowDogObjects.Count; i++)
+            for (int i = 0; i < pawShowPlayerConnected.Count; i++)
             {
-                lobbyShowDogObjects[i].gameObject.SetActive(false);
+                pawShowPlayerConnected[i].gameObject.SetActive(false);
             }
 
             int index = 0;
@@ -34,8 +34,8 @@ namespace photonMenuLobby
             {
                 for (int j = 0; j < lobbyManager.Clients[i].localPlayers.Count; j++)
                 {
-                    lobbyShowDogObjects[index].SetPlayerData(lobbyManager.Clients[i].localPlayers[j]);
-                    lobbyShowDogObjects[index].gameObject.SetActive(true);
+                    //lobbyShowDogObjects[index].SetPlayerData(lobbyManager.Clients[i].localPlayers[j]);
+                    pawShowPlayerConnected[index].gameObject.SetActive(true);
                     index++;
                 }
             }

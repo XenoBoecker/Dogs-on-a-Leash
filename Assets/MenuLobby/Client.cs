@@ -24,27 +24,29 @@ namespace photonMenuLobby
 
         public event Action OnPlayerDataChanged;
 
-        private void Update()
-        {
-            
-        }
-
         public void AddLocalPlayer()
         {
             Debug.Log("Add local Player to player " + PhotonNetwork.LocalPlayer.ActorNumber);
 
             localPlayers.Add(new PlayerData(0));
 
-            for (int i = 0; i < localPlayers.Count; i++)
+            if (PhotonNetwork.IsConnected)
             {
-                string s = localPlayerCountString + avatarString + i;
+                for (int i = 0; i < localPlayers.Count; i++)
+                {
+                    string s = localPlayerCountString + avatarString + i;
 
-                playerProperties[s] = localPlayers[i].playerAvatar;
+                    playerProperties[s] = localPlayers[i].playerAvatar;
+                }
+
+                playerProperties[localPlayerCountString] = localPlayers.Count;
+
+                PhotonNetwork.SetPlayerCustomProperties(playerProperties);
             }
-
-            playerProperties[localPlayerCountString] = localPlayers.Count;
-
-            PhotonNetwork.SetPlayerCustomProperties(playerProperties);
+            else
+            {
+                OnPlayerDataChanged?.Invoke();
+            }
         }
 
         public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)

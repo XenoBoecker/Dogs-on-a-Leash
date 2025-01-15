@@ -9,10 +9,13 @@ public class LobbyShowDog : MonoBehaviour
     LobbyDogSelector lobbyDogSelector;
 
 
+    [SerializeField] int colorIndex;
+
+    [SerializeField] Transform dogModelParent;
+    GameObject currentDogModel;
+
     [SerializeField] Image bgImage;
-    [SerializeField] TMP_Text playerNameText;
-    [SerializeField] TMPro.TextMeshProUGUI dogNameText;
-    [SerializeField] UnityEngine.UI.Image dogImage;
+    [SerializeField] TextMeshProUGUI dogNameText;
 
     internal void SetPlayerData(PlayerData playerData)
     {
@@ -34,21 +37,13 @@ public class LobbyShowDog : MonoBehaviour
 
     private void UpdateUI()
     {
-        playerNameText.text = lobbyDogSelector.PlayerName;
-        
-        if(lobbyDogSelector.IsPlayerControlled)
-        {
-            if (lobbyDogSelector.IsSelectionConfirmed) bgImage.color = Color.green;
-            else bgImage.color = new Color(1, 0.7f, 0);
-        }
-        else
-        {
-            bgImage.color = Color.white;
-        }
-
         DogData dogData = lobbyDogSelector.GetDogData();
 
         dogNameText.text = dogData.name;
-        dogImage.sprite = dogData.dogSprite;
+
+        if(currentDogModel != null) Destroy(currentDogModel);
+        currentDogModel = Instantiate(dogData.dogObjects[colorIndex]);
+        currentDogModel.transform.SetParent(dogModelParent);
+        currentDogModel.transform.position = dogModelParent.transform.position;
     }
 }

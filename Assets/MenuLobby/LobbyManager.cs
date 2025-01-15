@@ -20,6 +20,9 @@ namespace photonMenuLobby
 
         [SerializeField] GameObject lobbyPanel;
         [SerializeField] GameObject roomPanel;
+        [SerializeField] GameObject dogSelectionPanel;
+
+        [SerializeField] GameObject dogModelParent;
         [SerializeField] TMP_Text roomNameText;
 
         [SerializeField] RoomItem roomItemPrefab;
@@ -42,11 +45,14 @@ namespace photonMenuLobby
 
 
 
+        [SerializeField] List<LobbyDogSelector> chooseDogSelectors = new List<LobbyDogSelector>();
+        public List<LobbyDogSelector> ChooseDogSelectors => chooseDogSelectors;
 
 
         [SerializeField] List<LobbyDogSelector> playerItemsList = new List<LobbyDogSelector>();
         [SerializeField] LobbyDogSelector playerItemPrefab;
         [SerializeField] public Transform playerItemParent;
+
 
         [SerializeField] GameObject playButton;
 
@@ -58,24 +64,63 @@ namespace photonMenuLobby
 
         private void Start()
         {
-            roomPanel.SetActive(false);
-            lobbyPanel.SetActive(true);
+            if(PhotonNetwork.IsConnected)
+            {
+                ActivatePanel(lobbyPanel);
 
-            PhotonNetwork.JoinLobby();
+                PhotonNetwork.JoinLobby();
+            }
+            else
+            {
+                ActivatePanel(roomPanel);
+                
+                playButton.SetActive(true);
+
+                pim.enabled = true;
+
+                roomNameText.text = "Room Name: " + "TestName";
+                UpdateClientList();
+                UpdatePlayerList();
+            }
         }
 
         private void Update()
         {
-            if (PhotonNetwork.IsMasterClient)// && PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+            if (PhotonNetwork.IsConnected)
             {
-                playButton.SetActive(true);
+                if (PhotonNetwork.IsMasterClient)// && PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+                {
+                    playButton.SetActive(true);
+                }
+                else
+                {
+                    playButton.SetActive(false);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
+            }
+
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return)) ActivatePanel(dogSelectionPanel);
+        }
+
+        void ActivatePanel(GameObject panel)
+        {
+            if (panel == lobbyPanel) lobbyPanel.SetActive(true);
+            else lobbyPanel.SetActive(false);
+
+            if (panel == roomPanel) roomPanel.SetActive(true);
+            else roomPanel.SetActive(false);
+
+            if (panel == dogSelectionPanel)
+            {
+                dogSelectionPanel.SetActive(true);
+                dogModelParent.SetActive(true);
             }
             else
             {
-                playButton.SetActive(false);
+                dogSelectionPanel.SetActive(false);
+                dogModelParent.SetActive(false);
             }
-
-            if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
         }
 
         public void OnClickCreate()
@@ -99,8 +144,7 @@ namespace photonMenuLobby
 
         public override void OnJoinedRoom()
         {
-            lobbyPanel.SetActive(false);
-            roomPanel.SetActive(true);
+            ActivatePanel(roomPanel);
 
             pim.enabled = true;
 
@@ -152,8 +196,7 @@ namespace photonMenuLobby
 
         public override void OnLeftRoom()
         {
-            lobbyPanel.SetActive(true);
-            roomPanel.SetActive(false);
+            ActivatePanel(lobbyPanel);
         }
 
         public override void OnConnectedToMaster()
@@ -170,21 +213,31 @@ namespace photonMenuLobby
             }
             clients.Clear();
 
-            if (PhotonNetwork.CurrentRoom == null) return;
+            if (PhotonNetwork.IsConnected)
+            {
+                if (PhotonNetwork.CurrentRoom == null) return;
 
-            foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+                foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+                {
+                    Client newClient = Instantiate(clientPrefab, clientParent);
+                    newClient.name = player.Value.NickName;
+                    newClient.SetPlayerInfo(player.Value);
+
+                    if (player.Value == PhotonNetwork.LocalPlayer)
+                    {
+                        newClient.SetIsLocalPlayer();
+                    }
+
+                    newClient.OnPlayerDataChanged += UpdatePlayerList;
+
+                    clients.Add(newClient);
+                }
+            }
+            else
             {
                 Client newClient = Instantiate(clientPrefab, clientParent);
-                newClient.name = player.Value.NickName;
-                newClient.SetPlayerInfo(player.Value);
-
-                if (player.Value == PhotonNetwork.LocalPlayer)
-                {
-                    newClient.SetIsLocalPlayer();
-                }
-
+                newClient.SetIsLocalPlayer();
                 newClient.OnPlayerDataChanged += UpdatePlayerList;
-
                 clients.Add(newClient);
             }
         }
@@ -193,31 +246,43 @@ namespace photonMenuLobby
         {
             Debug.Log("UpdatePlayerList");
 
-            foreach (LobbyDogSelector item in playerItemsList)
+            int currentPlayerCount = 0;
+
+            if (PhotonNetwork.IsConnected)
             {
-                Destroy(item.gameObject);
-            }
-            playerItemsList.Clear();
-
-            if (PhotonNetwork.CurrentRoom == null) return;
-
-            foreach (Client client in clients)
-            {
-                if (client.IsLocal) continue;
-
-                Debug.Log("Spawn Clients local players: " + client.localPlayers.Count);
-
-                for (int i = 0; i < client.localPlayers.Count; i++)
+                foreach (LobbyDogSelector item in playerItemsList)
                 {
-                    LobbyDogSelector newPlayerItem = Instantiate(playerItemPrefab, playerItemParent);
+                    Destroy(item.gameObject);
+                }
+                playerItemsList.Clear();
 
-                    newPlayerItem.SetSelectedDogIndex(client.localPlayers[i].playerAvatar);
+                if (PhotonNetwork.CurrentRoom == null) return;
 
-                    playerItemsList.Add(newPlayerItem);
+                foreach (Client client in clients)
+                {
+                    if (client.IsLocal) continue;
+
+                    Debug.Log("Spawn Clients local players: " + client.localPlayers.Count);
+
+                    for (int i = 0; i < client.localPlayers.Count; i++)
+                    {
+                        LobbyDogSelector newPlayerItem = Instantiate(playerItemPrefab, playerItemParent);
+
+                        newPlayerItem.SetSelectedDogIndex(client.localPlayers[i].playerAvatar);
+
+                        playerItemsList.Add(newPlayerItem);
+
+                        currentPlayerCount++;
+                    }
                 }
             }
 
             OnPlayerListChanged?.Invoke();
+
+            if(currentPlayerCount == 4)
+            {
+                ActivatePanel(dogSelectionPanel);
+            }
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -242,6 +307,17 @@ namespace photonMenuLobby
                 if (clients[i].IsLocal) return clients[i];
             }
             return null;
+        }
+
+        internal int GetCurrentPlayerCount()
+        {
+            int count = 0;
+
+            for (int i = 0; i < clients.Count; i++)
+            {
+                count += clients[i].localPlayers.Count;
+            }
+            return count;
         }
     }
 
