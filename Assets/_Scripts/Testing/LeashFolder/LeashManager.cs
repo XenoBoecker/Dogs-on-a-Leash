@@ -30,6 +30,8 @@ public class LeashManager : MonoBehaviour
 
     float currentLength = 0f;
 
+    Coroutine myCoroutine;
+
     void Start()
     {
         Invoke("Setup", 0.2f);
@@ -333,25 +335,43 @@ public class LeashManager : MonoBehaviour
 
         if(currentLength > maxLeashLength)
         {
+            // if(leashSegments.Count > 0)
+            // {
+            //     myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
+            //     humanRigidbody.AddForce((leashTarget.position - leashSegments[leashSegments.Count - 1].transform.position).normalized * humanPullForce, ForceMode.Impulse);
+            // }
+            // else
+            // {
+            //     myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
+            //     humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+            // }
+
             if(leashSegments.Count > 0)
             {
-                myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce * currentLength);
-                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce);
+                float currentLengthh = 0;
+                for(int i = 0; i < leashSegments.Count; i++)
+                {
+                    currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
+                }
+                gameObject.transform.position = leashSegments[0].transform.position - (leashSegments[0].transform.position - gameObject.transform.position).normalized * ((maxLeashLength - currentLengthh * 0.99f));
             }
             else
             {
-                myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce * currentLength);
-                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce);
+                gameObject.transform.position = leashTarget.position - (leashTarget.position - gameObject.transform.position).normalized * (maxLeashLength * 0.99f) ;
             }
-
-            
-
-            
         }
+
+        if(currentLength >= (maxLeashLength -= 0.5f))
+        {
+            leashTarget.GetComponent<Rigidbody>().AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+        }
+
+
 
         // Debug.Log("Current length::" + currentLength); 
     }
 
+    
 
     // void OnDrawGizmos()
     // {
