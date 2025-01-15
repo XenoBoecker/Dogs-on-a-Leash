@@ -521,8 +521,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 0b43895de4a2c4e4ba5911d0b6676c99, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1135,6 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7920a38f4c450114ca60c4e7633c083d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pim: {fileID: 615918027}
   roomInputField: {fileID: 1750707922}
   lobbyPanel: {fileID: 1781733012}
   roomPanel: {fileID: 1688834756}
@@ -2093,7 +2094,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615918025}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
@@ -3866,9 +3867,9 @@ RectTransform:
   - {fileID: 411890885}
   - {fileID: 565721361}
   - {fileID: 619554418}
-  - {fileID: 145308952}
   - {fileID: 862102970}
   - {fileID: 1769319839}
+  - {fileID: 145308952}
   - {fileID: 562039107}
   - {fileID: 454504094}
   m_Father: {fileID: 1881322107}

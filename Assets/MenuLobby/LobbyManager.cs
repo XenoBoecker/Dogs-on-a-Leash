@@ -6,12 +6,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace photonMenuLobby
 {
 
     public class LobbyManager : MonoBehaviourPunCallbacks
     {
+
+        [SerializeField] PlayerInputManager pim;
+
         [SerializeField] TMP_InputField roomInputField;
 
         [SerializeField] GameObject lobbyPanel;
@@ -97,6 +101,8 @@ namespace photonMenuLobby
         {
             lobbyPanel.SetActive(false);
             roomPanel.SetActive(true);
+
+            pim.enabled = true;
 
             roomNameText.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
             UpdateClientList();

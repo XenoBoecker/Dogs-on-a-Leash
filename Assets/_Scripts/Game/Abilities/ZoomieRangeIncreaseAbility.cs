@@ -22,7 +22,7 @@ public class ZoomieRangeIncreaseAbility : Ability
     private void Start()
     {
 
-        baseMaxDistance = dog.GetComponent<SpringJoint>().maxDistance;
+        baseMaxDistance = 5;// dog.GetComponent<SpringJoint>().maxDistance;
     }
     
     protected override void ActivateAbility()
