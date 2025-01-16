@@ -60,7 +60,15 @@ public class LobbyShowDog : MonoBehaviour
             dogSelectArrows.SetActive(true);
         }
 
-        if (lobbyDogSelector.IsReadyToPlay) showConfirmed.SetActive(true);
-        else showConfirmed.SetActive(false);
+        if (lobbyDogSelector.IsReadyToPlay)
+        {
+            selectAccessoriePanel.SetActive(false);
+            showConfirmed.SetActive(true);
+        }
+        else
+        {
+            selectAccessoriePanel.SetActive(true);
+            showConfirmed.SetActive(false);
+        }
     }
 }
