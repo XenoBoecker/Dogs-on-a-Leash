@@ -8,9 +8,9 @@ public class OnlineDogSpawner : MonoBehaviour
 {
     [SerializeField] Dog dogPrefab;
 
-    public event Action<Transform> OnDogSpawned;
+    [SerializeField] Transform[] spawnPoints;
 
-    public List<GameObject> dogModels = new List<GameObject>();
+    public event Action<Transform> OnDogSpawned;
 
     internal void Setup()
     {
@@ -20,17 +20,17 @@ public class OnlineDogSpawner : MonoBehaviour
         {
             Dog dog;
             if (PhotonNetwork.IsConnected) dog = PhotonNetwork.Instantiate(dogPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<Dog>();
-            else dog = Instantiate(dogPrefab, Vector3.zero, Quaternion.identity).GetComponent<Dog>();
+            else dog = Instantiate(dogPrefab, spawnPoints[i].position, Quaternion.identity).GetComponent<Dog>();
+
+            Debug.Log("Local player " + i + ": DogDataIndex: " + localPlayers[i].DogData.id);
 
             dog.SetDogData(localPlayers[i].DogData);
-
-            dog.GetComponent<MeshFilter>().mesh = dogModels[i].GetComponent<MeshFilter>().sharedMesh;
+            dog.SetColor(localPlayers[i].ColorIndex);
 
             dog.SetPlayerInput(localPlayers[i].GetComponent<PlayerInput>());
+            localPlayers[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
 
             OnDogSpawned?.Invoke(dog.transform);
         }
-
-        
     }
 }

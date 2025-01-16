@@ -8,7 +8,7 @@ public class InteractableDetector : MonoBehaviour
     PhotonView view;
 
     PlayerDogController playerDogController;
-    
+
     private List<Interactable> _interactablesInRange = new List<Interactable>();
 
     Interactable currentClosestInteractable;
@@ -24,12 +24,13 @@ public class InteractableDetector : MonoBehaviour
     private void Awake()
     {
         view = GetComponentInParent<PhotonView>();
-        if (!view.IsMine) this.enabled = false;
+        if (PhotonNetwork.IsConnected && !view.IsMine) this.enabled = false;
     }
 
     private void Start()
     {
         playerDogController = GetComponentInParent<PlayerDogController>();
+        if (playerDogController == null) Debug.LogError("No player dog controller found");
         playerDogController.OnInteract += InteractWithClosestInteractable;
     }
 
@@ -87,7 +88,7 @@ public class InteractableDetector : MonoBehaviour
         interactable.HideInteractable();
 
         if (interactable == currentInteractingInteractable) CancelTask();
-        
+
         _interactablesInRange.Remove(interactable);
     }
 
@@ -95,18 +96,25 @@ public class InteractableDetector : MonoBehaviour
     {
         currentInteractingInteractable = interactable;
         currentInteractingInteractable.OnInteractEnd += EndCurrentInteraction;
+
+        if (playerDogController == null)
+        {
+            Debug.Log("Again find PlayerDogController");
+            playerDogController = GetComponentInParent<PlayerDogController>();
+        }
+
         playerDogController.StopMovement();
 
         currentInteractingInteractable.Interact();
         // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
-        if (currentInteractingInteractable != null) onInteracted?.Invoke(); 
+        if (currentInteractingInteractable != null) onInteracted?.Invoke();
     }
 
     void InteractWithClosestInteractable()
     {
         if (currentClosestInteractable == null) return;
 
-        StartInteraction(currentClosestInteractable);        
+        StartInteraction(currentClosestInteractable);
     }
 
     public void EndCurrentInteraction()

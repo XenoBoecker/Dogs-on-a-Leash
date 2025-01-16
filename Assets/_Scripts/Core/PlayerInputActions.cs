@@ -888,6 +888,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b04ba7d-ea34-424c-ba01-75cc1c82c5bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1037,11 +1046,55 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a1d0648a-ef60-4143-b9b7-e78ba0c7d8a9"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ConfirmSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21b5cf1a-e916-434d-947d-8fb84150ec16"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20d8d43d-5347-428e-9df8-5d6ae11c46c8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7cef3f8f-7223-4d4d-a2fb-c06a02f4af69"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9da1b9df-0fd5-477e-8a24-0ec8588f9410"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1134,6 +1187,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Lobby = asset.FindActionMap("Lobby", throwIfNotFound: true);
         m_Lobby_ChangeSelectedDog = m_Lobby.FindAction("ChangeSelectedDog", throwIfNotFound: true);
         m_Lobby_ConfirmSelection = m_Lobby.FindAction("ConfirmSelection", throwIfNotFound: true);
+        m_Lobby_Back = m_Lobby.FindAction("Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1393,12 +1447,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<ILobbyActions> m_LobbyActionsCallbackInterfaces = new List<ILobbyActions>();
     private readonly InputAction m_Lobby_ChangeSelectedDog;
     private readonly InputAction m_Lobby_ConfirmSelection;
+    private readonly InputAction m_Lobby_Back;
     public struct LobbyActions
     {
         private @PlayerInputActions m_Wrapper;
         public LobbyActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ChangeSelectedDog => m_Wrapper.m_Lobby_ChangeSelectedDog;
         public InputAction @ConfirmSelection => m_Wrapper.m_Lobby_ConfirmSelection;
+        public InputAction @Back => m_Wrapper.m_Lobby_Back;
         public InputActionMap Get() { return m_Wrapper.m_Lobby; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1414,6 +1470,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ConfirmSelection.started += instance.OnConfirmSelection;
             @ConfirmSelection.performed += instance.OnConfirmSelection;
             @ConfirmSelection.canceled += instance.OnConfirmSelection;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
         }
 
         private void UnregisterCallbacks(ILobbyActions instance)
@@ -1424,6 +1483,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ConfirmSelection.started -= instance.OnConfirmSelection;
             @ConfirmSelection.performed -= instance.OnConfirmSelection;
             @ConfirmSelection.canceled -= instance.OnConfirmSelection;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
         }
 
         public void RemoveCallbacks(ILobbyActions instance)
@@ -1511,5 +1573,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnChangeSelectedDog(InputAction.CallbackContext context);
         void OnConfirmSelection(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
 }

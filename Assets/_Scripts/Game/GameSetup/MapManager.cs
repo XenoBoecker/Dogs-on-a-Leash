@@ -88,7 +88,7 @@ public class MapManager : MonoBehaviour
     {
         humanMovement = FindObjectOfType<HumanMovement>();
 
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
 
         GenerateMap();
     }
