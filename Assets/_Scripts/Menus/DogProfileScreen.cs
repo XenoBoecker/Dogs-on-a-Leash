@@ -37,7 +37,7 @@ public class DogProfileScreen : MonoBehaviour
     {
         currentDogIndex--;
 
-        if (currentDogIndex == 0) currentDogIndex = dogPanels.Length-1;
+        if (currentDogIndex == -1) currentDogIndex = dogPanels.Length-1;
 
         ShowPanel();
     }

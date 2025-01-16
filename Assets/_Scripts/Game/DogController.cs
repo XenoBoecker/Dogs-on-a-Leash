@@ -70,41 +70,63 @@ public class DogController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
+    // void FixedUpdate()
+    // {
 
-        if (PhotonNetwork.IsConnected && !view.IsMine) return;
+    //     if (PhotonNetwork.IsConnected && !view.IsMine) return;
 
-        // Smoothly rotate towards the target direction
-        if (targetDirection != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
-            transform.rotation = rotation;
+    //     // Smoothly rotate towards the target direction
+    //     if (targetDirection != Vector3.zero)
+    //     {
+    //         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+    //         Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+    //         transform.rotation = rotation;
             
-            // Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            // Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
-            // rb.rotation = rotation;
-        }
+    //         // Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+    //         // Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+    //         // rb.rotation = rotation;
+    //     }
 
-        Vector3 forwardVelocity = transform.forward * currentSpeed;
+    //     Vector3 forwardVelocity = transform.forward * currentSpeed;
 
-        if (forwardVelocity.magnitude > maxSpeed)
-        {
-            forwardVelocity = forwardVelocity.normalized * maxSpeed;
-        }
+    //     if (forwardVelocity.magnitude > maxSpeed)
+    //     {
+    //         forwardVelocity = forwardVelocity.normalized * maxSpeed;
+    //     }
         
-        transform.Translate(forwardVelocity * Time.fixedDeltaTime, Space.World);
+    //     transform.Translate(forwardVelocity * Time.fixedDeltaTime, Space.World);
 
-        // Move the dog forward based on current speed
-        // Vector3 forwardVelocity = rb.transform.forward * currentSpeed;
-        // rb.velocity = forwardVelocity;
-        // 
-        // if (rb.velocity.magnitude > maxSpeed)
-        // {
-        //     rb.velocity = rb.velocity.normalized * maxSpeed;
-        // }
+    //     // Move the dog forward based on current speed
+    //     // Vector3 forwardVelocity = rb.transform.forward * currentSpeed;
+    //     // rb.velocity = forwardVelocity;
+    //     // 
+    //     // if (rb.velocity.magnitude > maxSpeed)
+    //     // {
+    //     //     rb.velocity = rb.velocity.normalized * maxSpeed;
+    //     // }
+    // }
+
+    void FixedUpdate()
+{
+    if (PhotonNetwork.IsConnected && !view.IsMine) return;
+
+    // Smoothly rotate towards the target direction
+    if (targetDirection != Vector3.zero)
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+        Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+        rb.MoveRotation(rotation);
     }
+
+    Vector3 forwardVelocity = transform.forward * currentSpeed;
+
+    if (forwardVelocity.magnitude > maxSpeed)
+    {
+        forwardVelocity = forwardVelocity.normalized * maxSpeed;
+    }
+
+    rb.MovePosition(rb.position + forwardVelocity * Time.fixedDeltaTime);
+}
     protected void ZoomieStart()
     {
         OnZoomieStart?.Invoke();
