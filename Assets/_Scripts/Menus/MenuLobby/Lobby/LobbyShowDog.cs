@@ -67,7 +67,6 @@ public class LobbyShowDog : MonoBehaviour
         }
         else
         {
-            selectAccessoriePanel.SetActive(true);
             showConfirmed.SetActive(false);
         }
     }
