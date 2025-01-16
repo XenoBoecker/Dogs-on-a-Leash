@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     bool sfxOn = true;
     int currentTrack = 0;
 
-    public event Action onSoundReload;
+    public event Action OnSoundReload;
 
     [Header("SFX")]
     [SerializeField] UISFX uiSFX;
@@ -73,7 +73,7 @@ public class SoundManager : MonoBehaviour
 
         sfxOn = PlayerPrefs.GetInt("SFXOn", 1) == 1;
 
-        onSoundReload?.Invoke();
+        OnSoundReload?.Invoke();
     }
 
     [System.Serializable]
