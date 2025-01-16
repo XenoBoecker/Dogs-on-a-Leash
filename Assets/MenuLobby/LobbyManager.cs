@@ -43,7 +43,7 @@ namespace photonMenuLobby
 
         [SerializeField] Transform clientParent;
 
-
+        int readyToPlayDogCount;
 
         [SerializeField] List<LobbyDogSelector> chooseDogSelectors = new List<LobbyDogSelector>();
         public List<LobbyDogSelector> ChooseDogSelectors => chooseDogSelectors;
@@ -59,6 +59,8 @@ namespace photonMenuLobby
         [SerializeField] string gameSceneName = "Game";
 
         [SerializeField] bool testing;
+
+        [SerializeField] int dogsNeededToStartGame = 4;
 
         public event Action OnPlayerListChanged;
 
@@ -101,6 +103,13 @@ namespace photonMenuLobby
             }
 
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return)) ActivatePanel(dogSelectionPanel);
+        }
+
+        public void ReadyToPlayCountAdd(int i)
+        {
+            readyToPlayDogCount += i;
+
+            if (readyToPlayDogCount == dogsNeededToStartGame) OnClickPlayButton();
         }
 
         void ActivatePanel(GameObject panel)
@@ -275,14 +284,19 @@ namespace photonMenuLobby
                         currentPlayerCount++;
                     }
                 }
+
+
+                if (currentPlayerCount == dogsNeededToStartGame)
+                {
+                    ActivatePanel(dogSelectionPanel);
+                }
+            }
+            else
+            {
+                if (FindObjectsOfType<LocalPlayer>().Length == dogsNeededToStartGame) ActivatePanel(dogSelectionPanel);
             }
 
             OnPlayerListChanged?.Invoke();
-
-            if(currentPlayerCount == 4)
-            {
-                ActivatePanel(dogSelectionPanel);
-            }
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)

@@ -9,6 +9,9 @@ public class LobbyDogSelector : MonoBehaviour
     int currentSelectedDogIndex;
     public int CurrentSelectedDogIndex => currentSelectedDogIndex;
 
+    bool isReadyToPlay;
+    public bool IsReadyToPlay => isReadyToPlay;
+
     bool isSelectionConfirmed;
     public bool IsSelectionConfirmed => isSelectionConfirmed;
 
@@ -24,7 +27,7 @@ public class LobbyDogSelector : MonoBehaviour
         currentSelectedDogIndex++;
         if (currentSelectedDogIndex >= lobbyData.AvailableDogs.Length) currentSelectedDogIndex = 0;
 
-        DataChanged();
+        OnDataChanged?.Invoke();
     }
 
     public void SelectPreviousDog()
@@ -32,18 +35,15 @@ public class LobbyDogSelector : MonoBehaviour
         currentSelectedDogIndex--;
         if (currentSelectedDogIndex < 0) currentSelectedDogIndex = lobbyData.AvailableDogs.Length - 1;
 
-        DataChanged();
+        OnDataChanged?.Invoke();
     }
 
     public void SetSelectedDogIndex(int i)
     {
+        if (currentSelectedDogIndex == i) return;
+
         currentSelectedDogIndex = i;
 
-        DataChanged();
-    }
-
-    public void DataChanged()
-    {
         OnDataChanged?.Invoke();
     }
 
@@ -54,8 +54,19 @@ public class LobbyDogSelector : MonoBehaviour
 
     internal void SetConfirmSelection(bool isSelectionConfirmed)
     {
+        if (this.isSelectionConfirmed == isSelectionConfirmed) return;
+
         this.isSelectionConfirmed = isSelectionConfirmed;
 
-        DataChanged();
+        OnDataChanged?.Invoke();
+    }
+
+    internal void SetReadyToPlay(bool isReadyToPlay)
+    {
+        if (this.isReadyToPlay == isReadyToPlay) return;
+
+        this.isReadyToPlay = isReadyToPlay;
+
+        OnDataChanged?.Invoke();
     }
 }

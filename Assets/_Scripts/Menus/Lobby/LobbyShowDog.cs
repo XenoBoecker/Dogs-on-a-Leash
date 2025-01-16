@@ -14,17 +14,17 @@ public class LobbyShowDog : MonoBehaviour
     [SerializeField] Transform dogModelParent;
     GameObject currentDogModel;
 
-    [SerializeField] Image bgImage;
-    [SerializeField] TextMeshProUGUI dogNameText;
 
-    internal void SetPlayerData(PlayerData playerData)
-    {
-        
-    }
+    [SerializeField] GameObject selectAccessoriePanel;
+    [SerializeField] GameObject showConfirmed;
+    [SerializeField] TextMeshProUGUI dogNameText;
 
     private void Awake()
     {
         lobbyDogSelector = GetComponent<LobbyDogSelector>();
+
+        selectAccessoriePanel.SetActive(false);
+        showConfirmed.SetActive(false);
     }
 
 
@@ -45,5 +45,11 @@ public class LobbyShowDog : MonoBehaviour
         currentDogModel = Instantiate(dogData.dogObjects[colorIndex]);
         currentDogModel.transform.SetParent(dogModelParent);
         currentDogModel.transform.position = dogModelParent.transform.position;
+
+        if (lobbyDogSelector.IsSelectionConfirmed) selectAccessoriePanel.SetActive(true);
+        else selectAccessoriePanel.SetActive(false);
+
+        if (lobbyDogSelector.IsReadyToPlay) showConfirmed.SetActive(true);
+        else showConfirmed.SetActive(false);
     }
 }

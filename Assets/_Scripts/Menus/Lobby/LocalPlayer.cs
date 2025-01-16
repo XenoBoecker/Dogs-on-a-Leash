@@ -19,8 +19,13 @@ public class LocalPlayer : MonoBehaviour
 
     LobbyDogSelector lobbyDogSelector;
 
+    bool isReadyToPlay;
+    public bool IsReadyToPlay => isReadyToPlay;
+
     bool isSelectionConfirmed;
     public bool IsSelectionConfirmed => isSelectionConfirmed;
+
+    float waitTimeBeforeCanConfirmSelection = 0.1f;
 
     public event Action OnConfirmSelectionChanged;
 
@@ -44,6 +49,10 @@ public class LocalPlayer : MonoBehaviour
 
         ColorIndex = lobbyManager.GetCurrentPlayerCount() - 1;
     }
+    private void Update()
+    {
+        waitTimeBeforeCanConfirmSelection -= Time.deltaTime;    
+    }
 
     private void OnEnable()
     {
@@ -66,7 +75,7 @@ public class LocalPlayer : MonoBehaviour
 
     private void OnActionTriggered(InputAction.CallbackContext context)
     {
-        Debug.Log("Action Triggered");
+        Debug.Log("Action Triggered: " + context.action.name);
 
         // Handle the Move action
         if (context.action.name == "ChangeSelectedDog")
@@ -84,19 +93,30 @@ public class LocalPlayer : MonoBehaviour
                 else lobbyDogSelector.SelectNextDog();
             }
         }
-        else if (context.phase == InputActionPhase.Performed) // Trigger toggle only on Performed
+        else if (context.action.name == "ConfirmSelection")
         {
-            ToggleConfirmSelection();
+            if (context.phase == InputActionPhase.Performed) // Trigger toggle only on Performed
+            {
+                ConfirmSelection();
+            }
+        }else if(context.action.name == "Back")
+        {
+            if (context.phase == InputActionPhase.Performed) // Trigger toggle only on Performed
+            {
+                UnConfirmSelection();
+            }
         }
     }
 
     public void SetLobbyDogSelector(LobbyDogSelector selector)
     {
+        Debug.Log("LocalPlayer Set Lobby Dog Selector");
+
         lobbyDogSelector = selector;
 
         lobbyDogSelector.OnDataChanged += UpdateDogData;
 
-        lobbyDogSelector.DataChanged();
+        UpdateDogData();
     }
 
     private void UpdateDogData()
@@ -108,19 +128,47 @@ public class LocalPlayer : MonoBehaviour
 
     public void SelectNextDog()
     {
+        Debug.Log("Select next");
         lobbyDogSelector.SelectNextDog();
     }
 
     public void SelectPreviousDog()
     {
+        Debug.Log("select previous");
         lobbyDogSelector.SelectPreviousDog();
     }
 
-    public void ToggleConfirmSelection()
+    public void ConfirmSelection()
     {
-        isSelectionConfirmed = !isSelectionConfirmed;
+        if (waitTimeBeforeCanConfirmSelection > 0) return;
+
+        Debug.Log("Confirm Selection");
+        if (!isSelectionConfirmed) isSelectionConfirmed = true;
+        else
+        {
+            isReadyToPlay = true;
+            lobbyManager.ReadyToPlayCountAdd(1);
+        }
 
         lobbyDogSelector?.SetConfirmSelection(isSelectionConfirmed);
+        lobbyDogSelector?.SetReadyToPlay(isReadyToPlay);
+
+
+        OnConfirmSelectionChanged?.Invoke();
+    }
+
+    private void UnConfirmSelection()
+    {
+        Debug.Log("Unconfirm Selection");
+        if (isReadyToPlay)
+        {
+            isReadyToPlay = false;
+            lobbyManager.ReadyToPlayCountAdd(-1);
+        }
+        else isSelectionConfirmed = false;
+
+        lobbyDogSelector?.SetConfirmSelection(isSelectionConfirmed);
+        lobbyDogSelector?.SetReadyToPlay(isReadyToPlay);
 
         OnConfirmSelectionChanged?.Invoke();
     }
