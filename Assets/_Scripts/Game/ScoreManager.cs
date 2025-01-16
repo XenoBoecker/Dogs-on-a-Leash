@@ -19,6 +19,8 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] TMP_Text scoreText;
 
+    [SerializeField] int totalTime;
+
     int totalScore;
 
     float startTime;
@@ -59,7 +61,11 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText.text = "Time: " + (Time.time - startTime).ToString("F2");
+        float timeLeft = (totalTime - (Time.time - startTime));
+
+        timeText.text = "Time: " + timeLeft.ToString("F2");
+
+        if(timeLeft < 0) EndGame();
     }
 
     void EndGame()
