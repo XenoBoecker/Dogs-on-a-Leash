@@ -16,6 +16,7 @@ public class LobbyShowDog : MonoBehaviour
     GameObject currentDogModel;
 
 
+    [SerializeField] GameObject dogSelectArrows;
     [SerializeField] GameObject selectAccessoriePanel;
     [SerializeField] GameObject showConfirmed;
     [SerializeField] TextMeshProUGUI dogNameText;
@@ -48,8 +49,16 @@ public class LobbyShowDog : MonoBehaviour
         currentDogModel.transform.SetParent(dogModelParent);
         currentDogModel.transform.position = dogModelParent.transform.position;
 
-        if (lobbyDogSelector.IsSelectionConfirmed) selectAccessoriePanel.SetActive(true);
-        else selectAccessoriePanel.SetActive(false);
+        if (lobbyDogSelector.IsSelectionConfirmed)
+        {
+            selectAccessoriePanel.SetActive(true);
+            dogSelectArrows.SetActive(false);
+        }
+        else
+        {
+            selectAccessoriePanel.SetActive(false);
+            dogSelectArrows.SetActive(true);
+        }
 
         if (lobbyDogSelector.IsReadyToPlay) showConfirmed.SetActive(true);
         else showConfirmed.SetActive(false);
