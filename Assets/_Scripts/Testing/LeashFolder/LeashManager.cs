@@ -210,7 +210,7 @@ public class LeashManager : MonoBehaviour
 
             float angle = Vector3.Angle(humanToSegment, segmentToDog);
 
-            Debug.Log("AngleHuman::" + angle);
+            // Debug.Log("AngleHuman::" + angle);
             // If the angle is too small, do not remove the segment
             if (angle < 85)
             {
@@ -339,52 +339,95 @@ public class LeashManager : MonoBehaviour
 
         }
 
-        if(currentLength > maxLeashLength)
+    //     if(currentLength > maxLeashLength + 0.1f)
+    //     {
+    //         // if(leashSegments.Count > 0)
+    //         // {
+    //         //     Debug.Log("Leash Segment Count: " + leashSegments.Count);
+
+    //         //     myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
+    //         //     humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+    //         // }
+    //         // else
+    //         // {
+    //         //     Debug.Log("Leash Segment Count: " + leashSegments.Count);
+    //         //     myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
+    //         //     humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+    //         // }
+
+    //         if(leashSegments.Count > 0)
+    //         {
+    //             float currentLengthh = 0;
+    //             for(int i = 0; i < leashSegments.Count; i++)
+    //             {
+    //                 currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
+    //             }
+    //             gameObject.transform.position = leashSegments[0].transform.position - (leashSegments[0].transform.position - gameObject.transform.position).normalized * ((maxLeashLength - currentLengthh));
+    //         }
+    //         else
+    //         {
+    //             gameObject.transform.position = leashTarget.position - (leashTarget.position - gameObject.transform.position).normalized * (maxLeashLength) ;
+    //         }
+    //     }
+    //     else if(currentLength >= (maxLeashLength - 0.5f))
+    //     {
+    //         if (leashSegments.Count > 0)
+    //         {
+    //             humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+    //         }
+    //         else
+    //         {
+    //             humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+    //         }
+    //     }
+
+
+
+    //     // Debug.Log("Current length::" + currentLength); 
+    // }
+
+        if (currentLength > maxLeashLength + 0.1f)
+    {
+        Debug.Log("Dog is too far");
+        if (leashSegments.Count > 0)
         {
-            if(leashSegments.Count > 0)
+            float currentLengthh = 0;
+            for (int i = 0; i < leashSegments.Count; i++)
             {
-                Debug.Log("Leash Segment Count: " + leashSegments.Count);
-
-                myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
-                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-            }
-            else
-            {
-                Debug.Log("Leash Segment Count: " + leashSegments.Count);
-                myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
-                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+                currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
             }
 
-            if(leashSegments.Count > 0)
+            
+
+            Debug.Log("Current lengthh::" + currentLengthh);
+
+            if (currentLengthh+ Vector3.Distance(leashSegments[0].transform.position, gameObject.transform.position) > maxLeashLength)
             {
-                float currentLengthh = 0;
-                for(int i = 0; i < leashSegments.Count; i++)
-                {
-                    currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
-                }
-                gameObject.transform.position = leashSegments[0].transform.position - (leashSegments[0].transform.position - gameObject.transform.position).normalized * ((maxLeashLength - currentLengthh * 0.99f));
-            }
-            else
-            {
-                gameObject.transform.position = leashTarget.position - (leashTarget.position - gameObject.transform.position).normalized * (maxLeashLength * 0.99f) ;
+                Vector3 pullDirection = (leashSegments[0].transform.position - gameObject.transform.position).normalized;
+                Vector3 newPosition = leashSegments[0].transform.position - pullDirection * (maxLeashLength - currentLengthh);
+
+                myDogRigidbody.MovePosition(newPosition);
+                myDogRigidbody.velocity = Vector3.zero; // Reset velocity to prevent slingshotting
+
+                Debug.Log("Clamping dog position1");
             }
         }
-        else if(currentLength >= (maxLeashLength - 0.5f))
+        else
         {
-            if (leashSegments.Count > 0)
+            Debug.Log("Try else");
+            if (Vector3.Distance(gameObject.transform.position, leashTarget.position) > maxLeashLength)
             {
-                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-            }
-            else
-            {
-                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+                Debug.Log("Clamping dog position2");
+                Vector3 pullDirection = (leashTarget.position - gameObject.transform.position).normalized;
+                Vector3 newPosition = leashTarget.position - pullDirection * maxLeashLength;
+
+                myDogRigidbody.MovePosition(newPosition);
+                myDogRigidbody.velocity = Vector3.zero; // Reset velocity to prevent slingshotting
             }
         }
-
-
-
-        // Debug.Log("Current length::" + currentLength); 
     }
+    }
+}
 
     
 
@@ -423,5 +466,4 @@ public class LeashManager : MonoBehaviour
     //     }
     // }
     
-        
-}
+    

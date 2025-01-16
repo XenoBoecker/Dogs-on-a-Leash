@@ -8,6 +8,7 @@ public class LobbyShowDog : MonoBehaviour
 {
     LobbyDogSelector lobbyDogSelector;
 
+    public float DogScale = 1;
 
     [SerializeField] int colorIndex;
 
@@ -15,6 +16,7 @@ public class LobbyShowDog : MonoBehaviour
     GameObject currentDogModel;
 
 
+    [SerializeField] GameObject dogSelectArrows;
     [SerializeField] GameObject selectAccessoriePanel;
     [SerializeField] GameObject showConfirmed;
     [SerializeField] TextMeshProUGUI dogNameText;
@@ -39,17 +41,33 @@ public class LobbyShowDog : MonoBehaviour
     {
         DogData dogData = lobbyDogSelector.GetDogData();
 
-        dogNameText.text = dogData.name;
+        if(dogNameText != null)dogNameText.text = dogData.name;
 
         if(currentDogModel != null) Destroy(currentDogModel);
         currentDogModel = Instantiate(dogData.dogObjects[colorIndex]);
+        currentDogModel.transform.localScale = new Vector3 (DogScale, DogScale, DogScale);
         currentDogModel.transform.SetParent(dogModelParent);
         currentDogModel.transform.position = dogModelParent.transform.position;
 
-        if (lobbyDogSelector.IsSelectionConfirmed) selectAccessoriePanel.SetActive(true);
-        else selectAccessoriePanel.SetActive(false);
+        if (lobbyDogSelector.IsSelectionConfirmed)
+        {
+            selectAccessoriePanel.SetActive(true);
+            dogSelectArrows.SetActive(false);
+        }
+        else
+        {
+            selectAccessoriePanel.SetActive(false);
+            dogSelectArrows.SetActive(true);
+        }
 
-        if (lobbyDogSelector.IsReadyToPlay) showConfirmed.SetActive(true);
-        else showConfirmed.SetActive(false);
+        if (lobbyDogSelector.IsReadyToPlay)
+        {
+            selectAccessoriePanel.SetActive(false);
+            showConfirmed.SetActive(true);
+        }
+        else
+        {
+            showConfirmed.SetActive(false);
+        }
     }
 }
