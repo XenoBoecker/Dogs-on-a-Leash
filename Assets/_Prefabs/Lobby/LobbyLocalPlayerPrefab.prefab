@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6490899007797512344}
   - component: {fileID: 1182698722102643182}
   m_Layer: 0
-  m_Name: LobbyPlayerPrefab
+  m_Name: LobbyLocalPlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbda08f6af1811489c1b8a2aeda15fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dogData: {fileID: 0}
+  ColorIndex: 0
 --- !u!1001 &5445959020481683202
 PrefabInstance:
   m_ObjectHideFlags: 0
