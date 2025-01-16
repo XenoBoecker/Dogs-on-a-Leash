@@ -8,12 +8,9 @@ public class OnlineDogSpawner : MonoBehaviour
 {
     [SerializeField] Dog dogPrefab;
 
-
     [SerializeField] Transform[] spawnPoints;
 
     public event Action<Transform> OnDogSpawned;
-
-    public List<GameObject> dogModels = new List<GameObject>();
 
     internal void Setup()
     {
@@ -31,10 +28,9 @@ public class OnlineDogSpawner : MonoBehaviour
             dog.SetColor(localPlayers[i].ColorIndex);
 
             dog.SetPlayerInput(localPlayers[i].GetComponent<PlayerInput>());
+            localPlayers[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
 
             OnDogSpawned?.Invoke(dog.transform);
         }
-
-        
     }
 }

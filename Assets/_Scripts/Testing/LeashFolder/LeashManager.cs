@@ -22,11 +22,11 @@ public class LeashManager : MonoBehaviour
     Rigidbody humanRigidbody;
 
     [Header("Leash settings")]
-    public float leashSegmentLengthMinimum = 0.5f;
-    public float maxLeashLength = 10f;
-    public float leashSegmentAngle = 30f;
-    public float leashPullForce = 10f;
-    public float humanPullForce = 2f;
+    [SerializeField] float leashSegmentLengthMinimum = 0.5f;
+    [SerializeField] float maxLeashLength = 10f;
+    [SerializeField] float leashSegmentAngle = 30f;
+    [SerializeField] float leashPullForce = 10f;
+    [SerializeField] float humanPullForce = 2f;
 
     float currentLength = 0f;
 
@@ -231,6 +231,8 @@ public class LeashManager : MonoBehaviour
 
     void CreateLeashSegments()
     {
+        if (leashTarget == null) return;
+
         if(Physics.Raycast(transform.position, leashTarget.position - transform.position, out RaycastHit hit, Vector3.Distance(transform.position, leashTarget.position), intersectableObjects))
         {
             // Debug.Log("Hit something");
@@ -287,6 +289,8 @@ public class LeashManager : MonoBehaviour
 
     void UpdateLineRenderer()
     {
+        if (leashTarget == null) return;
+
         if(leashSegments.Count == 0)
         {
             lineRenderer.positionCount = 2;
@@ -317,6 +321,8 @@ public class LeashManager : MonoBehaviour
 
     void ApplyPhysics()
     {
+        if (leashTarget == null) return;
+
         currentLength = 0f;
         if(leashSegments.Count == 0)
         {
@@ -335,16 +341,19 @@ public class LeashManager : MonoBehaviour
 
         if(currentLength > maxLeashLength)
         {
-            // if(leashSegments.Count > 0)
-            // {
-            //     myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
-            //     humanRigidbody.AddForce((leashTarget.position - leashSegments[leashSegments.Count - 1].transform.position).normalized * humanPullForce, ForceMode.Impulse);
-            // }
-            // else
-            // {
-            //     myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
-            //     humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-            // }
+            if(leashSegments.Count > 0)
+            {
+                Debug.Log("Leash Segment Count: " + leashSegments.Count);
+
+                myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
+                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+            }
+            else
+            {
+                Debug.Log("Leash Segment Count: " + leashSegments.Count);
+                myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
+                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+            }
 
             if(leashSegments.Count > 0)
             {
@@ -360,10 +369,16 @@ public class LeashManager : MonoBehaviour
                 gameObject.transform.position = leashTarget.position - (leashTarget.position - gameObject.transform.position).normalized * (maxLeashLength * 0.99f) ;
             }
         }
-
-        if(currentLength >= (maxLeashLength -= 0.5f))
+        else if(currentLength >= (maxLeashLength - 0.5f))
         {
-            leashTarget.GetComponent<Rigidbody>().AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+            if (leashSegments.Count > 0)
+            {
+                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+            }
+            else
+            {
+                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+            }
         }
 
 
