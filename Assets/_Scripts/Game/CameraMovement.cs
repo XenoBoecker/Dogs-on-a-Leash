@@ -5,6 +5,7 @@ public class CameraMovement : MonoBehaviour
 {
     Transform human;
 
+    [SerializeField] Vector3 offset;
 
     [SerializeField] float lerpSpeed = 2f;
 
@@ -17,7 +18,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (!human) return;
 
-        float lerpedX = Mathf.Lerp(transform.position.x, human.position.x, Time.deltaTime * lerpSpeed);
+        float lerpedX = Mathf.Lerp(transform.position.x + offset.x, human.position.x, Time.deltaTime * lerpSpeed);
 
         transform.position = new Vector3(lerpedX, transform.position.y, transform.position.z);
     }
