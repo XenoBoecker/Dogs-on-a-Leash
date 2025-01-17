@@ -1307,6 +1307,9 @@ MonoBehaviour:
   dogSelectionPanel: {fileID: 851169127}
   dogModelParent: {fileID: 869668269}
   roomNameText: {fileID: 619554419}
+  startGameButton: {fileID: 1769319838}
+  countdownText: {fileID: 1652107679}
+  countdownTime: 3
   roomItemPrefab: {fileID: 3724462936734947743, guid: 9b4bc8e5477882d4c9a1ab65bb582caa,
     type: 3}
   contentObject: {fileID: 1143677736}
@@ -1326,7 +1329,7 @@ MonoBehaviour:
   playButton: {fileID: 1769319838}
   gameSceneName: Game
   testing: 0
-  dogsNeededToStartGame: 2
+  dogsNeededToStartGame: 4
 --- !u!114 &335579945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5324,16 +5327,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335579944}
-        m_TargetAssemblyTypeName: RoomLobbyManager, Assembly-CSharp
-        m_MethodName: OnClickPlayButton
-        m_Mode: 1
+      - m_Target: {fileID: 335579950}
+        m_TargetAssemblyTypeName: ChangeScenes, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1769319841

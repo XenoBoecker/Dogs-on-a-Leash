@@ -36,7 +36,7 @@ public class LocalPlayer : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<LocalLobbyManager>()?.RegisterPlayer(this);
+        // FindObjectOfType<LocalLobbyManager>()?.RegisterPlayer(this);
 
         lobbyManager = FindObjectOfType<photonMenuLobby.LobbyManager>();
         if (lobbyManager == null) Debug.LogError("No Lobby Manager found");
@@ -51,7 +51,8 @@ public class LocalPlayer : MonoBehaviour
     }
     private void Update()
     {
-        waitTimeBeforeCanConfirmSelection -= Time.deltaTime;    
+        if (lobbyManager.IsInDogSelection) waitTimeBeforeCanConfirmSelection -= Time.deltaTime;
+        else waitTimeBeforeCanConfirmSelection = 0.1f;
     }
 
     private void OnEnable()
