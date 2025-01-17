@@ -21,9 +21,9 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] int totalTime;
 
-    int totalScore;
+    float timeLeft;
 
-    float startTime;
+    int totalScore;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour
         mapManager = FindObjectOfType<MapManager>();
         mapManager.OnGameEnd += EndGame;
 
-        startTime = Time.time;
+        timeLeft = totalTime;
 
         AddScore(0);
     }
@@ -61,7 +61,7 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float timeLeft = (totalTime - (Time.time - startTime));
+       timeLeft -= Time.deltaTime;
 
         timeText.text = "Time: " + timeLeft.ToString("F2");
 
@@ -71,7 +71,7 @@ public class ScoreManager : MonoBehaviour
     void EndGame()
     {
         PlayerPrefs.SetInt("Score", totalScore);
-        PlayerPrefs.SetFloat("Time", Time.time - startTime);
+        PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
 
         SceneManager.LoadScene(endGameSceneName);
     }

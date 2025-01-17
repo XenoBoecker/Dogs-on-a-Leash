@@ -66,7 +66,9 @@ namespace photonMenuLobby
 
         private void Start()
         {
-            if(PhotonNetwork.IsConnected)
+            DeletePreviousLovalPlayers();
+
+            if (PhotonNetwork.IsConnected)
             {
                 ActivatePanel(lobbyPanel);
 
@@ -103,6 +105,16 @@ namespace photonMenuLobby
             }
 
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return)) ActivatePanel(dogSelectionPanel);
+        }
+
+        public void DeletePreviousLovalPlayers()
+        {
+            LocalPlayer[] localPlayers = FindObjectsOfType<LocalPlayer>();
+
+            for (int i = 0; i < localPlayers.Length; i++)
+            {
+                Destroy(localPlayers[i].gameObject);
+            }
         }
 
         public void ReadyToPlayCountAdd(int i)
