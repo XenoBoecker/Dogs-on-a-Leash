@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor.PackageManager;
@@ -24,6 +25,12 @@ namespace photonMenuLobby
 
         [SerializeField] GameObject dogModelParent;
         [SerializeField] TMP_Text roomNameText;
+
+
+        [SerializeField] GameObject startGameButton;
+        [SerializeField] TMP_Text countdownText;
+
+        [SerializeField] int countdownTime = 5;
 
         [SerializeField] RoomItem roomItemPrefab;
 
@@ -61,6 +68,7 @@ namespace photonMenuLobby
         [SerializeField] bool testing;
 
         [SerializeField] int dogsNeededToStartGame = 4;
+        int connectedDogCount;
 
         public event Action OnPlayerListChanged;
 
@@ -81,8 +89,9 @@ namespace photonMenuLobby
                 playButton.SetActive(true);
 
                 pim.enabled = true;
-
+                startGameButton.SetActive(false);
                 roomNameText.text = "Room Name: " + "TestName";
+                countdownText.text = "";
                 UpdateClientList();
                 UpdatePlayerList();
             }
@@ -121,7 +130,29 @@ namespace photonMenuLobby
         {
             readyToPlayDogCount += i;
 
-            if (readyToPlayDogCount == dogsNeededToStartGame) OnClickPlayButton();
+            if (readyToPlayDogCount == connectedDogCount) StartCoroutine(StartGameCountDown());
+        }
+
+        IEnumerator StartGameCountDown()
+        {
+            bool startGame = true;
+            startGameButton.SetActive(true);
+
+            for (int i = 0; i < countdownTime; i++)
+            {
+                countdownText.text = (countdownTime-i).ToString();
+
+                yield return new WaitForSeconds(1);
+
+                if(readyToPlayDogCount < connectedDogCount)
+                {
+                    startGame = false;
+                    countdownText.text = "";
+                    startGameButton.SetActive(false);
+                }
+            }
+
+            if(startGame) GetComponent<ChangeScenes>().LoadScene("Game");
         }
 
         void ActivatePanel(GameObject panel)
@@ -134,6 +165,8 @@ namespace photonMenuLobby
 
             if (panel == dogSelectionPanel)
             {
+                connectedDogCount = GetCurrentPlayerCount();
+
                 dogSelectionPanel.SetActive(true);
                 dogModelParent.SetActive(true);
             }
@@ -319,11 +352,6 @@ namespace photonMenuLobby
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
             UpdateClientList();
-        }
-
-        public void OnClickPlayButton()
-        {
-            PhotonNetwork.LoadLevel(gameSceneName);
         }
 
         public Client GetLocalClient()

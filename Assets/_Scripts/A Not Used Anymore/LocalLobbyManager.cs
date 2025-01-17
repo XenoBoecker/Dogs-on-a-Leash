@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/*
 public class LocalLobbyManager : MonoBehaviour
 {
     LobbyData lobbyData;
@@ -82,4 +82,4 @@ public class LocalLobbyManager : MonoBehaviour
 
         lobbyDogSelectors[currentPlayerCount + aiCount].gameObject.SetActive(false);
     }
-}
+}*/

@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,8 @@ public class ChangeScenes : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        if(PhotonNetwork.IsConnected) PhotonNetwork.LoadLevel(sceneName);
+        else SceneManager.LoadScene(sceneName);
     }
 
     public void Quit()

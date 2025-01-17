@@ -36,7 +36,7 @@ public class LocalPlayer : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<LocalLobbyManager>()?.RegisterPlayer(this);
+        // FindObjectOfType<LocalLobbyManager>()?.RegisterPlayer(this);
 
         lobbyManager = FindObjectOfType<photonMenuLobby.LobbyManager>();
         if (lobbyManager == null) Debug.LogError("No Lobby Manager found");
