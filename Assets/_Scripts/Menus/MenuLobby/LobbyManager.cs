@@ -66,7 +66,7 @@ namespace photonMenuLobby
 
         private void Start()
         {
-            DeletePreviousLovalPlayers();
+            DeletePreviousLocalPlayers();
 
             if (PhotonNetwork.IsConnected)
             {
@@ -107,7 +107,7 @@ namespace photonMenuLobby
             if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return)) ActivatePanel(dogSelectionPanel);
         }
 
-        public void DeletePreviousLovalPlayers()
+        public void DeletePreviousLocalPlayers()
         {
             LocalPlayer[] localPlayers = FindObjectsOfType<LocalPlayer>();
 
