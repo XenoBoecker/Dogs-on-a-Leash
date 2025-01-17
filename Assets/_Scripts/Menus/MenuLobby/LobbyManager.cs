@@ -50,6 +50,7 @@ namespace photonMenuLobby
 
         [SerializeField] Transform clientParent;
 
+        public bool IsInDogSelection;
         int readyToPlayDogCount;
 
         [SerializeField] List<LobbyDogSelector> chooseDogSelectors = new List<LobbyDogSelector>();
@@ -166,12 +167,14 @@ namespace photonMenuLobby
             if (panel == dogSelectionPanel)
             {
                 connectedDogCount = GetCurrentPlayerCount();
+                IsInDogSelection = true;
 
                 dogSelectionPanel.SetActive(true);
                 dogModelParent.SetActive(true);
             }
             else
             {
+                IsInDogSelection = false;
                 dogSelectionPanel.SetActive(false);
                 dogModelParent.SetActive(false);
             }

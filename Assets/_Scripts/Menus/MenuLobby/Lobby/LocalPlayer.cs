@@ -51,7 +51,8 @@ public class LocalPlayer : MonoBehaviour
     }
     private void Update()
     {
-        waitTimeBeforeCanConfirmSelection -= Time.deltaTime;    
+        if (lobbyManager.IsInDogSelection) waitTimeBeforeCanConfirmSelection -= Time.deltaTime;
+        else waitTimeBeforeCanConfirmSelection = 0.1f;
     }
 
     private void OnEnable()

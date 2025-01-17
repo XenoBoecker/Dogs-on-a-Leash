@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class LeashManager : MonoBehaviour
 {
+
+    [SerializeField] Transform dogLeashAttachmentPoint;
+    Transform humanLeashAttachmentPoint;
+
     //This is attached to the dog leash whatever thingy
     public Transform leashTarget; // the leash ending point on the human needed for checking for intersections
 
@@ -43,6 +47,9 @@ public class LeashManager : MonoBehaviour
         myDogRigidbody = gameObject.GetComponent<Rigidbody>();
         leashTarget = GameObject.Find("Human").transform;
         humanRigidbody = leashTarget.GetComponent<Rigidbody>();
+
+        dogLeashAttachmentPoint = GetComponent<DogVisuals>().LeashAttachmentPoint;
+        humanLeashAttachmentPoint = leashTarget.GetComponent<HumanMovement>().LeashAttachmentPoint;
     }
 
     void Update()
@@ -294,15 +301,15 @@ public class LeashManager : MonoBehaviour
         if(leashSegments.Count == 0)
         {
             lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, gameObject.transform.position);
-            lineRenderer.SetPosition(1, leashTarget.position);
+            lineRenderer.SetPosition(0, dogLeashAttachmentPoint.transform.position);
+            lineRenderer.SetPosition(1, humanLeashAttachmentPoint.position);
 
             // Debug.Log("No leash segments");
             return;
         }
         // Debug.Log("Updating line renderer1");
         lineRenderer.positionCount = leashSegments.Count + 2;
-        lineRenderer.SetPosition(0, gameObject.transform.position);
+        lineRenderer.SetPosition(0, dogLeashAttachmentPoint.transform.position);
         
         for(int i = 0; i < leashSegments.Count; i++)
         {
@@ -311,7 +318,7 @@ public class LeashManager : MonoBehaviour
             if(i == leashSegments.Count - 1)
             {
                 // Debug.Log("Last segment");
-                lineRenderer.SetPosition(i + 2, leashTarget.position);
+                lineRenderer.SetPosition(i + 2, humanLeashAttachmentPoint.position);
             }
         }
 

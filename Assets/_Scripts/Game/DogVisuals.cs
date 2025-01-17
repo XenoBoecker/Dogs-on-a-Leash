@@ -6,6 +6,10 @@ public class DogVisuals : MonoBehaviour
 
     [SerializeField] GameObject[] dogVisuals;
 
+    [SerializeField] Transform[] leashAttachmentPoints;
+
+    public Transform LeashAttachmentPoint;
+
     private void Awake()
     {
         dog = GetComponent<Dog>();
@@ -22,7 +26,11 @@ public class DogVisuals : MonoBehaviour
 
         for (int i = 0; i < dogVisuals.Length; i++)
         {
-            if (i == dogVisualsIndex) dogVisuals[i].SetActive(true);
+            if (i == dogVisualsIndex)
+            {
+                dogVisuals[i].SetActive(true);
+                LeashAttachmentPoint = leashAttachmentPoints[i];
+            }
             else dogVisuals[i].SetActive(false);
         }
     }

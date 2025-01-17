@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HumanMovement : MonoBehaviour
 {
+    public Transform LeashAttachmentPoint;
 
     [SerializeField] float minSpeed = 1f;
     public float speed = 5f; // Speed of movement
