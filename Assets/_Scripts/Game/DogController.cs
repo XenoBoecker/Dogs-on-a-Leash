@@ -107,26 +107,26 @@ public class DogController : MonoBehaviour
     // }
 
     void FixedUpdate()
-{
-    if (PhotonNetwork.IsConnected && !view.IsMine) return;
-
-    // Smoothly rotate towards the target direction
-    if (targetDirection != Vector3.zero)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-        Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
-        rb.MoveRotation(rotation);
+        if (PhotonNetwork.IsConnected && !view.IsMine) return;
+
+        // Smoothly rotate towards the target direction
+        if (targetDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(rotation);
+        }
+
+        Vector3 forwardVelocity = transform.forward * currentSpeed;
+
+        if (forwardVelocity.magnitude > maxSpeed)
+        {
+            forwardVelocity = forwardVelocity.normalized * maxSpeed;
+        }
+
+        rb.MovePosition(rb.position + forwardVelocity * Time.fixedDeltaTime);
     }
-
-    Vector3 forwardVelocity = transform.forward * currentSpeed;
-
-    if (forwardVelocity.magnitude > maxSpeed)
-    {
-        forwardVelocity = forwardVelocity.normalized * maxSpeed;
-    }
-
-    rb.MovePosition(rb.position + forwardVelocity * Time.fixedDeltaTime);
-}
     protected void ZoomieStart()
     {
         OnZoomieStart?.Invoke();

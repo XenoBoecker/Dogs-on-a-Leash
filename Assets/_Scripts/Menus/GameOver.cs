@@ -33,9 +33,9 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void UpdateUI()
     {
-        objectiveScoreText.text = objectiveScore.ToString();
-        timeLeftText.text = timeLeft.ToString();
+        objectiveScoreText.text = "Score: " + objectiveScore.ToString();
+        timeLeftText.text = "Time: " + timeLeft.ToString();
 
-        totalScoreText.text = totalScore.ToString();
+        totalScoreText.text = "Total: " + totalScore.ToString();
     }
 }

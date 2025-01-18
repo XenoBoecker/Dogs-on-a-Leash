@@ -65,7 +65,7 @@ public class HumanMovement : MonoBehaviour
 
     public void ObstacleCollision(Obstacle obstacle)
     {
-        Debug.Log("Human obstacle collision: stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce * rb.mass);
+        Debug.Log("Human obstacle collision with " + obstacle.name + ": stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce * rb.mass);
 
         Vector3 dir = (transform.position - obstacle.transform.position).normalized;
 
@@ -73,7 +73,7 @@ public class HumanMovement : MonoBehaviour
 
         Stun(obstacle.stunTime);
 
-        rb.AddForce(dir * obstacle.CurrentPushBackForce, ForceMode.Impulse);
+        rb.AddForce(dir * obstacle.CurrentPushBackForce * rb.mass, ForceMode.Impulse);
 
         OnHitObstacle?.Invoke(obstacle);
     }
