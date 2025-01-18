@@ -35,7 +35,7 @@ public class MapManager : MonoBehaviour
     {
         if (!humanMovement) return;
 
-        if (humanMovement.transform.position.x >= levelLength) EndGame();
+        if (humanMovement.transform.position.x >= levelLength + 15) EndGame();
     }
 
     private void EndGame()
