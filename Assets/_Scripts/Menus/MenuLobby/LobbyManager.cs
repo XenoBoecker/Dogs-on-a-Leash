@@ -183,7 +183,7 @@ namespace photonMenuLobby
                 }
             }
 
-            if(startGame) GetComponent<ChangeScenes>().LoadScene("Game");
+            if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game");
         }
 
         void ActivatePanel(GameObject panel)
