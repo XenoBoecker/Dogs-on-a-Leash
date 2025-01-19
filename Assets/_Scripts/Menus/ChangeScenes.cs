@@ -11,6 +11,17 @@ public class ChangeScenes : MonoBehaviour
 
     [SerializeField] float transitionTime = 1;
 
+
+    [SerializeField] bool fadeInActive = true;
+
+    private void Start()
+    {
+        if (fadeInActive)
+        {
+            transitionAnimator.SetTrigger("End");
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
         StartCoroutine(LoadSceneRoutine(sceneName));
