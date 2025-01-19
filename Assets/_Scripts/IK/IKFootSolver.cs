@@ -36,11 +36,9 @@ public class IKFootSolver : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 10, terrainLayer.value))
         {
-            Debug.Log("Dist: " + Vector3.Distance(newPosition, hit.point));
 
             if (Vector3.Distance(newPosition, hit.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
             {
-                Debug.Log("Now move a step");
 
                 lerp = 0;
                 int direction = body.InverseTransformPoint(hit.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
@@ -48,7 +46,6 @@ public class IKFootSolver : MonoBehaviour
                 newNormal = hit.normal;
             }
         }
-        else { Debug.Log("no ray hit"); }
 
         if (lerp < 1)
         {

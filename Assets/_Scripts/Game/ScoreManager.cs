@@ -44,6 +44,20 @@ public class ScoreManager : MonoBehaviour
         AddScore(0);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+       timeLeft -= Time.deltaTime;
+
+        timeText.text = "Time: " + timeLeft.ToString("F2");
+
+        if (timeLeft <= 0)
+        {
+            timeLeft = 0;
+            EndGame();
+        }
+    }
+
     private void SubtractObstaclePoints(Obstacle obstacle)
     {
         AddScore(obstacle.scoreValue);
@@ -58,21 +72,16 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = "Score: " + totalScore;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       timeLeft -= Time.deltaTime;
-
-        timeText.text = "Time: " + timeLeft.ToString("F2");
-
-        if(timeLeft < 0) EndGame();
-    }
-
     void EndGame()
     {
         PlayerPrefs.SetInt("Score", totalScore);
         PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
 
         SceneManager.LoadScene(endGameSceneName);
+    }
+
+    public void HackSetTimeLeft(float t)
+    {
+        timeLeft = t;
     }
 }

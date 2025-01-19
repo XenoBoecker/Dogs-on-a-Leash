@@ -7,9 +7,6 @@ public class MapManager : MonoBehaviour
 {
     HumanMovement humanMovement;
 
-
-    [SerializeField] int seed;
-
     [SerializeField] List<Tile> startTiles;
     [SerializeField] List<Tile> availableTiles; // List of available tile prefabs
     [SerializeField] List<Tile> endTiles;
@@ -45,7 +42,8 @@ public class MapManager : MonoBehaviour
 
     void GenerateMap()
     {
-        UnityEngine.Random.InitState(seed);
+        UnityEngine.Random.InitState(PlayerPrefs.GetInt("Seed"));
+        Debug.Log("Seed: " + PlayerPrefs.GetInt("Seed"));
 
         currentPathLength = 0;
 
