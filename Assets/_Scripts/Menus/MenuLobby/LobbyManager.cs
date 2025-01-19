@@ -2,9 +2,9 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,12 +18,20 @@ namespace photonMenuLobby
 
         [SerializeField] TMP_InputField roomInputField;
 
+        [SerializeField] TMP_InputField seedInputField;
+
         [SerializeField] GameObject lobbyPanel;
         [SerializeField] GameObject roomPanel;
         [SerializeField] GameObject dogSelectionPanel;
 
         [SerializeField] GameObject dogModelParent;
         [SerializeField] TMP_Text roomNameText;
+
+
+        [SerializeField] GameObject startGameButton;
+        [SerializeField] TMP_Text countdownText;
+
+        [SerializeField] int countdownTime = 5;
 
         [SerializeField] RoomItem roomItemPrefab;
 
@@ -43,7 +51,9 @@ namespace photonMenuLobby
 
         [SerializeField] Transform clientParent;
 
+        public bool IsInDogSelection;
         int readyToPlayDogCount;
+        int seed;
 
         [SerializeField] List<LobbyDogSelector> chooseDogSelectors = new List<LobbyDogSelector>();
         public List<LobbyDogSelector> ChooseDogSelectors => chooseDogSelectors;
@@ -61,12 +71,15 @@ namespace photonMenuLobby
         [SerializeField] bool testing;
 
         [SerializeField] int dogsNeededToStartGame = 4;
+        int connectedDogCount;
 
         public event Action OnPlayerListChanged;
 
         private void Start()
         {
-            if(PhotonNetwork.IsConnected)
+            DeletePreviousLocalPlayers();
+
+            if (PhotonNetwork.IsConnected)
             {
                 ActivatePanel(lobbyPanel);
 
@@ -79,11 +92,16 @@ namespace photonMenuLobby
                 playButton.SetActive(true);
 
                 pim.enabled = true;
-
+                startGameButton.SetActive(false);
                 roomNameText.text = "Room Name: " + "TestName";
+                countdownText.text = "";
                 UpdateClientList();
                 UpdatePlayerList();
             }
+
+            SetSeed(UnityEngine.Random.Range(0, 999999999));
+
+            seedInputField.onValueChanged.AddListener(OnSeedInputChanged);
         }
 
         private void Update()
@@ -102,14 +120,70 @@ namespace photonMenuLobby
                 if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
             }
 
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return)) ActivatePanel(dogSelectionPanel);
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel);
+        }
+
+        void SetSeed(int v)
+        {
+            Debug.Log("Set Seed: " + v);
+
+            seed = v;
+
+            seedInputField.text = seed.ToString();
+
+            PlayerPrefs.SetInt("Seed", seed);
+        }
+
+        void OnSeedInputChanged(string input)
+        {
+            // Attempt to parse the string input to an integer
+            if (int.TryParse(input, out int parsedSeed))
+            {
+                SetSeed(parsedSeed);
+            }
+            else
+            {
+                Debug.LogWarning("Invalid seed input. Please enter a valid integer.");
+            }
+        }
+
+        public void DeletePreviousLocalPlayers()
+        {
+            LocalPlayer[] localPlayers = FindObjectsOfType<LocalPlayer>();
+
+            for (int i = 0; i < localPlayers.Length; i++)
+            {
+                Destroy(localPlayers[i].gameObject);
+            }
         }
 
         public void ReadyToPlayCountAdd(int i)
         {
             readyToPlayDogCount += i;
 
-            if (readyToPlayDogCount == dogsNeededToStartGame) OnClickPlayButton();
+            if (readyToPlayDogCount == connectedDogCount) StartCoroutine(StartGameCountDown());
+        }
+
+        IEnumerator StartGameCountDown()
+        {
+            bool startGame = true;
+            startGameButton.SetActive(true);
+
+            for (int i = 0; i < countdownTime; i++)
+            {
+                countdownText.text = (countdownTime-i).ToString();
+
+                yield return new WaitForSeconds(1);
+
+                if(readyToPlayDogCount < connectedDogCount)
+                {
+                    startGame = false;
+                    countdownText.text = "";
+                    startGameButton.SetActive(false);
+                }
+            }
+
+            if(startGame) GetComponent<ChangeScenes>().LoadScene("Game");
         }
 
         void ActivatePanel(GameObject panel)
@@ -122,11 +196,15 @@ namespace photonMenuLobby
 
             if (panel == dogSelectionPanel)
             {
+                connectedDogCount = GetCurrentPlayerCount();
+                IsInDogSelection = true;
+
                 dogSelectionPanel.SetActive(true);
                 dogModelParent.SetActive(true);
             }
             else
             {
+                IsInDogSelection = false;
                 dogSelectionPanel.SetActive(false);
                 dogModelParent.SetActive(false);
             }
@@ -308,10 +386,10 @@ namespace photonMenuLobby
         {
             UpdateClientList();
         }
-
-        public void OnClickPlayButton()
+        void OnDestroy()
         {
-            PhotonNetwork.LoadLevel(gameSceneName);
+            // Unsubscribe to avoid potential memory leaks
+            seedInputField.onValueChanged.RemoveListener(OnSeedInputChanged);
         }
 
         public Client GetLocalClient()

@@ -19,9 +19,11 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] TMP_Text scoreText;
 
-    int totalScore;
+    [SerializeField] int totalTime;
 
-    float startTime;
+    float timeLeft;
+
+    int totalScore;
 
     private void Awake()
     {
@@ -37,9 +39,23 @@ public class ScoreManager : MonoBehaviour
         mapManager = FindObjectOfType<MapManager>();
         mapManager.OnGameEnd += EndGame;
 
-        startTime = Time.time;
+        timeLeft = totalTime;
 
         AddScore(0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       timeLeft -= Time.deltaTime;
+
+        timeText.text = "Time: " + timeLeft.ToString("F2");
+
+        if (timeLeft <= 0)
+        {
+            timeLeft = 0;
+            EndGame();
+        }
     }
 
     private void SubtractObstaclePoints(Obstacle obstacle)
@@ -56,17 +72,16 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = "Score: " + totalScore;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        timeText.text = "Time: " + (Time.time - startTime).ToString("F2");
-    }
-
     void EndGame()
     {
         PlayerPrefs.SetInt("Score", totalScore);
-        PlayerPrefs.SetFloat("Time", Time.time - startTime);
+        PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
 
         SceneManager.LoadScene(endGameSceneName);
+    }
+
+    public void HackSetTimeLeft(float t)
+    {
+        timeLeft = t;
     }
 }
