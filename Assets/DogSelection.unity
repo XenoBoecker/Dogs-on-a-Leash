@@ -1280,7 +1280,6 @@ GameObject:
   - component: {fileID: 335579945}
   - component: {fileID: 335579944}
   - component: {fileID: 335579949}
-  - component: {fileID: 335579950}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -1381,27 +1380,6 @@ MonoBehaviour:
   - {fileID: 140775036}
   - {fileID: 556054501}
   - {fileID: 221402323}
---- !u!95 &335579950
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335579943}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34ac976f855dcc24996b0441837c7fff, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &411890884
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,7 +3600,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4051074885408400791}
         m_TargetAssemblyTypeName: ChangeScenes, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -5566,7 +5544,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4051074885408400791}
         m_TargetAssemblyTypeName: ChangeScenes, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -6469,6 +6447,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df5dcfe7782ac0c45b276df2ed50a2b7, type: 3}
+--- !u!114 &4051074885408400791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5562369678125920223, guid: df5dcfe7782ac0c45b276df2ed50a2b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4051074885408400790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13503470828edd047bb79cf0884ba981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

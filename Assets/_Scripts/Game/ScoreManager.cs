@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+
+    ChangeScenes sceneChanger;
 
     HumanMovement human;
     MapManager mapManager;
@@ -33,6 +30,8 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sceneChanger = FindObjectOfType<ChangeScenes>();
+
         human = FindObjectOfType<HumanMovement>();
         human.OnHitObstacle += SubtractObstaclePoints;
 
@@ -77,7 +76,7 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("Score", totalScore);
         PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
 
-        SceneManager.LoadScene(endGameSceneName);
+        sceneChanger.LoadScene(endGameSceneName);
     }
 
     public void HackSetTimeLeft(float t)
