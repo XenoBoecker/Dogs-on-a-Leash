@@ -445,7 +445,7 @@ public class LeashManager : MonoBehaviour
             }
         }
     }
-    public Vector3 CurrentForceOnHuman()
+    public Vector3 CurrentForceOnHuman() // for human arm IK
     {
         if (currentLength >= (maxLeashLength - 0.5f))
         {

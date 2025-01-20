@@ -22,9 +22,12 @@ public class ScoreManager : MonoBehaviour
 
     int totalScore;
 
+    bool waitingForGameStart = true;
+
     private void Awake()
     {
         Instance = this;
+        FindObjectOfType<CameraMovement>().OnFlyThroughFinished += StartTimer;
     }
 
     // Start is called before the first frame update
@@ -46,15 +49,22 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       timeLeft -= Time.deltaTime;
-
         timeText.text = "Time: " + timeLeft.ToString("F2");
+
+        if (waitingForGameStart) return;
+
+        timeLeft -= Time.deltaTime;
 
         if (timeLeft <= 0)
         {
             timeLeft = 0;
             EndGame();
         }
+    }
+
+    void StartTimer()
+    {
+        waitingForGameStart = false;
     }
 
     private void SubtractObstaclePoints(Obstacle obstacle)

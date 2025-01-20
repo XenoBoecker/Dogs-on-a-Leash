@@ -1,4 +1,5 @@
-﻿using Photon.Pun.Demo.PunBasics;
+﻿using JetBrains.Annotations;
+using Photon.Pun.Demo.PunBasics;
 using Photon.Pun.Demo.SlotRacer;
 using System;
 using System.Collections;
@@ -22,6 +23,8 @@ public class CameraMovement : MonoBehaviour
 
     bool inFlyThrough;
 
+    public event Action OnFlyThroughFinished;
+
     internal void Setup()
     {
         human = FindObjectOfType<HumanMovement>().transform;
@@ -37,7 +40,7 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(totalDist, transform.position.y, transform.position.z);
 
         // wait for fade
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(1.1f);
 
         Time.timeScale = 0;
 
@@ -58,6 +61,10 @@ public class CameraMovement : MonoBehaviour
         }
 
         Time.timeScale = 1;
+
+        inFlyThrough = false;
+
+        OnFlyThroughFinished?.Invoke();
     }
 
     private void LateUpdate()

@@ -32,6 +32,7 @@ public class InteractableDetector : MonoBehaviour
         playerDogController = GetComponentInParent<PlayerDogController>();
         if (playerDogController == null) Debug.LogError("No player dog controller found");
         playerDogController.OnInteract += InteractWithClosestInteractable;
+        playerDogController.OnStopInteract += CancelTask;
     }
 
     private void Update()
