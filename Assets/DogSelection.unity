@@ -1514,6 +1514,40 @@ MonoBehaviour:
   - {fileID: 140775036}
   - {fileID: 556054501}
   - {fileID: 221402323}
+  popCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.86196
+      value: 1.1269475
+      inSlope: -1.8081244
+      outSlope: -1.8081244
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.46656287
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.14404935
+      outSlope: 0.14404935
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5930468
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  popDuration: 0.3
 --- !u!1 &411890884
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,7 +5856,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game
+          m_StringArgument: Game_1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1769319841

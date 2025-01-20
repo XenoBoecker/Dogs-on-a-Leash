@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace photonMenuLobby
@@ -8,6 +9,13 @@ namespace photonMenuLobby
         LobbyManager lobbyManager;
 
         [SerializeField] List<GameObject> pawShowPlayerConnected;
+
+
+        [SerializeField] AnimationCurve popCurve;
+
+        [SerializeField] float popDuration = 0.3f;
+
+        List<Transform> hasPoppedAlready = new List<Transform>();
 
         private void Awake()
         {
@@ -36,8 +44,22 @@ namespace photonMenuLobby
                 {
                     //lobbyShowDogObjects[index].SetPlayerData(lobbyManager.Clients[i].localPlayers[j]);
                     pawShowPlayerConnected[index].gameObject.SetActive(true);
+                    StartCoroutine(Pop(pawShowPlayerConnected[index].transform));
                     index++;
                 }
+            }
+        }
+        IEnumerator Pop(Transform t)
+        {
+            if (hasPoppedAlready.Contains(t)) yield break;
+
+            hasPoppedAlready.Add(t);
+
+            Vector3 startScale = t.localScale;
+            for (float i = 0; i < popDuration; i+= Time.deltaTime)
+            {
+                t.localScale = startScale * popCurve.Evaluate(i / popDuration);
+                yield return null;
             }
         }
     }
