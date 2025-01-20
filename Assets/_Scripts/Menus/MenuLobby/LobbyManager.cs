@@ -183,7 +183,7 @@ namespace photonMenuLobby
                 }
             }
 
-            if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game");
+            if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game_1");
         }
 
         void ActivatePanel(GameObject panel)
@@ -208,6 +208,11 @@ namespace photonMenuLobby
                 dogSelectionPanel.SetActive(false);
                 dogModelParent.SetActive(false);
             }
+        }
+
+        public void BackToPlayerRegistration()
+        {
+            ActivatePanel(roomPanel);
         }
 
         public void OnClickCreate()

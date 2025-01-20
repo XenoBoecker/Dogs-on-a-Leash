@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScenes : MonoBehaviour
 {
-    static ChangeScenes Instance;
-
     [SerializeField] private List<Animator> transitionAnimators = new List<Animator>();
     [SerializeField] private float transitionTime = 1f;
     [SerializeField] private bool fadeInActive = true;

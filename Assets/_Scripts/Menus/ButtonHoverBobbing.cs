@@ -11,6 +11,18 @@ public class ButtonHoverBobbing : ButtonHover
     [SerializeField] private float returnSpeed = 5f; // Speed for smooth transition back to normal scale
 
 
+    [SerializeField] bool onlyOnce;
+
+    [ConditionalHide("onlyOnce")]
+
+    [SerializeField] AnimationCurve sizeIncreaseAnimCurve;
+
+    [ConditionalHide("onlyOnce")]
+
+    [SerializeField] float animDuration = 0.2f;
+
+
+
     private float startTime;
     Vector3 startScale;
 
@@ -32,7 +44,9 @@ public class ButtonHoverBobbing : ButtonHover
         {
             // Handle bobbing animation
             currentAnimTime = Time.time - startTime; // Use Time.time instead of Time.deltaTime
-            currentScale = 1 + Mathf.Sin(currentAnimTime * bobSpeed) * (bobScaleFactor - 1);
+
+            if (onlyOnce) currentScale = 1 + sizeIncreaseAnimCurve.Evaluate(currentAnimTime / animDuration) * (bobScaleFactor-1);
+            else currentScale = 1 + Mathf.Sin(currentAnimTime * bobSpeed) * (bobScaleFactor - 1);
         }
         else
         {
@@ -53,4 +67,15 @@ public class ButtonHoverBobbing : ButtonHover
     {
         isBobbing = false;
     }
+}
+
+public class ButtonHoverSizeIncrease : ButtonHover
+{
+    [SerializeField] private Transform buttonObject;
+
+    [SerializeField] private float bobSpeed = 3;
+
+    [SerializeField] private float bobScaleFactor = 1.05f;
+
+    [SerializeField] private float returnSpeed = 5f; // Speed for smooth transition back to normal scale
 }
