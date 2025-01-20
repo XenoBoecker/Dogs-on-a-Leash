@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +17,8 @@ namespace photonMenuLobby
         [SerializeField] PlayerInputManager pim;
 
         [SerializeField] TMP_InputField roomInputField;
+
+        [SerializeField] TMP_InputField seedInputField;
 
         [SerializeField] GameObject lobbyPanel;
         [SerializeField] GameObject roomPanel;
@@ -52,6 +53,7 @@ namespace photonMenuLobby
 
         public bool IsInDogSelection;
         int readyToPlayDogCount;
+        int seed;
 
         [SerializeField] List<LobbyDogSelector> chooseDogSelectors = new List<LobbyDogSelector>();
         public List<LobbyDogSelector> ChooseDogSelectors => chooseDogSelectors;
@@ -96,6 +98,10 @@ namespace photonMenuLobby
                 UpdateClientList();
                 UpdatePlayerList();
             }
+
+            SetSeed(UnityEngine.Random.Range(0, 999999999));
+
+            seedInputField.onValueChanged.AddListener(OnSeedInputChanged);
         }
 
         private void Update()
@@ -114,7 +120,31 @@ namespace photonMenuLobby
                 if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
             }
 
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return)) ActivatePanel(dogSelectionPanel);
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel);
+        }
+
+        void SetSeed(int v)
+        {
+            Debug.Log("Set Seed: " + v);
+
+            seed = v;
+
+            seedInputField.text = seed.ToString();
+
+            PlayerPrefs.SetInt("Seed", seed);
+        }
+
+        void OnSeedInputChanged(string input)
+        {
+            // Attempt to parse the string input to an integer
+            if (int.TryParse(input, out int parsedSeed))
+            {
+                SetSeed(parsedSeed);
+            }
+            else
+            {
+                Debug.LogWarning("Invalid seed input. Please enter a valid integer.");
+            }
         }
 
         public void DeletePreviousLocalPlayers()
@@ -153,7 +183,7 @@ namespace photonMenuLobby
                 }
             }
 
-            if(startGame) GetComponent<ChangeScenes>().LoadScene("Game");
+            if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game_1");
         }
 
         void ActivatePanel(GameObject panel)
@@ -178,6 +208,11 @@ namespace photonMenuLobby
                 dogSelectionPanel.SetActive(false);
                 dogModelParent.SetActive(false);
             }
+        }
+
+        public void BackToPlayerRegistration()
+        {
+            ActivatePanel(roomPanel);
         }
 
         public void OnClickCreate()
@@ -355,6 +390,11 @@ namespace photonMenuLobby
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
             UpdateClientList();
+        }
+        void OnDestroy()
+        {
+            // Unsubscribe to avoid potential memory leaks
+            seedInputField.onValueChanged.RemoveListener(OnSeedInputChanged);
         }
 
         public Client GetLocalClient()

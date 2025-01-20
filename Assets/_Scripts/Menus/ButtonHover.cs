@@ -1,14 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
-    public Image buttonImage;
-    public Sprite hoverSprite;
-    public Sprite normalSprite;
-
-    private void Start()
+    protected virtual void Start()
     {
         // Automatically assign the event handlers
         EventTrigger trigger = gameObject.GetComponent<EventTrigger>();
@@ -41,14 +36,14 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         OnHoverExit();
     }
 
-    public void OnHoverEnter()
+    public virtual void OnHoverEnter()
     {
-        buttonImage.sprite = hoverSprite;
+        
     }
 
-    public void OnHoverExit()
+    public virtual void OnHoverExit()
     {
-        buttonImage.sprite = normalSprite;
+        
     }
 
     public void OnSelect(BaseEventData eventData)

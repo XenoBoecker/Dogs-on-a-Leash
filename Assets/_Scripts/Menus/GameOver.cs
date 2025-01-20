@@ -7,20 +7,26 @@ using UnityEngine;
 public class GameOver : MonoBehaviour
 {
 
-    [SerializeField] TMP_Text objectiveScoreText, timeLeftText, totalScoreText;
+    [SerializeField] TMP_Text objectiveScoreText, timeLeftText, finalScoreText;
 
     int objectiveScore;
     int timeLeft;
 
-    int totalScore;
+    int finalScore;
+
+    public event Action OnShowLeaderboard;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         objectiveScore = PlayerPrefs.GetInt("Score");
         timeLeft = PlayerPrefs.GetInt("TimeLeft");
 
-        totalScore = CalculateTotalScore();
+        finalScore = CalculateTotalScore();
+
+        Debug.Log("Final score: " + finalScore);
+
+        PlayerPrefs.SetInt("FinalScore", finalScore);
 
         UpdateUI();
     }
@@ -33,9 +39,14 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void UpdateUI()
     {
-        objectiveScoreText.text = objectiveScore.ToString();
-        timeLeftText.text = timeLeft.ToString();
+        objectiveScoreText.text = "Score: " + objectiveScore.ToString();
+        timeLeftText.text = "Time: " + timeLeft.ToString();
 
-        totalScoreText.text = totalScore.ToString();
+        finalScoreText.text = "Final: " + finalScore.ToString();
+    }
+
+    public void ShowLeaderboard()
+    {
+        OnShowLeaderboard?.Invoke();
     }
 }
