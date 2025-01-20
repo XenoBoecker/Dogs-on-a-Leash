@@ -37,7 +37,6 @@ Transform:
   m_Children:
   - {fileID: 7446952948011312079}
   - {fileID: 3174117683767765497}
-  - {fileID: 3591112405109623007}
   - {fileID: 6487408845941208779}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -355,12 +354,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3716849308740003769}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.042, y: 1.006, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.014816244, y: -0.014815921, z: -0.7069515, w: -0.7069516}
+  m_LocalPosition: {x: 0.032251026, y: 0.34754136, z: 0.004898883}
+  m_LocalScale: {x: 0.7692304, y: 0.7692316, z: 0.76923126}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 652006619932982248}
+  m_Father: {fileID: 47602349227605531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4219470359931255456
 GameObject:
@@ -797,12 +796,16 @@ MonoBehaviour:
   shoulderAnchorPoint: {fileID: 3134711140361406620}
   handMinDistFromShoulder: 0.2
   handMaxDistFromShoulder: 0.59
-  rotationSpeed: 3
-  testDir: {x: 1, y: 0, z: 0}
+  heightElbowMaxDiff: 0.8
+  elbowMinDist: 0.4
+  elbowMaxDist: 2.5
+  rotationSpeed: 1
   turnHuman: 1
-  pullStrengthForMaxAuslenkung: 10
-  testPullStrength: 0
+  pullStrengthForMaxAuslenkung: 0.11
+  pullDir: {x: 0, y: 0, z: 0}
+  currentPullStrength: 0
   handForwardVector: {x: 1, y: 0, z: 0}
+  baseForceVectorDir: {x: 1, y: 0, z: 0}
 --- !u!1 &6649064206010813556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,6 +1156,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5608847509813676014}
+    - targetCorrespondingSourceObject: {fileID: -6111634971836714999, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3591112405109623007}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8c708ee602a020a44aeab19b818ff61f,
         type: 3}

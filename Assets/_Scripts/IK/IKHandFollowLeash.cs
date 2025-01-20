@@ -2,6 +2,8 @@
 
 public class IKHandFollowLeash : MonoBehaviour
 {
+    LeashManager[] dogLeashes;
+
     [SerializeField] Transform human;
     [SerializeField] Transform shoulderAnchorPoint;
 
@@ -10,34 +12,46 @@ public class IKHandFollowLeash : MonoBehaviour
 
 
     [SerializeField] float heightElbowMaxDiff;
+    [SerializeField] float elbowMinDist;
     [SerializeField] float elbowMaxDist;
 
     [SerializeField] float rotationSpeed;
-    [SerializeField] Vector3 testDir;
     [SerializeField] bool turnHuman;
 
 
     [SerializeField] float pullStrengthForMaxAuslenkung = 10;
 
-    [SerializeField] float testPullStrength;
+    [SerializeField] Vector3 pullDir;
+    [SerializeField] float currentPullStrength;
     [SerializeField] Vector3 handForwardVector = Vector3.up; // Adjust this if the hand's forward is different
+
+
+    [SerializeField] Vector3 baseForceVectorDir;
+
+    private void Start()
+    {
+        dogLeashes = FindObjectsOfType<LeashManager>();
+    }
 
     private void Update()
     {
-        Vector3 dir = CalculateLeashPullingDirection();
+        Vector3 leashCombinedForce = LeashedCombinedForce();
 
-        if (turnHuman) TurnHumanTowardsPullDirection(dir);
+        pullDir = leashCombinedForce.normalized;
+        currentPullStrength = leashCombinedForce.magnitude;
 
-        float auslenkPercentage = Mathf.Clamp01(CalculateLeashPullStrength() / pullStrengthForMaxAuslenkung);
+        if (turnHuman) TurnHumanTowardsPullDirection(pullDir);
+
+        float auslenkPercentage = Mathf.Clamp01(currentPullStrength / pullStrengthForMaxAuslenkung);
         // Update hand position
-        transform.position = shoulderAnchorPoint.position + dir * (handMinDistFromShoulder + ((handMaxDistFromShoulder- handMinDistFromShoulder) * auslenkPercentage));
+        transform.position = shoulderAnchorPoint.position + pullDir * (handMinDistFromShoulder + ((handMaxDistFromShoulder- handMinDistFromShoulder) * auslenkPercentage));
 
-        Vector3 elbowDir = Vector3.Cross(Vector3.up, dir);
-        transform.position += (1 - auslenkPercentage) * elbowMaxDist * elbowDir;
+        Vector3 elbowDir = Vector3.Cross(Vector3.up, pullDir);
+        transform.position += (elbowMinDist + (1 - auslenkPercentage) * (elbowMaxDist- elbowMinDist)) * elbowDir;
         transform.position += (1 - auslenkPercentage) * heightElbowMaxDiff * Vector3.down;
 
         // Constrain rotation to prevent flipping
-        transform.rotation = ConstrainRotationWithFixedZ(Quaternion.LookRotation(dir, Vector3.up) * Quaternion.FromToRotation(handForwardVector, Vector3.forward));
+        transform.rotation = ConstrainRotationWithFixedZ(Quaternion.LookRotation(pullDir, Vector3.up) * Quaternion.FromToRotation(handForwardVector, Vector3.forward));
     }
     private Quaternion ConstrainRotationWithFixedZ(Quaternion rotation)
     {
@@ -65,23 +79,19 @@ public class IKHandFollowLeash : MonoBehaviour
         );
     }
 
-    float CalculateLeashPullStrength()
+    Vector3 LeashedCombinedForce()
     {
-        return testPullStrength;
-    }
+        Vector3 result = Vector3.zero;
 
-    Vector3 CalculateLeashPullingDirection()
-    {
-        return testDir.normalized;
-    }
+        for (int i = 0; i < dogLeashes.Length; i++)
+        {
+            result += dogLeashes[i].CurrentForceOnHuman();
+        }
 
-    private Quaternion ConstrainRotationToUp(Quaternion rotation)
-    {
-        // Decompose the rotation into forward and up vectors
-        Vector3 forward = rotation * Vector3.forward;
-        forward.y = 0; // Remove any vertical tilt to keep the rotation flat
-        forward.Normalize(); // Normalize the forward vector
+        result.y = 0;
 
-        return Quaternion.LookRotation(forward, Vector3.up); // Reconstruct rotation without flipping
+        if (result == Vector3.zero) return baseForceVectorDir;
+
+        return result;
     }
 }

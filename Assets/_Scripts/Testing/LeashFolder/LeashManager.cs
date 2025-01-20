@@ -445,6 +445,15 @@ public class LeashManager : MonoBehaviour
             }
         }
     }
+    public Vector3 CurrentForceOnHuman()
+    {
+        if (currentLength >= (maxLeashLength - 0.5f))
+        {
+            if (leashSegments.Count > 0) return (leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce;
+            else return (gameObject.transform.position - leashTarget.position).normalized * humanPullForce;
+        }
+        else return Vector3.zero;
+    }
 }
 
     
