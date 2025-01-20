@@ -68,14 +68,3 @@ public class ButtonHoverBobbing : ButtonHover
         isBobbing = false;
     }
 }
-
-public class ButtonHoverSizeIncrease : ButtonHover
-{
-    [SerializeField] private Transform buttonObject;
-
-    [SerializeField] private float bobSpeed = 3;
-
-    [SerializeField] private float bobScaleFactor = 1.05f;
-
-    [SerializeField] private float returnSpeed = 5f; // Speed for smooth transition back to normal scale
-}

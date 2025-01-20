@@ -758,6 +758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 337025601194466004}
+  - component: {fileID: 1172273056038740352}
   m_Layer: 0
   m_Name: Arm IK_target
   m_TagString: Untagged
@@ -780,6 +781,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7770473111937556014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172273056038740352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402407622091158648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a18ff61a5abf34baa95ba7b001d68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  human: {fileID: 652006619932982248}
+  shoulderAnchorPoint: {fileID: 3134711140361406620}
+  handMinDistFromShoulder: 0.2
+  handMaxDistFromShoulder: 0.59
+  rotationSpeed: 3
+  testDir: {x: 1, y: 0, z: 0}
+  turnHuman: 1
+  pullStrengthForMaxAuslenkung: 10
+  testPullStrength: 0
+  handForwardVector: {x: 1, y: 0, z: 0}
 --- !u!1 &6649064206010813556
 GameObject:
   m_ObjectHideFlags: 0
