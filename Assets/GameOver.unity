@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 681873456}
   - component: {fileID: 681873455}
   - component: {fileID: 681873454}
+  - component: {fileID: 681873457}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -759,6 +760,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681873452}
   m_CullTransparentMesh: 1
+--- !u!114 &681873457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681873452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.05
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &730523987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1053,7 @@ GameObject:
   - component: {fileID: 898915175}
   - component: {fileID: 898915174}
   - component: {fileID: 898915173}
+  - component: {fileID: 898915176}
   m_Layer: 5
   m_Name: Play Again Button
   m_TagString: Untagged
@@ -1131,6 +1175,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898915171}
   m_CullTransparentMesh: 1
+--- !u!114 &898915176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898915171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.05
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +2050,7 @@ GameObject:
   - component: {fileID: 1299398498}
   - component: {fileID: 1299398497}
   - component: {fileID: 1299398496}
+  - component: {fileID: 1299398499}
   m_Layer: 5
   m_Name: Next Button
   m_TagString: Untagged
@@ -2085,6 +2172,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299398494}
   m_CullTransparentMesh: 1
+--- !u!114 &1299398499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299398494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.05
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &1325615418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,6 +2796,7 @@ GameObject:
   - component: {fileID: 6600965668079063155}
   - component: {fileID: 668218832588465471}
   - component: {fileID: 5982902825004778101}
+  - component: {fileID: 6600965668079063156}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -2994,6 +3124,7 @@ GameObject:
   - component: {fileID: 6376415659794644916}
   - component: {fileID: 8031459477970011367}
   - component: {fileID: 4520880760790725536}
+  - component: {fileID: 8031459477970011368}
   m_Layer: 5
   m_Name: ResetButton
   m_TagString: Untagged
@@ -3481,6 +3612,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710187119688388077}
   m_CullTransparentMesh: 1
+--- !u!114 &6600965668079063156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710187119688388077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.05
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!222 &6930255146816521208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3616,6 +3789,48 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8031459477970011368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220165208838073424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.05
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!224 &8255521675016968893
 RectTransform:
   m_ObjectHideFlags: 0
