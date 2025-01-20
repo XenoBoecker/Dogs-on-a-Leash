@@ -8,6 +8,8 @@ public class HumanMovement : MonoBehaviour
 {
     public Transform LeashAttachmentPoint;
 
+
+    [SerializeField] float startWalkingDelay = 3f;
     [SerializeField] float minSpeed = 1f;
     public float speed = 5f; // Speed of movement
     private Rigidbody rb; // Rigidbody for physical movement
@@ -28,6 +30,9 @@ public class HumanMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        startWalkingDelay -= Time.deltaTime;
+        if (startWalkingDelay > 0) return;
+
         if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
 
         stunTime -= Time.fixedDeltaTime;
