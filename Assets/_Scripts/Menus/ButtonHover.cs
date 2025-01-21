@@ -3,6 +3,9 @@ using UnityEngine.EventSystems;
 
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
+
+    [SerializeField] float audioPitchMin = 0.9f, audioPitchMax = 1.1f;
+
     protected virtual void Start()
     {
         // Automatically assign the event handlers
@@ -38,7 +41,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public virtual void OnHoverEnter()
     {
-        
+        SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
     }
 
     public virtual void OnHoverExit()
@@ -54,5 +57,10 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnDeselect(BaseEventData eventData)
     {
         OnHoverExit();
+    }
+
+    public void OnButtonClick()
+    {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.buttonClickSound);
     }
 }
