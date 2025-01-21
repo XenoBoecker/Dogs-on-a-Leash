@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
     public Transform MyTransform { get; set; }
     public Action OnInteractEnd { get; set; }
 
-
+    public InteractableDetector currentInteractor;
     bool isInteracting;
     public void SetIsInteracting(bool value) 
     {
@@ -32,9 +32,11 @@ public class Interactable : MonoBehaviour
         HideInteractable();
     }
 
-    public void Interact()
+    public void Interact(InteractableDetector interactor)
     {
         if (isInteracting) return;
+
+        currentInteractor = interactor;
 
         SetIsInteracting(true);
 

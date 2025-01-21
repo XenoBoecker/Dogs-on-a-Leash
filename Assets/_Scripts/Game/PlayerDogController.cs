@@ -82,4 +82,9 @@ public class PlayerDogController : DogController
     {
         this.enabled = true;
     }
+
+    internal void SetMoveSpeedMultiplier(float moveSpeedMultiplier)
+    {
+        speedMultiplier = moveSpeedMultiplier;
+    }
 }

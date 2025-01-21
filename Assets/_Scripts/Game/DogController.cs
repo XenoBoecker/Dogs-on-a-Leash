@@ -114,7 +114,7 @@ public class DogController : MonoBehaviour
         if (targetDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * speedMultiplier * Time.fixedDeltaTime);
             rb.MoveRotation(rotation);
         }
 
@@ -125,7 +125,7 @@ public class DogController : MonoBehaviour
             forwardVelocity = forwardVelocity.normalized * maxSpeed;
         }
 
-        rb.MovePosition(rb.position + forwardVelocity * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + forwardVelocity * speedMultiplier * Time.fixedDeltaTime);
     }
     protected void ZoomieStart()
     {

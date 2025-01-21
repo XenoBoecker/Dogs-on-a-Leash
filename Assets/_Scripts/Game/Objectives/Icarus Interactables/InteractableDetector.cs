@@ -106,7 +106,7 @@ public class InteractableDetector : MonoBehaviour
 
         playerDogController.StopMovement();
 
-        currentInteractingInteractable.Interact();
+        currentInteractingInteractable.Interact(this);
         // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
         if (currentInteractingInteractable != null) onInteracted?.Invoke();
     }

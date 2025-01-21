@@ -9,11 +9,6 @@ public class HoldButtonTask : Task
 
     float currentTime;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void UpdateLogic()
     {
         base.UpdateLogic();
