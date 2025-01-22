@@ -527,12 +527,12 @@ public class LeashManager : MonoBehaviour
 
         Vector3 startPosition = gameObject.transform.position;
 
-        float timePerSegment = 1/(leashSegments.Count);
+        float timePerSegment = 1.5f/(leashSegments.Count);
 
-        while(elapsedTime < 1)
+        while(elapsedTime < timePerSegment)
         {
             myDogRigidbody.velocity = Vector3.zero;
-            myDogRigidbody.MovePosition(Vector3.Lerp(startPosition, leashPositions[0], elapsedTime));
+            myDogRigidbody.MovePosition(Vector3.Lerp(startPosition, leashPositions[0], elapsedTime/timePerSegment));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -542,11 +542,11 @@ public class LeashManager : MonoBehaviour
         for (int i = 1; i <leashPositions.Count; i++)
         {
             
-            while (elapsedTime < 1)
+            while (elapsedTime < timePerSegment)
             {
                 myDogRigidbody.velocity = Vector3.zero;
 
-                myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[i-1], leashPositions[i], elapsedTime));
+                myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[i-1], leashPositions[i], elapsedTime/timePerSegment));
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
@@ -555,11 +555,11 @@ public class LeashManager : MonoBehaviour
 
         Debug.Log("Unstuck dog leash done");
 
-        while (elapsedTime < 1f)
+        while (elapsedTime < timePerSegment)
         {
             myDogRigidbody.velocity = Vector3.zero;
 
-            myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[leashPositions.Count - 1], leashTarget.position, elapsedTime));
+            myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[leashPositions.Count - 1], leashTarget.position, elapsedTime/timePerSegment));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
