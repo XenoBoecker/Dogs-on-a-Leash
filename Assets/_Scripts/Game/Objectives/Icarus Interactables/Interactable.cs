@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -8,10 +9,13 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] GameObject showInteractable;
 
+
+    [SerializeField] bool singleDogInteractable = true;
+
     public Transform MyTransform { get; set; }
     public Action OnInteractEnd { get; set; }
 
-    public InteractableDetector currentInteractor;
+    public List<InteractableDetector> currentInteractors;
     bool isInteracting;
     public void SetIsInteracting(bool value) 
     {
@@ -27,16 +31,16 @@ public class Interactable : MonoBehaviour
 
     private void Start()
     {
-        if(task != null) task.OnInteractEnd += InteractEnd;
+        if(task != null) task.OnInteractEnd += EndAllInteractions;
 
         HideInteractable();
     }
 
     public void Interact(InteractableDetector interactor)
     {
-        if (isInteracting) return;
+        if (isInteracting && singleDogInteractable) return;
 
-        currentInteractor = interactor;
+        currentInteractors.Add(interactor);
 
         SetIsInteracting(true);
 
@@ -47,16 +51,29 @@ public class Interactable : MonoBehaviour
             return;
         }
 
-        task.StartTask(this);
+        if(currentInteractors.Count == 1) task.StartTask(this);
     }
 
-    public void InteractEnd()
+    void EndAllInteractions()
+    {
+        for (int i = 0; i < currentInteractors.Count; i++)
+        {
+            InteractEnd(currentInteractors[0]);
+        }
+    }
+
+    public void InteractEnd(InteractableDetector interactor)
     {
         if (!isInteracting) return;
 
-        SetIsInteracting(false);
-        
-        OnInteractEnd?.Invoke();
+        currentInteractors.Remove(interactor);
+
+        if (currentInteractors.Count == 0)
+        {
+            SetIsInteracting(false);
+
+            OnInteractEnd?.Invoke();
+        }
     }
 
     public void ShowInteractable()
@@ -71,7 +88,7 @@ public class Interactable : MonoBehaviour
 
     internal virtual void CompleteTask()
     {
-        InteractEnd();
+        EndAllInteractions();
     }
 
     public void CancelTask()

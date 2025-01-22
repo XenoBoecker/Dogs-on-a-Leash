@@ -121,7 +121,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 1.0057, y: 0.7751}
+  m_SizeDelta: {x: 2.2256, y: 1.4831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8350077710123439638
 Canvas:
@@ -291,6 +291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showInteractable: {fileID: 0}
+  singleDogInteractable: 1
+  currentInteractors: []
   pointReward: 500
 --- !u!114 &7950818208575671937
 MonoBehaviour:
@@ -343,7 +345,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.0057, y: 0.5}
+  m_SizeDelta: {x: 2.2256, y: 1.3544}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8172044413675465438
 CanvasRenderer:
@@ -366,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6060061, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -35,7 +35,7 @@ public class CameraMovement : MonoBehaviour
     {
         inFlyThrough = true;
 
-        int totalDist = FindObjectOfType<MapManager>().levelLength + 30;
+        int totalDist = FindObjectOfType<MapManager>().currentPathLength - 15;
 
         transform.position = new Vector3(totalDist, transform.position.y, transform.position.z);
 

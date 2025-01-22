@@ -26,7 +26,7 @@ public class HoldButtonTask : Task
 
     public void HoldingDown() // call every frame
     {
-        currentTime += interactSpeedMultiplier * Time.deltaTime;
+        currentTime += interactSpeedMultiplier * Time.deltaTime * interactable.currentInteractors.Count;
     }
 
     public override void StartTask(Interactable interactable)

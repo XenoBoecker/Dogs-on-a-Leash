@@ -9,8 +9,6 @@ public class DogBarking : MonoBehaviour
     public string dogSoundsPath = "Sound/SoundEffects/DogSFX/dog1_bark";
     private AudioClip[] dogBarkSounds;
 
-    PlayerInput playerInput;
-
     void Awake()
     {
         dogBarkSounds = Resources.LoadAll<AudioClip>(dogSoundsPath);
@@ -18,28 +16,12 @@ public class DogBarking : MonoBehaviour
 
     void OnEnable()
     {
-        if(GetComponent<PlayerDogController>().GetPlayerInput() == null)
-        {
-            Invoke("SetPlayerInput", 0.1f);
-        }
-    }
-
-    void SetPlayerInput()
-    {
-        if(GetComponent<PlayerDogController>().GetPlayerInput() == null)
-        {
-            Invoke("SetPlayerInput", 0.1f);
-        }
-
-        playerInput = GetComponent<PlayerDogController>().GetPlayerInput();
-        if (playerInput)
-        {
-            playerInput.onActionTriggered += OnActionTriggered;
-        }
+        GetComponent<PlayerDogController>().OnBark += PlayRandomDogBark;
     }
 
     private void OnDisable()
     {
+<<<<<<< Updated upstream
         playerInput = GetComponent<PlayerDogController>().GetPlayerInput();
         if (playerInput)
         {
@@ -57,11 +39,12 @@ public class DogBarking : MonoBehaviour
             }
         }
     }
+=======
+        GetComponent<PlayerDogController>().OnBark -= PlayRandomDogBark;
+    }
+>>>>>>> Stashed changes
     private void PlayRandomDogBark()
     {
-        int randomIndex = UnityEngine.Random.Range(0, dogBarkSounds.Length);
-        AudioClip selectedBark = dogBarkSounds[randomIndex];
-
-        SoundManager.Instance.PlaySound(selectedBark);
+        SoundManager.Instance.PlaySound(dogBarkSounds);
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
 
-    public float pushBackForce = 50f;
+    public float pushBackForce = 2f;
     public float CurrentPushBackForce => pushBackForce * (playerCollisionCounter + 1);
 
-    public float stunTime = 0.5f;
+    public float stunTime = 1f;
 
 
     [SerializeField] float pushBackCD = 2f;

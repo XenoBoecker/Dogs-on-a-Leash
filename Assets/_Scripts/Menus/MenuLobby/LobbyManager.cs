@@ -215,6 +215,11 @@ namespace photonMenuLobby
             ActivatePanel(roomPanel);
         }
 
+        public void GoToDogSelectionPanel()
+        {
+            ActivatePanel(dogSelectionPanel);
+        }
+
         public void OnClickCreate()
         {
             if (roomInputField.text.Length >= 1)

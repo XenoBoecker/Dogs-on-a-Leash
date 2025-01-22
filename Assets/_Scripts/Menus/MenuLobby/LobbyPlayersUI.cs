@@ -53,12 +53,16 @@ namespace photonMenuLobby
         {
             if (hasPoppedAlready.Contains(t)) yield break;
 
+            Debug.Log("Start Pop: 2)" + t.name + "; duration: " + popDuration);
+
             hasPoppedAlready.Add(t);
 
             Vector3 startScale = t.localScale;
             for (float i = 0; i < popDuration; i+= Time.deltaTime)
             {
                 t.localScale = startScale * popCurve.Evaluate(i / popDuration);
+
+                Debug.Log("Scale: " +t.localScale);
                 yield return null;
             }
         }

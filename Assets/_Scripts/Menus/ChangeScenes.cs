@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ChangeScenes : MonoBehaviour
 {
     [SerializeField] private List<Animator> transitionAnimators = new List<Animator>();
-    [SerializeField] private float transitionTime = 1f;
+    
     [SerializeField] private bool fadeInActive = true;
 
 
@@ -78,7 +78,7 @@ public class ChangeScenes : MonoBehaviour
             StartAnim();
         }
 
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSeconds(currentAnimator.runtimeAnimatorController.animationClips[0].length);
 
         // Load the scene using Photon or SceneManager
         if (PhotonNetwork.IsConnected)

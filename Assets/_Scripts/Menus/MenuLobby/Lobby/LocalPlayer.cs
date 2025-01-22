@@ -117,12 +117,17 @@ public class LocalPlayer : MonoBehaviour
 
         lobbyDogSelector.OnDataChanged += UpdateDogData;
 
+        if (selector == null) Debug.Log("no selector set");
+        else Debug.Log("dogdata: " + lobbyDogSelector.GetDogData().name);
+
         UpdateDogData();
     }
 
     private void UpdateDogData()
     {
-        dogData = lobbyDogSelector.GetDogData();
+        dogData = 
+            lobbyDogSelector
+            .GetDogData();
 
         Debug.Log("Local player Dog data changed: " + dogData.id);
     }

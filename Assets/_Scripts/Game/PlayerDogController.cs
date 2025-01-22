@@ -10,6 +10,8 @@ public class PlayerDogController : DogController
     public event Action OnInteract;
     public event Action OnStopInteract;
 
+    public event Action OnBark;
+
     private void OnEnable()
     {
         // Ensure PlayerInput component is enabled
@@ -59,6 +61,12 @@ public class PlayerDogController : DogController
             else if(context.phase == InputActionPhase.Canceled)
             {
                 OnStopInteract?.Invoke();
+            }
+        }else if(context.action.name == "Bark")
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                OnBark?.Invoke();
             }
         }
     }
