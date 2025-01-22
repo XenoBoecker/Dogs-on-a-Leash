@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerDogController : DogController
 {
@@ -69,6 +70,17 @@ public class PlayerDogController : DogController
         playerInput = input;
 
         playerInput.onActionTriggered += OnActionTriggered;
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        if(playerInput == null)
+        {
+            Debug.LogError("PlayerInput is null");
+            return null;
+        }
+
+        return playerInput;
     }
 
     internal void StopMovement()

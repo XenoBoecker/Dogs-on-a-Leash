@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Bark"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fa7fbe6-a76a-4740-a74a-4aa6818cb4cd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -368,6 +377,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3d6b3b6-8486-45d7-9a90-8c07a80c982f"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Bark"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f60663a-9f61-4f91-8e61-af6095ad39f5"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Bark"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1193,6 +1224,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Zoomie = m_Player.FindAction("Zoomie", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Bark = m_Player.FindAction("Bark", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1276,6 +1308,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Zoomie;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Bark;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1285,6 +1318,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Zoomie => m_Wrapper.m_Player_Zoomie;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Bark => m_Wrapper.m_Player_Bark;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1309,6 +1343,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Bark.started += instance.OnBark;
+            @Bark.performed += instance.OnBark;
+            @Bark.canceled += instance.OnBark;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1328,6 +1365,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Bark.started -= instance.OnBark;
+            @Bark.performed -= instance.OnBark;
+            @Bark.canceled -= instance.OnBark;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1577,6 +1617,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnZoomie(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnBark(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

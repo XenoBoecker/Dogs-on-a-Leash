@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 9098074797883053761}
   - component: {fileID: -9203565942449907486}
   - component: {fileID: 4966345517387302025}
+  - component: {fileID: 681216294474919457}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -779,6 +780,18 @@ MonoBehaviour:
   leashSegmentAngle: 10
   leashPullForce: 0.03
   humanPullForce: 0.07
+--- !u!114 &681216294474919457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd7dc02413cc844cbb64e9a6bb2e5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7479406289413004048
 GameObject:
   m_ObjectHideFlags: 0
