@@ -37,6 +37,8 @@ public class LeashManager : MonoBehaviour
 
     float stuckTimer = 0f;
 
+    Coroutine unstuckDogCoroutine;
+
     void Start()
     {
         Invoke("Setup", 0.2f);
@@ -360,17 +362,20 @@ public class LeashManager : MonoBehaviour
         {
             if(leashSegments.Count == 0)
             {
-                StartCoroutine(UnstuckDogCollision());
+                unstuckDogCoroutine = StartCoroutine(UnstuckDogCollision());
+                stuckTimer = 0f;
             }
 
             if(leashSegments.Count > 0)
             {
-                StartCoroutine(UnstuckDogLeash(3f));
+                unstuckDogCoroutine = StartCoroutine(UnstuckDogLeash());
+                stuckTimer = 0f;
             }
-            
-            
-            
-            
+        }
+
+        if(unstuckDogCoroutine != null)
+        {
+            return;
         }
 
         if (currentLength > maxLeashLength + 0.1f)
@@ -439,59 +444,116 @@ public class LeashManager : MonoBehaviour
         
         leashPullForce = leashPullForceBuffer;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
-        
+        unstuckDogCoroutine = null;
+
     }
 
-    private IEnumerator UnstuckDogLeash(float duration)
+    // private IEnumerator UnstuckDogLeash(float duration)
+    // {
+    //     if (leashSegments.Count == 0)
+    //         yield break;
+
+    //     float elapsedTime = 0f;
+    //     int segmentCount = leashSegments.Count - 1;
+    //     float totalLength = 0f;
+    //     List<float> segmentLengths = new List<float>();
+
+    //     float bufferthing = Vector3.Distance(gameObject.transform.position, leashSegments[0].transform.position);
+    //     segmentLengths.Add(bufferthing);
+    //     totalLength += bufferthing;
+
+    //     // Calculate the total length of the leash and each segment length
+    //     for (int i = 0; i < segmentCount; i++)
+    //     {
+    //         float segmentLength = Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.transform.position);
+    //         segmentLengths.Add(segmentLength);
+    //         totalLength += segmentLength;
+    //     }
+
+    //     while (elapsedTime < duration)
+    //     {
+    //         float t = elapsedTime / duration;
+    //         float targetLength = t * totalLength;
+    //         float accumulatedLength = 0f;
+
+    //         // Find the segment where the target length falls
+    //         for (int i = 0; i < segmentCount; i++)
+    //         {
+    //             if (accumulatedLength + segmentLengths[i] >= targetLength)
+    //             {
+    //                 float segmentT = (targetLength - accumulatedLength) / segmentLengths[i];
+    //                 Vector3 newPosition = Vector3.Lerp(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.transform.position, segmentT);
+    //                 gameObject.transform.position = newPosition;
+    //                 break;
+    //             }
+    //             accumulatedLength += segmentLengths[i];
+    //         }
+
+    //         elapsedTime += Time.deltaTime;
+    //         yield return null;
+    //     }
+
+    //     // Ensure it ends exactly at the last segment
+    //     gameObject.transform.position = leashSegments[segmentCount].transform.position;
+    // }
+
+    IEnumerator UnstuckDogLeash()
     {
-        if (leashSegments.Count == 0)
-            yield break;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        Debug.Log("Unstuck dog leash");
+        List<Vector3> leashPositions = new List<Vector3>();
+
+        for (int i = 0; i < leashSegments.Count; i++)
+        {
+            leashPositions.Add(leashSegments[i].transform.position);
+        }
 
         float elapsedTime = 0f;
-        while (elapsedTime < duration)
+
+        Vector3 startPosition = gameObject.transform.position;
+
+        float timePerSegment = 1/(leashSegments.Count);
+
+        while(elapsedTime < 1)
         {
-            float t = elapsedTime / duration;
-            Vector3 newPosition = LerpAcrossLeashSegments(t);
-            gameObject.transform.position = newPosition;
+            myDogRigidbody.velocity = Vector3.zero;
+            myDogRigidbody.MovePosition(Vector3.Lerp(startPosition, leashPositions[0], elapsedTime));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        gameObject.transform.position = LerpAcrossLeashSegments(1f);
-    }
 
-    private Vector3 LerpAcrossLeashSegments(float t)
-    {
-        if (leashSegments.Count == 0)
-            return Vector3.zero;
+        elapsedTime = 0f;
 
-        t = Mathf.Clamp01(t);
-        int segmentCount = leashSegments.Count - 1;
-        float totalLength = 0f;
-        List<float> segmentLengths = new List<float>();
-
-        
-        for (int i = 0; i < segmentCount; i++)
+        for (int i = 1; i <leashPositions.Count; i++)
         {
-            float segmentLength = Vector3.Distance(leashSegments[i].transform.position, leashSegments[i + 1].transform.position);
-            segmentLengths.Add(segmentLength);
-            totalLength += segmentLength;
-        }
-
-        float targetLength = t * totalLength;
-        float accumulatedLength = 0f;
-
-        
-        for (int i = 0; i < segmentCount; i++)
-        {
-            if (accumulatedLength + segmentLengths[i] >= targetLength)
+            
+            while (elapsedTime < 1)
             {
-                float segmentT = (targetLength - accumulatedLength) / segmentLengths[i];
-                return Vector3.Lerp(leashSegments[i].transform.position, leashSegments[i + 1].transform.position, segmentT);
+                myDogRigidbody.velocity = Vector3.zero;
+
+                myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[i-1], leashPositions[i], elapsedTime));
+                elapsedTime += Time.deltaTime;
+                yield return null;
             }
-            accumulatedLength += segmentLengths[i];
+            elapsedTime = 0f;
         }
 
-        return leashSegments[segmentCount].transform.position;
+        Debug.Log("Unstuck dog leash done");
+
+        while (elapsedTime < 1f)
+        {
+            myDogRigidbody.velocity = Vector3.zero;
+
+            myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[leashPositions.Count - 1], leashTarget.position, elapsedTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("Unstuck dog leash done2");
+
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        unstuckDogCoroutine = null;
+
     }
 
     public void PullHuman()
