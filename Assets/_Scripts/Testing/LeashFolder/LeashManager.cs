@@ -411,10 +411,14 @@ public class LeashManager : MonoBehaviour
                 if (currentLengthh+ Vector3.Distance(leashSegments[0].transform.position, gameObject.transform.position) > maxLeashLength)
                 {
                     Vector3 pullDirection = (leashSegments[0].transform.position - gameObject.transform.position).normalized;
-                    Vector3 newPosition = leashSegments[0].transform.position - pullDirection * (maxLeashLength - currentLengthh);
+                    Vector3 targetPosition = leashSegments[0].transform.position - pullDirection * (maxLeashLength - currentLengthh);
 
-                    myDogRigidbody.MovePosition(newPosition);
-                    myDogRigidbody.velocity = Vector3.zero; // Reset velocity to prevent slingshotting
+                    // Calculate the force needed to pull the dog back smoothly
+                    Vector3 force = (targetPosition - gameObject.transform.position) * leashPullForce;
+
+                    // Apply the force to the Rigidbody with damping
+                    myDogRigidbody.velocity *= 0.9f; // Damping factor to reduce stuttering
+                    myDogRigidbody.AddForce(force, ForceMode.Acceleration);
 
                     Debug.Log("Clamping dog position1");
                 }
@@ -426,10 +430,14 @@ public class LeashManager : MonoBehaviour
                 {
                     Debug.Log("Clamping dog position2");
                     Vector3 pullDirection = (leashTarget.position - gameObject.transform.position).normalized;
-                    Vector3 newPosition = leashTarget.position - pullDirection * maxLeashLength;
+                    Vector3 targetPosition = leashTarget.position - pullDirection * maxLeashLength;
 
-                    myDogRigidbody.MovePosition(newPosition);
-                    myDogRigidbody.velocity = Vector3.zero;
+                    // Calculate the force needed to pull the dog back smoothly
+                    Vector3 force = (targetPosition - gameObject.transform.position) * leashPullForce;
+
+                    // Apply the force to the Rigidbody with damping
+                    myDogRigidbody.velocity *= 0.9f; // Damping factor to reduce stuttering
+                    myDogRigidbody.AddForce(force, ForceMode.Acceleration);
                 }
             }
         }

@@ -70,52 +70,21 @@ public class DogController : MonoBehaviour
         }
     }
 
-    // void FixedUpdate()
-    // {
-
-    //     if (PhotonNetwork.IsConnected && !view.IsMine) return;
-
-    //     // Smoothly rotate towards the target direction
-    //     if (targetDirection != Vector3.zero)
-    //     {
-    //         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-    //         Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
-    //         transform.rotation = rotation;
-            
-    //         // Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-    //         // Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
-    //         // rb.rotation = rotation;
-    //     }
-
-    //     Vector3 forwardVelocity = transform.forward * currentSpeed;
-
-    //     if (forwardVelocity.magnitude > maxSpeed)
-    //     {
-    //         forwardVelocity = forwardVelocity.normalized * maxSpeed;
-    //     }
-        
-    //     transform.Translate(forwardVelocity * Time.fixedDeltaTime, Space.World);
-
-    //     // Move the dog forward based on current speed
-    //     // Vector3 forwardVelocity = rb.transform.forward * currentSpeed;
-    //     // rb.velocity = forwardVelocity;
-    //     // 
-    //     // if (rb.velocity.magnitude > maxSpeed)
-    //     // {
-    //     //     rb.velocity = rb.velocity.normalized * maxSpeed;
-    //     // }
-    // }
-
     void FixedUpdate()
     {
+
         if (PhotonNetwork.IsConnected && !view.IsMine) return;
 
         // Smoothly rotate towards the target direction
         if (targetDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * speedMultiplier * Time.fixedDeltaTime);
-            rb.MoveRotation(rotation);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            transform.rotation = rotation;
+            
+            // Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            // Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            // rb.rotation = rotation;
         }
 
         Vector3 forwardVelocity = transform.forward * currentSpeed;
@@ -124,9 +93,39 @@ public class DogController : MonoBehaviour
         {
             forwardVelocity = forwardVelocity.normalized * maxSpeed;
         }
+        
+        // transform.Translate(forwardVelocity * Time.fixedDeltaTime, Space.World);
 
-        rb.MovePosition(rb.position + forwardVelocity * speedMultiplier * Time.fixedDeltaTime);
+        // Move the dog forward based on current speed
+        rb.velocity = forwardVelocity;
+        
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
+
+    // void FixedUpdate()
+    // {
+    //     if (PhotonNetwork.IsConnected && !view.IsMine) return;
+
+    //     // Smoothly rotate towards the target direction
+    //     if (targetDirection != Vector3.zero)
+    //     {
+    //         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+    //         Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * speedMultiplier * Time.fixedDeltaTime);
+    //         rb.MoveRotation(rotation);
+    //     }
+
+    //     Vector3 forwardVelocity = transform.forward * currentSpeed;
+
+    //     if (forwardVelocity.magnitude > maxSpeed)
+    //     {
+    //         forwardVelocity = forwardVelocity.normalized * maxSpeed;
+    //     }
+
+    //     rb.MovePosition(rb.position + forwardVelocity * speedMultiplier * Time.fixedDeltaTime);
+    // }
     protected void ZoomieStart()
     {
         OnZoomieStart?.Invoke();
