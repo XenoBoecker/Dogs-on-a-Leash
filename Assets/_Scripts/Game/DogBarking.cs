@@ -21,28 +21,8 @@ public class DogBarking : MonoBehaviour
 
     private void OnDisable()
     {
-<<<<<<< Updated upstream
-        playerInput = GetComponent<PlayerDogController>().GetPlayerInput();
-        if (playerInput)
-        {
-            playerInput.onActionTriggered -= OnActionTriggered;
-        }
-    }
-
-    private void OnActionTriggered(InputAction.CallbackContext context)
-    {
-        if (context.action.name == "Bark")
-        {
-            if (context.phase == InputActionPhase.Performed)
-            {
-                PlayRandomDogBark();
-            }
-        }
-    }
-=======
         GetComponent<PlayerDogController>().OnBark -= PlayRandomDogBark;
     }
->>>>>>> Stashed changes
     private void PlayRandomDogBark()
     {
         SoundManager.Instance.PlaySound(dogBarkSounds);
