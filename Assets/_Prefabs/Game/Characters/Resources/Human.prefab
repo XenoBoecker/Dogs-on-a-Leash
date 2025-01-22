@@ -797,6 +797,8 @@ MonoBehaviour:
   shoulderAnchorPoint: {fileID: 3134711140361406620}
   handMinDistFromShoulder: 0.2
   handMaxDistFromShoulder: 0.59
+  heightElbowMaxDiff: 0
+  elbowMaxDist: 0
   rotationSpeed: 3
   testDir: {x: 1, y: 0, z: 0}
   turnHuman: 1
@@ -1141,11 +1143,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7300957002004705715, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d536cf44732a83540a5ae83f03554cfc, type: 2}
+    - target: {fileID: -6692340101748606776, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d536cf44732a83540a5ae83f03554cfc, type: 2}
+    - target: {fileID: -3441947536692592601, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d536cf44732a83540a5ae83f03554cfc, type: 2}
     - target: {fileID: 919132149155446097, guid: 8c708ee602a020a44aeab19b818ff61f,
         type: 3}
       propertyPath: m_Name
       value: hooman_test1
       objectReference: {fileID: 0}
+    - target: {fileID: 5461012317616151621, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d536cf44732a83540a5ae83f03554cfc, type: 2}
+    - target: {fileID: 5653732302276925513, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d536cf44732a83540a5ae83f03554cfc, type: 2}
+    - target: {fileID: 6493657944854329337, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d536cf44732a83540a5ae83f03554cfc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
