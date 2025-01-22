@@ -25,6 +25,11 @@ public class CameraMovement : MonoBehaviour
 
     public event Action OnFlyThroughFinished;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I)) FinishFlythrough();
+    }
+
     internal void Setup()
     {
         human = FindObjectOfType<HumanMovement>().transform;
@@ -35,7 +40,7 @@ public class CameraMovement : MonoBehaviour
     {
         inFlyThrough = true;
 
-        int totalDist = FindObjectOfType<MapManager>().levelLength + 30;
+        int totalDist = FindObjectOfType<MapManager>().currentPathLength - 15;
 
         transform.position = new Vector3(totalDist, transform.position.y, transform.position.z);
 
@@ -59,6 +64,13 @@ public class CameraMovement : MonoBehaviour
             transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
             yield return null;
         }
+
+        FinishFlythrough();
+    }
+
+    void FinishFlythrough()
+    {
+        transform.position = new Vector3(0, transform.position.y, transform.position.z);
 
         Time.timeScale = 1;
 

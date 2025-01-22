@@ -10,7 +10,7 @@ public class CarryObjectTask : Task
     {
         base.StartTask(interactable);
 
-        dogController = interactable.currentInteractor.GetComponentInParent<PlayerDogController>();
+        dogController = interactable.currentInteractors[0].GetComponentInParent<PlayerDogController>();
 
         dogController.StartMovement();
         dogController.SetMoveSpeedMultiplier(moveSpeedMultiplier);

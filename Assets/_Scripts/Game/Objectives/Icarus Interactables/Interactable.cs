@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -8,10 +9,13 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] GameObject showInteractable;
 
+
+    [SerializeField] bool singleDogInteractable = true;
+
     public Transform MyTransform { get; set; }
     public Action OnInteractEnd { get; set; }
 
-    public InteractableDetector currentInteractor;
+    public List<InteractableDetector> currentInteractors = new List<InteractableDetector>();
     bool isInteracting;
     public void SetIsInteracting(bool value) 
     {
@@ -27,16 +31,18 @@ public class Interactable : MonoBehaviour
 
     private void Start()
     {
-        if(task != null) task.OnInteractEnd += InteractEnd;
+        if(task != null) task.OnInteractEnd += EndAllInteractions;
 
         HideInteractable();
     }
 
     public void Interact(InteractableDetector interactor)
     {
-        if (isInteracting) return;
+        Debug.Log("Current Interactors Count: " + currentInteractors.Count);
 
-        currentInteractor = interactor;
+        if (isInteracting && singleDogInteractable) return;
+
+        currentInteractors.Add(interactor);
 
         SetIsInteracting(true);
 
@@ -47,15 +53,30 @@ public class Interactable : MonoBehaviour
             return;
         }
 
-        task.StartTask(this);
+        if(currentInteractors.Count == 1) task.StartTask(this);
     }
 
-    public void InteractEnd()
+    void EndAllInteractions()
     {
-        if (!isInteracting) return;
+        currentInteractors.Clear();
 
         SetIsInteracting(false);
-        
+
+        OnInteractEnd?.Invoke();
+    }
+
+    public void InteractEnd(InteractableDetector interactor)
+    {
+        Debug.Log("InteractEnd, currentCount: "+currentInteractors.Count);
+
+        if (!isInteracting) return;
+
+        if (currentInteractors.Count == 0)
+        {
+            SetIsInteracting(false);
+
+        }
+
         OnInteractEnd?.Invoke();
     }
 
@@ -71,11 +92,22 @@ public class Interactable : MonoBehaviour
 
     internal virtual void CompleteTask()
     {
-        InteractEnd();
+        EndAllInteractions();
     }
 
-    public void CancelTask()
+    public void CancelTask(InteractableDetector interactor)
     {
-        if(task != null) task.EndTask();
+        Debug.Log("Remove " + interactor.name);
+
+        currentInteractors.Remove(interactor);
+
+        if (currentInteractors.Count == 0)
+        {
+            if (task != null) task.EndTask();
+        }
+        else
+        {
+            InteractEnd(interactor);
+        }
     }
 }

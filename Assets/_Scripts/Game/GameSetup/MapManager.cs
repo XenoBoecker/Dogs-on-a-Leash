@@ -16,7 +16,7 @@ public class MapManager : MonoBehaviour
 
     public int levelLength = 120;
 
-    protected int currentPathLength;
+    public int currentPathLength;
 
     public event Action OnGameEnd;
 
@@ -32,7 +32,7 @@ public class MapManager : MonoBehaviour
     {
         if (!humanMovement) return;
 
-        if (humanMovement.transform.position.x >= levelLength + 15) EndGame();
+        if (humanMovement.transform.position.x >= currentPathLength - 15) EndGame();
     }
 
     private void EndGame()
@@ -43,7 +43,7 @@ public class MapManager : MonoBehaviour
     void GenerateMap()
     {
         UnityEngine.Random.InitState(PlayerPrefs.GetInt("Seed"));
-        Debug.Log("Seed: " + PlayerPrefs.GetInt("Seed"));
+        // Debug.Log("Seed: " + PlayerPrefs.GetInt("Seed"));
 
         currentPathLength = 0;
 

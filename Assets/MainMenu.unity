@@ -388,10 +388,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
   buttonObject: {fileID: 0}
   bobSpeed: 3
   bobScaleFactor: 1.05
   returnSpeed: 5
+  onlyOnce: 0
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &605360082
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,10 +758,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
   buttonObject: {fileID: 928072401}
   bobSpeed: 3
   bobScaleFactor: 1.05
   returnSpeed: 5
+  onlyOnce: 0
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +909,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &964006477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2863102265887780338, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580154544043149075, guid: 9636a90bf2be13c4daeec630c8919b0e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9636a90bf2be13c4daeec630c8919b0e, type: 3}
 --- !u!1 &1090729186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,10 +1746,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
   buttonObject: {fileID: 0}
   bobSpeed: 3
   bobScaleFactor: 1.05
   returnSpeed: 5
+  onlyOnce: 0
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &1792223742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,10 +2076,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
   buttonObject: {fileID: 0}
   bobSpeed: 3
   bobScaleFactor: 1.05
   returnSpeed: 5
+  onlyOnce: 0
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &2135947861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,3 +2274,4 @@ SceneRoots:
   - {fileID: 2135947865}
   - {fileID: 2143622699}
   - {fileID: 1171378368}
+  - {fileID: 964006477}
