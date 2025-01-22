@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
     MapManager mapManager;
 
     [SerializeField] string endGameSceneName = "GameOver";
+    [SerializeField] string failedEndGameSceneName = "GameOverFailed";
 
     [SerializeField] TMP_Text timeText;
 
@@ -86,7 +87,8 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("Score", totalScore);
         PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
 
-        sceneChanger.LoadScene(endGameSceneName);
+        if ((int)timeLeft == 0) sceneChanger.LoadScene(failedEndGameSceneName);
+        else sceneChanger.LoadScene(endGameSceneName);
     }
 
     public void HackSetTimeLeft(float t)
