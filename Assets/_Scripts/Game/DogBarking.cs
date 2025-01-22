@@ -57,6 +57,8 @@ public class DogBarking : MonoBehaviour
             }
         }
     }
+
+    // Make the dogs go b a r k
     private void PlayRandomDogBark()
     {
         int randomIndex = UnityEngine.Random.Range(0, dogBarkSounds.Length);
