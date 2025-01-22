@@ -356,11 +356,19 @@ public class LeashManager : MonoBehaviour
             stuckTimer = 0f;
         }
 
-        if(stuckTimer > 2f)
+        if(stuckTimer > 3f)
         {
-            StartCoroutine(UnstuckDog());
-            // myDogRigidbody.velocity *= 0.9f; // Damping factor to reduce stuttering
-            // myDogRigidbody.AddForce((gameObject.transform.position - leashSegments[0].transform.position).normalized * testing, ForceMode.Impulse);
+            if(leashSegments.Count == 0)
+            {
+                StartCoroutine(UnstuckDogCollision());
+            }
+
+            if(leashSegments.Count > 0)
+            {
+                StartCoroutine(UnstuckDogLeash(3f));
+            }
+            
+            
             
             
         }
@@ -420,7 +428,7 @@ public class LeashManager : MonoBehaviour
         
     }
 
-    IEnumerator UnstuckDog()
+    IEnumerator UnstuckDogCollision()
     {
         stuckTimer = 0f;
         float leashPullForceBuffer = leashPullForce;
@@ -432,6 +440,58 @@ public class LeashManager : MonoBehaviour
         leashPullForce = leashPullForceBuffer;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         
+    }
+
+    private IEnumerator UnstuckDogLeash(float duration)
+    {
+        if (leashSegments.Count == 0)
+            yield break;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            Vector3 newPosition = LerpAcrossLeashSegments(t);
+            gameObject.transform.position = newPosition;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        gameObject.transform.position = LerpAcrossLeashSegments(1f);
+    }
+
+    private Vector3 LerpAcrossLeashSegments(float t)
+    {
+        if (leashSegments.Count == 0)
+            return Vector3.zero;
+
+        t = Mathf.Clamp01(t);
+        int segmentCount = leashSegments.Count - 1;
+        float totalLength = 0f;
+        List<float> segmentLengths = new List<float>();
+
+        
+        for (int i = 0; i < segmentCount; i++)
+        {
+            float segmentLength = Vector3.Distance(leashSegments[i].transform.position, leashSegments[i + 1].transform.position);
+            segmentLengths.Add(segmentLength);
+            totalLength += segmentLength;
+        }
+
+        float targetLength = t * totalLength;
+        float accumulatedLength = 0f;
+
+        
+        for (int i = 0; i < segmentCount; i++)
+        {
+            if (accumulatedLength + segmentLengths[i] >= targetLength)
+            {
+                float segmentT = (targetLength - accumulatedLength) / segmentLengths[i];
+                return Vector3.Lerp(leashSegments[i].transform.position, leashSegments[i + 1].transform.position, segmentT);
+            }
+            accumulatedLength += segmentLengths[i];
+        }
+
+        return leashSegments[segmentCount].transform.position;
     }
 
     public void PullHuman()
