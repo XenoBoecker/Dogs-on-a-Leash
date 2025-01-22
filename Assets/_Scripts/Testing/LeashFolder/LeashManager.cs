@@ -39,6 +39,8 @@ public class LeashManager : MonoBehaviour
 
     Coroutine unstuckDogCoroutine;
 
+    public bool pushToPull = false;
+
     void Start()
     {
         Invoke("Setup", 0.2f);
@@ -427,6 +429,19 @@ public class LeashManager : MonoBehaviour
                     return;
                 }
             }
+            if(pushToPull) return;
+        
+            if (currentLength >= (maxLeashLength - 0.5f))
+            {
+                if (leashSegments.Count > 0)
+                {
+                    humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+                }
+                else
+                {
+                    humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+                }
+            }
         }
 
         stuckTimer = 0f;
@@ -558,6 +573,8 @@ public class LeashManager : MonoBehaviour
 
     public void PullHuman()
     {
+        if(!pushToPull) return;
+
         if (currentLength >= (maxLeashLength - 0.5f))
         {
             if (leashSegments.Count > 0)
