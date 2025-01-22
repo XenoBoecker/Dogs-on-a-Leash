@@ -40,7 +40,6 @@ public class DogBarking : MonoBehaviour
 
     private void OnDisable()
     {
-        // Unsubscribe from the PlayerInput events
         playerInput = GetComponent<PlayerDogController>().GetPlayerInput();
         if (playerInput)
         {
@@ -50,25 +49,14 @@ public class DogBarking : MonoBehaviour
 
     private void OnActionTriggered(InputAction.CallbackContext context)
     {
-        Debug.Log("Action Triggered: " + context.action.name);
         if (context.action.name == "Bark")
         {
-            Debug.Log("Bark");
             if (context.phase == InputActionPhase.Performed)
             {
-                Debug.Log("Bark Performed");
                 PlayRandomDogBark();
             }
         }
     }
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.M))
-    //     {
-    //         PlayRandomDogBark();
-    //     }
-    // }
-
     private void PlayRandomDogBark()
     {
         int randomIndex = UnityEngine.Random.Range(0, dogBarkSounds.Length);
