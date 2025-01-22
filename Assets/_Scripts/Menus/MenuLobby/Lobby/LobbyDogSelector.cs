@@ -50,7 +50,7 @@ public class LobbyDogSelector : MonoBehaviour
     internal DogData GetDogData()
     {
         if (lobbyData == null) lobbyData = FindObjectOfType<LobbyData>();
-        Debug.Log("GetDogData: available dogs: " + lobbyData.AvailableDogs.Length + " ; index: " + currentSelectedDogIndex);
+        // Debug.Log("GetDogData: available dogs: " + lobbyData.AvailableDogs.Length + " ; index: " + currentSelectedDogIndex);
 
         return lobbyData.AvailableDogs[currentSelectedDogIndex];
     }

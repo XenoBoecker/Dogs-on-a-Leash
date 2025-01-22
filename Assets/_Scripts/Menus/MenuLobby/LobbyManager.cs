@@ -125,7 +125,7 @@ namespace photonMenuLobby
 
         void SetSeed(int v)
         {
-            Debug.Log("Set Seed: " + v);
+            // Debug.Log("Set Seed: " + v);
 
             seed = v;
 
@@ -341,7 +341,7 @@ namespace photonMenuLobby
 
         void UpdatePlayerList()
         {
-            Debug.Log("UpdatePlayerList");
+            // Debug.Log("UpdatePlayerList");
 
             int currentPlayerCount = 0;
 

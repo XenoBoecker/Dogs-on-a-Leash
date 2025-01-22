@@ -53,7 +53,7 @@ namespace photonMenuLobby
         {
             if (hasPoppedAlready.Contains(t)) yield break;
 
-            Debug.Log("Start Pop: 2)" + t.name + "; duration: " + popDuration);
+            // Debug.Log("Start Pop: 2)" + t.name + "; duration: " + popDuration);
 
             hasPoppedAlready.Add(t);
 
@@ -62,7 +62,7 @@ namespace photonMenuLobby
             {
                 t.localScale = startScale * popCurve.Evaluate(i / popDuration);
 
-                Debug.Log("Scale: " +t.localScale);
+                // Debug.Log("Scale: " +t.localScale);
                 yield return null;
             }
         }

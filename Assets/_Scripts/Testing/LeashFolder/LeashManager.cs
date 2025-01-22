@@ -395,7 +395,7 @@ public class LeashManager : MonoBehaviour
 
         if (currentLength > maxLeashLength + 0.1f)
         {
-            Debug.Log("Dog is too far");
+            // Debug.Log("Dog is too far");
             if (leashSegments.Count > 0)
             {
                 float currentLengthh = 0;
@@ -404,9 +404,9 @@ public class LeashManager : MonoBehaviour
                     currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
                 }
 
-            
 
-                Debug.Log("Current lengthh::" + currentLengthh);
+
+                // Debug.Log("Current lengthh::" + currentLengthh);
 
                 if (currentLengthh+ Vector3.Distance(leashSegments[0].transform.position, gameObject.transform.position) > maxLeashLength)
                 {
@@ -420,15 +420,15 @@ public class LeashManager : MonoBehaviour
                     myDogRigidbody.velocity *= 0.9f; // Damping factor to reduce stuttering
                     myDogRigidbody.AddForce(force, ForceMode.Acceleration);
 
-                    Debug.Log("Clamping dog position1");
+                    // Debug.Log("Clamping dog position1");
                 }
             }
             else
             {
-                Debug.Log("Try else");
+                // Debug.Log("Try else");
                 if (Vector3.Distance(gameObject.transform.position, leashTarget.position) > maxLeashLength)
                 {
-                    Debug.Log("Clamping dog position2");
+                    //  Debug.Log("Clamping dog position2");
                     Vector3 pullDirection = (leashTarget.position - gameObject.transform.position).normalized;
                     Vector3 targetPosition = leashTarget.position - pullDirection * maxLeashLength;
 
