@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PullLeash"",
+                    ""type"": ""Button"",
+                    ""id"": ""10c72948-38dd-4ee8-b6e2-abf507b70ad7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -305,6 +314,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""faf78f41-b8d0-4e39-bef1-359f945a9c2b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoomie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""faddde11-899e-409c-9144-49b47ed776e7"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoomie"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""fd950a1a-f561-4fff-ac07-22159d312145"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -361,11 +392,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4f60663a-9f61-4f91-8e61-af6095ad39f5"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Bark"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""932e81e6-0bda-4caf-9717-73ba4af34b32"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PullLeash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a606fbb8-104f-4b36-94f0-9dd144133c65"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PullLeash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1192,6 +1245,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Zoomie = m_Player.FindAction("Zoomie", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Bark = m_Player.FindAction("Bark", throwIfNotFound: true);
+        m_Player_PullLeash = m_Player.FindAction("PullLeash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1276,6 +1330,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Zoomie;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Bark;
+    private readonly InputAction m_Player_PullLeash;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1286,6 +1341,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Zoomie => m_Wrapper.m_Player_Zoomie;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Bark => m_Wrapper.m_Player_Bark;
+        public InputAction @PullLeash => m_Wrapper.m_Player_PullLeash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1313,6 +1369,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Bark.started += instance.OnBark;
             @Bark.performed += instance.OnBark;
             @Bark.canceled += instance.OnBark;
+            @PullLeash.started += instance.OnPullLeash;
+            @PullLeash.performed += instance.OnPullLeash;
+            @PullLeash.canceled += instance.OnPullLeash;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1335,6 +1394,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Bark.started -= instance.OnBark;
             @Bark.performed -= instance.OnBark;
             @Bark.canceled -= instance.OnBark;
+            @PullLeash.started -= instance.OnPullLeash;
+            @PullLeash.performed -= instance.OnPullLeash;
+            @PullLeash.canceled -= instance.OnPullLeash;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1585,6 +1647,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnZoomie(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnBark(InputAction.CallbackContext context);
+        void OnPullLeash(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

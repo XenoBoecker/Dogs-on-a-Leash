@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
     public Transform MyTransform { get; set; }
     public Action OnInteractEnd { get; set; }
 
-    public List<InteractableDetector> currentInteractors;
+    public List<InteractableDetector> currentInteractors = new List<InteractableDetector>();
     bool isInteracting;
     public void SetIsInteracting(bool value) 
     {
@@ -38,6 +38,8 @@ public class Interactable : MonoBehaviour
 
     public void Interact(InteractableDetector interactor)
     {
+        Debug.Log("Current Interactors Count: " + currentInteractors.Count);
+
         if (isInteracting && singleDogInteractable) return;
 
         currentInteractors.Add(interactor);
@@ -56,24 +58,26 @@ public class Interactable : MonoBehaviour
 
     void EndAllInteractions()
     {
-        for (int i = 0; i < currentInteractors.Count; i++)
-        {
-            InteractEnd(currentInteractors[0]);
-        }
+        currentInteractors.Clear();
+
+        SetIsInteracting(false);
+
+        OnInteractEnd?.Invoke();
     }
 
     public void InteractEnd(InteractableDetector interactor)
     {
-        if (!isInteracting) return;
+        Debug.Log("InteractEnd, currentCount: "+currentInteractors.Count);
 
-        currentInteractors.Remove(interactor);
+        if (!isInteracting) return;
 
         if (currentInteractors.Count == 0)
         {
             SetIsInteracting(false);
 
-            OnInteractEnd?.Invoke();
         }
+
+        OnInteractEnd?.Invoke();
     }
 
     public void ShowInteractable()
@@ -91,8 +95,19 @@ public class Interactable : MonoBehaviour
         EndAllInteractions();
     }
 
-    public void CancelTask()
+    public void CancelTask(InteractableDetector interactor)
     {
-        if(task != null) task.EndTask();
+        Debug.Log("Remove " + interactor.name);
+
+        currentInteractors.Remove(interactor);
+
+        if (currentInteractors.Count == 0)
+        {
+            if (task != null) task.EndTask();
+        }
+        else
+        {
+            InteractEnd(interactor);
+        }
     }
 }

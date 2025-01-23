@@ -74,7 +74,7 @@ public class ChangeScenes : MonoBehaviour
     {
         if (currentAnimator != null)
         {
-            Debug.Log("StartAnim " + currentAnimator.name);
+            // Debug.Log("StartAnim " + currentAnimator.name);
             StartAnim();
         }
 

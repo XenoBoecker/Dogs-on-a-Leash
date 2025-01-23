@@ -7,6 +7,8 @@ using UnityEngine;
 public class GameOver : MonoBehaviour
 {
 
+    [SerializeField] GameObject timesUpPanel;
+
     [SerializeField] TMP_Text objectiveScoreText, timeLeftText, finalScoreText;
 
     int objectiveScore;
@@ -39,6 +41,9 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void UpdateUI()
     {
+        if (timeLeft == 0) timesUpPanel.SetActive(true);
+        else timesUpPanel.SetActive(false);
+
         objectiveScoreText.text = "Score: " + objectiveScore.ToString();
         timeLeftText.text = "Time: " + timeLeft.ToString();
 

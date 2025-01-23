@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LeashManager : MonoBehaviour
 {
-
+    public float testing = 10f;
     [SerializeField] Transform dogLeashAttachmentPoint;
     Transform humanLeashAttachmentPoint;
 
@@ -31,10 +31,15 @@ public class LeashManager : MonoBehaviour
     [SerializeField] float leashSegmentAngle = 30f;
     [SerializeField] float leashPullForce = 10f;
     [SerializeField] float humanPullForce = 2f;
+    [SerializeField] float leashLeeway = 5f;
 
     float currentLength = 0f;
 
-    Vector3 lastPos;
+    float stuckTimer = 0f;
+
+    Coroutine unstuckDogCoroutine;
+
+    public bool pushToPull = false;
 
     void Start()
     {
@@ -346,55 +351,40 @@ public class LeashManager : MonoBehaviour
 
         }
 
-    //     if(currentLength > maxLeashLength + 0.1f)
-    //     {
-    //         // if(leashSegments.Count > 0)
-    //         // {
-    //         //     Debug.Log("Leash Segment Count: " + leashSegments.Count);
+        if(currentLength > maxLeashLength + leashLeeway)
+        {
+            stuckTimer += Time.deltaTime;
+        }
+        else
+        {
+            stuckTimer = 0f;
+        }
 
-    //         //     myDogRigidbody.AddForce((leashSegments[0].transform.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
-    //         //     humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-    //         // }
-    //         // else
-    //         // {
-    //         //     Debug.Log("Leash Segment Count: " + leashSegments.Count);
-    //         //     myDogRigidbody.AddForce((leashTarget.position - gameObject.transform.position).normalized * leashPullForce * currentLength, ForceMode.Impulse);
-    //         //     humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-    //         // }
+        if(stuckTimer > 3f)
+        {
+            if(leashSegments.Count == 0)
+            {
+                unstuckDogCoroutine = StartCoroutine(UnstuckDogCollision());
+                stuckTimer = 0f;
+            }
 
-    //         if(leashSegments.Count > 0)
-    //         {
-    //             float currentLengthh = 0;
-    //             for(int i = 0; i < leashSegments.Count; i++)
-    //             {
-    //                 currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
-    //             }
-    //             gameObject.transform.position = leashSegments[0].transform.position - (leashSegments[0].transform.position - gameObject.transform.position).normalized * ((maxLeashLength - currentLengthh));
-    //         }
-    //         else
-    //         {
-    //             gameObject.transform.position = leashTarget.position - (leashTarget.position - gameObject.transform.position).normalized * (maxLeashLength) ;
-    //         }
-    //     }
-    //     else if(currentLength >= (maxLeashLength - 0.5f))
-    //     {
-    //         if (leashSegments.Count > 0)
-    //         {
-    //             humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-    //         }
-    //         else
-    //         {
-    //             humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-    //         }
-    //     }
+            if(leashSegments.Count > 0)
+            {
+                unstuckDogCoroutine = StartCoroutine(UnstuckDogLeash());
+                stuckTimer = 0f;
+            }
+        }
 
-
-
-    //     // Debug.Log("Current length::" + currentLength); 
-    // }
+        if(unstuckDogCoroutine != null)
+        {
+            return;
+        }
 
         if (currentLength > maxLeashLength + 0.1f)
         {
+            
+
+
             Debug.Log("Dog is too far");
             if (leashSegments.Count > 0)
             {
@@ -404,9 +394,6 @@ public class LeashManager : MonoBehaviour
                     currentLengthh += Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.position);
                 }
 
-            
-
-                Debug.Log("Current lengthh::" + currentLengthh);
 
                 if (currentLengthh+ Vector3.Distance(leashSegments[0].transform.position, gameObject.transform.position) > maxLeashLength)
                 {
@@ -421,6 +408,7 @@ public class LeashManager : MonoBehaviour
                     myDogRigidbody.AddForce(force, ForceMode.Acceleration);
 
                     Debug.Log("Clamping dog position1");
+                    return;
                 }
             }
             else
@@ -438,9 +426,155 @@ public class LeashManager : MonoBehaviour
                     // Apply the force to the Rigidbody with damping
                     myDogRigidbody.velocity *= 0.9f; // Damping factor to reduce stuttering
                     myDogRigidbody.AddForce(force, ForceMode.Acceleration);
+                    return;
+                }
+            }
+            if(pushToPull) return;
+        
+            if (currentLength >= (maxLeashLength - 0.5f))
+            {
+                if (leashSegments.Count > 0)
+                {
+                    humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+                }
+                else
+                {
+                    humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
                 }
             }
         }
+
+        stuckTimer = 0f;
+        
+    }
+
+    IEnumerator UnstuckDogCollision()
+    {
+        stuckTimer = 0f;
+        float leashPullForceBuffer = leashPullForce;
+        leashPullForce = leashPullForce * 2f;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
+        yield return new WaitForSeconds(1f);
+        
+        leashPullForce = leashPullForceBuffer;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        unstuckDogCoroutine = null;
+
+    }
+
+    // private IEnumerator UnstuckDogLeash(float duration)
+    // {
+    //     if (leashSegments.Count == 0)
+    //         yield break;
+
+    //     float elapsedTime = 0f;
+    //     int segmentCount = leashSegments.Count - 1;
+    //     float totalLength = 0f;
+    //     List<float> segmentLengths = new List<float>();
+
+    //     float bufferthing = Vector3.Distance(gameObject.transform.position, leashSegments[0].transform.position);
+    //     segmentLengths.Add(bufferthing);
+    //     totalLength += bufferthing;
+
+    //     // Calculate the total length of the leash and each segment length
+    //     for (int i = 0; i < segmentCount; i++)
+    //     {
+    //         float segmentLength = Vector3.Distance(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.transform.position);
+    //         segmentLengths.Add(segmentLength);
+    //         totalLength += segmentLength;
+    //     }
+
+    //     while (elapsedTime < duration)
+    //     {
+    //         float t = elapsedTime / duration;
+    //         float targetLength = t * totalLength;
+    //         float accumulatedLength = 0f;
+
+    //         // Find the segment where the target length falls
+    //         for (int i = 0; i < segmentCount; i++)
+    //         {
+    //             if (accumulatedLength + segmentLengths[i] >= targetLength)
+    //             {
+    //                 float segmentT = (targetLength - accumulatedLength) / segmentLengths[i];
+    //                 Vector3 newPosition = Vector3.Lerp(leashSegments[i].transform.position, leashSegments[i].GetComponent<LeashSegment>().nextSegment.transform.position, segmentT);
+    //                 gameObject.transform.position = newPosition;
+    //                 break;
+    //             }
+    //             accumulatedLength += segmentLengths[i];
+    //         }
+
+    //         elapsedTime += Time.deltaTime;
+    //         yield return null;
+    //     }
+
+    //     // Ensure it ends exactly at the last segment
+    //     gameObject.transform.position = leashSegments[segmentCount].transform.position;
+    // }
+
+    IEnumerator UnstuckDogLeash()
+    {
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        Debug.Log("Unstuck dog leash");
+        List<Vector3> leashPositions = new List<Vector3>();
+
+        for (int i = 0; i < leashSegments.Count; i++)
+        {
+            leashPositions.Add(leashSegments[i].transform.position);
+        }
+
+        float elapsedTime = 0f;
+
+        Vector3 startPosition = gameObject.transform.position;
+
+        float timePerSegment = 1.5f/(leashSegments.Count);
+
+        while(elapsedTime < timePerSegment)
+        {
+            myDogRigidbody.velocity = Vector3.zero;
+            myDogRigidbody.MovePosition(Vector3.Lerp(startPosition, leashPositions[0], elapsedTime/timePerSegment));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+
+        for (int i = 1; i <leashPositions.Count; i++)
+        {
+            
+            while (elapsedTime < timePerSegment)
+            {
+                myDogRigidbody.velocity = Vector3.zero;
+
+                myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[i-1], leashPositions[i], elapsedTime/timePerSegment));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            elapsedTime = 0f;
+        }
+
+        Debug.Log("Unstuck dog leash done");
+
+        while (elapsedTime < timePerSegment)
+        {
+            myDogRigidbody.velocity = Vector3.zero;
+
+            myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[leashPositions.Count - 1], leashTarget.position, elapsedTime/timePerSegment));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("Unstuck dog leash done2");
+
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        unstuckDogCoroutine = null;
+
+    }
+
+    public void PullHuman()
+    {
+        if(!pushToPull) return;
+
         if (currentLength >= (maxLeashLength - 0.5f))
         {
             if (leashSegments.Count > 0)
@@ -464,7 +598,7 @@ public class LeashManager : MonoBehaviour
     }
 }
 
-    
+    //The gizmatic gizmos
 
     // void OnDrawGizmos()
     // {

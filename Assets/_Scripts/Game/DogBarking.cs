@@ -23,6 +23,8 @@ public class DogBarking : MonoBehaviour
     {
         GetComponent<PlayerDogController>().OnBark -= PlayRandomDogBark;
     }
+
+    // Make the dogs go b a r k
     private void PlayRandomDogBark()
     {
         SoundManager.Instance.PlaySound(dogBarkSounds);

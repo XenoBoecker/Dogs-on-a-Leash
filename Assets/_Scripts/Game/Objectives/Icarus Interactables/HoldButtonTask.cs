@@ -31,6 +31,8 @@ public class HoldButtonTask : Task
 
     public override void StartTask(Interactable interactable)
     {
+        Debug.Log("Start task, currentInteractorCOunr: " + interactable.currentInteractors.Count);
+
         base.StartTask(interactable);
 
         currentTime = 0f;

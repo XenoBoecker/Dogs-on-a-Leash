@@ -42,7 +42,7 @@ public class InteractableDetector : MonoBehaviour
 
     void CancelTask() // usually task is canceled from within task, this is for external canceling: e.g. being dragged away too far
     {
-        if (currentInteractingInteractable != null) currentInteractingInteractable.CancelTask();
+        if (currentInteractingInteractable != null) currentInteractingInteractable.CancelTask(this);
     }
 
     private void ShowClosestInteractable()
@@ -64,18 +64,18 @@ public class InteractableDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger enter: " + other.name);
+        // Debug.Log("Trigger enter: " + other.name);
         Interactable interactable = other.GetComponent<Interactable>();
 
         if (interactable == null) return;
 
         _interactablesInRange.Add(interactable);
 
-        if (currentInteractingInteractable != null) Debug.Log("has interaction a lreaty");
+        // if (currentInteractingInteractable != null) Debug.Log("has interaction a lreaty");
 
         if (currentInteractingInteractable == null && interactable.Task == null)
         {
-            Debug.Log("Interact automatically");
+            // Debug.Log("Interact automatically");
             StartInteraction(interactable);
         }
     }
@@ -120,6 +120,9 @@ public class InteractableDetector : MonoBehaviour
 
     public void EndCurrentInteraction()
     {
+        if (currentInteractingInteractable.currentInteractors.Contains(this)) return;
+
+        currentInteractingInteractable.OnInteractEnd -= EndCurrentInteraction;
         currentInteractingInteractable = null;
 
         playerDogController.StartMovement();

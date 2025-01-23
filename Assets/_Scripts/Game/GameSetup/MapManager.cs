@@ -43,7 +43,7 @@ public class MapManager : MonoBehaviour
     void GenerateMap()
     {
         UnityEngine.Random.InitState(PlayerPrefs.GetInt("Seed"));
-        Debug.Log("Seed: " + PlayerPrefs.GetInt("Seed"));
+        // Debug.Log("Seed: " + PlayerPrefs.GetInt("Seed"));
 
         currentPathLength = 0;
 
