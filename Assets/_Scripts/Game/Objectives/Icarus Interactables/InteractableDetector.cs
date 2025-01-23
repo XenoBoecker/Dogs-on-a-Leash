@@ -69,7 +69,9 @@ public class InteractableDetector : MonoBehaviour
 
         if (interactable == null) return;
 
-        _interactablesInRange.Add(interactable);
+        if (_interactablesInRange.Contains(interactable)) return;
+
+         _interactablesInRange.Add(interactable);
 
         // if (currentInteractingInteractable != null) Debug.Log("has interaction a lreaty");
 

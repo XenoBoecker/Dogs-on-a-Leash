@@ -8,6 +8,7 @@ public class CarryObjectTask : Task
     PlayerDogController dogController;
     public override void StartTask(Interactable interactable)
     {
+        Debug.Log("Carry start");
         base.StartTask(interactable);
 
         dogController = interactable.currentInteractors[0].GetComponentInParent<PlayerDogController>();
@@ -19,6 +20,8 @@ public class CarryObjectTask : Task
     }
     public override void EndTask()
     {
+        Debug.Log("Carry end");
+
         base.EndTask();
 
         dogController.SetMoveSpeedMultiplier(1);
