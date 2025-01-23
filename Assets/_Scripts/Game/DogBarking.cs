@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class DogBarking : MonoBehaviour
 {
     public string dogSoundsPath = "Sound/SoundEffects/DogSFX/dog1_bark";
     private AudioClip[] dogBarkSounds;
+
+    [SerializeField] VisualEffect barkEffect;
 
     void Awake()
     {
@@ -27,6 +30,7 @@ public class DogBarking : MonoBehaviour
     // Make the dogs go b a r k
     private void PlayRandomDogBark()
     {
+        barkEffect.Play();
         SoundManager.Instance.PlaySound(dogBarkSounds);
     }
 }
