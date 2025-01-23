@@ -89,8 +89,22 @@ public class LocalPlayer : MonoBehaviour
 
             if (context.phase == InputActionPhase.Started)
             {
-                if (context.ReadValue<Vector2>().x < 0) lobbyDogSelector.SelectPreviousDog();
-                else lobbyDogSelector.SelectNextDog();
+                float x = context.ReadValue<Vector2>().x;
+                float y = context.ReadValue<Vector2>().y;
+
+                Debug.Log("X: " + x + "; Y: " +y);
+
+                if (Mathf.Abs(x) > Mathf.Abs(y))
+                {
+                    if (x < 0) lobbyDogSelector.SelectPreviousDog();
+                    else if (x > 0) lobbyDogSelector.SelectNextDog();
+                }
+                else
+                {
+                    if (y < 0) lobbyDogSelector.SelectPreviousDog();
+                    else if (y > 0) lobbyDogSelector.SelectNextDog();
+                }
+
             }
         }
         else if (context.action.name == "ConfirmSelection")
