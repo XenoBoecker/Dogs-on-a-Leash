@@ -8,6 +8,8 @@ public class LobbyDogSelector : MonoBehaviour
     public string PlayerName;
     int currentSelectedDogIndex;
     public int CurrentSelectedDogIndex => currentSelectedDogIndex;
+    int currentSelectedAccessorieIndex;
+    public int CurrentSelectedAccessorieIndex => currentSelectedAccessorieIndex;
 
     bool isReadyToPlay;
     public bool IsReadyToPlay => isReadyToPlay;
@@ -43,6 +45,31 @@ public class LobbyDogSelector : MonoBehaviour
         if (currentSelectedDogIndex == i) return;
 
         currentSelectedDogIndex = i;
+
+        OnDataChanged?.Invoke();
+    }
+
+    public void SelectNextAccessorie()
+    {
+        currentSelectedAccessorieIndex++;
+        if (currentSelectedAccessorieIndex >= lobbyData.AvailableAccessoriesCounts[currentSelectedDogIndex]) currentSelectedAccessorieIndex = 0;
+
+        OnDataChanged?.Invoke();
+    }
+
+    public void SelectPreviousAccessorie()
+    {
+        currentSelectedAccessorieIndex--;
+        if (currentSelectedAccessorieIndex < 0) currentSelectedAccessorieIndex = lobbyData.AvailableAccessoriesCounts[currentSelectedDogIndex] - 1;
+
+        OnDataChanged?.Invoke();
+    }
+
+    public void SetSelectedAccessorieIndex(int i)
+    {
+        if (currentSelectedAccessorieIndex == i) return;
+
+        currentSelectedAccessorieIndex = i;
 
         OnDataChanged?.Invoke();
     }

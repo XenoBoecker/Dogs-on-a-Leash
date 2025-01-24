@@ -29,6 +29,7 @@ public class OnlineDogSpawner : MonoBehaviour
 
             dog.SetDogData(localPlayers[i].DogData);
             dog.SetColor(localPlayers[i].ColorIndex);
+            dog.SetAccessorieIndex(localPlayers[i].AccessorieIndex);
 
             dog.SetPlayerInput(localPlayers[i].GetComponent<PlayerInput>());
             localPlayers[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");

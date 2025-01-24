@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 
-public class MenuDogVisuals : DogVisuals
+public class MenuDogVisuals : MonoBehaviour
 {
+
+    [SerializeField] DogVisuals visual;
+
     [SerializeField] GameObject[] dogShadows;
 
-    protected override void UpdateVisuals()
+    private void Start()
     {
-        base.UpdateVisuals();
+        visual.OnUpdateVisuals += UpdateVisuals;
 
+        UpdateVisuals();
+    }
+    protected void UpdateVisuals()
+    {
         for (int i = 0; i < dogShadows.Length; i++)
         {
-            if (i == dogID) dogShadows[i].SetActive(true);
+            if (i == visual.DogID) dogShadows[i].SetActive(true);
             else dogShadows[i].SetActive(false);
         }
     }

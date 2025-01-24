@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-public class PlayerDogVisuals : DogVisuals
+public class PlayerDogVisuals : MonoBehaviour
 {
     Dog dog;
+
+    [SerializeField] DogVisuals visual;
 
     [SerializeField] Transform[] leashAttachmentPoints;
 
@@ -11,18 +13,17 @@ public class PlayerDogVisuals : DogVisuals
     private void Awake()
     {
         dog = GetComponent<Dog>();
-        dog.OnDogDataChanged += GetDogIDAndColor;
+        dog.OnDogDataChanged += GetDogInformation;
 
-        GetDogIDAndColor();
+        GetDogInformation();
     }
 
-    private void GetDogIDAndColor()
+    private void GetDogInformation()
     {
-        SetDogID(dog.DogData.id);
-        SetColorIndex(dog.ColorIndex);
+        visual.SetDogID(dog.DogData.id);
+        visual.SetColorIndex(dog.ColorIndex);
+        visual.SetAccessorieIndex(dog.AccessorieIndex);
 
-        LeashAttachmentPoint = leashAttachmentPoints[dogID];
-
-        UpdateVisuals();
+        LeashAttachmentPoint = leashAttachmentPoints[visual.DogID];
     }
 }

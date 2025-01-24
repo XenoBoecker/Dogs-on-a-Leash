@@ -12,7 +12,7 @@ public class DogProfileScreen : MonoBehaviour
     [SerializeField] GameObject[] dogPanels;
 
 
-    [SerializeField] MenuDogVisuals dogVisual;
+    [SerializeField] DogVisuals dogVisual;
 
     [SerializeField] GameObject[] dogModels;
 

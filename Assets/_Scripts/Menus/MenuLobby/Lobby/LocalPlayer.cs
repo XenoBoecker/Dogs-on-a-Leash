@@ -16,6 +16,7 @@ public class LocalPlayer : MonoBehaviour
     public DogData DogData => dogData;
 
     public int ColorIndex;
+    public int AccessorieIndex;
 
     LobbyDogSelector lobbyDogSelector;
 
@@ -141,6 +142,8 @@ public class LocalPlayer : MonoBehaviour
         dogData = 
             lobbyDogSelector
             .GetDogData();
+
+        AccessorieIndex = lobbyDogSelector.CurrentSelectedAccessorieIndex;
 
         // Debug.Log("Local player Dog data changed: " + dogData.id);
     }
