@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &80032625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 759893487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &80032626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2058326802591252454, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 759893487}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f1c1e24b0ad3e4eb073c12422e2463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1098,7 @@ MonoBehaviour:
   - {fileID: 439209966}
   - {fileID: 1484611228}
   - {fileID: 330229012}
+  dogVisual: {fileID: 80032626}
   dogModels:
   - {fileID: 2456972442393801495, guid: a9c4150ed0bc54a43bcab013462d9258, type: 3}
   - {fileID: 5747772372907987842, guid: 45f4e9aac0c0ba94bace8c82dc280ea6, type: 3}
@@ -1113,6 +1132,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &759893487
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1683640652}
+    m_Modifications:
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606189121147510314, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245155715195901090, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+        type: 3}
+      propertyPath: m_Name
+      value: MenuDogPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34ca245762b11c9488b507cfd8ffb2fa, type: 3}
 --- !u!1 &851964414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,7 +2081,8 @@ Transform:
   m_LocalPosition: {x: 2.85, y: -1.01, z: -4.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 80032625}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1683640653

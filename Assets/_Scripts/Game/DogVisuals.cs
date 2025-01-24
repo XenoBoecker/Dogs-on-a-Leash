@@ -1,38 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class DogVisuals : MonoBehaviour
 {
-    Dog dog;
+    protected int dogID;
+    int colorIndex;
 
-    [SerializeField] GameObject[] dogVisuals;
+    [SerializeField] GameObject[] dogModels;
 
-    [SerializeField] Transform[] leashAttachmentPoints;
+    [SerializeField] Material[] dogMaterials;
 
-    public Transform LeashAttachmentPoint;
-
-    private void Awake()
+    protected virtual void UpdateVisuals()
     {
-        dog = GetComponent<Dog>();
-        dog.OnDogDataChanged += UpdateVisuals;
+        for (int i = 0; i < dogModels.Length; i++)
+        {
+            if (i == dogID)
+            {
+                dogModels[i].SetActive(true);
+
+                dogModels[i].GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = dogMaterials[i * 4 + colorIndex];
+            }
+            else dogModels[i].SetActive(false);
+        }
+    }
+
+    public void SetDogID(int id)
+    {
+        dogID = id;
 
         UpdateVisuals();
     }
 
-    private void UpdateVisuals()
+    public void SetColorIndex(int i)
     {
-        int dogVisualsIndex = dog.DogData.id * 4 + dog.ColorIndex;
+        Debug.Log("New color index: " + i);
+        colorIndex = i;
 
-        // Debug.Log("Visual index: " + dogVisualsIndex + "; dogDataID: " + dog.DogData.id + "; Color index: " + dog.ColorIndex);
-
-        LeashAttachmentPoint = leashAttachmentPoints[dog.DogData.id];
-
-        for (int i = 0; i < dogVisuals.Length; i++)
-        {
-            if (i == dogVisualsIndex)
-            {
-                dogVisuals[i].SetActive(true);
-            }
-            else dogVisuals[i].SetActive(false);
-        }
+        UpdateVisuals();
     }
 }

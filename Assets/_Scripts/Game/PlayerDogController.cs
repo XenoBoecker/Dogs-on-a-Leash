@@ -20,6 +20,12 @@ public class PlayerDogController : DogController
         {
             playerInput.onActionTriggered += OnActionTriggered;
         }
+        else // just for testing
+        {
+            Debug.LogError("PLAYER INPUT NOT FOUND!");
+            playerInput = GetComponent<PlayerInput>();
+            playerInput.onActionTriggered += OnActionTriggered;
+        }
     }
 
     private void OnDisable()

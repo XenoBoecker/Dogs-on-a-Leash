@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3452509483634676417}
+  - component: {fileID: 2621609823965375501}
   m_Layer: 0
   m_Name: BernhardBlue_With_Shadow
   m_TagString: Untagged
@@ -33,6 +34,20 @@ Transform:
   - {fileID: 7674013801694528977}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2621609823965375501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3766876553200002640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecadbdb16f7aad44b82d5d0a3938993e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogModels: []
+  dogMaterials: []
 --- !u!1 &8059311558764811721
 GameObject:
   m_ObjectHideFlags: 0
