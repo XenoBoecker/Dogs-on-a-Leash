@@ -1,13 +1,17 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerDogController : DogController
 {
     PlayerInput playerInput;
 
     public event Action OnInteract;
-    
+    public event Action OnStopInteract;
+
+    public event Action OnBark;
+
     private void OnEnable()
     {
         // Ensure PlayerInput component is enabled
@@ -54,6 +58,16 @@ public class PlayerDogController : DogController
             {
                 OnInteract?.Invoke();
             }
+            else if(context.phase == InputActionPhase.Canceled)
+            {
+                OnStopInteract?.Invoke();
+            }
+        }else if(context.action.name == "Bark")
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                OnBark?.Invoke();
+            }
         }
     }
 
@@ -66,6 +80,17 @@ public class PlayerDogController : DogController
         playerInput.onActionTriggered += OnActionTriggered;
     }
 
+    public PlayerInput GetPlayerInput()
+    {
+        if(playerInput == null)
+        {
+            Debug.LogError("PlayerInput is null");
+            return null;
+        }
+
+        return playerInput;
+    }
+
     internal void StopMovement()
     {
         // rb.velocity = Vector2.zero;
@@ -76,5 +101,10 @@ public class PlayerDogController : DogController
     internal void StartMovement()
     {
         this.enabled = true;
+    }
+
+    internal void SetMoveSpeedMultiplier(float moveSpeedMultiplier)
+    {
+        speedMultiplier = moveSpeedMultiplier;
     }
 }

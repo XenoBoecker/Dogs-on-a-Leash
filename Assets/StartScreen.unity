@@ -460,10 +460,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
   buttonObject: {fileID: 0}
   bobSpeed: 3
   bobScaleFactor: 1.05
   returnSpeed: 5
+  onlyOnce: 0
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1001 &842461510
 PrefabInstance:
   m_ObjectHideFlags: 0

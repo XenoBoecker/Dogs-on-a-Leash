@@ -11,6 +11,8 @@ public class ButtonHoverChangeSprite : ButtonHover
 
     public override void OnHoverEnter()
     {
+        base.OnHoverEnter();
+
         buttonImage.sprite = hoverSprite;
     }
 

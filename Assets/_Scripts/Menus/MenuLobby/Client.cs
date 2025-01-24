@@ -26,7 +26,7 @@ namespace photonMenuLobby
 
         public void AddLocalPlayer()
         {
-            Debug.Log("Add local Player to player " + PhotonNetwork.LocalPlayer.ActorNumber);
+            // Debug.Log("Add local Player to player " + PhotonNetwork.LocalPlayer.ActorNumber);
 
             localPlayers.Add(new PlayerData(0));
 

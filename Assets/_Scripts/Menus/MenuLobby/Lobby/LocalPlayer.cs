@@ -60,7 +60,6 @@ public class LocalPlayer : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         if (playerInput)
         {
-            Debug.Log("sub");
             playerInput.onActionTriggered += OnActionTriggered;
         }
     }
@@ -76,7 +75,7 @@ public class LocalPlayer : MonoBehaviour
 
     private void OnActionTriggered(InputAction.CallbackContext context)
     {
-        Debug.Log("Action Triggered: " + context.action.name);
+        // Debug.Log("Action Triggered: " + context.action.name);
 
         // Handle the Move action
         if (context.action.name == "ChangeSelectedDog")
@@ -90,8 +89,22 @@ public class LocalPlayer : MonoBehaviour
 
             if (context.phase == InputActionPhase.Started)
             {
-                if (context.ReadValue<Vector2>().x < 0) lobbyDogSelector.SelectPreviousDog();
-                else lobbyDogSelector.SelectNextDog();
+                float x = context.ReadValue<Vector2>().x;
+                float y = context.ReadValue<Vector2>().y;
+
+                Debug.Log("X: " + x + "; Y: " +y);
+
+                if (Mathf.Abs(x) > Mathf.Abs(y))
+                {
+                    if (x < 0) lobbyDogSelector.SelectPreviousDog();
+                    else if (x > 0) lobbyDogSelector.SelectNextDog();
+                }
+                else
+                {
+                    if (y < 0) lobbyDogSelector.SelectPreviousDog();
+                    else if (y > 0) lobbyDogSelector.SelectNextDog();
+                }
+
             }
         }
         else if (context.action.name == "ConfirmSelection")
@@ -111,31 +124,36 @@ public class LocalPlayer : MonoBehaviour
 
     public void SetLobbyDogSelector(LobbyDogSelector selector)
     {
-        Debug.Log("LocalPlayer Set Lobby Dog Selector");
+        // Debug.Log("LocalPlayer Set Lobby Dog Selector");
 
         lobbyDogSelector = selector;
 
         lobbyDogSelector.OnDataChanged += UpdateDogData;
 
+        // if (selector == null) Debug.Log("no selector set");
+        // else Debug.Log("dogdata: " + lobbyDogSelector.GetDogData().name);
+        
         UpdateDogData();
     }
 
     private void UpdateDogData()
     {
-        dogData = lobbyDogSelector.GetDogData();
+        dogData = 
+            lobbyDogSelector
+            .GetDogData();
 
-        Debug.Log("Local player Dog data changed: " + dogData.id);
+        // Debug.Log("Local player Dog data changed: " + dogData.id);
     }
 
     public void SelectNextDog()
     {
-        Debug.Log("Select next");
+        // Debug.Log("Select next");
         lobbyDogSelector.SelectNextDog();
     }
 
     public void SelectPreviousDog()
     {
-        Debug.Log("select previous");
+        // Debug.Log("select previous");
         lobbyDogSelector.SelectPreviousDog();
     }
 
@@ -143,7 +161,7 @@ public class LocalPlayer : MonoBehaviour
     {
         if (waitTimeBeforeCanConfirmSelection > 0) return;
 
-        Debug.Log("Confirm Selection");
+        //  Debug.Log("Confirm Selection");
         if (!isSelectionConfirmed) isSelectionConfirmed = true;
         else
         {
@@ -160,7 +178,7 @@ public class LocalPlayer : MonoBehaviour
 
     private void UnConfirmSelection()
     {
-        Debug.Log("Unconfirm Selection");
+        // Debug.Log("Unconfirm Selection");
         if (isReadyToPlay)
         {
             isReadyToPlay = false;

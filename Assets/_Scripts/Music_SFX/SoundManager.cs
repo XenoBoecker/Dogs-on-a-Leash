@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
+    public static SoundManager Instance;
 
     [SerializeField] AudioClip[] music;
     [SerializeField] AudioSource musicAudioSource;
@@ -12,18 +12,28 @@ public class SoundManager : MonoBehaviour
     bool sfxOn = true;
     int currentTrack = 0;
 
+    [Range(0, 1)]
+    [SerializeField] float musicVolume = 0.5f;
+    [Range(0, 1)]
+    [SerializeField] float sfxVolume = 0.5f;
+
     public event Action OnSoundReload;
 
     [Header("SFX")]
-    [SerializeField] UISFX uiSFX;
-    [SerializeField] ArtifactSFX artifactSFX;
-    [SerializeField] StationSFX stationSFX;
-    [SerializeField] ItemSFX itemSFX;
+    public UISFX uiSFX;
+    public DogSFX dogSFX;
+    public ScoreSFX scoreSFX;
+    public AmbientSFX ambientSFX;
+    public EventSFX eventSFX;
+    public HumanSFX humanSFX;
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else Destroy(this);
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+        }
+        Instance = this;
 
         DontDestroyOnLoad(gameObject);
     }
@@ -40,26 +50,42 @@ public class SoundManager : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        musicAudioSource.volume = volume;
+        musicVolume = volume;
+        musicAudioSource.volume = musicVolume;
     }
 
     public void SetSFXVolume(float volume)
     {
-        sfxAudioSource.volume = volume;
+        sfxVolume = volume;
+        sfxAudioSource.volume = sfxVolume;
     }
 
-    public float GetSFXVolume()
-    {
-        if (!sfxOn) return 0;
-
-        return sfxAudioSource.volume;
-    }
-
-    public void PlaySound(AudioClip clip)
+    public void PlaySound(AudioClip clip, AudioSource source = null, float volumeMultiplier = 1, bool resetPitch = true)
     {
         if (!sfxOn) return;
 
-        sfxAudioSource.PlayOneShot(clip);
+        if (source == null) source = sfxAudioSource;
+
+        if (resetPitch) source.pitch = 1;
+
+        source.PlayOneShot(clip, volumeMultiplier);
+    }
+    public void PlaySound(AudioClip[] clips, AudioSource source = null, float volumeMultiplier = 1)
+    {
+        if (clips.Length == 0) return;
+
+        int rand = UnityEngine.Random.Range(0, clips.Length);
+
+        PlaySound(clips[rand], source, volumeMultiplier);
+    }
+
+    public void PlaySoundWithRandomPitch(AudioClip clip, AudioSource source = null, float min = 0.1f, float max = 2f)
+    {
+        if (source == null) source = sfxAudioSource;
+
+        source.pitch = UnityEngine.Random.Range(min, max);
+        
+        PlaySound(clip, source, 1, false);
     }
 
     internal void Reload()
@@ -77,49 +103,52 @@ public class SoundManager : MonoBehaviour
     }
 
     [System.Serializable]
-    struct UISFX
+    public struct DogSFX
     {
-        [SerializeField] AudioClip buttonClickSound;
-        [SerializeField] AudioClip buttonHoverSound;
-        [SerializeField] AudioSource source;
+        public AudioClip walk1, walk2, walk3, walk4;
+        public AudioClip[] walk_street;
+        public AudioClip bark1, bark2, bark3, bark4;
+        public AudioClip[] noise;
     }
 
     [System.Serializable]
-    struct ArtifactSFX
+    public struct HumanSFX
     {
-        [SerializeField] AudioClip dashSound;
-        [SerializeField] AudioClip tunnelDashSound;
-        [SerializeField] AudioClip stringOfTimeUseSound;
+        public AudioClip walking;
+        public AudioClip walking_street;
+        public AudioClip mumbling;
+        public AudioClip hit_obstacle;
     }
 
     [System.Serializable]
-    struct StationSFX
+    public struct ScoreSFX
     {
-        public AudioClip breakStationSound;
-        public AudioClip destroyStationSound;
-        public AudioClip repairStationSound;
 
-        // task completed sounds
-        public AudioClip uploadRPSound;
-        public AudioClip collectNewMissionsSound;
-        public AudioClip buyArtifactSound;
-
-
-        public AudioClip moveShipUpSound;
-
-        public AudioClip analyzingAnomalySound;
-        public AudioClip anomalyAnalyzedSound;
-
-        public AudioClip newMissionAvailableSound;
-        public AudioClip missionCompletedSound;
+        public AudioClip smallGain, bigGain;
+        public AudioClip smallLoss, bigLoss;
     }
 
     [System.Serializable]
-    struct ItemSFX
+    public struct EventSFX
     {
-        [SerializeField] AudioClip itemPickupSound;
-        [SerializeField] AudioClip itemDropSound;
-        [SerializeField] AudioClip useAnomalyScanner;
+        public AudioClip pickUp;
+        public AudioClip sparkle;
+        public AudioClip dig;
+    }
+
+    [System.Serializable]
+    public struct AmbientSFX
+    {
+        public AudioClip carNoise, carHonk;
+        public AudioClip birdNoise, fountainNoise, riverNoise, wind, leavesRustling, constructionSite, childrenPlaying;
+    }
+
+    [System.Serializable]
+    public struct UISFX
+    {
+        public AudioClip buttonClickSound;
+        public AudioClip buttonHoverSound;
+        public AudioClip countDown, popUp;
     }
 }
 

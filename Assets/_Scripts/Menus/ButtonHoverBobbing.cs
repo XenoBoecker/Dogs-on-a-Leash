@@ -59,6 +59,8 @@ public class ButtonHoverBobbing : ButtonHover
 
     public override void OnHoverEnter()
     {
+        base.OnHoverEnter();
+
         isBobbing = true;
         startTime = Time.time; // Reset start time on hover enter
     }

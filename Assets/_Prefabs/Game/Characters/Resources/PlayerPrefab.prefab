@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7556613371948604133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Accessories
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2104458624107248738}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bernhard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4348530114093548028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BernhardLeashPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3007450196751774533}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PugLeashPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 437574917971896180}
   - component: {fileID: 7027511879502599513}
   - component: {fileID: 248019060555332893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InteractableDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6799280836303119723}
   - component: {fileID: 7267297438017012183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DogLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2346305758644018850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,6 +361,117 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7556613371948604133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4110642845092807970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8282468220682541034}
+  - component: {fileID: 4299828620763035163}
+  - component: {fileID: 2652311857928774945}
+  m_Layer: 0
+  m_Name: BARK!
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8282468220682541034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110642845092807970}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.901, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8303905784497790103}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!2083052967 &4299828620763035163
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110642845092807970}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: 6cd058d639f35684191226d37f69d71a, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 0
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array: []
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array: []
+    m_Vector4f:
+      m_Array: []
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array: []
+--- !u!73398921 &2652311857928774945
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110642845092807970}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &4292093093092384883
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6326096711368792698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PoodleLeashPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7182594908775492711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeashAttachmentPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5306370756939343965}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Retreiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +588,9 @@ GameObject:
   - component: {fileID: 9098074797883053761}
   - component: {fileID: -9203565942449907486}
   - component: {fileID: 4966345517387302025}
-  m_Layer: 0
+  - component: {fileID: 681216294474919457}
+  - component: {fileID: 2641997452236789272}
+  m_Layer: 8
   m_Name: PlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,6 +616,7 @@ Transform:
   - {fileID: 7182594908775492711}
   - {fileID: 4357226821848795805}
   - {fileID: 7556613371948604133}
+  - {fileID: 8282468220682541034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7086761737223978608
@@ -765,6 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39134cf6e61755b488c70ed51a4dafae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testing: 10
   dogLeashAttachmentPoint: {fileID: 0}
   leashTarget: {fileID: 0}
   LeashSegmentPrefab: {fileID: 1930491910800903937, guid: ea9b811cd11e3af4da08a837005a4529,
@@ -777,8 +892,36 @@ MonoBehaviour:
   leashSegmentLengthMinimum: 0.2
   maxLeashLength: 6
   leashSegmentAngle: 10
-  leashPullForce: 0.03
-  humanPullForce: 0.07
+  leashPullForce: 100
+  humanPullForce: 1.5
+  leashLeeway: 4
+  enableDraggingMode: 0
+--- !u!114 &681216294474919457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd7dc02413cc844cbb64e9a6bb2e5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogSoundsPath: Sound/SoundEffects/DogSFX/dog1_bark
+  barkEffect: {fileID: 4299828620763035163}
+--- !u!114 &2641997452236789272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9c575efa71fa049a5216b93f24bb8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7479406289413004048
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2810411692405447119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RetreiverLeashPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5829356872364487185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Poodle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +993,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4357226821848795805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DogModels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,6 +1043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PoodleBlue_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935320494716892761, guid: 8785299ea41b8a545b9c9ce55e5e08c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6935320494716892761, guid: 8785299ea41b8a545b9c9ce55e5e08c1,
         type: 3}
@@ -1038,6 +1186,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436041893494718260, guid: 004801fda0d4d3642b0ff50bcb048c94,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436041893494718260, guid: 004801fda0d4d3642b0ff50bcb048c94,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1120,6 +1273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PoodleRedPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877273936872670122, guid: 5d0fd99f062dcd14eb0c18f8137a1e19,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7877273936872670122, guid: 5d0fd99f062dcd14eb0c18f8137a1e19,
         type: 3}
@@ -1208,6 +1366,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4240588447085093419, guid: 69825983dd8221542bd745820d6691fb,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240588447085093419, guid: 69825983dd8221542bd745820d6691fb,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1293,6 +1456,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747772372907987842, guid: 45f4e9aac0c0ba94bace8c82dc280ea6,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747772372907987842, guid: 45f4e9aac0c0ba94bace8c82dc280ea6,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1321,6 +1489,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8303905784497790103}
     m_Modifications:
+    - target: {fileID: 2588634814229105857, guid: b7b0a339341c06049b945c2766385617,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3565757481631309396, guid: b7b0a339341c06049b945c2766385617,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -1330,6 +1503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasLookAtCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5464966227338385372, guid: b7b0a339341c06049b945c2766385617,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7175865734875064491, guid: b7b0a339341c06049b945c2766385617,
         type: 3}
@@ -1462,6 +1640,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185538413390927905, guid: 6249d2348fc73bd4196525ea028a48a5,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185538413390927905, guid: 6249d2348fc73bd4196525ea028a48a5,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1544,6 +1727,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PugGreen_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579951512004769344, guid: 48e4630de49008d4e9fd987ddfdec2c7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2579951512004769344, guid: 48e4630de49008d4e9fd987ddfdec2c7,
         type: 3}
@@ -1632,6 +1820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 209810880498744709, guid: 75ef1f8da9f03074ca94f2cae104f6a9,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 209810880498744709, guid: 75ef1f8da9f03074ca94f2cae104f6a9,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1714,6 +1907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BernhardBlue_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456972442393801495, guid: a9c4150ed0bc54a43bcab013462d9258,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2456972442393801495, guid: a9c4150ed0bc54a43bcab013462d9258,
         type: 3}
@@ -1852,6 +2050,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5307319124443703047, guid: e38daed758266f74e9d87ddea7f4d9f7,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307319124443703047, guid: e38daed758266f74e9d87ddea7f4d9f7,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1884,6 +2087,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BernhardYellow_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801888594935923521, guid: 5c447714785e13c42b2f44b8d78a1f9c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4801888594935923521, guid: 5c447714785e13c42b2f44b8d78a1f9c,
         type: 3}
@@ -2022,6 +2230,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4529726302227979916, guid: b209d13557f419b418798f1caa1c7380,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529726302227979916, guid: b209d13557f419b418798f1caa1c7380,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2054,6 +2267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PugYellow_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577726573982889224, guid: a54413a3873c9034f98c8d4976f5b539,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1577726573982889224, guid: a54413a3873c9034f98c8d4976f5b539,
         type: 3}
@@ -2142,6 +2360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8423798859852879221, guid: 22a8dd37567f41c4eaf9e704da8e3daf,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423798859852879221, guid: 22a8dd37567f41c4eaf9e704da8e3daf,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2227,6 +2450,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 392251026808411656, guid: 6c21d85ea3549494888e8c26295a2c5e,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 392251026808411656, guid: 6c21d85ea3549494888e8c26295a2c5e,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2309,6 +2537,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PoodleGreen_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 307477180217716207, guid: 29205bf0a3e21cb48ab3505c8583cf79,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 307477180217716207, guid: 29205bf0a3e21cb48ab3505c8583cf79,
         type: 3}

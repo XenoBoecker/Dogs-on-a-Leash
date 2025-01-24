@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
     MapManager mapManager;
 
     [SerializeField] string endGameSceneName = "GameOver";
+    [SerializeField] string failedEndGameSceneName = "GameOverFailed";
 
     [SerializeField] TMP_Text timeText;
 
@@ -22,9 +23,12 @@ public class ScoreManager : MonoBehaviour
 
     int totalScore;
 
+    bool waitingForGameStart = true;
+
     private void Awake()
     {
         Instance = this;
+        FindObjectOfType<CameraMovement>().OnFlyThroughFinished += StartTimer;
     }
 
     // Start is called before the first frame update
@@ -46,15 +50,22 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       timeLeft -= Time.deltaTime;
-
         timeText.text = "Time: " + timeLeft.ToString("F2");
+
+        if (waitingForGameStart) return;
+
+        timeLeft -= Time.deltaTime;
 
         if (timeLeft <= 0)
         {
             timeLeft = 0;
             EndGame();
         }
+    }
+
+    void StartTimer()
+    {
+        waitingForGameStart = false;
     }
 
     private void SubtractObstaclePoints(Obstacle obstacle)
@@ -76,7 +87,8 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("Score", totalScore);
         PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
 
-        sceneChanger.LoadScene(endGameSceneName);
+        if ((int)timeLeft == 0) sceneChanger.LoadScene(failedEndGameSceneName);
+        else sceneChanger.LoadScene(endGameSceneName);
     }
 
     public void HackSetTimeLeft(float t)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameSetup : MonoBehaviour
 {
@@ -7,8 +8,8 @@ public class GameSetup : MonoBehaviour
     OnlineDogSpawner ds;
     HumanConnectionManager hcm;
 
-    CameraMovement cm;
     HumanProgressBar hpb;
+    CameraMovement cm;
 
     private void Awake()
     {
@@ -28,9 +29,11 @@ public class GameSetup : MonoBehaviour
         else Debug.Log("No HumanConnectionManager found");
         if (ds != null) ds.Setup();
         else Debug.Log("No OnlineDogSpawner found");
-        if (cm != null) cm.Setup();
-        else Debug.Log("No CameraMovement found");
         if (hpb != null) hpb.Setup();
         else Debug.Log("No HumanProgressBar found");
+        if (cm != null) cm.Setup();
+        else Debug.Log("No CameraMovement found");
+
+
     }
 }
