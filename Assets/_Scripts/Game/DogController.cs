@@ -79,7 +79,7 @@ public class DogController : MonoBehaviour
         if (targetDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * speedMultiplier * Time.fixedDeltaTime);
             transform.rotation = rotation;
             
             // Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
@@ -103,6 +103,8 @@ public class DogController : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+
+        rb.velocity = rb.velocity * speedMultiplier;
     }
 
     // void FixedUpdate()

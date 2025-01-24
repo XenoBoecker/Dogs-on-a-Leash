@@ -39,7 +39,7 @@ public class LeashManager : MonoBehaviour
 
     Coroutine unstuckDogCoroutine;
 
-    public bool pushToPull = false;
+    public bool enableDraggingMode = false;
 
     void Start()
     {
@@ -81,6 +81,10 @@ public class LeashManager : MonoBehaviour
     void FixedUpdate()
     {
         ApplyPhysics();
+        if(enableDraggingMode)
+        {
+            PullHuman();
+        }
     }
 
     void UpdateLeashSegmentsDogSide()
@@ -142,7 +146,6 @@ public class LeashManager : MonoBehaviour
 
             float angle = Vector3.Angle(dogToSegment, segmentToHuman);
 
-            Debug.Log("AngleDog::" + angle);
             // If the angle is too small, do not remove the segment
             if (angle > 15)
             {
@@ -360,7 +363,7 @@ public class LeashManager : MonoBehaviour
             stuckTimer = 0f;
         }
 
-        if(stuckTimer > 3f)
+        if(stuckTimer > 2f)
         {
             if(leashSegments.Count == 0)
             {
@@ -429,19 +432,7 @@ public class LeashManager : MonoBehaviour
                     return;
                 }
             }
-            if(pushToPull) return;
-        
-            if (currentLength >= (maxLeashLength - 0.5f))
-            {
-                if (leashSegments.Count > 0)
-                {
-                    humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-                }
-                else
-                {
-                    humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
-                }
-            }
+            
         }
 
         stuckTimer = 0f;
@@ -527,7 +518,7 @@ public class LeashManager : MonoBehaviour
 
         Vector3 startPosition = gameObject.transform.position;
 
-        float timePerSegment = 1.5f/(leashSegments.Count);
+        float timePerSegment = 1f/(leashSegments.Count);
 
         while(elapsedTime < timePerSegment)
         {
@@ -553,13 +544,18 @@ public class LeashManager : MonoBehaviour
             elapsedTime = 0f;
         }
 
-        Debug.Log("Unstuck dog leash done");
+        startPosition = leashPositions[leashPositions.Count - 1];
+
+        Vector3 direction = (leashTarget.position - startPosition).normalized;
+        Vector3 endPosition = startPosition + direction * Vector3.Distance(startPosition, leashTarget.position) * 0.8f;
 
         while (elapsedTime < timePerSegment)
         {
             myDogRigidbody.velocity = Vector3.zero;
 
-            myDogRigidbody.MovePosition(Vector3.Lerp(leashPositions[leashPositions.Count - 1], leashTarget.position, elapsedTime/timePerSegment));
+            Debug.Log("MovingDoggoto end " + Vector3.Lerp(startPosition, endPosition, elapsedTime / timePerSegment));
+
+            myDogRigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, elapsedTime / timePerSegment));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -573,7 +569,6 @@ public class LeashManager : MonoBehaviour
 
     public void PullHuman()
     {
-        if(!pushToPull) return;
 
         if (currentLength >= (maxLeashLength - 0.5f))
         {
