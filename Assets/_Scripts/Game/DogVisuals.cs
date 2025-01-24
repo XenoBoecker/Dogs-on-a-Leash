@@ -33,7 +33,6 @@ public class DogVisuals : MonoBehaviour
 
     public void SetColorIndex(int i)
     {
-        Debug.Log("New color index: " + i);
         colorIndex = i;
 
         UpdateVisuals();
