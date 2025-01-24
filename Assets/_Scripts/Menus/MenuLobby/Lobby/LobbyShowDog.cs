@@ -13,6 +13,8 @@ public class LobbyShowDog : MonoBehaviour
     [SerializeField] int colorIndex;
 
     [SerializeField] Transform dogModelParent;
+
+    [SerializeField] GameObject menuDogPrefab;
     GameObject currentDogModel;
 
 
@@ -43,11 +45,19 @@ public class LobbyShowDog : MonoBehaviour
 
         if(dogNameText != null)dogNameText.text = dogData.name;
 
+        // TODO: dont need to destroy every time
+
         if(currentDogModel != null) Destroy(currentDogModel);
-        currentDogModel = Instantiate(dogData.dogObjects[colorIndex]);
+        currentDogModel = Instantiate(menuDogPrefab);
         currentDogModel.transform.localScale = new Vector3 (DogScale, DogScale, DogScale);
         currentDogModel.transform.SetParent(dogModelParent);
         currentDogModel.transform.position = dogModelParent.transform.position;
+
+        DogVisuals visuals = currentDogModel.GetComponentInChildren<DogVisuals>();
+
+        visuals.SetDogID(dogData.id);
+        visuals.SetColorIndex(colorIndex);
+        visuals.SetAccessorieIndex(lobbyDogSelector.CurrentSelectedAccessorieIndex);
 
         if (lobbyDogSelector.IsSelectionConfirmed)
         {

@@ -20,6 +20,7 @@ public class DogController : MonoBehaviour
     protected Vector2 movementInput; // Current input values (set externally)
 
     protected Rigidbody rb;
+    public Rigidbody RB => rb;
     
     private float currentSpeed = 0f; // Current speed magnitude
     private float accelerationTimer = 0f; // Timer for acceleration curve

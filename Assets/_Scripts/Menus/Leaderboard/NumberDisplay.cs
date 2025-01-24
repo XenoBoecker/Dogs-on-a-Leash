@@ -16,7 +16,7 @@ public class NumberDisplay : MonoBehaviour
 
     public void SetNumber(int number)
     {
-        return;
+        if(numberSprites.Count == 0) return;
 
         // Clear existing digits
         foreach (GameObject digitObject in digitObjects)

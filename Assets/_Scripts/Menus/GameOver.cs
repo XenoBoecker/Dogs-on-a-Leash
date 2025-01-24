@@ -11,6 +11,9 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] TMP_Text objectiveScoreText, timeLeftText, finalScoreText;
 
+
+    [SerializeField] int scorePerSecondLeft = 500;
+
     int objectiveScore;
     int timeLeft;
 
@@ -35,7 +38,7 @@ public class GameOver : MonoBehaviour
 
     private int CalculateTotalScore()
     {
-        return objectiveScore * timeLeft;
+        return objectiveScore + timeLeft * scorePerSecondLeft;
     }
 
     // Update is called once per frame

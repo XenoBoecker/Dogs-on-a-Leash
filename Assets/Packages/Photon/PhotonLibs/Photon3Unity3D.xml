@@ -1009,7 +1009,7 @@
             </summary>
         </member>
         <member name="F:ExitGames.Client.Photon.PeerBase.TrafficPackageHeaderSize">
-            <summary>EnetPeer will set this value, so trafficstats can use it. TCP has 0 bytes per package extra</summary>
+            <summary>EnetPeer will set this value, so traffidogStateTrackerats can use it. TCP has 0 bytes per package extra</summary>
         </member>
         <member name="P:ExitGames.Client.Photon.PeerBase.TrafficStatsEnabled">
             <summary>See PhotonPeer value.</summary>
@@ -1685,11 +1685,11 @@
         </member>
         <member name="P:ExitGames.Client.Photon.PhotonPeer.TrafficStatsEnabled">
             <summary>
-            Enables or disables collection of statistics in TrafficStatsIncoming, TrafficStatsOutgoing and TrafficstatsGameLevel.
+            Enables or disables collection of statistics in TrafficStatsIncoming, TrafficStatsOutgoing and TraffidogStateTrackeratsGameLevel.
             </summary>
             <remarks>
             Setting this to true, also starts the stopwatch to measure the timespan the stats are collected.
-            Enables the traffic statistics of a peer: TrafficStatsIncoming, TrafficStatsOutgoing and TrafficstatsGameLevel (nothing else).
+            Enables the traffic statistics of a peer: TrafficStatsIncoming, TrafficStatsOutgoing and TraffidogStateTrackeratsGameLevel (nothing else).
             Default value: false (disabled).
             </remarks>
         </member>
