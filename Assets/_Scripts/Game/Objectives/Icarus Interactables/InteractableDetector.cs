@@ -9,6 +9,8 @@ public class InteractableDetector : MonoBehaviour
 
     PlayerDogController playerDogController;
 
+    public static int PickupCount;
+
     private List<Interactable> _interactablesInRange = new List<Interactable>();
 
     Interactable currentClosestInteractable;

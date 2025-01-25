@@ -75,6 +75,12 @@ public class PlayerDogController : DogController
             {
                 OnBark?.Invoke();
             }
+        }else if(context.action.name == "Pause")
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                PauseMenu.Instance.TogglePauseGame();
+            }
         }
     }
 

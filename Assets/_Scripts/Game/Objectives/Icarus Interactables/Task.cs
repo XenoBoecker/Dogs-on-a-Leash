@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public abstract class Task : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public abstract class Task : MonoBehaviour
     protected Interactable interactable;
 
     protected bool isInteracting;
+
+
     public event Action OnInteractEnd;
 
     public event Action OnStartTask;

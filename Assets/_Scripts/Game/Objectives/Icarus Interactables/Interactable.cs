@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Interactable : MonoBehaviour
 {    
@@ -13,6 +14,8 @@ public class Interactable : MonoBehaviour
     [SerializeField] bool singleDogInteractable = true;
 
     public Transform MyTransform { get; set; }
+
+    [SerializeField] VisualEffect completeTaskVFX;
     public Action OnInteractEnd { get; set; }
 
     public List<InteractableDetector> currentInteractors = new List<InteractableDetector>();
@@ -32,6 +35,8 @@ public class Interactable : MonoBehaviour
     private void Start()
     {
         if(task != null) task.OnInteractEnd += EndAllInteractions;
+
+        if(completeTaskVFX != null) completeTaskVFX.Stop();
 
         HideInteractable();
     }
@@ -92,13 +97,20 @@ public class Interactable : MonoBehaviour
 
     internal virtual void CompleteTask()
     {
+        InteractableDetector.PickupCount++;
+
+        if (completeTaskVFX != null)
+        {
+            completeTaskVFX.Play();
+            completeTaskVFX.transform.SetParent(null);
+            Destroy(completeTaskVFX, 1f);
+        }
+
         EndAllInteractions();
     }
 
     public void CancelTask(InteractableDetector interactor)
     {
-        Debug.Log("Remove " + interactor.name);
-
         currentInteractors.Remove(interactor);
 
         if (currentInteractors.Count == 0)
