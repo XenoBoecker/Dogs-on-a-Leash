@@ -903,6 +903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e263adb7ec085840bf0a31b8283d228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeanDirInt: 0
+  leanMinAngle: 20
 --- !u!1 &7479406289413004048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,10 +1119,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8303905784497790103}
     m_Modifications:
+    - target: {fileID: 2024202304885842474, guid: e95527dde6120fc4db700499a2d7f0aa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235621975963207521, guid: e95527dde6120fc4db700499a2d7f0aa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4016972365744640007, guid: e95527dde6120fc4db700499a2d7f0aa,
         type: 3}
       propertyPath: m_Name
       value: DogVisuals
+      objectReference: {fileID: 0}
+    - target: {fileID: 5806139805624767917, guid: e95527dde6120fc4db700499a2d7f0aa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339459451517644954, guid: e95527dde6120fc4db700499a2d7f0aa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8466410269292631659, guid: e95527dde6120fc4db700499a2d7f0aa,
         type: 3}

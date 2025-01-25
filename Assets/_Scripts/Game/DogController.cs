@@ -17,7 +17,8 @@ public class DogController : MonoBehaviour
 
     float speedBeforeDecelleration;
 
-    protected Vector2 movementInput; // Current input values (set externally)
+    protected Vector2 movementInput; // Current input values (set externally in derived class)
+    public Vector2 MovementInput => movementInput;
 
     protected Rigidbody rb;
     public Rigidbody RB => rb;
@@ -53,7 +54,7 @@ public class DogController : MonoBehaviour
             accelerationTimer = Mathf.Clamp(accelerationTimer, 0f, accelerationTime);
 
             // Get speed based on acceleration curve
-            currentSpeed = accelerationCurve.Evaluate(accelerationTimer / accelerationTime) * maxSpeed;
+            currentSpeed = accelerationCurve.Evaluate(accelerationTimer / accelerationTime) * maxSpeed * movementInput.magnitude;
 
             currentSpeed = Mathf.Max(currentSpeed, rb.velocity.magnitude);
 
@@ -82,7 +83,7 @@ public class DogController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
             Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * speedMultiplier * Time.fixedDeltaTime);
             transform.rotation = rotation;
-            
+
             // Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
             // Quaternion rotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
             // rb.rotation = rotation;
