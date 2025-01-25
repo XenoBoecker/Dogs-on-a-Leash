@@ -19,8 +19,6 @@ public class LeashManager : MonoBehaviour
 
     public LayerMask intersectableObjects;
 
-    public LineRenderer lineRenderer;
-
     Rigidbody myDogRigidbody;
 
     Rigidbody humanRigidbody;
@@ -59,7 +57,6 @@ public class LeashManager : MonoBehaviour
 
     void Update()
     {
-        UpdateLineRenderer();
         if(leashSegments.Count > 0)
         {
             UpdateLeashSegmentsDogSide();
@@ -128,8 +125,8 @@ public class LeashManager : MonoBehaviour
         {
             if(Vector3.Distance(hit.point, leashSegments[0].gameObject.GetComponent<LeashSegment>().nextSegment.position) > 0.2)
             {
-                // // Debug.Log("Hit something");
-                // Debug.Log(hit.transform.name);
+                // Debug.Log("Hit something");
+                Debug.Log(hit.transform.name);
                 // GameObject thing = Instantiate(testPrefab, hit.point, Quaternion.identity);
                 // Destroy(thing, 1f);
                 return;
@@ -149,6 +146,7 @@ public class LeashManager : MonoBehaviour
             // If the angle is too small, do not remove the segment
             if (angle > 15)
             {
+                Debug.Log("AngleDog::" + angle);
                 return;
             }
 
@@ -302,35 +300,7 @@ public class LeashManager : MonoBehaviour
     }
 
 
-    void UpdateLineRenderer()
-    {
-        if (leashTarget == null) return;
-
-        if(leashSegments.Count == 0)
-        {
-            lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, dogLeashAttachmentPoint.transform.position);
-            lineRenderer.SetPosition(1, humanLeashAttachmentPoint.position);
-
-            // Debug.Log("No leash segments");
-            return;
-        }
-        // Debug.Log("Updating line renderer1");
-        lineRenderer.positionCount = leashSegments.Count + 2;
-        lineRenderer.SetPosition(0, dogLeashAttachmentPoint.transform.position);
-        
-        for(int i = 0; i < leashSegments.Count; i++)
-        {
-            // Debug.Log("Updating line renderer::" + i);
-            lineRenderer.SetPosition(i + 1, leashSegments[i].transform.position);
-            if(i == leashSegments.Count - 1)
-            {
-                // Debug.Log("Last segment");
-                lineRenderer.SetPosition(i + 2, humanLeashAttachmentPoint.position);
-            }
-        }
-
-    }
+    
 
     
 
@@ -452,6 +422,11 @@ public class LeashManager : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         unstuckDogCoroutine = null;
 
+    }
+
+    public float GetCurrentLength()
+    {
+        return currentLength;
     }
 
     // private IEnumerator UnstuckDogLeash(float duration)
@@ -590,6 +565,11 @@ public class LeashManager : MonoBehaviour
             else return (gameObject.transform.position - leashTarget.position).normalized * humanPullForce;
         }
         else return Vector3.zero;
+    }
+
+    public float GetMaxLeashLength()
+    {
+        return maxLeashLength;
     }
 }
 
