@@ -11,6 +11,9 @@ public class DogProfileScreen : MonoBehaviour
 
     [SerializeField] GameObject[] dogPanels;
 
+
+    [SerializeField] DogVisuals dogVisual;
+
     [SerializeField] GameObject[] dogModels;
 
 
@@ -62,6 +65,10 @@ public class DogProfileScreen : MonoBehaviour
 
     void ShowDog(bool keepRotation = false)
     {
+        dogVisual.SetDogID(currentDogIndex);
+        dogVisual.SetColorIndex(currentColorIndex);
+        return;
+
         if (currentDogModel != null) Destroy(currentDogModel);
 
         for (int i = 0; i < dogModels.Length; i++)

@@ -21,13 +21,22 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] AnimationCurve flyCurve;
     [SerializeField] float flyThroughDuration = 5f;
 
+
+    [SerializeField] NumberDisplay countdownDisplay;
+    [SerializeField] int startCountdownDuration = 3;
+
     bool inFlyThrough;
 
     public event Action OnFlyThroughFinished;
 
+    private void Start()
+    {
+        countdownDisplay.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I)) FinishFlythrough();
+        if (Input.GetKeyDown(KeyCode.I)) EndFlyThrough();
     }
 
     internal void Setup()
@@ -65,16 +74,41 @@ public class CameraMovement : MonoBehaviour
             yield return null;
         }
 
-        FinishFlythrough();
+        StartCoroutine(GameStartCountdown());
     }
 
-    void FinishFlythrough()
+    private IEnumerator GameStartCountdown()
     {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.countDown);
+
+        countdownDisplay.gameObject.SetActive(true);
+
+        for (float i = 0; i < startCountdownDuration; i += Time.unscaledDeltaTime)
+        {
+            int number = startCountdownDuration - (int)i;
+
+            countdownDisplay.SetNumber(number);
+
+            yield return null;
+        }
+
+        countdownDisplay.gameObject.SetActive(false);
+
+
+        EndFlyThrough();
+    }
+
+    void EndFlyThrough()
+    {
+        StopAllCoroutines();
+
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
 
         Time.timeScale = 1;
 
         inFlyThrough = false;
+
+        countdownDisplay.gameObject.SetActive(false);
 
         OnFlyThroughFinished?.Invoke();
     }

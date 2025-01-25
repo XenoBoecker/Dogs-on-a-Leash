@@ -53,7 +53,7 @@ public class LeashManager : MonoBehaviour
         leashTarget = GameObject.Find("Human").transform;
         humanRigidbody = leashTarget.GetComponent<Rigidbody>();
 
-        dogLeashAttachmentPoint = GetComponent<DogVisuals>().LeashAttachmentPoint;
+        dogLeashAttachmentPoint = GetComponent<PlayerDogVisuals>().LeashAttachmentPoint;
         humanLeashAttachmentPoint = leashTarget.GetComponent<HumanMovement>().LeashAttachmentPoint;
     }
 

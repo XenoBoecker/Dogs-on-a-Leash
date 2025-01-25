@@ -22,10 +22,14 @@ public class OnlineDogSpawner : MonoBehaviour
             if (PhotonNetwork.IsConnected) dog = PhotonNetwork.Instantiate(dogPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<Dog>();
             else dog = Instantiate(dogPrefab, spawnPoints[i].position, Quaternion.identity).GetComponent<Dog>();
 
-            // Debug.Log("Local player " + i + ": DogDataIndex: " + localPlayers[i].DogData.id);
+            Debug.Log("Local player " + i + ": DogDataIndex: "
+                + localPlayers[i].
+                DogData
+                .id);
 
             dog.SetDogData(localPlayers[i].DogData);
             dog.SetColor(localPlayers[i].ColorIndex);
+            dog.SetAccessorieIndex(localPlayers[i].AccessorieIndex);
 
             dog.SetPlayerInput(localPlayers[i].GetComponent<PlayerInput>());
             localPlayers[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");

@@ -766,7 +766,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5348547364277628424}
         m_TargetAssemblyTypeName: LobbyDogSelector, Assembly-CSharp
-        m_MethodName: SelectPreviousDog
+        m_MethodName: SelectPreviousAccessorie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -884,6 +884,7 @@ MonoBehaviour:
   DogScale: 2.7
   colorIndex: 0
   dogModelParent: {fileID: 0}
+  menuDogPrefab: {fileID: 0}
   dogSelectArrows: {fileID: 4117813185389702184}
   selectAccessoriePanel: {fileID: 5296094427060675423}
   showConfirmed: {fileID: 1980556575134170182}
@@ -1456,7 +1457,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5348547364277628424}
         m_TargetAssemblyTypeName: LobbyDogSelector, Assembly-CSharp
-        m_MethodName: SelectNextDog
+        m_MethodName: SelectNextAccessorie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

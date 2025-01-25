@@ -1,38 +1,75 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class DogVisuals : MonoBehaviour
 {
-    Dog dog;
+    protected int dogID;
+    public int DogID => dogID;
+    int colorIndex;
+    int accessorieIndex;
 
-    [SerializeField] GameObject[] dogVisuals;
+    [SerializeField] GameObject[] dogModels;
 
-    [SerializeField] Transform[] leashAttachmentPoints;
+    [SerializeField] Material[] dogMaterials;
 
-    public Transform LeashAttachmentPoint;
 
-    private void Awake()
+    [SerializeField] List<GameObject> bernardAccessories;
+    [SerializeField] List<GameObject> poodleAccessories;
+    [SerializeField] List<GameObject> pugAccessories;
+    [SerializeField] List<GameObject> retrieverAccessories;
+
+    public event Action OnUpdateVisuals;
+
+    protected virtual void UpdateVisuals()
     {
-        dog = GetComponent<Dog>();
-        dog.OnDogDataChanged += UpdateVisuals;
+        for (int i = 0; i < dogModels.Length; i++)
+        {
+            dogModels[i].SetActive(false);
+        }
+
+        dogModels[dogID].SetActive(true);
+        dogModels[dogID].GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = dogMaterials[dogID * 4 + colorIndex];
+
+        List<GameObject> currentDogAccessories = GetCurrentDogAccessorieList();
+
+        for (int i = 0; i < currentDogAccessories.Count; i++)
+        {
+            currentDogAccessories[i].SetActive(false);
+        }
+        currentDogAccessories[accessorieIndex].SetActive(true);
+
+        OnUpdateVisuals?.Invoke();
+    }
+
+    private List<GameObject> GetCurrentDogAccessorieList()
+    {
+        if (dogID == 0) return bernardAccessories;
+        else if (dogID == 1) return poodleAccessories;
+        else if (dogID == 2) return pugAccessories;
+        else return retrieverAccessories;
+    }
+
+    public void SetDogID(int id)
+    {
+        dogID = id;
 
         UpdateVisuals();
     }
 
-    private void UpdateVisuals()
+    public void SetColorIndex(int i)
     {
-        int dogVisualsIndex = dog.DogData.id * 4 + dog.ColorIndex;
+        colorIndex = i;
 
-        // Debug.Log("Visual index: " + dogVisualsIndex + "; dogDataID: " + dog.DogData.id + "; Color index: " + dog.ColorIndex);
+        UpdateVisuals();
+    }
 
-        LeashAttachmentPoint = leashAttachmentPoints[dog.DogData.id];
+    public void SetAccessorieIndex(int i)
+    {
+        Debug.Log("SetAccessorieIndex: " + i);
 
-        for (int i = 0; i < dogVisuals.Length; i++)
-        {
-            if (i == dogVisualsIndex)
-            {
-                dogVisuals[i].SetActive(true);
-            }
-            else dogVisuals[i].SetActive(false);
-        }
+        accessorieIndex = i;
+
+        UpdateVisuals();
     }
 }
