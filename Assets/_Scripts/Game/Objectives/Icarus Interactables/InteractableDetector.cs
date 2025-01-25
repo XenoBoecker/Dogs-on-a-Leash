@@ -16,8 +16,7 @@ public class InteractableDetector : MonoBehaviour
     Interactable currentInteractingInteractable;
     public Interactable CurrentInteractingInteractable => currentInteractingInteractable;
 
-    public delegate void OnInteracted();
-    public OnInteracted onInteracted;
+    public event Action OnInteracted;
 
     public event Action OnInteractEnded;
 
@@ -110,7 +109,7 @@ public class InteractableDetector : MonoBehaviour
 
         currentInteractingInteractable.Interact(this);
         // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
-        if (currentInteractingInteractable != null) onInteracted?.Invoke();
+        if (currentInteractingInteractable != null) OnInteracted?.Invoke();
     }
 
     void InteractWithClosestInteractable()

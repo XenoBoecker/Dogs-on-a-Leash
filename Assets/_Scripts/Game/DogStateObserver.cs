@@ -15,10 +15,11 @@ public class DogStateObserver : MonoBehaviour
 
 
     bool wasWalkingLastFrame;
-    float moveXInputLastFrame;
 
     public float CurrentSpeedPercentage => dogRB.velocity.magnitude / pdc.maxSpeed;
     public int LeanDirInt;
+
+    public bool Digging;
 
 
     [SerializeField] float leanMinAngle = 5f;
@@ -31,10 +32,7 @@ public class DogStateObserver : MonoBehaviour
         detector = GetComponentInChildren<InteractableDetector>();
 
         pdc.OnBark += () => OnBark?.Invoke();
-        pdc.OnInteract += OnInteract;
-
-        detector.onInteracted += InteractStarted;
-        detector.OnInteractEnded += InteractEnded;
+        detector.OnInteracted += OnInteract;
     }
 
     private void Update()
@@ -42,11 +40,11 @@ public class DogStateObserver : MonoBehaviour
         CheckWalking();
         CheckLeaning();
 
-
+        Digging = IsDigging();
         wasWalkingLastFrame = IsWalking();
-        moveXInputLastFrame = dogRB.velocity.x;
 
     }
+
     private void CheckLeaning()
     {
 
@@ -77,19 +75,18 @@ public class DogStateObserver : MonoBehaviour
             OnStopWalking?.Invoke();
         }
     }
+    private bool IsDigging()
+    {
+        Interactable currentInteractable = detector.CurrentInteractingInteractable;
+
+        if (currentInteractable == null) return false;
+
+        // Check if the current task is of type HoldButtonTask
+        return currentInteractable.Task is HoldButtonTask;
+    }
 
     private bool IsWalking()
     {
         return dogRB.velocity.magnitude > 0.1f;
-    }
-
-    private void InteractStarted()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void InteractEnded()
-    {
-        throw new NotImplementedException();
     }
 }
