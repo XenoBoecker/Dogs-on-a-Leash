@@ -128,8 +128,8 @@ public class LeashManager : MonoBehaviour
         {
             if(Vector3.Distance(hit.point, leashSegments[0].gameObject.GetComponent<LeashSegment>().nextSegment.position) > 0.2)
             {
-                // // Debug.Log("Hit something");
-                // Debug.Log(hit.transform.name);
+                // Debug.Log("Hit something");
+                Debug.Log(hit.transform.name);
                 // GameObject thing = Instantiate(testPrefab, hit.point, Quaternion.identity);
                 // Destroy(thing, 1f);
                 return;
@@ -149,6 +149,7 @@ public class LeashManager : MonoBehaviour
             // If the angle is too small, do not remove the segment
             if (angle > 15)
             {
+                Debug.Log("AngleDog::" + angle);
                 return;
             }
 
@@ -454,6 +455,11 @@ public class LeashManager : MonoBehaviour
 
     }
 
+    public float GetCurrentLength()
+    {
+        return currentLength;
+    }
+
     // private IEnumerator UnstuckDogLeash(float duration)
     // {
     //     if (leashSegments.Count == 0)
@@ -590,6 +596,11 @@ public class LeashManager : MonoBehaviour
             else return (gameObject.transform.position - leashTarget.position).normalized * humanPullForce;
         }
         else return Vector3.zero;
+    }
+
+    public float GetMaxLeashLength()
+    {
+        return maxLeashLength;
     }
 }
 
