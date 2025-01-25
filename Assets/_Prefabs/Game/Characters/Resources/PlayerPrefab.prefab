@@ -590,6 +590,7 @@ GameObject:
   - component: {fileID: 5202031553922220188}
   - component: {fileID: -2074247320880927037}
   - component: {fileID: -5398259854116279826}
+  - component: {fileID: 7041340114256333138}
   m_Layer: 8
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -826,7 +827,6 @@ MonoBehaviour:
   intersectableObjects:
     serializedVersion: 2
     m_Bits: 8
-  lineRenderer: {fileID: 7267297438017012183}
   leashSegmentLengthMinimum: 0.2
   maxLeashLength: 6
   leashSegmentAngle: 10
@@ -904,7 +904,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LeanDirInt: 0
+  Digging: 0
   leanMinAngle: 20
+--- !u!114 &7041340114256333138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477643650623274892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35c13daf17b707409988c5c6db71362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 7267297438017012183}
+  startPoint: {fileID: 4348530114093548028}
+  endPoint: {fileID: 0}
+  leashManager: {fileID: 4966345517387302025}
+  leashVisualSegment: 30
+  moveSpeed: 10
 --- !u!1 &7479406289413004048
 GameObject:
   m_ObjectHideFlags: 0

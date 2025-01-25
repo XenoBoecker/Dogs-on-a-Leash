@@ -19,8 +19,6 @@ public class LeashManager : MonoBehaviour
 
     public LayerMask intersectableObjects;
 
-    public LineRenderer lineRenderer;
-
     Rigidbody myDogRigidbody;
 
     Rigidbody humanRigidbody;
@@ -59,7 +57,6 @@ public class LeashManager : MonoBehaviour
 
     void Update()
     {
-        UpdateLineRenderer();
         if(leashSegments.Count > 0)
         {
             UpdateLeashSegmentsDogSide();
@@ -303,35 +300,7 @@ public class LeashManager : MonoBehaviour
     }
 
 
-    void UpdateLineRenderer()
-    {
-        if (leashTarget == null) return;
-
-        if(leashSegments.Count == 0)
-        {
-            lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, dogLeashAttachmentPoint.transform.position);
-            lineRenderer.SetPosition(1, humanLeashAttachmentPoint.position);
-
-            // Debug.Log("No leash segments");
-            return;
-        }
-        // Debug.Log("Updating line renderer1");
-        lineRenderer.positionCount = leashSegments.Count + 2;
-        lineRenderer.SetPosition(0, dogLeashAttachmentPoint.transform.position);
-        
-        for(int i = 0; i < leashSegments.Count; i++)
-        {
-            // Debug.Log("Updating line renderer::" + i);
-            lineRenderer.SetPosition(i + 1, leashSegments[i].transform.position);
-            if(i == leashSegments.Count - 1)
-            {
-                // Debug.Log("Last segment");
-                lineRenderer.SetPosition(i + 2, humanLeashAttachmentPoint.position);
-            }
-        }
-
-    }
+    
 
     
 
