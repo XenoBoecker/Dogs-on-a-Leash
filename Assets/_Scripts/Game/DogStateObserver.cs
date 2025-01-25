@@ -32,7 +32,7 @@ public class DogStateObserver : MonoBehaviour
         detector = GetComponentInChildren<InteractableDetector>();
 
         pdc.OnBark += () => OnBark?.Invoke();
-        detector.OnInteracted += OnInteract;
+        detector.OnInteract += OnInteract;
     }
 
     private void Update()

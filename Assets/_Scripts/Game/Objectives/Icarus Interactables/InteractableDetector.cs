@@ -16,6 +16,7 @@ public class InteractableDetector : MonoBehaviour
     Interactable currentInteractingInteractable;
     public Interactable CurrentInteractingInteractable => currentInteractingInteractable;
 
+    public event Action OnInteract;
     public event Action OnInteracted;
 
     public event Action OnInteractEnded;
@@ -96,6 +97,8 @@ public class InteractableDetector : MonoBehaviour
 
     void StartInteraction(Interactable interactable)
     {
+        OnInteract?.Invoke();
+
         currentInteractingInteractable = interactable;
         currentInteractingInteractable.OnInteractEnd += EndCurrentInteraction;
 
@@ -108,6 +111,7 @@ public class InteractableDetector : MonoBehaviour
         playerDogController.StopMovement();
 
         currentInteractingInteractable.Interact(this);
+
         // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
         if (currentInteractingInteractable != null) OnInteracted?.Invoke();
     }
