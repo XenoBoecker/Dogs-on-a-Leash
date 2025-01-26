@@ -9,6 +9,8 @@ public class InteractableDetector : MonoBehaviour
 
     PlayerDogController playerDogController;
 
+    public static int PickupCount;
+
     private List<Interactable> _interactablesInRange = new List<Interactable>();
 
     Interactable currentClosestInteractable;
@@ -16,8 +18,8 @@ public class InteractableDetector : MonoBehaviour
     Interactable currentInteractingInteractable;
     public Interactable CurrentInteractingInteractable => currentInteractingInteractable;
 
-    public delegate void OnInteracted();
-    public OnInteracted onInteracted;
+    public event Action OnInteract;
+    public event Action OnInteracted;
 
     public event Action OnInteractEnded;
 
@@ -97,6 +99,8 @@ public class InteractableDetector : MonoBehaviour
 
     void StartInteraction(Interactable interactable)
     {
+        OnInteract?.Invoke();
+
         currentInteractingInteractable = interactable;
         currentInteractingInteractable.OnInteractEnd += EndCurrentInteraction;
 
@@ -109,8 +113,9 @@ public class InteractableDetector : MonoBehaviour
         playerDogController.StopMovement();
 
         currentInteractingInteractable.Interact(this);
+
         // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
-        if (currentInteractingInteractable != null) onInteracted?.Invoke();
+        if (currentInteractingInteractable != null) OnInteracted?.Invoke();
     }
 
     void InteractWithClosestInteractable()

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class HumanMovement : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class HumanMovement : MonoBehaviour
     float stunTime;
     bool isStunned => stunTime > 0;
 
+    public int BumpedCount;
+
+
+    [SerializeField] VisualEffect bumpPointLossVFX, stunVFX;
+
     public event Action<Obstacle> OnHitObstacle;
 
     void Awake()
@@ -26,6 +32,9 @@ public class HumanMovement : MonoBehaviour
         {
             Debug.LogError("No Rigidbody component found on this GameObject. Please attach one.");
         }
+
+        bumpPointLossVFX.Stop();
+        stunVFX.Stop();
     }
 
     void FixedUpdate()
@@ -40,6 +49,10 @@ public class HumanMovement : MonoBehaviour
         rb.rotation = Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0); // constrain to only y rotation
 
         if (isStunned) return;
+
+        stunVFX.Stop();
+        stunVFX.gameObject.SetActive(false);
+        Debug.Log("stop");
 
         MoveForward();
     }
@@ -76,9 +89,13 @@ public class HumanMovement : MonoBehaviour
 
         dir.y = 0;
 
+        bumpPointLossVFX.Play();
+
         Stun(obstacle.stunTime);
 
         rb.AddForce(dir * obstacle.CurrentPushBackForce * rb.mass, ForceMode.Impulse);
+
+        BumpedCount++;
 
         OnHitObstacle?.Invoke(obstacle);
     }
@@ -87,5 +104,7 @@ public class HumanMovement : MonoBehaviour
     {
         this.stunTime = stunTime;
 
+        stunVFX.gameObject.SetActive(true);
+        stunVFX.Play();
     }
 }

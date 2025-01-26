@@ -9,6 +9,8 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] List<Tile> startTiles;
     [SerializeField] List<Tile> availableTiles; // List of available tile prefabs
+
+    [SerializeField] List<Tile> highDifficultyTiles;
     [SerializeField] List<Tile> endTiles;
 
 
@@ -17,6 +19,9 @@ public class MapManager : MonoBehaviour
     public int levelLength = 120;
 
     public int currentPathLength;
+
+    List<int> tilesUsedIndices = new List<int>();
+    bool highDifficultyActivated;
 
     public event Action OnGameEnd;
 
@@ -49,7 +54,19 @@ public class MapManager : MonoBehaviour
 
         PlaceStartTile();
 
-        while(currentPathLength < levelLength) PlaceNextTile();
+        while (currentPathLength < levelLength)
+        {
+            PlaceNextTile();
+
+            if(currentPathLength > levelLength/2 && !highDifficultyActivated)
+            {
+                highDifficultyActivated = true;
+                for (int i = 0; i < highDifficultyTiles.Count; i++)
+                {
+                    availableTiles.Add(highDifficultyTiles[i]);
+                }
+            }
+        }
 
         PlaceEndTile();
     }
@@ -61,7 +78,20 @@ public class MapManager : MonoBehaviour
 
     protected void PlaceNextTile()
     {
-        PlaceTile(availableTiles[UnityEngine.Random.Range(0, availableTiles.Count)]);
+        int index = UnityEngine.Random.Range(0, availableTiles.Count);
+        int counter = 0;
+
+        while(counter < 50 && tilesUsedIndices.Contains(index) && tilesUsedIndices.Count < availableTiles.Count)
+        {
+            counter++;
+
+            index = UnityEngine.Random.Range(0, availableTiles.Count);
+        }
+
+
+        tilesUsedIndices.Add(index);
+
+        PlaceTile(availableTiles[index]);
     }
 
     private void PlaceEndTile()

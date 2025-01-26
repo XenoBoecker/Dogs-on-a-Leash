@@ -92,15 +92,18 @@ public class CameraMovement : MonoBehaviour
             yield return null;
         }
 
-        countdownDisplay.gameObject.SetActive(false);
-
-
         EndFlyThrough();
+
+        countdownDisplay.gameObject.SetActive(true);
+
+        countdownDisplay.SetNumber(0);
+        yield return new WaitForSeconds(1);
+        countdownDisplay.gameObject.SetActive(false);
     }
 
     void EndFlyThrough()
     {
-        StopAllCoroutines();
+        // StopAllCoroutines(); countdown problem
 
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
 

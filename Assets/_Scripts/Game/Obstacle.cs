@@ -5,21 +5,31 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
 
-    public float pushBackForce = 2f;
+    float pushBackForce = 2f;
     public float CurrentPushBackForce => pushBackForce * (playerCollisionCounter + 1);
 
+    [HideInInspector]
     public float stunTime = 1f;
 
 
-    [SerializeField] float pushBackCD = 2f;
+    float pushBackCD = 2f;
     float pushBackTimer;
 
+    [HideInInspector]
     public int scoreValue = -100;
     public int CurrentScoreValue => scoreValue * (playerCollisionCounter + 1);
 
     int playerCollisionCounter;
 
     HumanMovement human;
+
+    private void Start()
+    {
+        pushBackForce = ObstacleManager.Instance.pushBackForce;
+        pushBackCD = ObstacleManager.Instance.pushBackCD;
+        stunTime = ObstacleManager.Instance.stunTime;
+        scoreValue = ObstacleManager.Instance.scoreValue;
+    }
 
     private void Update()
     {
@@ -51,6 +61,8 @@ public class Obstacle : MonoBehaviour
 
         playerCollisionCounter++;
         pushBackTimer = pushBackCD;
+
+        ObstacleManager.Instance.AddToCollisionCount();
 
         Debug.Log("Obstacle push Human");
     }

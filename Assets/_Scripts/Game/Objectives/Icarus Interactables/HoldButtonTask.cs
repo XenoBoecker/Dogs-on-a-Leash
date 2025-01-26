@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class HoldButtonTask : Task
 {
@@ -7,7 +8,17 @@ public class HoldButtonTask : Task
     [SerializeField] float holdDownTime = 3f;
     [HideInInspector] public float interactSpeedMultiplier = 1f;
 
+
+    [SerializeField] VisualEffect vfx;
+
     float currentTime;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        vfx.Stop();
+    }
 
     protected override void UpdateLogic()
     {
@@ -37,5 +48,14 @@ public class HoldButtonTask : Task
 
         currentTime = 0f;
         fillImage.fillAmount = 0f;
+
+        vfx.Play();
+    }
+
+    public override void EndTask()
+    {
+        base.EndTask();
+
+        vfx.Stop();
     }
 }
