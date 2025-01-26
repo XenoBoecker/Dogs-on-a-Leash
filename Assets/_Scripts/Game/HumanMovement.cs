@@ -7,11 +7,16 @@ using UnityEngine.VFX;
 
 public class HumanMovement : MonoBehaviour
 {
+
+    [SerializeField] Vector3 debugRBVel;
+
     public Transform LeashAttachmentPoint;
 
 
     [SerializeField] float startWalkingDelay = 3f;
     [SerializeField] float minSpeed = 1f;
+
+    [SerializeField] float acceleration = 2f;
     public float speed = 5f; // Speed of movement
     private Rigidbody rb; // Rigidbody for physical movement
 
@@ -67,8 +72,18 @@ public class HumanMovement : MonoBehaviour
         }
 
         Vector3 direction = Vector3.right;
-        
-        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction);
+
+        if (rb.velocity.x < speed)
+        {
+            Debug.Log("SPeed up now!");
+            rb.AddForce(acceleration * direction);
+        }
+        else
+        {
+            Debug.Log("diff: " + rb.velocity.x + " - " + speed + " = " + (rb.velocity.x - speed));
+        }
+
+        debugRBVel = rb.velocity;
 
         if (rb.velocity.x < minSpeed) rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
 
