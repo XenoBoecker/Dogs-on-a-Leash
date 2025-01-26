@@ -402,9 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForce: 2
   stunTime: 0.5
-  pushBackCD: 2
   scoreValue: -100
 --- !u!1 &8123054731585486573
 GameObject:
@@ -472,9 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForce: 2
   stunTime: 0.5
-  pushBackCD: 2
   scoreValue: -100
 --- !u!1001 &92905194662150786
 PrefabInstance:
@@ -4684,6 +4680,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.539997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763599462624240251, guid: 2b44643633607ce44bc4469df5167675,
+        type: 3}
+      propertyPath: objectiveCount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7286743138418472505, guid: 2b44643633607ce44bc4469df5167675,
         type: 3}
