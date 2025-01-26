@@ -26,17 +26,7 @@ public class ChangeScenes : MonoBehaviour
         // Subscribe to the sceneLoaded event to handle behavior after loading a scene
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            EndAnim();
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            StartAnim();
-        }
-    }
+
     private void OnDestroy()
     {
         // Unsubscribe from the sceneLoaded event to avoid memory leaks

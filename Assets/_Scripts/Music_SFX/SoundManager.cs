@@ -5,7 +5,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
 
-    [SerializeField] AudioClip[] music;
+    [SerializeField] public AudioClip[] music;
     [SerializeField] AudioSource musicAudioSource;
     [SerializeField] AudioSource sfxAudioSource;
     bool musicOn = true;
@@ -29,11 +29,16 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
+        if(Instance == null) Instance = this;
+        else
         {
-            Destroy(Instance.gameObject);
+            if (Instance.music[0] != music[0])
+            {
+                Instance.SetMusic(music[0]);
+            }
+            Destroy(gameObject);
         }
-        Instance = this;
+        
 
         DontDestroyOnLoad(gameObject);
     }
@@ -58,6 +63,12 @@ public class SoundManager : MonoBehaviour
     {
         sfxVolume = volume;
         sfxAudioSource.volume = sfxVolume;
+    }
+
+    public void SetMusic(AudioClip musicClip)
+    {
+        musicAudioSource.clip = musicClip;
+        musicAudioSource.Play();
     }
 
     public void PlaySound(AudioClip clip, AudioSource source = null, float volumeMultiplier = 1, bool resetPitch = true)
