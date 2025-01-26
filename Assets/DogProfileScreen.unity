@@ -129,18 +129,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 759893487}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &80032626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2058326802591252454, guid: 34ca245762b11c9488b507cfd8ffb2fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 759893487}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f1c1e24b0ad3e4eb073c12422e2463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &439209967
 RectTransform:
   m_ObjectHideFlags: 0
@@ -525,7 +513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44757fcf0af712a4393e4c2d03cd18c2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4fb5d88d50bb62d478fded3b14f78f39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1098,7 +1086,7 @@ MonoBehaviour:
   - {fileID: 439209966}
   - {fileID: 1484611228}
   - {fileID: 330229012}
-  dogVisual: {fileID: 80032626}
+  dogVisual: {fileID: 1573584694}
   dogModels:
   - {fileID: 2456972442393801495, guid: a9c4150ed0bc54a43bcab013462d9258, type: 3}
   - {fileID: 5747772372907987842, guid: 45f4e9aac0c0ba94bace8c82dc280ea6, type: 3}
@@ -2052,6 +2040,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484611228}
   m_CullTransparentMesh: 1
+--- !u!114 &1573584694 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1923646804009821238, guid: 34ca245762b11c9488b507cfd8ffb2fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 759893487}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecadbdb16f7aad44b82d5d0a3938993e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1683640651
 GameObject:
   m_ObjectHideFlags: 0

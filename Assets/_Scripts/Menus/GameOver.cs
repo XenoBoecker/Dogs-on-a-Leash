@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameOver : MonoBehaviour
 {
 
-    [SerializeField] GameObject timesUpPanel;
+    [SerializeField] GameObject scorePanel;
 
     [SerializeField] TMP_Text objectiveScoreText, timeLeftText, finalScoreText;
 
@@ -36,6 +36,11 @@ public class GameOver : MonoBehaviour
         UpdateUI();
     }
 
+    private void Start()
+    {
+        scorePanel.SetActive(true);
+    }
+
     private int CalculateTotalScore()
     {
         return objectiveScore + timeLeft * scorePerSecondLeft;
@@ -44,9 +49,6 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void UpdateUI()
     {
-        if (timeLeft == 0) timesUpPanel.SetActive(true);
-        else timesUpPanel.SetActive(false);
-
         objectiveScoreText.text = "Score: " + objectiveScore.ToString();
         timeLeftText.text = "Time: " + timeLeft.ToString();
 
@@ -55,6 +57,8 @@ public class GameOver : MonoBehaviour
 
     public void ShowLeaderboard()
     {
+        scorePanel.SetActive(false);
+
         OnShowLeaderboard?.Invoke();
     }
 }

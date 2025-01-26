@@ -19,6 +19,9 @@ public class LeaderboardManager : MonoBehaviour
 
     List<PlayerScoreShow> playerScoreShowObjects = new List<PlayerScoreShow>();
 
+
+    [SerializeField] TMP_Text showYourScoreAgain;
+
     public Leaderboard leaderboard;
     public GameObject leaderBoardInputObject;
     public TMP_InputField playerNameInput;
@@ -67,6 +70,7 @@ public class LeaderboardManager : MonoBehaviour
 
     public void GameOver(int score)
     {
+        showYourScoreAgain.text = score.ToString();
         lastGameScore = score;
         leaderBoardInputObject.SetActive(true);
         submitScoreButton.gameObject.SetActive(true);

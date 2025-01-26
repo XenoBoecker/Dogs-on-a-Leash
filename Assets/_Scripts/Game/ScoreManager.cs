@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     HumanMovement human;
     MapManager mapManager;
+    InteractableDetector detector;
 
     [SerializeField] string endGameSceneName = "GameOver";
     [SerializeField] string failedEndGameSceneName = "GameOverFailed";
@@ -86,6 +87,10 @@ public class ScoreManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Score", totalScore);
         PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
+        PlayerPrefs.SetInt("Distance", (int)human.transform.position.x);
+        PlayerPrefs.SetInt("PickupCount", InteractableDetector.PickupCount);
+        PlayerPrefs.SetInt("BumpedCount", human.BumpedCount);
+        PlayerPrefs.SetInt("LevelLength", mapManager.currentPathLength);
 
         if ((int)timeLeft == 0) sceneChanger.LoadScene(failedEndGameSceneName);
         else sceneChanger.LoadScene(endGameSceneName);

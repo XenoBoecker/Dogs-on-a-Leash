@@ -303,15 +303,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music:
-  - {fileID: 8300000, guid: 50d6433acb61c304b9f6a92a71607781, type: 3}
+  - {fileID: 8300000, guid: 224ce0025b2bfb441974e34f1458b5a9, type: 3}
   musicAudioSource: {fileID: 6880539880263720575}
   sfxAudioSource: {fileID: 5261854424008113395}
+  musicVolume: 0.5
+  sfxVolume: 0.5
   uiSFX:
     buttonClickSound: {fileID: 8300000, guid: 20a06f0861977e049bb4382be5985cf5, type: 3}
     buttonHoverSound: {fileID: 8300000, guid: 1e4f79cff6ea41842bdc572848984739, type: 3}
     countDown: {fileID: 8300000, guid: 24e59cd6497d90b43b1d3b081ca6d7a1, type: 3}
     popUp: {fileID: 8300000, guid: 6dd3d874802dfb34babb598fc288bdd5, type: 3}
-  artifactSFX:
+  dogSFX:
     walk1: {fileID: 0}
     walk2: {fileID: 0}
     walk3: {fileID: 0}
@@ -322,8 +324,27 @@ MonoBehaviour:
     bark3: {fileID: 0}
     bark4: {fileID: 0}
     noise: []
-  stationSFX:
+  scoreSFX:
     smallGain: {fileID: 0}
     bigGain: {fileID: 0}
     smallLoss: {fileID: 0}
     bigLoss: {fileID: 0}
+  ambientSFX:
+    carNoise: {fileID: 0}
+    carHonk: {fileID: 0}
+    birdNoise: {fileID: 0}
+    fountainNoise: {fileID: 0}
+    riverNoise: {fileID: 0}
+    wind: {fileID: 0}
+    leavesRustling: {fileID: 0}
+    constructionSite: {fileID: 0}
+    childrenPlaying: {fileID: 0}
+  eventSFX:
+    pickUp: {fileID: 0}
+    sparkle: {fileID: 0}
+    dig: {fileID: 0}
+  humanSFX:
+    walking: {fileID: 0}
+    walking_street: {fileID: 0}
+    mumbling: {fileID: 0}
+    hit_obstacle: {fileID: 0}

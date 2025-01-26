@@ -45,6 +45,7 @@ public class PlayerDogController : DogController
             if (context.phase == InputActionPhase.Performed)
             {
                 movementInput = context.ReadValue<Vector2>();
+                Debug.Log("Move Input: " + movementInput);
             }
             else if (context.phase == InputActionPhase.Canceled)
             {
@@ -73,6 +74,12 @@ public class PlayerDogController : DogController
             if (context.phase == InputActionPhase.Performed)
             {
                 OnBark?.Invoke();
+            }
+        }else if(context.action.name == "Pause")
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                PauseMenu.Instance.TogglePauseGame();
             }
         }
     }
