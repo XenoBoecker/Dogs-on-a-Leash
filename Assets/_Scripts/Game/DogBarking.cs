@@ -15,6 +15,8 @@ public class DogBarking : MonoBehaviour
     void Awake()
     {
         dogBarkSounds = Resources.LoadAll<AudioClip>(dogSoundsPath);
+
+        barkEffect.Stop();
     }
 
     void OnEnable()

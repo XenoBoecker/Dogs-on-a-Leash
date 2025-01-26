@@ -40,6 +40,7 @@ public class HumanMovement : MonoBehaviour
 
         bumpPointLossVFX.Stop();
         stunVFX.Stop();
+        stunVFX.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
