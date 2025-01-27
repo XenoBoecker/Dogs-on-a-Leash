@@ -118,16 +118,17 @@ public class SoundManager : MonoBehaviour
     {
         public AudioClip walk1, walk2, walk3, walk4;
         public AudioClip[] walk_street;
-        public AudioClip bark1, bark2, bark3, bark4;
+        public AudioClip[] bark1, bark2, bark3, bark4;
         public AudioClip[] noise;
     }
 
     [System.Serializable]
     public struct HumanSFX
     {
-        public AudioClip walking;
-        public AudioClip walking_street;
-        public AudioClip mumbling;
+        public AudioClip[] walking;
+        public AudioClip[] walking_street;
+        public AudioClip mumbling; ////TODO: mumbling is now the humanNoise Array, therefore here not needed anymore
+        public AudioClip[] humanNoise;
         public AudioClip hit_obstacle;
     }
 
@@ -136,7 +137,7 @@ public class SoundManager : MonoBehaviour
     {
 
         public AudioClip smallGain, bigGain;
-        public AudioClip smallLoss, bigLoss;
+        public AudioClip smallLoss, bigLoss; //TODO: bigLoss likely not needed as there is no point deduction in the score screen
     }
 
     [System.Serializable]
@@ -150,8 +151,10 @@ public class SoundManager : MonoBehaviour
     [System.Serializable]
     public struct AmbientSFX
     {
-        public AudioClip carNoise, carHonk;
-        public AudioClip birdNoise, fountainNoise, riverNoise, wind, leavesRustling, constructionSite, childrenPlaying;
+        public AudioClip carNoise, carHonk; //TODO: carHonk is now an Array, therefore here not needed anymore
+        public AudioClip[] carHonk1;
+        public AudioClip birdNoise, fountainNoise, riverNoise, wind, leavesRustling, constructionSite, childrenPlaying; //TODO: birdNoise, fountainNoise & wind are now Arrays, therefore here not needed anymore
+        public AudioClip[] birdNoise1, fountainNoise1, wind1; 
     }
 
     [System.Serializable]
@@ -159,7 +162,9 @@ public class SoundManager : MonoBehaviour
     {
         public AudioClip buttonClickSound;
         public AudioClip buttonHoverSound;
-        public AudioClip countDown, popUp;
+        public AudioClip countDown, popUp; //TODO: countDown not needed anymore, instead countDownTick & countDownWhistle
+        public AudioClip countDownTick, countDownWhistle;
+        public AudioClip endOfGameTick, endOfGameWhistle;
     }
 }
 

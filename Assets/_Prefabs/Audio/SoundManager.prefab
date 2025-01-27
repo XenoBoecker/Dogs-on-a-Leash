@@ -309,20 +309,59 @@ MonoBehaviour:
   musicVolume: 0.5
   sfxVolume: 0.5
   uiSFX:
-    buttonClickSound: {fileID: 8300000, guid: 20a06f0861977e049bb4382be5985cf5, type: 3}
-    buttonHoverSound: {fileID: 8300000, guid: 1e4f79cff6ea41842bdc572848984739, type: 3}
+    buttonClickSound: {fileID: 8300000, guid: 0dadd59961623e0439986a2f5f0f6da0, type: 3}
+    buttonHoverSound: {fileID: 8300000, guid: 15f07881354aaf94a95688906de83c74, type: 3}
     countDown: {fileID: 8300000, guid: 24e59cd6497d90b43b1d3b081ca6d7a1, type: 3}
     popUp: {fileID: 8300000, guid: 6dd3d874802dfb34babb598fc288bdd5, type: 3}
+    countDownTick: {fileID: 8300000, guid: dbe2293a7522f89418abcdde0120c09c, type: 3}
+    countDownWhistle: {fileID: 8300000, guid: ba74716d767b242418b2fbad079544da, type: 3}
+    endOfGameTick: {fileID: 8300000, guid: 61824c6bf56dc624885b7dba93e0c519, type: 3}
+    endOfGameWhistle: {fileID: 8300000, guid: 493c9372efb22184e806a99f5f804452, type: 3}
   dogSFX:
     walk1: {fileID: 0}
     walk2: {fileID: 0}
     walk3: {fileID: 0}
     walk4: {fileID: 0}
     walk_street: []
-    bark1: {fileID: 0}
-    bark2: {fileID: 0}
-    bark3: {fileID: 0}
-    bark4: {fileID: 0}
+    bark1: []
+    bark2:
+    - {fileID: 8300000, guid: 4bfd179cff9341e47a5ef1c99c701e91, type: 3}
+    - {fileID: 8300000, guid: 7f195067fff3a664a9bfe7cb0623e998, type: 3}
+    - {fileID: 8300000, guid: b04d7c671362288419c22d5848398ed5, type: 3}
+    - {fileID: 8300000, guid: 1f14aa2e2d1cee14fa4fdbcfa6142f77, type: 3}
+    - {fileID: 8300000, guid: 32af8f07c910d9b4198c08565921636d, type: 3}
+    - {fileID: 8300000, guid: c90af35c41c2a424a896e38b34baac20, type: 3}
+    - {fileID: 8300000, guid: 1fb746b4f14d0914e947566381e223e5, type: 3}
+    - {fileID: 8300000, guid: e6a3f2adb7e50db4ca63b6211c6ba822, type: 3}
+    - {fileID: 8300000, guid: a5376929de00da840baf1973104d1bdd, type: 3}
+    - {fileID: 8300000, guid: 47025676e55131a4baf47a9cb99c06cb, type: 3}
+    - {fileID: 8300000, guid: 1bfb6d5f35b83814d8eef185717f1140, type: 3}
+    - {fileID: 8300000, guid: 94057fe0c8f007544bdd508b06c988fe, type: 3}
+    - {fileID: 8300000, guid: 068926c13c7d7034a85997d94eb27469, type: 3}
+    - {fileID: 8300000, guid: 6376847c76ead18448b194eb362be241, type: 3}
+    - {fileID: 8300000, guid: 8432145be0feea047a25ff24c6742bde, type: 3}
+    - {fileID: 8300000, guid: d96507ee753ec6445bcfc51cb35509b4, type: 3}
+    - {fileID: 8300000, guid: 86598892dce41104bb6c8ace8d668daf, type: 3}
+    - {fileID: 8300000, guid: 9cda32bbc0a28a04988c0d6f001c5cc2, type: 3}
+    - {fileID: 8300000, guid: 343471f03868cef41aaa1164feeb6578, type: 3}
+    - {fileID: 8300000, guid: 76c47fb55f2080b45be6b522ed42f8d1, type: 3}
+    - {fileID: 8300000, guid: 3eb51adf289f8f840b1e1cc93de066b3, type: 3}
+    - {fileID: 8300000, guid: 94447199db90a4c41a9cdaf1c748b313, type: 3}
+    - {fileID: 8300000, guid: a5a58db9730cbd84f829edaa5715fbaa, type: 3}
+    - {fileID: 8300000, guid: 96e88d0a7e38c3c4cb118b230e3d7084, type: 3}
+    - {fileID: 8300000, guid: 29954b4bc3bcbae4b8c91d08bbf81094, type: 3}
+    - {fileID: 8300000, guid: ca0245bb15d249b458d02ac65e656412, type: 3}
+    - {fileID: 8300000, guid: 4235f9dea8363394183b3280dd59ea1b, type: 3}
+    - {fileID: 8300000, guid: e3c80e1d5b1df034c97af43598b07b2b, type: 3}
+    - {fileID: 8300000, guid: 2349e8cf880fc3541a78b41bb9952863, type: 3}
+    - {fileID: 8300000, guid: 42ae787342107724a8bd8ab9b9cc3222, type: 3}
+    - {fileID: 8300000, guid: 2f19f35636df15e4d8e3f79ce0cc56b1, type: 3}
+    - {fileID: 8300000, guid: 06b46e91b22fa8047be969221f85a223, type: 3}
+    - {fileID: 8300000, guid: b0cd88a41ac6025418aaf9c34f33b961, type: 3}
+    - {fileID: 8300000, guid: 8a7befa217493864d9bd43e4891b4bb9, type: 3}
+    - {fileID: 8300000, guid: 204a3099d927603419f47997734a01de, type: 3}
+    bark3: []
+    bark4: []
     noise: []
   scoreSFX:
     smallGain: {fileID: 0}
@@ -330,21 +369,80 @@ MonoBehaviour:
     smallLoss: {fileID: 0}
     bigLoss: {fileID: 0}
   ambientSFX:
-    carNoise: {fileID: 0}
+    carNoise: {fileID: 8300000, guid: da92cb9ff897de04abb2f7a9bbeac5ef, type: 3}
     carHonk: {fileID: 0}
+    carHonk1:
+    - {fileID: 8300000, guid: 7eb0e332b562b9942aee682c20c53f64, type: 3}
+    - {fileID: 8300000, guid: 470195c1df3c0654b9064535c2032c55, type: 3}
+    - {fileID: 8300000, guid: bf6cdc8a9bf07e14c9ff8b7e86755cfb, type: 3}
+    - {fileID: 8300000, guid: e632565a43cbc5e4796a8dc4ccef4c43, type: 3}
+    - {fileID: 8300000, guid: 4c1898b5d1b0461449fb741114554c95, type: 3}
+    - {fileID: 8300000, guid: f042f310df985fa48a3f3ea27dfa29f5, type: 3}
+    - {fileID: 8300000, guid: 4f67c2ef8b84d8e47a45fae9ec4579a7, type: 3}
     birdNoise: {fileID: 0}
     fountainNoise: {fileID: 0}
-    riverNoise: {fileID: 0}
+    riverNoise: {fileID: 8300000, guid: aa8e857eff4bd2b46a6448347015204d, type: 3}
     wind: {fileID: 0}
     leavesRustling: {fileID: 0}
     constructionSite: {fileID: 0}
     childrenPlaying: {fileID: 0}
+    birdNoise1:
+    - {fileID: 8300000, guid: 439726af2d0a1014fa651ac6b6260a65, type: 3}
+    - {fileID: 8300000, guid: 3159897a00a416a42b6c31acf2ae79b0, type: 3}
+    - {fileID: 8300000, guid: 02bc8fc6a7c3a3d439bfa273fa0e93ba, type: 3}
+    - {fileID: 8300000, guid: ba37c098e2c38644995d9d227dc2d851, type: 3}
+    - {fileID: 8300000, guid: 0b93a6ff0125af148aa670287b2c7a77, type: 3}
+    - {fileID: 8300000, guid: 6d24c17f90bca894d8b42ab16bbf58df, type: 3}
+    - {fileID: 8300000, guid: 2e2071ea817302045a9bd25b0706c3fd, type: 3}
+    - {fileID: 8300000, guid: 63b3a2629df777a4ea592ebe979c3553, type: 3}
+    - {fileID: 8300000, guid: 5b4e623b390b4ef459c94c088feac849, type: 3}
+    - {fileID: 8300000, guid: 2dde9dac90136594fa33d0ba2cef39cb, type: 3}
+    - {fileID: 8300000, guid: f3e9468c6166a1d4ebe7680e59753a0d, type: 3}
+    - {fileID: 8300000, guid: 6ecb0cf8f693dfb4d80d35b530f20422, type: 3}
+    - {fileID: 8300000, guid: 0f1974600c2ac26488ce24cbf10ad1c6, type: 3}
+    - {fileID: 8300000, guid: 077f57dfe0760fd43bbda571d86b6e61, type: 3}
+    - {fileID: 8300000, guid: a6624ee981bff8340b938725a80aee99, type: 3}
+    - {fileID: 8300000, guid: 510aa430c2362b745857de61c41700ff, type: 3}
+    - {fileID: 8300000, guid: 99ff5e9ab7d831f4fb2a02eae2a01498, type: 3}
+    - {fileID: 8300000, guid: a79fd5329b2be9149a7984331454186c, type: 3}
+    - {fileID: 8300000, guid: c5f7879285559394599dc5869a4f723c, type: 3}
+    - {fileID: 8300000, guid: 2adc83852d2631b4bac008e4bbdd01cf, type: 3}
+    - {fileID: 8300000, guid: 4821350cb9ae9dc4d89ab9faef35e68f, type: 3}
+    - {fileID: 8300000, guid: 5ecffa9578d338a4e91890a6478d1541, type: 3}
+    - {fileID: 8300000, guid: c1ce91d187e1f8a478d7a33139dee2d7, type: 3}
+    - {fileID: 8300000, guid: 36ca474f1075fa1448b56a72ed82f1e3, type: 3}
+    - {fileID: 8300000, guid: 7ef3f1ceece06a44f8a7cc8b8b49fe82, type: 3}
+    - {fileID: 8300000, guid: 55567c7ccd5d3a24ab5c21f3a690d49d, type: 3}
+    - {fileID: 8300000, guid: a3f6be37ba6d17d459f09db80696b72d, type: 3}
+    - {fileID: 8300000, guid: 4c19e2e1ebb4d7f4a9a7425b42ed1945, type: 3}
+    - {fileID: 8300000, guid: cb139f2a232799d4985ff9faaefe2569, type: 3}
+    - {fileID: 8300000, guid: e510f6bf7099b2c42b80754965170c9c, type: 3}
+    fountainNoise1:
+    - {fileID: 8300000, guid: 98bc624c28a9c524e9750011bcfaa090, type: 3}
+    - {fileID: 8300000, guid: 8efa5b1c5566a944daf9a935631c276f, type: 3}
+    wind1:
+    - {fileID: 8300000, guid: 0f7ce6161e37d7f46912140213f86973, type: 3}
+    - {fileID: 8300000, guid: 0d9ef83d0af08184d92ec026b4369b3b, type: 3}
   eventSFX:
     pickUp: {fileID: 0}
     sparkle: {fileID: 0}
     dig: {fileID: 0}
   humanSFX:
-    walking: {fileID: 0}
-    walking_street: {fileID: 0}
+    walking:
+    - {fileID: 8300000, guid: e38bc2bf334d2d3498c9adc3b0a7ba29, type: 3}
+    - {fileID: 8300000, guid: 48911f5f3f12c9249ab2d8fe56cbbfac, type: 3}
+    - {fileID: 8300000, guid: 1850ca43d12c4424387a262f77ad0648, type: 3}
+    walking_street:
+    - {fileID: 8300000, guid: f7249bf08aec7e943a072c703bd903a5, type: 3}
+    - {fileID: 8300000, guid: f226caa939f9cb04d843d8f24513d6b8, type: 3}
+    - {fileID: 8300000, guid: 9ddac48cc578e9841988cfa3b421f9bc, type: 3}
+    - {fileID: 8300000, guid: 5159f88e254e1ba4690763058805e1b5, type: 3}
+    - {fileID: 8300000, guid: d225987355662e843b772aea96ae4a77, type: 3}
+    - {fileID: 8300000, guid: 4bbb2466940a94c43b8b5bfe8fcae1b2, type: 3}
+    - {fileID: 8300000, guid: 2625be33f4bd8054abb915edf06338ff, type: 3}
     mumbling: {fileID: 0}
+    humanNoise:
+    - {fileID: 8300000, guid: 01d8df78e7d01294ba45ebf896370761, type: 3}
+    - {fileID: 8300000, guid: d9857eb0e6b79bd48a1a8f7e7ef1fdb2, type: 3}
+    - {fileID: 8300000, guid: fe7d536dd668c7346aa1d276c89c7c91, type: 3}
     hit_obstacle: {fileID: 0}
