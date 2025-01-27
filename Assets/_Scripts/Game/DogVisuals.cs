@@ -19,6 +19,8 @@ public class DogVisuals : MonoBehaviour
     [SerializeField] List<GameObject> pugAccessories;
     [SerializeField] List<GameObject> retrieverAccessories;
 
+    public int AccessorieCount => bernardAccessories.Count;
+
     public event Action OnUpdateVisuals;
 
     protected virtual void UpdateVisuals()

@@ -6,5 +6,8 @@ public class LobbyData : MonoBehaviour
     [SerializeField] DogData[] availableDogs;
     public DogData[] AvailableDogs => availableDogs;
 
-    public List<int> AvailableAccessoriesCounts;
+
+    [SerializeField] DogVisuals dogVisualsPrefab;
+
+    public int AvailableAccessoriesCount => dogVisualsPrefab.AccessorieCount;
 }
