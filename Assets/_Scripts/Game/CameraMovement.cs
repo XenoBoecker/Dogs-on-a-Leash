@@ -34,11 +34,6 @@ public class CameraMovement : MonoBehaviour
         countdownDisplay.gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I)) EndFlyThrough();
-    }
-
     internal void Setup()
     {
         human = FindObjectOfType<HumanMovement>().transform;

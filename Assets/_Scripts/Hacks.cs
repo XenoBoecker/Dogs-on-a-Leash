@@ -20,5 +20,6 @@ public class Hacks : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) human.transform.position = new Vector3(99999, 0, 0); // finish game
         if (Input.GetKeyDown(KeyCode.O)) scoreManager.HackSetTimeLeft(0); // lose game
         if (Input.GetKeyDown(KeyCode.P)) scoreManager.AddScore(Random.Range(1, 20) * 100);
+        if (Input.GetKeyDown(KeyCode.I)) scoreManager.AddScore(-Random.Range(1, 20) * 100);
     }
 }

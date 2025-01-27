@@ -76,12 +76,7 @@ public class HumanMovement : MonoBehaviour
 
         if (rb.velocity.x < speed)
         {
-            Debug.Log("SPeed up now!");
             rb.AddForce(acceleration * direction);
-        }
-        else
-        {
-            Debug.Log("diff: " + rb.velocity.x + " - " + speed + " = " + (rb.velocity.x - speed));
         }
 
         debugRBVel = rb.velocity;
@@ -99,7 +94,7 @@ public class HumanMovement : MonoBehaviour
 
     public void ObstacleCollision(Obstacle obstacle)
     {
-        Debug.Log("Human obstacle collision with " + obstacle.name + ": stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce * rb.mass);
+        // Debug.Log("Human obstacle collision with " + obstacle.name + ": stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce * rb.mass);
 
         Vector3 dir = (transform.position - obstacle.transform.position).normalized;
 

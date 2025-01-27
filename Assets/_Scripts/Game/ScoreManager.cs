@@ -1,4 +1,4 @@
-using TMPro;
+using System;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -9,22 +9,20 @@ public class ScoreManager : MonoBehaviour
 
     HumanMovement human;
     MapManager mapManager;
-    InteractableDetector detector;
 
     [SerializeField] string endGameSceneName = "GameOver";
     [SerializeField] string failedEndGameSceneName = "GameOverFailed";
 
-    [SerializeField] TMP_Text timeText;
-
-    [SerializeField] TMP_Text scoreText;
-
     [SerializeField] int totalTime;
 
     float timeLeft;
+    public float TimeLeft => timeLeft;
 
     int totalScore;
 
     bool waitingForGameStart = true;
+
+    public event Action<int, bool> OnScoreChanged;
 
     private void Awake()
     {
@@ -51,7 +49,6 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText.text = "Time: " + timeLeft.ToString("F2");
 
         if (waitingForGameStart) return;
 
@@ -76,11 +73,13 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int score)
     {
+        bool positive = score >= 0;
+
         totalScore += score;
 
         if (totalScore < 0) totalScore = 0;
 
-        scoreText.text = "Score: " + totalScore;
+        OnScoreChanged?.Invoke(totalScore, positive);
     }
 
     void EndGame()
