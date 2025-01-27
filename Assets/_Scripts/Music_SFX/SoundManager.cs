@@ -160,6 +160,7 @@ public class SoundManager : MonoBehaviour
         public AudioClip buttonClickSound;
         public AudioClip buttonHoverSound;
         public AudioClip countDown, popUp;
+        public AudioClip countDownTick, countDownWhistle;
     }
 }
 
