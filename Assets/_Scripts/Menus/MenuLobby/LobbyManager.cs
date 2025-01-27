@@ -71,6 +71,8 @@ namespace photonMenuLobby
         [SerializeField] bool testing;
 
         [SerializeField] int dogsNeededToStartGame = 4;
+
+        [SerializeField] float switchPanelDelayAfterAllPlayersRegistered = 0.5f;
         int connectedDogCount;
 
         public event Action OnPlayerListChanged;
@@ -384,10 +386,20 @@ namespace photonMenuLobby
             }
             else
             {
-                if (FindObjectsOfType<LocalPlayer>().Length == dogsNeededToStartGame) ActivatePanel(dogSelectionPanel);
+                if (FindObjectsOfType<LocalPlayer>().Length == dogsNeededToStartGame)
+                {
+                    StartCoroutine(DelayedDogSelectionPanelActivation());
+                }
             }
 
             OnPlayerListChanged?.Invoke();
+        }
+
+        private IEnumerator DelayedDogSelectionPanelActivation()
+        {
+            yield return new WaitForSeconds(switchPanelDelayAfterAllPlayersRegistered);
+
+            ActivatePanel(dogSelectionPanel);
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)

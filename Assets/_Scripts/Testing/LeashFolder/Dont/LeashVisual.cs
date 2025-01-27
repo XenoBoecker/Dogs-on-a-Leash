@@ -16,6 +16,8 @@ public class LeashVisual : MonoBehaviour
     private float maxLeashLength = 10;
     public float moveSpeed = 5f; // Speed at which points move towards the desired position
 
+    private List<Vector3> finalPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +33,11 @@ public class LeashVisual : MonoBehaviour
     void Update()
     {
         leashLength = leashManager.GetCurrentLength();
+        maxLeashLength = leashManager.GetMaxLeashLength();
         UpdateLeashPoints();
         ApplyCurve();
+
+        gameObject.GetComponent<RopeRenderer>().RenderRope(finalPoints.ToArray(), 0.07f);
     }
 
     void UpdateLeashPoints()
@@ -108,18 +113,20 @@ public class LeashVisual : MonoBehaviour
             positions[i].y = Mathf.Max(positions[i].y - height, 0.1f);
         }
 
+        finalPoints = new List<Vector3>(positions);
+
         lineRenderer.SetPositions(positions);
     }
 
-    void MovePointsTowardsDesiredPositions()
-    {
-        for (int i = 0; i < currentPositions.Count; i++)
-        {
-            if (i < leashPoints.Count)
-            {
-                currentPositions[i] = Vector3.Lerp(currentPositions[i], leashPoints[i], Time.deltaTime * moveSpeed);
-            }
-        }
-        lineRenderer.SetPositions(currentPositions.ToArray());
-    }
+    // void MovePointsTowardsDesiredPositions()
+    // {
+    //     for (int i = 0; i < currentPositions.Count; i++)
+    //     {
+    //         if (i < leashPoints.Count)
+    //         {
+    //             currentPositions[i] = Vector3.Lerp(currentPositions[i], leashPoints[i], Time.deltaTime * moveSpeed);
+    //         }
+    //     }
+    //     lineRenderer.SetPositions(currentPositions.ToArray());
+    // }
 }

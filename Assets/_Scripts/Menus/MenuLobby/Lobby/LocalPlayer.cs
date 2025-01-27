@@ -18,6 +18,12 @@ public class LocalPlayer : MonoBehaviour
     public int ColorIndex;
     public int AccessorieIndex;
 
+
+    [SerializeField] float controllerInputDeadZone = 0.3f;
+
+    [SerializeField] float selectNextDogDelay = 0.2f;
+    float nextDogWaitTimer;
+
     LobbyDogSelector lobbyDogSelector;
 
     bool isReadyToPlay;
@@ -57,6 +63,8 @@ public class LocalPlayer : MonoBehaviour
     {
         if (lobbyManager.IsInDogSelection) waitTimeBeforeCanConfirmSelection -= Time.deltaTime;
         else waitTimeBeforeCanConfirmSelection = 0.1f;
+
+        nextDogWaitTimer -= Time.deltaTime;
     }
 
     private void OnEnable()
@@ -92,10 +100,16 @@ public class LocalPlayer : MonoBehaviour
             if (lobbyDogSelector.IsReadyToPlay) return;
             else
             {
-                if (context.phase == InputActionPhase.Started)
+                if (context.phase == InputActionPhase.Performed)
                 {
+                    if (nextDogWaitTimer > 0) return;
+
                     float x = context.ReadValue<Vector2>().x;
                     float y = context.ReadValue<Vector2>().y;
+
+                    if (Mathf.Abs(x) < controllerInputDeadZone && Mathf.Abs(y) < controllerInputDeadZone) return;
+
+                    nextDogWaitTimer = selectNextDogDelay;
 
                     Debug.Log("X: " + x + "; Y: " + y);
 
@@ -104,26 +118,35 @@ public class LocalPlayer : MonoBehaviour
                     {
                         if (Mathf.Abs(x) > Mathf.Abs(y))
                         {
-                            if (x < 0) lobbyDogSelector.SelectPreviousAccessorie();
-                            else if (x > 0) lobbyDogSelector.SelectNextAccessorie();
+                            if (x < -controllerInputDeadZone) lobbyDogSelector.SelectPreviousAccessorie();
+                            else if (x > controllerInputDeadZone) lobbyDogSelector.SelectNextAccessorie();
                         }
                         else
                         {
-                            if (y < 0) lobbyDogSelector.SelectPreviousAccessorie();
-                            else if (y > 0) lobbyDogSelector.SelectNextAccessorie();
+                            if (y < -controllerInputDeadZone) lobbyDogSelector.SelectPreviousAccessorie();
+                            else if (y > controllerInputDeadZone) lobbyDogSelector.SelectNextAccessorie();
                         }
                     }
                     else
                     {
                         if (Mathf.Abs(x) > Mathf.Abs(y))
                         {
-                            if (x < 0) lobbyDogSelector.SelectPreviousDog();
-                            else if (x > 0) lobbyDogSelector.SelectNextDog();
+                            Debug.Log("X dir: " + x);
+                            if (x < -controllerInputDeadZone)
+                            {
+                                Debug.Log("prev");
+                                lobbyDogSelector.SelectPreviousDog();
+                            }
+                            else if (x > controllerInputDeadZone)
+                            {
+                                Debug.Log("Next");
+                                lobbyDogSelector.SelectNextDog();
+                            }
                         }
                         else
                         {
-                            if (y < 0) lobbyDogSelector.SelectPreviousDog();
-                            else if (y > 0) lobbyDogSelector.SelectNextDog();
+                            if (y < -controllerInputDeadZone) lobbyDogSelector.SelectPreviousDog();
+                            else if (y > controllerInputDeadZone) lobbyDogSelector.SelectNextDog();
                         }
                     }
 

@@ -53,7 +53,7 @@ public class LobbyDogSelector : MonoBehaviour
     public void SelectNextAccessorie()
     {
         currentSelectedAccessorieIndex++;
-        if (currentSelectedAccessorieIndex >= lobbyData.AvailableAccessoriesCounts[currentSelectedDogIndex]) currentSelectedAccessorieIndex = 0;
+        if (currentSelectedAccessorieIndex >= lobbyData.AvailableAccessoriesCount) currentSelectedAccessorieIndex = 0;
 
         OnDataChanged?.Invoke();
     }
@@ -61,7 +61,7 @@ public class LobbyDogSelector : MonoBehaviour
     public void SelectPreviousAccessorie()
     {
         currentSelectedAccessorieIndex--;
-        if (currentSelectedAccessorieIndex < 0) currentSelectedAccessorieIndex = lobbyData.AvailableAccessoriesCounts[currentSelectedDogIndex] - 1;
+        if (currentSelectedAccessorieIndex < 0) currentSelectedAccessorieIndex = lobbyData.AvailableAccessoriesCount - 1;
 
         OnDataChanged?.Invoke();
     }
