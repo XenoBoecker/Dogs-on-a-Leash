@@ -1861,8 +1861,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 318.5, y: 14.3}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 225.544, y: 14.3}
+  m_SizeDelta: {x: 34.233, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057593515
 MonoBehaviour:
@@ -1919,7 +1919,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1948,7 +1948,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 141.01399, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.39386347, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3015,9 +3015,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePanel: {fileID: 1226242954}
   objectiveScoreText: {fileID: 1590385930}
-  timeLeftText: {fileID: 413657458}
+  timeLeftText: {fileID: 1057593515}
+  timeLeftScoreText: {fileID: 413657458}
   finalScoreText: {fileID: 1045522197}
   scorePerSecondLeft: 500
+  calcDuration: 1
+  waitBeforeStartingCalculation: 0.3
+  waitTimeBetweenCalculations: 1
 --- !u!114 &1720880079
 MonoBehaviour:
   m_ObjectHideFlags: 0

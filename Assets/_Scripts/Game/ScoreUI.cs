@@ -46,7 +46,7 @@ public class ScoreUI : MonoBehaviour
         float timeLeft = ScoreManager.Instance.TimeLeft;
         int minutes = (int)(timeLeft / 60);
         int seconds = (int)(timeLeft % 60);
-        timeText.text = "Time: " + minutes.ToString() + ":" + seconds.ToString();
+        timeText.text = "Time: " + minutes.ToString() + ":" + seconds.ToString("00");
     }
 
     private IEnumerator PopScoreText(bool positive)

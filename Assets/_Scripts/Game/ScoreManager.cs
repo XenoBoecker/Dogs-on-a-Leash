@@ -99,4 +99,13 @@ public class ScoreManager : MonoBehaviour
     {
         timeLeft = t;
     }
+    public void HackSetTotalScore(int score)
+    {
+        totalScore = score;
+    }
+
+    public void HackEndGame()
+    {
+        EndGame();
+    }
 }
