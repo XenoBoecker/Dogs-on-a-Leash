@@ -180,7 +180,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.5
+  m_Radius: 1.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &248019060555332893
 MonoBehaviour:
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24490e26711ccb44bb2acc0b3ca9839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationTowardsInteractableSpeed: 1
 --- !u!1 &1662273484689279241
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +668,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &414024518099419950

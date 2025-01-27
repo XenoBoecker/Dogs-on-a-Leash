@@ -18,6 +18,9 @@ public class InteractableDetector : MonoBehaviour
     Interactable currentInteractingInteractable;
     public Interactable CurrentInteractingInteractable => currentInteractingInteractable;
 
+
+    [SerializeField] float rotationTowardsInteractableSpeed;
+
     public event Action OnInteract;
     public event Action OnInteracted;
 
@@ -40,6 +43,28 @@ public class InteractableDetector : MonoBehaviour
     private void Update()
     {
         ShowClosestInteractable();
+
+        if(currentInteractingInteractable != null)
+        {
+            RotateTowardsInteractable();
+        }
+    }
+    private void RotateTowardsInteractable()
+    {
+        if (currentInteractingInteractable == null) return; // Ensure there's a target to look at
+
+        // Get the direction to the interactable
+        Vector3 direction = (currentInteractingInteractable.transform.position - playerDogController.transform.position).normalized;
+
+        // Calculate the target rotation
+        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+
+        // Smoothly interpolate the rotation
+        playerDogController.transform.rotation = Quaternion.Slerp(
+            playerDogController.transform.rotation,
+            targetRotation,
+            Time.deltaTime * rotationTowardsInteractableSpeed // Adjust rotationSpeed for desired smoothness
+        );
     }
 
     void CancelTask() // usually task is canceled from within task, this is for external canceling: e.g. being dragged away too far
