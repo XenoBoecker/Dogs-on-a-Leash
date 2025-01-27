@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -16,6 +17,8 @@ public class Interactable : MonoBehaviour
     public Transform MyTransform { get; set; }
 
     [SerializeField] VisualEffect completeTaskVFX;
+
+    [SerializeField] protected float spawnVFXTimeDelay = 0.3f;
     public Action OnInteractEnd { get; set; }
 
     public List<InteractableDetector> currentInteractors = new List<InteractableDetector>();
@@ -99,14 +102,23 @@ public class Interactable : MonoBehaviour
     {
         InteractableDetector.PickupCount++;
 
+        StartCoroutine(SpawnVFXDelayed());
+
+        EndAllInteractions();
+    }
+
+    IEnumerator SpawnVFXDelayed()
+    {
+        Debug.LogWarning("SpawnDelayed");
+        yield return new WaitForSeconds(spawnVFXTimeDelay);
+
         if (completeTaskVFX != null)
         {
+            Debug.LogWarning("SpawnNow");
             completeTaskVFX.Play();
             completeTaskVFX.transform.SetParent(null);
             Destroy(completeTaskVFX, 1f);
         }
-
-        EndAllInteractions();
     }
 
     public void CancelTask(InteractableDetector interactor)
