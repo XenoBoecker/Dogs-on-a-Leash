@@ -1261,6 +1261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
+      propertyPath: rotSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
       propertyPath: menuDogPrefab
       value: 
       objectReference: {fileID: 4245155715195901090, guid: 34ca245762b11c9488b507cfd8ffb2fa,
@@ -1810,7 +1815,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 474847610}
-  - component: {fileID: 474847611}
   m_Layer: 0
   m_Name: DogModelParent (3)
   m_TagString: Untagged
@@ -1833,19 +1837,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 869668270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &474847611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474847609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e66203f27a3384ba610879f58f3135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotSpeed: 30
 --- !u!1 &491192072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1846,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 491192073}
-  - component: {fileID: 491192074}
   m_Layer: 0
   m_Name: DogModelParent
   m_TagString: Untagged
@@ -1878,19 +1868,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 869668270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &491192074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491192072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e66203f27a3384ba610879f58f3135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotSpeed: 30
 --- !u!1001 &506225167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2024,6 +2001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
+      propertyPath: rotSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
@@ -2758,7 +2740,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769375695}
-  - component: {fileID: 769375696}
   m_Layer: 0
   m_Name: DogModelParent (2)
   m_TagString: Untagged
@@ -2781,19 +2762,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 869668270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &769375696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769375694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e66203f27a3384ba610879f58f3135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotSpeed: 30
 --- !u!1 &796886406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3429,6 +3397,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
+      propertyPath: rotSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
@@ -4225,6 +4198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
+      propertyPath: rotSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364436161605825176, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
       propertyPath: colorIndex
       value: 2
       objectReference: {fileID: 0}
@@ -4428,7 +4406,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450444329}
-  - component: {fileID: 1450444330}
   m_Layer: 0
   m_Name: DogModelParent (1)
   m_TagString: Untagged
@@ -4451,19 +4428,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 869668270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1450444330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450444328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e66203f27a3384ba610879f58f3135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotSpeed: 30
 --- !u!1 &1464526984
 GameObject:
   m_ObjectHideFlags: 0

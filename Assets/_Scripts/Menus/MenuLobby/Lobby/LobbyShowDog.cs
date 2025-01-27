@@ -14,6 +14,9 @@ public class LobbyShowDog : MonoBehaviour
 
     [SerializeField] Transform dogModelParent;
 
+    [SerializeField] float rotSpeed;
+    bool isRotating = true;
+
     [SerializeField] GameObject menuDogPrefab;
     GameObject currentDogModel;
 
@@ -37,6 +40,11 @@ public class LobbyShowDog : MonoBehaviour
         lobbyDogSelector.OnDataChanged += UpdateUI;
 
         Invoke("UpdateUI", 0.1f);
+    }
+
+    private void Update()
+    {
+        if(isRotating) dogModelParent.transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
     }
 
     private void UpdateUI()
@@ -66,11 +74,14 @@ public class LobbyShowDog : MonoBehaviour
         {
             selectAccessoriePanel.SetActive(true);
             dogSelectArrows.SetActive(false);
+            dogModelParent.transform.rotation = Quaternion.identity;
+            isRotating = false;
         }
         else
         {
             selectAccessoriePanel.SetActive(false);
             dogSelectArrows.SetActive(true);
+            isRotating = true;
         }
 
         if (lobbyDogSelector.IsReadyToPlay)
