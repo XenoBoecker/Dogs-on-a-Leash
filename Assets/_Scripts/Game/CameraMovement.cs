@@ -18,6 +18,14 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] float flyThroughStartWaitTime = 1f;
 
+
+    [SerializeField] Transform bus;
+    [SerializeField] Transform[] busWheels;
+    [SerializeField] AnimationCurve busPositionCurve;
+    [SerializeField] Transform busStartPos, busEndPos;
+    [SerializeField] float busArrivalDuration;
+
+
     [SerializeField] AnimationCurve flyCurve;
     [SerializeField] float flyThroughDuration = 5f;
 
@@ -37,10 +45,10 @@ public class CameraMovement : MonoBehaviour
     internal void Setup()
     {
         human = FindObjectOfType<HumanMovement>().transform;
-        StartCoroutine(FlyThrough());
+        StartCoroutine(StartGameCoroutine());
     }
 
-    private IEnumerator FlyThrough()
+    private IEnumerator StartGameCoroutine()
     {
         inFlyThrough = true;
 
@@ -49,27 +57,34 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(totalDist, transform.position.y, transform.position.z);
 
         // wait for fade
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(flyThroughStartWaitTime);
 
         Time.timeScale = 0;
 
+        // bus drives into screen
+        yield return StartCoroutine(FindObjectOfType<Bus>().BusArrivingCoroutine());
+
+        // timer is shown and flies to upper corner
+        yield return StartCoroutine(FindObjectOfType<ScoreUI>().TimerFlyInCorner());
+
+        yield return StartCoroutine(CameraFlyThrough(totalDist));
+        
+
+        StartCoroutine(GameStartCountdown());
+    }
+
+
+    private IEnumerator CameraFlyThrough(float totalDist)
+    {
         float startTime = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup < startTime + flyThroughStartWaitTime)
-        {
-            yield return null;
-        }
 
-        startTime = Time.realtimeSinceStartup;
-
-        while(Time.realtimeSinceStartup < startTime + flyThroughDuration)
+        while (Time.realtimeSinceStartup < startTime + flyThroughDuration)
         {
             float xPos = (1 - flyCurve.Evaluate((Time.realtimeSinceStartup - startTime) / flyThroughDuration)) * totalDist;
 
             transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
             yield return null;
         }
-
-        StartCoroutine(GameStartCountdown());
     }
 
     private IEnumerator GameStartCountdown()
@@ -121,312 +136,3 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(lerpedX, transform.position.y, transform.position.z);
     }
 }
-
-/*
-
-public class CameraController : MonoBehaviour
-{
-    [SerializeField] Vector3 offset = new Vector3(0, 2.4f, -3.5f);
-
-
-    [SerializeField] Transform flyThroughTargetParent;
-    List<CameraFlyThroughTarget> flyThroughTargets = new List<CameraFlyThroughTarget>();
-    [SerializeField] float flyThroughSpeed = 1.0f;
-
-
-
-    [SerializeField] GameObject skipTutorial;
-    [SerializeField] CanvasGroup tutorialPanel;
-
-    [SerializeField] GameObject bottomLeftUI, bottomRightUI;
-
-    [SerializeField] TMP_Text tutorialText;
-
-    [SerializeField] float tutorialFadeDuration = 0.2f;
-
-    [SerializeField] NumberDisplay countdownDisplay;
-
-    [SerializeField] float countdownDuration = 3.0f;
-
-
-    [SerializeField] int countdownStartNumber = 3;
-
-    [SerializeField] float minWaitForInputTime = 1f;
-    float waitingTimeStart;
-
-    [SerializeField] bool skipAnimation = false;
-
-    KinectInputs kinectInputs;
-    bool waitingForInput;
-    PlayerControls controls;
-
-    Transform target;
-    bool flyThroughActive;
-
-    private void Start()
-    {
-        GameManager.Instance.OnSpawnChicken += TargetCurrentPlayerChicken;
-
-        if (GameManager.Instance.KinectInputs)
-        {
-            kinectInputs = FindObjectOfType<KinectInputs>();
-            kinectInputs.OnSitDown += OnConfirm;
-            kinectInputs.OnStandUp += EndIntro;
-        }
-
-        controls = new PlayerControls();
-        controls.Enable();
-
-        Transform[] targets = flyThroughTargetParent.GetComponentsInChildren<Transform>();
-
-        foreach (Transform target in targets)
-        {
-            if (target != flyThroughTargetParent)
-            {
-                flyThroughTargets.Add(target.GetComponent<CameraFlyThroughTarget>());
-            }
-        }
-
-        CameraFlyThroughTarget playerTargetTransform = new GameObject().AddComponent<CameraFlyThroughTarget>();
-        playerTargetTransform.transform.position = GameManager.Instance.Player.transform.position + offset;
-        playerTargetTransform.transform.rotation = GameManager.Instance.Player.transform.rotation;
-        playerTargetTransform.transform.Rotate(20, 0, 0);
-
-        flyThroughTargets.Add(playerTargetTransform);
-
-        if (skipAnimation)
-        {
-            EndIntro();
-        }
-        else
-        {
-            StartCoroutine(StartGameFlyThrough());
-        }
-    }
-    public void Confirm()
-    {
-        OnConfirm();
-    }
-
-    public void Skip()
-    {
-        EndIntro();
-    }
-
-    private void OnConfirm()
-    {
-        print("Camera On Confirm");
-        if (!waitingForInput || !flyThroughActive || Time.realtimeSinceStartup - waitingTimeStart < minWaitForInputTime) return;
-
-        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.confirmSound);
-
-        waitingForInput = false;
-    }
-
-    private void Update()
-    {
-        if (flyThroughActive)
-        {
-            if (controls.Player.Jump.triggered)
-            {
-                EndIntro();
-            }
-            if (controls.Player.Breed.triggered) OnConfirm();
-        }
-        else AdjustPositionToNotClip();
-    }
-
-    private void AdjustPositionToNotClip()
-    {
-        // stay at the same height above the target, cast ray in that height backwards from the target, if hit anything move camera to hit point and a bit further
-
-        Vector3 rayStartPosition = target.position + new Vector3(0, offset.y, 0);
-        Vector3 direction = -target.transform.forward;
-
-        RaycastHit hit;
-        if (Physics.Raycast(rayStartPosition, direction, out hit, Mathf.Abs(offset.z)))
-        {
-            transform.position = hit.point - direction * 0.1f;
-        }
-        else
-        {
-            transform.position = rayStartPosition - direction * offset.z;
-        }
-
-
-    }
-
-    private void EndIntro()
-    {
-        if (!flyThroughActive) return;
-
-        StopAllCoroutines();
-
-        skipTutorial.SetActive(false);
-
-        tutorialPanel.gameObject.SetActive(false);
-
-        bottomLeftUI.SetActive(true);
-        bottomRightUI.SetActive(true);
-
-        flyThroughActive = false;
-
-        TargetCurrentPlayerChicken();
-
-        Time.timeScale = 1;
-
-        kinectInputs.OnSitDown -= OnConfirm;
-        kinectInputs.OnStandUp -= EndIntro;
-    }
-
-    void TargetCurrentPlayerChicken()
-    {
-        SetTarget(GameManager.Instance.Player.transform);
-    }
-
-    public void SetTarget(Transform target)
-    {
-        transform.parent = target;
-
-        transform.position = target.position + target.forward * offset.z + target.up * offset.y;
-
-        transform.rotation = target.rotation;
-
-        transform.Rotate(Vector3.right, 20);
-
-        this.target = target;
-    }
-
-    public IEnumerator StartGameFlyThrough()
-    {
-        skipTutorial.SetActive(true);
-        bottomLeftUI.SetActive(false);
-        bottomRightUI.SetActive(false);
-
-        flyThroughActive = true;
-        print("StartGameFlyThrough");
-        Time.timeScale = 0;
-
-        transform.position = flyThroughTargets[0].transform.position;
-        transform.rotation = flyThroughTargets[0].transform.rotation;
-
-
-        // first target stopping time
-        float startTime = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup < startTime + flyThroughTargets[0].stoppingTime)
-        {
-            yield return null;
-        }
-
-        for (int i = 0; i < flyThroughTargets.Count - 1; i++)
-        {
-            waitingForInput = flyThroughTargets[i].waitForInput;
-            if (flyThroughTargets[i].tutorialText != "")
-            {
-                tutorialText.text = flyThroughTargets[i].tutorialText;
-                StartCoroutine(FadeIn(tutorialPanel));
-            }
-
-            print("wait for input ");
-
-            waitingTimeStart = Time.realtimeSinceStartup;
-            // wait for input
-            while (waitingForInput)
-            {
-                float timeWaited = Time.realtimeSinceStartup - waitingTimeStart;
-                // print(timeWaited);
-                if (controls.Player.Breed.triggered) waitingForInput = false;
-
-                yield return null;
-            }
-
-            if (flyThroughTargets[i].tutorialText != "")
-            {
-                StartCoroutine(FadeOut(tutorialPanel));
-            }
-
-            float t = 0;
-            startTime = Time.realtimeSinceStartup;
-            float distanceToNextTarget = Vector3.Distance(flyThroughTargets[i].transform.position, flyThroughTargets[i + 1].transform.position);
-
-
-            print("start fly through");
-
-            // fly from current target to next
-            while (t < 1)
-            {
-                t = (Time.realtimeSinceStartup - startTime) * flyThroughSpeed / distanceToNextTarget;
-
-                transform.position = Vector3.Lerp(flyThroughTargets[i].transform.position, flyThroughTargets[i + 1].transform.position, flyThroughTargets[i].flyPositionCurve.Evaluate(t));
-                transform.rotation = Quaternion.Lerp(flyThroughTargets[i].transform.rotation, flyThroughTargets[i + 1].transform.rotation, flyThroughTargets[i].flyRotationCurve.Evaluate(t));
-
-                yield return null;
-            }
-
-            // wait at next target for next target stopping time
-            startTime = Time.realtimeSinceStartup;
-            while (Time.realtimeSinceStartup < startTime + flyThroughTargets[i + 1].stoppingTime)
-            {
-                yield return null;
-            }
-        }
-
-        SetTarget(GameManager.Instance.Player.transform);
-
-
-        skipTutorial.SetActive(false);
-
-        StartCoroutine(GameStartCountdown());
-
-    }
-
-    IEnumerator FadeIn(CanvasGroup canvasGroup)
-    {
-        canvasGroup.gameObject.SetActive(true);
-        for (float i = 0; i < tutorialFadeDuration; i += Time.unscaledDeltaTime)
-        {
-            float percentage = i / tutorialFadeDuration;
-
-            canvasGroup.alpha = percentage;
-
-            yield return null;
-        }
-
-        canvasGroup.alpha = 1;
-    }
-
-    IEnumerator FadeOut(CanvasGroup canvasGroup)
-    {
-        for (float i = 0; i < tutorialFadeDuration; i += Time.unscaledDeltaTime)
-        {
-            float percentage = i / tutorialFadeDuration;
-
-            canvasGroup.alpha = 1 - percentage;
-
-            yield return null;
-        }
-
-        canvasGroup.alpha = 0;
-        canvasGroup.gameObject.SetActive(false);
-    }
-
-    private IEnumerator GameStartCountdown()
-    {
-        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.countdownSound);
-
-        for (float i = 0; i < countdownDuration; i += Time.unscaledDeltaTime)
-        {
-            int number = countdownStartNumber - (int)(i / countdownDuration * countdownStartNumber);
-
-            countdownDisplay.SetNumber(number);
-
-            yield return null;
-        }
-
-        countdownDisplay.gameObject.SetActive(false);
-
-        EndIntro();
-        flyThroughActive = false;
-    }
-}
-*/

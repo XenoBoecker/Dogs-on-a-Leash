@@ -58,7 +58,6 @@ public class HumanMovement : MonoBehaviour
 
         stunVFX.Stop();
         stunVFX.gameObject.SetActive(false);
-        Debug.Log("stop");
 
         MoveForward();
     }

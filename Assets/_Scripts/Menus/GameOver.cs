@@ -41,8 +41,6 @@ public class GameOver : MonoBehaviour
 
         finalScore = CalculateTotalScore();
 
-        Debug.Log("Final score: " + finalScore);
-
         PlayerPrefs.SetInt("FinalScore", finalScore);
     }
 

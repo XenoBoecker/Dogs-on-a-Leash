@@ -64,7 +64,7 @@ public class Obstacle : MonoBehaviour
 
         ObstacleManager.Instance.AddToCollisionCount();
 
-        Debug.Log("Obstacle push Human");
+        Debug.Log("Obstacle push Human (" + name + ")");
     }
 
     private void OnTriggerExit(Collider other)
