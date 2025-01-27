@@ -45,7 +45,6 @@ public class PlayerDogController : DogController
             if (context.phase == InputActionPhase.Performed)
             {
                 movementInput = context.ReadValue<Vector2>();
-                Debug.Log("Move Input: " + movementInput);
             }
             else if (context.phase == InputActionPhase.Canceled)
             {

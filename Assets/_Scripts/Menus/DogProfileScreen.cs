@@ -23,6 +23,8 @@ public class DogProfileScreen : MonoBehaviour
 
     void Start()
     {
+        dogVisual.transform.Rotate(Vector3.up, 180);
+
         ShowPanel();
     }
 

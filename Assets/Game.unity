@@ -297,11 +297,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1251,8 +1246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -373.3, y: 257.1}
-  m_SizeDelta: {x: 330.4375, y: 61.379}
+  m_AnchoredPosition: {x: -434.26935, y: 257.1}
+  m_SizeDelta: {x: 181.2127, y: 61.379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599085324
 MonoBehaviour:
@@ -1274,7 +1269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: .pts
+  m_text: 4500.pts
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: baeb4fbf7b97735488353f389ca71906, type: 2}
   m_sharedMaterial: {fileID: -6133552241563705524, guid: baeb4fbf7b97735488353f389ca71906,
@@ -1309,7 +1304,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1801,6 +1796,7 @@ MonoBehaviour:
   - {fileID: 2644835833870795632, guid: 0ac68f6db19e12747bdedd39db3dce4d, type: 3}
   - {fileID: 2644835833870795632, guid: 9b1c6c0a73cbd47408b8808c16f66e16, type: 3}
   - {fileID: 3457660413953895099, guid: 7c9584449c98abb4d8c2e0aa74675217, type: 3}
+  highDifficultyTiles: []
   endTiles:
   - {fileID: 3360506625757157340, guid: 2f51e550c98ee584a9def3470c232829, type: 3}
   tileParent: {fileID: 9297514}
@@ -2602,6 +2598,7 @@ GameObject:
   - component: {fileID: 1973408250}
   - component: {fileID: 1973408252}
   - component: {fileID: 1973408251}
+  - component: {fileID: 1973408253}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2638,8 +2635,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endGameSceneName: GameOver
   failedEndGameSceneName: GameOverFailed
-  timeText: {fileID: 224081559}
-  scoreText: {fileID: 599085324}
   totalTime: 60
 --- !u!114 &1973408251
 MonoBehaviour:
@@ -2670,6 +2665,58 @@ MonoBehaviour:
   pushBackCD: 2
   stunTime: 1
   scoreValue: -500
+--- !u!114 &1973408253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973408247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb38b9c3a3abb841bfa222ea6126039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 224081559}
+  scoreText: {fileID: 599085324}
+  popScoreCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.16750208
+      outSlope: -0.16750208
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.27604115
+    - serializedVersion: 3
+      time: 0.29012233
+      value: 0.992689
+      inSlope: 0.015421389
+      outSlope: 0.015421389
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23521584
+    - serializedVersion: 3
+      time: 0.9979248
+      value: 0.0055389404
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  popScoreDuration: 0.3
+  popScoreScale: 0.05
+  baseColor: {r: 1, g: 1, b: 1, a: 1}
+  gainColor: {r: 0.7924528, g: 0.70664907, b: 0.41491634, a: 1}
+  lossColor: {r: 0.8962264, g: 0.43543077, b: 0.43543077, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

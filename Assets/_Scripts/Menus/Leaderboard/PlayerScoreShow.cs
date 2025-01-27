@@ -20,7 +20,7 @@ public class PlayerScoreShow : MonoBehaviour
 
     internal void SetPlayer(Leaderboard.Player player, int rank)
     {
-        playerNameText.text = player.name + GetNeededDashes(player.name);
+        playerNameText.text = player.name;// + GetNeededDashes(player.name);
         // scoreDisplay.SetNumber(player.score);
         scoreText.text = player.score.ToString();
 

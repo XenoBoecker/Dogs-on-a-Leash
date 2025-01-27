@@ -7,11 +7,16 @@ using UnityEngine.VFX;
 
 public class HumanMovement : MonoBehaviour
 {
+
+    [SerializeField] Vector3 debugRBVel;
+
     public Transform LeashAttachmentPoint;
 
 
     [SerializeField] float startWalkingDelay = 3f;
     [SerializeField] float minSpeed = 1f;
+
+    [SerializeField] float acceleration = 2f;
     public float speed = 5f; // Speed of movement
     private Rigidbody rb; // Rigidbody for physical movement
 
@@ -35,6 +40,7 @@ public class HumanMovement : MonoBehaviour
 
         bumpPointLossVFX.Stop();
         stunVFX.Stop();
+        stunVFX.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -67,8 +73,13 @@ public class HumanMovement : MonoBehaviour
         }
 
         Vector3 direction = Vector3.right;
-        
-        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction);
+
+        if (rb.velocity.x < speed)
+        {
+            rb.AddForce(acceleration * direction);
+        }
+
+        debugRBVel = rb.velocity;
 
         if (rb.velocity.x < minSpeed) rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
 
@@ -83,7 +94,7 @@ public class HumanMovement : MonoBehaviour
 
     public void ObstacleCollision(Obstacle obstacle)
     {
-        Debug.Log("Human obstacle collision with " + obstacle.name + ": stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce * rb.mass);
+        // Debug.Log("Human obstacle collision with " + obstacle.name + ": stunTime = " + obstacle.stunTime + "; force = " + obstacle.CurrentPushBackForce * rb.mass);
 
         Vector3 dir = (transform.position - obstacle.transform.position).normalized;
 

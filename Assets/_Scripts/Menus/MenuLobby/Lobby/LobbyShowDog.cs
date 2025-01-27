@@ -14,6 +14,9 @@ public class LobbyShowDog : MonoBehaviour
 
     [SerializeField] Transform dogModelParent;
 
+    [SerializeField] float rotSpeed;
+    bool isRotating = true;
+
     [SerializeField] GameObject menuDogPrefab;
     GameObject currentDogModel;
 
@@ -39,6 +42,11 @@ public class LobbyShowDog : MonoBehaviour
         Invoke("UpdateUI", 0.1f);
     }
 
+    private void Update()
+    {
+        if(isRotating) dogModelParent.transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
+    }
+
     private void UpdateUI()
     {
         DogData dogData = lobbyDogSelector.GetDogData();
@@ -47,12 +55,15 @@ public class LobbyShowDog : MonoBehaviour
 
         // TODO: dont need to destroy every time
 
-        if(currentDogModel != null) Destroy(currentDogModel);
-        currentDogModel = Instantiate(menuDogPrefab);
-        currentDogModel.transform.localScale = new Vector3 (DogScale, DogScale, DogScale);
-        currentDogModel.transform.SetParent(dogModelParent);
-        currentDogModel.transform.position = dogModelParent.transform.position;
+        if (currentDogModel == null)
+        {
+            currentDogModel = Instantiate(menuDogPrefab);
+            currentDogModel.transform.localScale = new Vector3(DogScale, DogScale, DogScale);
+            currentDogModel.transform.SetParent(dogModelParent);
+            currentDogModel.transform.position = dogModelParent.transform.position;
 
+            currentDogModel.transform.Rotate(Vector3.up, 180);
+        }
         DogVisuals visuals = currentDogModel.GetComponentInChildren<DogVisuals>();
 
         visuals.SetDogID(dogData.id);
@@ -63,11 +74,14 @@ public class LobbyShowDog : MonoBehaviour
         {
             selectAccessoriePanel.SetActive(true);
             dogSelectArrows.SetActive(false);
+            dogModelParent.transform.rotation = Quaternion.identity;
+            isRotating = false;
         }
         else
         {
             selectAccessoriePanel.SetActive(false);
             dogSelectArrows.SetActive(true);
+            isRotating = true;
         }
 
         if (lobbyDogSelector.IsReadyToPlay)
