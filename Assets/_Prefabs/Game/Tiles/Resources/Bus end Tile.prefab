@@ -796,7 +796,7 @@ MonoBehaviour:
   start: {fileID: 3591259151772413679}
   stop: {fileID: 8334462578952959604}
   end: {fileID: 3191251815009443571}
-  busPositionCurve:
+  busArrivalPositionCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -813,6 +813,30 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  busLeavePositionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -851,6 +875,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   doorAnimDuration: 1
   humanDoorTriggerDistance: 3.5
+  permaBobbleScale: 0.075
+  permaBobbleSpeed: 1.5
   busBobbleScale: 0.3
   busBobbleSpeed: 2
   busBobbleRotScale: 0.5

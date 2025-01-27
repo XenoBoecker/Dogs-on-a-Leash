@@ -8,7 +8,7 @@ public class Bus : MonoBehaviour
 {
 
     [SerializeField] Transform start, stop, end;
-    [SerializeField] AnimationCurve busPositionCurve;
+    [SerializeField] AnimationCurve busArrivalPositionCurve, busLeavePositionCurve;
     [SerializeField] float busArrivalDuration;
 
     [SerializeField] Transform doorStart, doorOut, doorEnd;
@@ -18,6 +18,7 @@ public class Bus : MonoBehaviour
 
     [SerializeField] float humanDoorTriggerDistance = 1.5f;
 
+    [SerializeField] float permaBobbleScale, permaBobbleSpeed;
 
     [SerializeField] float busBobbleScale, busBobbleSpeed;
     [SerializeField] float busBobbleRotScale;
@@ -42,11 +43,10 @@ public class Bus : MonoBehaviour
 
         for (float i = 0; i < busArrivalDuration; i += Time.unscaledDeltaTime)
         {
-            transform.position = Vector3.Lerp(start.position, stop.position, busPositionCurve.Evaluate(i / busArrivalDuration));
+            transform.position = Vector3.Lerp(start.position, stop.position, busArrivalPositionCurve.Evaluate(i / busArrivalDuration));
 
             yield return null;
         }
-        yield return StartCoroutine(BobbleTheBus());
 
         permaBusUpAndDown = StartCoroutine(PermaBusUpAndDown());
     }
@@ -58,9 +58,9 @@ public class Bus : MonoBehaviour
         // bobble the bus
         while (true)
         {
-            float sin = Mathf.Sin(2 * Mathf.PI * time * busBobbleSpeed/2);
+            float sin = Mathf.Sin(2 * Mathf.PI * time * permaBobbleSpeed);
 
-            busCarossery.transform.position = carosseryStartPos + (Vector3.up * sin * busBobbleScale / 4);
+            busCarossery.transform.position = carosseryStartPos + (Vector3.up * sin * permaBobbleScale);
 
             time += Time.unscaledDeltaTime;
             yield return null;
@@ -75,9 +75,10 @@ public class Bus : MonoBehaviour
 
         yield return StartCoroutine(CloseDoorsCoroutine());
 
+        // Bus leaving
         for (float i = 0; i < busArrivalDuration; i += Time.unscaledDeltaTime)
         {
-            transform.position = Vector3.Lerp(stop.position, end.position, busPositionCurve.Evaluate(i / busArrivalDuration));
+            transform.position = Vector3.Lerp(stop.position, end.position, busLeavePositionCurve.Evaluate(i / busArrivalDuration));
 
             yield return null;
         }
@@ -88,11 +89,11 @@ public class Bus : MonoBehaviour
         // wait for human to get in
         HumanMovement human = FindObjectOfType<HumanMovement>();
         human.enabled = false;
-        while(Vector3.Distance(human.transform.position, doorStart.position) > humanDoorTriggerDistance)
+        while(Vector3.Distance(human.transform.position, doorOut.position) > humanDoorTriggerDistance)
         {
-            Debug.Log("Dist: " + Vector3.Distance(human.transform.position, doorStart.position));
+            Debug.Log("Dist: " + Vector3.Distance(human.transform.position, doorOut.position));
 
-            human.transform.Translate((doorStart.position - human.transform.position).normalized * human.speed * Time.deltaTime, Space.World);
+            human.transform.Translate((doorOut.position - human.transform.position).normalized * human.speed * 2 * Time.deltaTime, Space.World);
             yield return null;
         }
 
