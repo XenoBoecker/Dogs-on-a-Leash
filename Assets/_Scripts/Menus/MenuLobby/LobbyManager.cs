@@ -74,6 +74,7 @@ namespace photonMenuLobby
         int connectedDogCount;
 
         public event Action OnPlayerListChanged;
+        public event Action OnBackToPlayerRegistration;
 
         private void Start()
         {
@@ -98,8 +99,6 @@ namespace photonMenuLobby
                 UpdateClientList();
                 UpdatePlayerList();
             }
-
-            SetSeed(UnityEngine.Random.Range(0, 999999999));
 
             seedInputField.onValueChanged.AddListener(OnSeedInputChanged);
         }
@@ -213,11 +212,15 @@ namespace photonMenuLobby
         public void BackToPlayerRegistration()
         {
             ActivatePanel(roomPanel);
+
+            OnBackToPlayerRegistration?.Invoke();
         }
 
         public void GoToDogSelectionPanel()
         {
             ActivatePanel(dogSelectionPanel);
+
+            SetSeed(UnityEngine.Random.Range(100000000, 999999999));
         }
 
         public void OnClickCreate()

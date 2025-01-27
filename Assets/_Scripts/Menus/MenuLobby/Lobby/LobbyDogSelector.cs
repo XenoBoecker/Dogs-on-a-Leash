@@ -6,7 +6,8 @@ public class LobbyDogSelector : MonoBehaviour
     LobbyData lobbyData;
 
     public string PlayerName;
-    int currentSelectedDogIndex;
+
+    [SerializeField] int currentSelectedDogIndex;
     public int CurrentSelectedDogIndex => currentSelectedDogIndex;
     int currentSelectedAccessorieIndex;
     public int CurrentSelectedAccessorieIndex => currentSelectedAccessorieIndex;

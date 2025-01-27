@@ -46,10 +46,13 @@ public class LocalPlayer : MonoBehaviour
             .AddLocalPlayer();
         //transform.SetParent(lobbyManager.playerItemParent);
 
+        lobbyManager.OnBackToPlayerRegistration += ResetDogSelection;
+
         SetLobbyDogSelector(lobbyManager.ChooseDogSelectors[lobbyManager.GetCurrentPlayerCount() - 1]);
 
         ColorIndex = lobbyManager.GetCurrentPlayerCount() - 1;
     }
+
     private void Update()
     {
         if (lobbyManager.IsInDogSelection) waitTimeBeforeCanConfirmSelection -= Time.deltaTime;
@@ -86,26 +89,45 @@ public class LocalPlayer : MonoBehaviour
                 Debug.Log("Not yet connected with selector for input");
                 return;
             }
-            if (lobbyDogSelector.IsSelectionConfirmed) return;
-
-            if (context.phase == InputActionPhase.Started)
+            if (lobbyDogSelector.IsReadyToPlay) return;
+            else
             {
-                float x = context.ReadValue<Vector2>().x;
-                float y = context.ReadValue<Vector2>().y;
-
-                Debug.Log("X: " + x + "; Y: " +y);
-
-                if (Mathf.Abs(x) > Mathf.Abs(y))
+                if (context.phase == InputActionPhase.Started)
                 {
-                    if (x < 0) lobbyDogSelector.SelectPreviousDog();
-                    else if (x > 0) lobbyDogSelector.SelectNextDog();
-                }
-                else
-                {
-                    if (y < 0) lobbyDogSelector.SelectPreviousDog();
-                    else if (y > 0) lobbyDogSelector.SelectNextDog();
-                }
+                    float x = context.ReadValue<Vector2>().x;
+                    float y = context.ReadValue<Vector2>().y;
 
+                    Debug.Log("X: " + x + "; Y: " + y);
+
+
+                    if (lobbyDogSelector.IsSelectionConfirmed)
+                    {
+                        if (Mathf.Abs(x) > Mathf.Abs(y))
+                        {
+                            if (x < 0) lobbyDogSelector.SelectPreviousAccessorie();
+                            else if (x > 0) lobbyDogSelector.SelectNextAccessorie();
+                        }
+                        else
+                        {
+                            if (y < 0) lobbyDogSelector.SelectPreviousAccessorie();
+                            else if (y > 0) lobbyDogSelector.SelectNextAccessorie();
+                        }
+                    }
+                    else
+                    {
+                        if (Mathf.Abs(x) > Mathf.Abs(y))
+                        {
+                            if (x < 0) lobbyDogSelector.SelectPreviousDog();
+                            else if (x > 0) lobbyDogSelector.SelectNextDog();
+                        }
+                        else
+                        {
+                            if (y < 0) lobbyDogSelector.SelectPreviousDog();
+                            else if (y > 0) lobbyDogSelector.SelectNextDog();
+                        }
+                    }
+
+                }
             }
         }
         else if (context.action.name == "ConfirmSelection")
@@ -121,6 +143,15 @@ public class LocalPlayer : MonoBehaviour
                 UnConfirmSelection();
             }
         }
+    }
+
+    private void ResetDogSelection()
+    {
+        UnConfirmSelection();
+        UnConfirmSelection();
+
+        lobbyDogSelector.SetSelectedDogIndex(0);
+        lobbyDogSelector.SetSelectedAccessorieIndex(0);
     }
 
     public void SetLobbyDogSelector(LobbyDogSelector selector)
