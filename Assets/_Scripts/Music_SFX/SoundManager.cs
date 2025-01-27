@@ -161,6 +161,7 @@ public class SoundManager : MonoBehaviour
         public AudioClip buttonHoverSound;
         public AudioClip countDown, popUp;
         public AudioClip countDownTick, countDownWhistle;
+        public AudioClip endOfGameTick, endOfGameWhistle;
     }
 }
 
