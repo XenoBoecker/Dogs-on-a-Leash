@@ -115,12 +115,12 @@ public class GameOver : MonoBehaviour
         {
             int score = (int)(finalScore * i / calcDuration);
 
-            finalScoreText.text = (objectiveScore + score).ToString();
+            finalScoreText.text = score.ToString();
 
             yield return null;
         }
 
-        finalScoreText.text = objectiveScore.ToString();
+        finalScoreText.text = finalScore.ToString();
 
         // UpdateUI();
     }

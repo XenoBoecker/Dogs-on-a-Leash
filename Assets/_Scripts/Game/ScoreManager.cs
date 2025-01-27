@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour
     int totalScore;
 
     bool waitingForGameStart = true;
+    bool gameOver;
 
     public event Action<int, bool> OnScoreChanged;
 
@@ -85,6 +86,9 @@ public class ScoreManager : MonoBehaviour
 
     void EndGame()
     {
+        if (gameOver) return;
+        gameOver = true;
+
         PlayerPrefs.SetInt("Score", totalScore);
         PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
         PlayerPrefs.SetInt("Distance", (int)human.transform.position.x);
@@ -92,8 +96,24 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("BumpedCount", human.BumpedCount);
         PlayerPrefs.SetInt("LevelLength", mapManager.currentPathLength);
 
-        if ((int)timeLeft == 0) sceneChanger.LoadScene(failedEndGameSceneName);
-        else sceneChanger.LoadScene(endGameSceneName);
+
+
+        if ((int)timeLeft == 0)
+        {
+            sceneChanger.LoadScene(failedEndGameSceneName);
+
+        }
+        else
+        {
+            StartCoroutine(EndGameCoroutine());
+        }
+    }
+
+    IEnumerator EndGameCoroutine()
+    {
+        yield return StartCoroutine(FindObjectOfType<Bus>().BusLeavingCoroutine());
+
+        sceneChanger.LoadScene(endGameSceneName);
     }
 
     public void HackSetTimeLeft(float t)
