@@ -105,7 +105,7 @@ public class LeashVisual : MonoBehaviour
         {
             float t = (float)i / (positions.Length - 1);
             float height = Mathf.Clamp(Mathf.Sin(t * Mathf.PI) * (1 - stretchFactor) * maxLeashLength / 2, 0, maxLeashLength / 2);
-            positions[i].y = Mathf.Max(positions[i].y - height, 0);
+            positions[i].y = Mathf.Max(positions[i].y - height, 0.1f);
         }
 
         lineRenderer.SetPositions(positions);
