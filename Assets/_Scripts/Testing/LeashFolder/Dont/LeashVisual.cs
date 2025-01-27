@@ -33,6 +33,7 @@ public class LeashVisual : MonoBehaviour
     void Update()
     {
         leashLength = leashManager.GetCurrentLength();
+        maxLeashLength = leashManager.GetMaxLeashLength();
         UpdateLeashPoints();
         ApplyCurve();
 

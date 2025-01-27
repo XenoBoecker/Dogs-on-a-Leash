@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LeashManager : MonoBehaviour
 {
-    public float testing = 10f;
     [SerializeField] Transform dogLeashAttachmentPoint;
     Transform humanLeashAttachmentPoint;
 
@@ -26,6 +26,7 @@ public class LeashManager : MonoBehaviour
     [Header("Leash settings")]
     [SerializeField] float leashSegmentLengthMinimum = 0.5f;
     [SerializeField] float maxLeashLength = 10f;
+    float originalMaxLeashLength;
     [SerializeField] float leashSegmentAngle = 30f;
     [SerializeField] float leashPullForce = 10f;
     [SerializeField] float humanPullForce = 2f;
@@ -39,6 +40,8 @@ public class LeashManager : MonoBehaviour
 
     public bool enableDraggingMode = false;
 
+    PlayerInput playerInput;
+
     void Start()
     {
         Invoke("Setup", 0.2f);
@@ -51,9 +54,27 @@ public class LeashManager : MonoBehaviour
         leashTarget = GameObject.Find("Human").transform;
         humanRigidbody = leashTarget.GetComponent<Rigidbody>();
 
+        playerInput = gameObject.GetComponent<PlayerInput>();
+
+        originalMaxLeashLength = maxLeashLength;
+
+        playerInput = GetComponent<PlayerDogController>().GetPlayerInput();
+        if (playerInput)
+        {
+            playerInput.onActionTriggered += OnActionTriggered;
+        }
+
         dogLeashAttachmentPoint = GetComponent<PlayerDogVisuals>().LeashAttachmentPoint;
         humanLeashAttachmentPoint = leashTarget.GetComponent<HumanMovement>().LeashAttachmentPoint;
     }
+
+    void OnDisable()
+    {
+        if (playerInput)
+        {
+            playerInput.onActionTriggered -= OnActionTriggered;
+        }
+    }   
 
     void Update()
     {
@@ -300,7 +321,33 @@ public class LeashManager : MonoBehaviour
     }
 
 
-    
+    void OnActionTriggered(InputAction.CallbackContext context)
+    {
+        if (context.action.name == "PullLeash")
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Debug.Log("Pulling Leash");
+
+
+                // Reduce the maximum leash length to the current leash length
+                if(currentLength > maxLeashLength)
+                {
+                    return;
+                }
+                maxLeashLength = currentLength;
+
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+            {
+                Debug.Log("Released Leash");
+
+                // Reset the maximum leash length to its original value
+                maxLeashLength = originalMaxLeashLength;
+            }
+        }
+    }
+
 
     
 
