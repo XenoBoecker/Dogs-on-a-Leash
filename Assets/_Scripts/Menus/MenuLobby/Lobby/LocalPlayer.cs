@@ -46,10 +46,13 @@ public class LocalPlayer : MonoBehaviour
             .AddLocalPlayer();
         //transform.SetParent(lobbyManager.playerItemParent);
 
+        lobbyManager.OnBackToPlayerRegistration += ResetDogSelection;
+
         SetLobbyDogSelector(lobbyManager.ChooseDogSelectors[lobbyManager.GetCurrentPlayerCount() - 1]);
 
         ColorIndex = lobbyManager.GetCurrentPlayerCount() - 1;
     }
+
     private void Update()
     {
         if (lobbyManager.IsInDogSelection) waitTimeBeforeCanConfirmSelection -= Time.deltaTime;
@@ -140,6 +143,15 @@ public class LocalPlayer : MonoBehaviour
                 UnConfirmSelection();
             }
         }
+    }
+
+    private void ResetDogSelection()
+    {
+        UnConfirmSelection();
+        UnConfirmSelection();
+
+        lobbyDogSelector.SetSelectedDogIndex(0);
+        lobbyDogSelector.SetSelectedAccessorieIndex(0);
     }
 
     public void SetLobbyDogSelector(LobbyDogSelector selector)
