@@ -8,6 +8,7 @@ public class InteractableDetector : MonoBehaviour
     PhotonView view;
 
     PlayerDogController playerDogController;
+    Rigidbody dogRB;
 
     public static int PickupCount;
 
@@ -20,6 +21,8 @@ public class InteractableDetector : MonoBehaviour
 
 
     [SerializeField] float rotationTowardsInteractableSpeed;
+
+    [SerializeField] float stayAtInteractableForce = 30f;
 
     public event Action OnInteract;
     public event Action OnInteracted;
@@ -38,6 +41,8 @@ public class InteractableDetector : MonoBehaviour
         if (playerDogController == null) Debug.LogError("No player dog controller found");
         playerDogController.OnInteract += InteractWithClosestInteractable;
         playerDogController.OnStopInteract += CancelTask;
+
+        dogRB = playerDogController.GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -65,6 +70,8 @@ public class InteractableDetector : MonoBehaviour
             targetRotation,
             Time.deltaTime * rotationTowardsInteractableSpeed // Adjust rotationSpeed for desired smoothness
         );
+
+        dogRB.AddForce(direction * stayAtInteractableForce);
     }
 
     void CancelTask() // usually task is canceled from within task, this is for external canceling: e.g. being dragged away too far

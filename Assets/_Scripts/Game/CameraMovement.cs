@@ -135,4 +135,10 @@ public class CameraMovement : MonoBehaviour
 
         transform.position = new Vector3(lerpedX, transform.position.y, transform.position.z);
     }
+
+    public void HackSkipFlythrough()
+    {
+        StopAllCoroutines();
+        EndFlyThrough();
+    }
 }
