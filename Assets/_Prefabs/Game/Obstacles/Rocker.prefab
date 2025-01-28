@@ -91,9 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForce: 2
   stunTime: 1
-  pushBackCD: 2
   scoreValue: -100
 --- !u!1001 &1808606390631986589
 PrefabInstance:
@@ -105,18 +103,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4fbf2c19de42dce4092d121faafdfb4f,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.73485
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4fbf2c19de42dce4092d121faafdfb4f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.73485
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4fbf2c19de42dce4092d121faafdfb4f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.73485
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4fbf2c19de42dce4092d121faafdfb4f,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.00003795
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fbf2c19de42dce4092d121faafdfb4f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.34326
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fbf2c19de42dce4092d121faafdfb4f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.026613
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fbf2c19de42dce4092d121faafdfb4f,
         type: 3}

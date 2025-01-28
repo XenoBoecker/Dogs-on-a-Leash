@@ -43,17 +43,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 32b704cdb3dcfbe418061bc9b04b946f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 0.65718
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32b704cdb3dcfbe418061bc9b04b946f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 0.65718
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32b704cdb3dcfbe418061bc9b04b946f,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75
+      value: 0.65718
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32b704cdb3dcfbe418061bc9b04b946f,
         type: 3}
@@ -63,12 +63,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 32b704cdb3dcfbe418061bc9b04b946f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.31006
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32b704cdb3dcfbe418061bc9b04b946f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.0012207
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 32b704cdb3dcfbe418061bc9b04b946f,
         type: 3}
@@ -191,9 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForce: 2
   stunTime: 1
-  pushBackCD: 2
   scoreValue: -100
 --- !u!64 &3748498073737388434
 MeshCollider:
