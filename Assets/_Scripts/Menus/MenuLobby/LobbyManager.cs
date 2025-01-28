@@ -386,7 +386,15 @@ namespace photonMenuLobby
             }
             else
             {
-                if (FindObjectsOfType<LocalPlayer>().Length == dogsNeededToStartGame)
+                currentPlayerCount = FindObjectsOfType<LocalPlayer>().Length;
+
+                for (int i = 0; i < chooseDogSelectors.Count; i++)
+                {
+                    if (i < currentPlayerCount) chooseDogSelectors[i].gameObject.SetActive(true);
+                    else chooseDogSelectors[i].gameObject.SetActive(false);
+                }
+
+                if (currentPlayerCount == dogsNeededToStartGame)
                 {
                     StartCoroutine(DelayedDogSelectionPanelActivation());
                 }
