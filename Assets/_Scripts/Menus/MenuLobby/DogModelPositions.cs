@@ -25,6 +25,8 @@ public class DogModelPositions : MonoBehaviour
     {
         int currentPlayerCount = FindObjectsOfType<LocalPlayer>().Length;
 
+        Debug.Log("DogCOunt: " + currentPlayerCount);
+
         for (int i = 0; i < dogParents.Count; i++)
         {
             if (i < currentPlayerCount) dogParents[i].SetActive(true);

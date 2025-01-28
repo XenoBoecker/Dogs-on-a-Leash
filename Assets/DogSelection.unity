@@ -1515,6 +1515,7 @@ GameObject:
   - component: {fileID: 335579945}
   - component: {fileID: 335579944}
   - component: {fileID: 335579949}
+  - component: {fileID: 335579950}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -1652,6 +1653,36 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   popDuration: 0.3
+--- !u!114 &335579950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335579943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3208f1c4b1b96c48b2430170c4062cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogParents:
+  - {fileID: 491192072}
+  - {fileID: 1450444328}
+  - {fileID: 769375694}
+  - {fileID: 474847609}
+  oneDog: {fileID: 1214999198}
+  twoDogs:
+  - {fileID: 1816705093}
+  - {fileID: 1892842932}
+  threeDogs:
+  - {fileID: 698433706}
+  - {fileID: 474421257}
+  - {fileID: 1726962993}
+  fourDogs:
+  - {fileID: 574583485}
+  - {fileID: 567447602}
+  - {fileID: 889846639}
+  - {fileID: 418095093}
 --- !u!1 &411890884
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,7 +3250,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 869668270}
-  - component: {fileID: 869668271}
   m_Layer: 0
   m_Name: DogModels
   m_TagString: Untagged
@@ -3247,36 +3277,6 @@ Transform:
   - {fileID: 1550577856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &869668271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869668269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3208f1c4b1b96c48b2430170c4062cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dogParents:
-  - {fileID: 491192072}
-  - {fileID: 1450444328}
-  - {fileID: 769375694}
-  - {fileID: 474847609}
-  oneDog: {fileID: 1214999198}
-  twoDogs:
-  - {fileID: 1816705093}
-  - {fileID: 1892842932}
-  threeDogs:
-  - {fileID: 698433706}
-  - {fileID: 474421257}
-  - {fileID: 1726962993}
-  fourDogs:
-  - {fileID: 574583485}
-  - {fileID: 567447602}
-  - {fileID: 889846639}
-  - {fileID: 418095093}
 --- !u!1 &889846638
 GameObject:
   m_ObjectHideFlags: 0
