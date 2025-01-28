@@ -21,7 +21,8 @@ public class LeashVisual : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        endPoint = GameObject.Find("Human").transform.GetChild(0).transform;
+        endPoint = FindObjectOfType<HumanMovement>().LeashAttachmentPoint;
+        startPoint = GetComponent<PlayerDogVisuals>().LeashAttachmentPoint;
         leashManager = gameObject.GetComponent<LeashManager>();
         maxLeashLength = leashManager.GetMaxLeashLength();
         leashPoints = new List<Vector3>();
