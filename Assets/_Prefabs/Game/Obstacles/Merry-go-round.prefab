@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForce: 2
   stunTime: 1
-  pushBackCD: 2
   scoreValue: -100
 --- !u!136 &3270666754246571679
 CapsuleCollider:
@@ -83,18 +81,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c62cf64504143a04aac7b2e6f2a097f7,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7900702
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c62cf64504143a04aac7b2e6f2a097f7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7900702
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c62cf64504143a04aac7b2e6f2a097f7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7900702
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c62cf64504143a04aac7b2e6f2a097f7,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c62cf64504143a04aac7b2e6f2a097f7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.37408
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c62cf64504143a04aac7b2e6f2a097f7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.00024414
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c62cf64504143a04aac7b2e6f2a097f7,
         type: 3}
