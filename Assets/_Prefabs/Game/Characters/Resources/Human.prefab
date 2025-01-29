@@ -1545,6 +1545,31 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3699898355520597503, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99845445
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699898355520597503, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.055576645
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699898355520597503, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 3.347889e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699898355520597503, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000013250514
+      objectReference: {fileID: 0}
+    - target: {fileID: 3699898355520597503, guid: 8c708ee602a020a44aeab19b818ff61f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -6.372
+      objectReference: {fileID: 0}
     - target: {fileID: 3866831334614676236, guid: 8c708ee602a020a44aeab19b818ff61f,
         type: 3}
       propertyPath: m_Layer
@@ -1874,7 +1899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d86f5f07c3951428ff3b7cc3dfe73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaningAngle: -30
+  leaningAngle: 20
   velocityThreshold: 0.1
   maxVelocity: 10
   pullDirectionThreshold: 0.01
