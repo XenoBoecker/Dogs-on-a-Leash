@@ -1045,6 +1045,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitSelection"",
+                    ""type"": ""Button"",
+                    ""id"": ""9695f123-b9d6-41ff-929c-ab06b56e9ae7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1311,6 +1320,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6863f83-2165-440d-be70-68147098c9b0"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1405,6 +1425,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Lobby_ChangeSelectedDog = m_Lobby.FindAction("ChangeSelectedDog", throwIfNotFound: true);
         m_Lobby_ConfirmSelection = m_Lobby.FindAction("ConfirmSelection", throwIfNotFound: true);
         m_Lobby_Back = m_Lobby.FindAction("Back", throwIfNotFound: true);
+        m_Lobby_ExitSelection = m_Lobby.FindAction("ExitSelection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1689,6 +1710,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Lobby_ChangeSelectedDog;
     private readonly InputAction m_Lobby_ConfirmSelection;
     private readonly InputAction m_Lobby_Back;
+    private readonly InputAction m_Lobby_ExitSelection;
     public struct LobbyActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1696,6 +1718,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ChangeSelectedDog => m_Wrapper.m_Lobby_ChangeSelectedDog;
         public InputAction @ConfirmSelection => m_Wrapper.m_Lobby_ConfirmSelection;
         public InputAction @Back => m_Wrapper.m_Lobby_Back;
+        public InputAction @ExitSelection => m_Wrapper.m_Lobby_ExitSelection;
         public InputActionMap Get() { return m_Wrapper.m_Lobby; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1714,6 +1737,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Back.started += instance.OnBack;
             @Back.performed += instance.OnBack;
             @Back.canceled += instance.OnBack;
+            @ExitSelection.started += instance.OnExitSelection;
+            @ExitSelection.performed += instance.OnExitSelection;
+            @ExitSelection.canceled += instance.OnExitSelection;
         }
 
         private void UnregisterCallbacks(ILobbyActions instance)
@@ -1727,6 +1753,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Back.started -= instance.OnBack;
             @Back.performed -= instance.OnBack;
             @Back.canceled -= instance.OnBack;
+            @ExitSelection.started -= instance.OnExitSelection;
+            @ExitSelection.performed -= instance.OnExitSelection;
+            @ExitSelection.canceled -= instance.OnExitSelection;
         }
 
         public void RemoveCallbacks(ILobbyActions instance)
@@ -1818,5 +1847,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnChangeSelectedDog(InputAction.CallbackContext context);
         void OnConfirmSelection(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnExitSelection(InputAction.CallbackContext context);
     }
 }

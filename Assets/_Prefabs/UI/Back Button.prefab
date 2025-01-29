@@ -110,7 +110,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 52093410f910c5f4185042105625ed3f,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 52093410f910c5f4185042105625ed3f, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -147,11 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
   buttonObject: {fileID: 0}
   bobSpeed: 3
   bobScaleFactor: 1.05
   returnSpeed: 5
-  onlyOnce: 1
+  onlyOnce: 0
   sizeIncreaseAnimCurve:
     serializedVersion: 2
     m_Curve:

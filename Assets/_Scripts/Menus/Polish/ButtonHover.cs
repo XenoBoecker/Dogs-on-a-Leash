@@ -8,25 +8,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     protected virtual void Start()
     {
-        // Automatically assign the event handlers
-        EventTrigger trigger = gameObject.GetComponent<EventTrigger>();
 
-        if (trigger == null)
-        {
-            trigger = gameObject.AddComponent<EventTrigger>();
-        }
-
-        // Add PointerEnter event
-        EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
-        pointerEnter.eventID = EventTriggerType.PointerEnter;
-        pointerEnter.callback.AddListener((data) => { OnHoverEnter(); });
-        trigger.triggers.Add(pointerEnter);
-
-        // Add PointerExit event
-        EventTrigger.Entry pointerExit = new EventTrigger.Entry();
-        pointerExit.eventID = EventTriggerType.PointerExit;
-        pointerExit.callback.AddListener((data) => { OnHoverExit(); });
-        trigger.triggers.Add(pointerExit);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
