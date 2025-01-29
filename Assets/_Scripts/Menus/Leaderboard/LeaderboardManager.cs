@@ -42,6 +42,7 @@ public class LeaderboardManager : MonoBehaviour
         // Assuming the Leaderboard script is attached to a GameObject named "Leaderboard"
         leaderboard = GetComponent<Leaderboard>();
         leaderboard.LoadLeaderboard();
+        leaderboard.OnPlayerScoresChanged += UpdateLeaderboardUI;
         UpdateLeaderboardUI();
 
         submitScoreButton.onClick.AddListener(OnSubmitScore);
@@ -84,14 +85,12 @@ public class LeaderboardManager : MonoBehaviour
             leaderboard.AddPlayer(playerName, lastGameScore);
             leaderBoardInputObject.SetActive(false);
             submitScoreButton.gameObject.SetActive(false);
-            UpdateLeaderboardUI();
         }
     }
 
     public void ResetScores()
     {
         leaderboard.ResetLeaderboard();
-        UpdateLeaderboardUI();
     }
 
     public void UpdateLeaderboardUI()
