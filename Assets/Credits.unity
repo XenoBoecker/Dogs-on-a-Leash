@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 290.1, y: -23.907}
+  m_AnchoredPosition: {x: 290.1, y: -23.906982}
   m_SizeDelta: {x: 242.964, y: 47.814}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &48910103
@@ -511,37 +511,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368242347}
   m_CullTransparentMesh: 1
---- !u!1 &478826095
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 478826096}
-  m_Layer: 0
-  m_Name: 'Programming '
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &478826096
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478826095}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.00471, y: -123.79398, z: 7.7732077}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &494472080
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +705,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Linda Hahnemann
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -850,7 +819,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 295.7, y: -122.600006}
+  m_AnchoredPosition: {x: 295.7, y: -122.60004}
   m_SizeDelta: {x: 266.137, y: 47.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624658191
@@ -1107,7 +1076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.5679932, y: -944.3111}
+  m_AnchoredPosition: {x: -2.5679932, y: -944.31104}
   m_SizeDelta: {x: -488.205, y: 634.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813503996
@@ -1342,7 +1311,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Linda Hahnemann
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -1828,7 +1797,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Konstantin Sergeev
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -2092,6 +2061,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211303035}
   m_CullTransparentMesh: 1
+--- !u!1 &1247288707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1247288709}
+  - component: {fileID: 1247288708}
+  m_Layer: 0
+  m_Name: CreditManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1247288708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247288707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20020baeeb7f53a4e9ee96b15c1501d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  credits: {fileID: 813503994}
+  speed: 10
+  pointOfReturn: 100
+--- !u!4 &1247288709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247288707}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1251936093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,7 +2142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 289.2309, y: -165.1}
+  m_AnchoredPosition: {x: 289.2309, y: -165.10004}
   m_SizeDelta: {x: 531.543, y: 47.814}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251936095
@@ -2151,7 +2167,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Erik Nitsche
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -3357,4 +3373,4 @@ SceneRoots:
   - {fileID: 718918162}
   - {fileID: 1831196847}
   - {fileID: 1739912297}
-  - {fileID: 478826096}
+  - {fileID: 1247288709}
