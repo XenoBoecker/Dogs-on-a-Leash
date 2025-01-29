@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
 
     internal void Setup()
     {
-        GetComponent<SpawnObjectives>().SpawnAllObjectives();
+        SpawnObjectives so = GetComponent<SpawnObjectives>();
+        if(so) so.SpawnAllObjectives();
     }
 }
