@@ -1515,6 +1515,7 @@ GameObject:
   - component: {fileID: 335579945}
   - component: {fileID: 335579944}
   - component: {fileID: 335579949}
+  - component: {fileID: 335579950}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -1566,6 +1567,7 @@ MonoBehaviour:
   gameSceneName: Game
   testing: 0
   dogsNeededToStartGame: 4
+  switchPanelDelayAfterAllPlayersRegistered: 1
 --- !u!114 &335579945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,6 +1653,36 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   popDuration: 0.3
+--- !u!114 &335579950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335579943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3208f1c4b1b96c48b2430170c4062cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogParents:
+  - {fileID: 491192072}
+  - {fileID: 1450444328}
+  - {fileID: 769375694}
+  - {fileID: 474847609}
+  oneDog: {fileID: 1214999198}
+  twoDogs:
+  - {fileID: 1816705093}
+  - {fileID: 1892842932}
+  threeDogs:
+  - {fileID: 698433706}
+  - {fileID: 474421257}
+  - {fileID: 1726962993}
+  fourDogs:
+  - {fileID: 574583485}
+  - {fileID: 567447602}
+  - {fileID: 889846639}
+  - {fileID: 418095093}
 --- !u!1 &411890884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1758,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411890884}
   m_CullTransparentMesh: 1
+--- !u!1 &418095092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418095093}
+  m_Layer: 0
+  m_Name: FourDogs4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &418095093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418095092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.35, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &454504093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1870,37 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!1 &474421256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474421257}
+  m_Layer: 0
+  m_Name: ThreeDogs2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &474421257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474421256}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &474847609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1995,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 39071ad7654595141a65b8df6a8ccfb4,
+      objectReference: {fileID: 21300000, guid: c6dbc201b60df334088929e4c70f9377,
         type: 3}
     - target: {fileID: 2719285234520443164, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
@@ -2465,6 +2559,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565721360}
   m_CullTransparentMesh: 1
+--- !u!1 &567447601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 567447602}
+  m_Layer: 0
+  m_Name: FourDogs2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &567447602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567447601}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.85, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &574583484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 574583485}
+  m_Layer: 0
+  m_Name: FourDogs1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &574583485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574583484}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.45, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &615918025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,6 +2888,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &698433705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698433706}
+  m_Layer: 0
+  m_Name: ThreeDogs1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &698433706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698433705}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.9, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &769375694
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,7 +3274,39 @@ Transform:
   - {fileID: 1450444329}
   - {fileID: 769375695}
   - {fileID: 474847610}
+  - {fileID: 1550577856}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &889846638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 889846639}
+  m_Layer: 0
+  m_Name: FourDogs3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &889846639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889846638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.75, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &946150933
 GameObject:
@@ -3297,7 +3516,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b27a0c2475a0b894ead83b56c0bd75a2,
+      objectReference: {fileID: 21300000, guid: 615a03b23ed9fec4f8d1de6f421825cc,
         type: 3}
     - target: {fileID: 2719285234520443164, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
@@ -3425,10 +3644,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbyDogSelector (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5278065071909479233, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
       propertyPath: currentSelectedDogIndex
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769281721819977205, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 135.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769281721819977205, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 7505875855902308285, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
@@ -3780,6 +4014,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212267134}
   m_CullTransparentMesh: 1
+--- !u!1 &1214999197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214999198}
+  m_Layer: 0
+  m_Name: OneDog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1214999198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214999197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1244576095 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9040837729214255708, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
@@ -4095,7 +4360,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 18136d462d6ee854a9e81979162800ac,
+      objectReference: {fileID: 21300000, guid: 0cfef38200093554397052bff6c7d2d6,
         type: 3}
     - target: {fileID: 2719285234520443164, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
@@ -4222,6 +4487,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LobbyDogSelector (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5278065071909479233, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
@@ -4519,6 +4789,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName: 
   currentSelectedDogIndex: 0
+--- !u!1 &1550577855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1550577856}
+  m_Layer: 0
+  m_Name: DogPositionMarkers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1550577856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550577855}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1214999198}
+  - {fileID: 1816705093}
+  - {fileID: 1892842932}
+  - {fileID: 698433706}
+  - {fileID: 474421257}
+  - {fileID: 1726962993}
+  - {fileID: 574583485}
+  - {fileID: 567447602}
+  - {fileID: 889846639}
+  - {fileID: 418095093}
+  m_Father: {fileID: 869668270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1581688920
 GameObject:
   m_ObjectHideFlags: 0
@@ -4798,8 +5109,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1679838058}
   - component: {fileID: 1679838057}
-  - component: {fileID: 1679838056}
   - component: {fileID: 1679838059}
+  - component: {fileID: 1679838060}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4807,14 +5118,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1679838056
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679838055}
-  m_Enabled: 1
 --- !u!20 &1679838057
 Camera:
   m_ObjectHideFlags: 0
@@ -4925,6 +5228,14 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!81 &1679838060
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679838055}
+  m_Enabled: 1
 --- !u!1 &1688834756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5159,6 +5470,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693449657}
   m_CullTransparentMesh: 1
+--- !u!1 &1726962992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726962993}
+  m_Layer: 0
+  m_Name: ThreeDogs3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1726962993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726962992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.75, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746307513
 GameObject:
   m_ObjectHideFlags: 0
@@ -5857,6 +6199,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781733012}
   m_CullTransparentMesh: 1
+--- !u!1 &1816705092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816705093}
+  m_Layer: 0
+  m_Name: TwoDogs1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1816705093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816705092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.7, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1876748374
 GameObject:
   m_ObjectHideFlags: 0
@@ -6029,6 +6402,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1892842931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892842932}
+  m_Layer: 0
+  m_Name: TwoDogs2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1892842932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892842931}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.6, y: -0.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550577856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1905042581
 GameObject:
   m_ObjectHideFlags: 0

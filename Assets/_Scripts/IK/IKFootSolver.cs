@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class IKFootSolver : MonoBehaviour
 {
@@ -18,8 +19,11 @@ public class IKFootSolver : MonoBehaviour
     Vector3 oldNormal, currentNormal, newNormal;
     float lerp;
 
+    Rigidbody rb;
+
     private void Start()
     {
+        rb = GameObject.Find("Human").GetComponent<Rigidbody>();
         footSpacing = transform.localPosition.x;
         currentPosition = newPosition = oldPosition = transform.position;
         currentNormal = newNormal = oldNormal = transform.up;
@@ -27,6 +31,8 @@ public class IKFootSolver : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    
 
     void Update()
     {
@@ -37,13 +43,24 @@ public class IKFootSolver : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 10, terrainLayer.value))
         {
-
             if (Vector3.Distance(newPosition, hit.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
             {
-
                 lerp = 0;
-                int direction = body.InverseTransformPoint(hit.point).z > body.InverseTransformPoint(newPosition).z ? 1 : -1;
-                newPosition = hit.point + (body.forward * stepLength * direction) + footOffset;
+
+                // Calculate the movement direction based on the rigidbody's velocity
+                Vector3 moveDirection = rb.velocity.normalized;
+
+                // Determine if the movement is primarily sideways or forward
+                float stepLengthAdjusted = stepLength;
+                if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.z))
+                {
+                    // If moving sideways, adjust the step length
+                    stepLengthAdjusted *= 1.5f; // Adjust this factor as needed
+                }
+
+                // Adjust newPosition to account for both forward and sideways movement
+                newPosition = hit.point + (moveDirection * stepLengthAdjusted) + footOffset;
+
                 newNormal = hit.normal;
             }
         }

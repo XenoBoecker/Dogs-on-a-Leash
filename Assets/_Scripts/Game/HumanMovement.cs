@@ -1,8 +1,7 @@
 ﻿using Photon.Pun;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 
 public class HumanMovement : MonoBehaviour
@@ -18,6 +17,7 @@ public class HumanMovement : MonoBehaviour
 
     [SerializeField] float acceleration = 2f;
     public float speed = 5f; // Speed of movement
+    public float rotationSpeed = 5f; // Speed of rotation
     private Rigidbody rb; // Rigidbody for physical movement
 
     float stunTime;
@@ -27,6 +27,10 @@ public class HumanMovement : MonoBehaviour
 
 
     [SerializeField] VisualEffect bumpPointLossVFX, stunVFX;
+
+    [SerializeField] CanvasGroup bumpVignette;
+    [SerializeField] AnimationCurve vignettePopCurve;
+    [SerializeField] float vignetteDuration;
 
     public event Action<Obstacle> OnHitObstacle;
 
@@ -62,6 +66,13 @@ public class HumanMovement : MonoBehaviour
         MoveForward();
     }
 
+    private void AddSidewaysForce()
+    {
+        // add a force orthogonal to the current velocity
+        Vector3 direction = Vector3.Cross(rb.velocity, Vector3.up).normalized;
+        rb.AddForce(direction * 0.1f, ForceMode.Impulse);
+    }
+
     private void MoveForward()
     {
         if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
@@ -88,7 +99,9 @@ public class HumanMovement : MonoBehaviour
 
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * speed));
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed));
+
+        // AddSidewaysForce();
     }
 
     public void ObstacleCollision(Obstacle obstacle)
@@ -107,7 +120,20 @@ public class HumanMovement : MonoBehaviour
 
         BumpedCount++;
 
+        StartCoroutine(BumpVignettePopCoroutine());
+
         OnHitObstacle?.Invoke(obstacle);
+    }
+
+
+    IEnumerator BumpVignettePopCoroutine()
+    {
+        for (float i = 0; i < vignetteDuration; i+=Time.unscaledDeltaTime)
+        {
+            bumpVignette.alpha = vignettePopCurve.Evaluate(i / vignetteDuration);
+            yield return null;
+        }
+        bumpVignette.alpha = 0;
     }
 
     void Stun(float stunTime)

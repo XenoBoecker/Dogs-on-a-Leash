@@ -65,6 +65,8 @@ namespace photonMenuLobby
                 // Debug.Log("Scale: " +t.localScale);
                 yield return null;
             }
+
+            t.localScale = startScale;
         }
     }
 

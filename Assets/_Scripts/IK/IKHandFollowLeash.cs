@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class IKHandFollowLeash : MonoBehaviour
 {
@@ -93,5 +94,24 @@ public class IKHandFollowLeash : MonoBehaviour
         if (result == Vector3.zero) return baseForceVectorDir;
 
         return result;
+    }
+
+    public Vector3 GetLeashPullDirection() // Helper method for me :3
+    {
+        Vector3 result = Vector3.zero;
+
+        for (int i = 0; i < dogLeashes.Length; i++)
+        {
+            result += dogLeashes[i].CurrentForceOnHuman();
+        }
+
+        result.y = 0;
+
+        return result;
+    }
+
+    public Vector3 GetPullDir()
+    {
+        return pullDir;
     }
 }

@@ -115,6 +115,8 @@ public class ScoreUI : MonoBehaviour
 
             yield return null;
         }
+        timeText.transform.position = center.position;
+        timeText.transform.localScale = startScale * (1 + sizeScale);
 
         Vector3 blinkStartScale = timeText.transform.localScale;
         for (float i = 0; i < centerWaitTime; i += Time.unscaledDeltaTime)
@@ -125,6 +127,8 @@ public class ScoreUI : MonoBehaviour
 
             yield return null;
         }
+        timeText.color = baseColor;
+        timeText.transform.localScale = blinkStartScale;
 
         for (float i = 0; i < animDuration; i += Time.unscaledDeltaTime)
         {
@@ -133,6 +137,8 @@ public class ScoreUI : MonoBehaviour
 
             yield return null;
         }
+        timeText.transform.position = end.position;
+        timeText.transform.localScale = startScale;
 
     }
 }
