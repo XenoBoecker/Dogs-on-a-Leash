@@ -20,6 +20,7 @@ public class InteractableDetector : MonoBehaviour
     public Interactable CurrentInteractingInteractable => currentInteractingInteractable;
 
 
+    [SerializeField] bool rotateTowardsInteractable = false;
     [SerializeField] float rotationTowardsInteractableSpeed;
 
     [SerializeField] float stayAtInteractableForce = 30f;
@@ -51,25 +52,27 @@ public class InteractableDetector : MonoBehaviour
 
         if(currentInteractingInteractable != null)
         {
-            RotateTowardsInteractable();
+            RotateTowardsAndStayAtInteractable();
         }
     }
-    private void RotateTowardsInteractable()
+    private void RotateTowardsAndStayAtInteractable()
     {
         if (currentInteractingInteractable == null) return; // Ensure there's a target to look at
 
         // Get the direction to the interactable
         Vector3 direction = (currentInteractingInteractable.transform.position - playerDogController.transform.position).normalized;
+        if (rotateTowardsInteractable)
+        {
+            // Calculate the target rotation
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
 
-        // Calculate the target rotation
-        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-
-        // Smoothly interpolate the rotation
-        playerDogController.transform.rotation = Quaternion.Slerp(
-            playerDogController.transform.rotation,
-            targetRotation,
-            Time.deltaTime * rotationTowardsInteractableSpeed // Adjust rotationSpeed for desired smoothness
-        );
+            // Smoothly interpolate the rotation
+            playerDogController.transform.rotation = Quaternion.Slerp(
+                playerDogController.transform.rotation,
+                targetRotation,
+                Time.deltaTime * rotationTowardsInteractableSpeed // Adjust rotationSpeed for desired smoothness
+            );
+        }
 
         dogRB.AddForce(direction * stayAtInteractableForce);
     }

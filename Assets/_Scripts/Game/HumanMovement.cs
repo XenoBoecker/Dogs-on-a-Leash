@@ -1,9 +1,11 @@
 ﻿using Photon.Pun;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 
 public class HumanMovement : MonoBehaviour
@@ -29,6 +31,10 @@ public class HumanMovement : MonoBehaviour
 
 
     [SerializeField] VisualEffect bumpPointLossVFX, stunVFX;
+
+    [SerializeField] CanvasGroup bumpVignette;
+    [SerializeField] AnimationCurve vignettePopCurve;
+    [SerializeField] float vignetteDuration;
 
     public event Action<Obstacle> OnHitObstacle;
 
@@ -118,7 +124,20 @@ public class HumanMovement : MonoBehaviour
 
         BumpedCount++;
 
+        StartCoroutine(BumpVignettePopCoroutine());
+
         OnHitObstacle?.Invoke(obstacle);
+    }
+
+
+    IEnumerator BumpVignettePopCoroutine()
+    {
+        for (float i = 0; i < vignetteDuration; i+=Time.unscaledDeltaTime)
+        {
+            bumpVignette.alpha = vignettePopCurve.Evaluate(i / vignetteDuration);
+            yield return null;
+        }
+        bumpVignette.alpha = 0;
     }
 
     void Stun(float stunTime)
