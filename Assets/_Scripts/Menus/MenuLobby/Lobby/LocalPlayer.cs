@@ -166,6 +166,13 @@ public class LocalPlayer : MonoBehaviour
                 UnConfirmSelection();
             }
         }
+        else if (context.action.name == "ExitSelection")
+        {
+            if (context.phase == InputActionPhase.Performed) // Trigger toggle only on Performed
+            {
+                ExitDogSelection();
+            }
+        }
     }
 
     private void ResetDogSelection()
@@ -247,5 +254,10 @@ public class LocalPlayer : MonoBehaviour
         lobbyDogSelector?.SetReadyToPlay(isReadyToPlay);
 
         OnConfirmSelectionChanged?.Invoke();
+    }
+
+    private void ExitDogSelection()
+    {
+        lobbyManager.BackToPlayerRegistration();
     }
 }
