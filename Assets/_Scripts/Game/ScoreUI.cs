@@ -4,9 +4,11 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 
 public class ScoreUI : MonoBehaviour
 {
+    [SerializeField] Transform timeTextParent;
     [SerializeField] TMP_Text timeText;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] AnimationCurve popScoreCurve;
@@ -19,7 +21,9 @@ public class ScoreUI : MonoBehaviour
 
     [Header("StartGameAnimation")]
 
-    [SerializeField] float waitBeforeAnimStart = 0.5f;
+
+    [SerializeField] float timeTextFadeInTime = 0.3f;
+    [SerializeField] float waitBeforeAnimStart = 0.2f;
     [SerializeField] Transform start, center, end;
     [SerializeField] AnimationCurve positionCurve;
     [SerializeField] float animDuration;
@@ -47,8 +51,8 @@ public class ScoreUI : MonoBehaviour
         scoreTextStartScale = scoreText.transform.localScale;
 
         scoreText.text = "0.pts";
-        timeText.gameObject.SetActive(false);
-        startScale = timeText.transform.localScale;
+        timeTextParent.gameObject.SetActive(false);
+        startScale = timeTextParent.transform.localScale;
     }
 
     private void Update()
@@ -103,42 +107,52 @@ public class ScoreUI : MonoBehaviour
 
     public IEnumerator TimerFlyInCorner()
     {
-        timeText.gameObject.SetActive(true);
-        timeText.transform.position = start.position;
+        timeTextParent.gameObject.SetActive(true);
+        timeTextParent.transform.position = start.position;
+
+        CanvasGroup timeTextCanvasGroup = timeTextParent.GetComponent<CanvasGroup>();
+
+        for (float i = 0; i < timeTextFadeInTime; i += Time.unscaledDeltaTime)
+        {
+            timeTextCanvasGroup.alpha = i / timeTextFadeInTime;
+
+            yield return null;
+        }
+        timeTextCanvasGroup.alpha = 1;
 
         yield return new WaitForSecondsRealtime(waitBeforeAnimStart);
 
         for (float i = 0; i < animDuration; i += Time.unscaledDeltaTime)
         {
-            timeText.transform.position = Vector3.Lerp(start.position, center.position, positionCurve.Evaluate(i / animDuration));
-            timeText.transform.localScale = startScale * (1 + sizeCurve.Evaluate(i / animDuration) * sizeScale);
+            timeTextParent.transform.position = Vector3.Lerp(start.position, center.position, positionCurve.Evaluate(i / animDuration));
+            timeTextParent.transform.localScale = startScale * (1 + sizeCurve.Evaluate(i / animDuration) * sizeScale);
 
             yield return null;
         }
-        timeText.transform.position = center.position;
-        timeText.transform.localScale = startScale * (1 + sizeScale);
+        timeTextParent.transform.position = center.position;
+        timeTextParent.transform.localScale = startScale * (1 + sizeScale);
 
-        Vector3 blinkStartScale = timeText.transform.localScale;
+        Vector3 blinkStartScale = timeTextParent.transform.localScale;
         for (float i = 0; i < centerWaitTime; i += Time.unscaledDeltaTime)
         {
             float sinSquare = Mathf.Pow(Mathf.Sin(i * 2 * Mathf.PI * warnBlinkSpeed),2);
             timeText.color = Color.Lerp(baseColor, warningBlinkColor, sinSquare);// alternate between baseColor and warningBlinkColor
-            timeText.transform.localScale = blinkStartScale * (1 + sinSquare * blinkSizeScale);
+            timeTextParent.transform.localScale = blinkStartScale * (1 + sinSquare * blinkSizeScale);
 
             yield return null;
         }
         timeText.color = baseColor;
-        timeText.transform.localScale = blinkStartScale;
+        timeTextParent.transform.localScale = blinkStartScale;
 
         for (float i = 0; i < animDuration; i += Time.unscaledDeltaTime)
         {
-            timeText.transform.position = Vector3.Lerp(center.position, end.position, positionCurve.Evaluate(i / animDuration));
-            timeText.transform.localScale = startScale * (1 + sizeCurve.Evaluate(1 - i / animDuration) * sizeScale);
+            timeTextParent.transform.position = Vector3.Lerp(center.position, end.position, positionCurve.Evaluate(i / animDuration));
+            timeTextParent.transform.localScale = startScale * (1 + sizeCurve.Evaluate(1 - i / animDuration) * sizeScale);
 
             yield return null;
         }
-        timeText.transform.position = end.position;
-        timeText.transform.localScale = startScale;
+        timeTextParent.transform.position = end.position;
+        timeTextParent.transform.localScale = startScale;
 
     }
 }

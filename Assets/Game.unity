@@ -452,16 +452,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224081557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8799908, y: 0.8799908, z: 0.8799908}
+  m_LocalScale: {x: 1.839138, y: 1.839138, z: 1.839138}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 262966022}
+  m_Father: {fileID: 734629752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 433.33, y: 257.9}
+  m_AnchoredPosition: {x: 29.259369, y: -12.330719}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224081559
@@ -780,7 +780,6 @@ RectTransform:
   - {fileID: 35597150}
   - {fileID: 1259010533}
   - {fileID: 734629752}
-  - {fileID: 224081558}
   - {fileID: 599085323}
   - {fileID: 1968805398}
   - {fileID: 489055953}
@@ -1533,6 +1532,7 @@ GameObject:
   - component: {fileID: 734629752}
   - component: {fileID: 734629754}
   - component: {fileID: 734629753}
+  - component: {fileID: 734629755}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -1551,7 +1551,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.47848, y: 0.47848, z: 0.47848}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 224081558}
   m_Father: {fileID: 262966022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1597,6 +1598,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734629751}
   m_CullTransparentMesh: 1
+--- !u!225 &734629755
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734629751}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &745677490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,6 +2977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb38b9c3a3abb841bfa222ea6126039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeTextParent: {fileID: 734629752}
   timeText: {fileID: 224081559}
   scoreText: {fileID: 599085324}
   popScoreCurve:
@@ -3004,7 +3018,8 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   gainColor: {r: 0.7924528, g: 0.70664907, b: 0.41491634, a: 1}
   lossColor: {r: 0.8962264, g: 0.43543077, b: 0.43543077, a: 1}
-  waitBeforeAnimStart: 0.5
+  timeTextFadeInTime: 0.3
+  waitBeforeAnimStart: 0.2
   start: {fileID: 799516177}
   center: {fileID: 627821521}
   end: {fileID: 35597150}
