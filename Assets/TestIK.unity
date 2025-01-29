@@ -610,6 +610,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1228416076
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 151246092942876198, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_Name
+      value: Human
+      objectReference: {fileID: 0}
+    - target: {fileID: 306671856701727956, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.0422955
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.6869793
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652006619932982248, guid: c5495702b33683048a0a1dcea8e2bd1a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c5495702b33683048a0a1dcea8e2bd1a, type: 3}
 --- !u!4 &47602349468500262
 Transform:
   m_ObjectHideFlags: 0
@@ -674,12 +747,12 @@ GameObject:
   - component: {fileID: 306671857618443241}
   - component: {fileID: 3584579026396521192}
   m_Layer: 0
-  m_Name: Human
+  m_Name: HumanL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &170464500564458643
 Transform:
   m_ObjectHideFlags: 0
@@ -2170,9 +2243,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   body: {fileID: 955842997}
   otherFoot: {fileID: 6781891773864027216}
-  speed: 7
-  stepDistance: 0.25
-  stepLength: 0.25
+  speed: 4
+  stepDistance: 0.5
+  stepLength: 0.5
   stepHeight: 0.3
   footOffset: {x: 0.24, y: 0, z: 0}
 --- !u!4 &5394400895312447934
@@ -2583,9 +2656,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   body: {fileID: 955842997}
   otherFoot: {fileID: 5334314348695817501}
-  speed: 7
-  stepDistance: 0.25
-  stepLength: 0.25
+  speed: 4
+  stepDistance: 0.5
+  stepLength: 0.5
   stepHeight: 0.3
   footOffset: {x: 0.24, y: 0, z: 0}
 --- !u!4 &6853757070891901983
@@ -2900,9 +2973,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7021033355a8f154cb561476ffdba982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugRBVel: {x: 0, y: 0, z: 0}
   LeashAttachmentPoint: {fileID: 3591112404213888994}
+  startWalkingDelay: 3
   minSpeed: 0.8
+  acceleration: 2
   speed: 1.8
+  rotationSpeed: 5
+  BumpedCount: 0
+  bumpPointLossVFX: {fileID: 0}
+  stunVFX: {fileID: 0}
 --- !u!4 &7770473111629537555
 Transform:
   m_ObjectHideFlags: 0
@@ -3382,3 +3462,4 @@ SceneRoots:
   - {fileID: 1160234427}
   - {fileID: 652006619104330965}
   - {fileID: 190170843}
+  - {fileID: 1228416076}

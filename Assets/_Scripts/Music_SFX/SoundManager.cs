@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] float musicVolume = 0.5f;
     [Range(0, 1)]
     [SerializeField] float sfxVolume = 0.5f;
+    public float SFXVolume => sfxVolume;
 
     public event Action OnSoundReload;
 

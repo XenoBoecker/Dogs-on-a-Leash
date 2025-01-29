@@ -89,17 +89,17 @@ public class CameraMovement : MonoBehaviour
 
     private IEnumerator GameStartCountdown()
     {
-        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.countDown);
-
         countdownDisplay.gameObject.SetActive(true);
 
-        for (float i = 0; i < startCountdownDuration; i += Time.unscaledDeltaTime)
+        for (int i = 0; i < startCountdownDuration; i++)
         {
-            int number = startCountdownDuration - (int)i;
+            int number = startCountdownDuration - i;
 
             countdownDisplay.SetNumber(number);
 
-            yield return null;
+            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.countDownTick);
+
+            yield return new WaitForSecondsRealtime(1);
         }
 
         EndFlyThrough();
@@ -107,7 +107,9 @@ public class CameraMovement : MonoBehaviour
         countdownDisplay.gameObject.SetActive(true);
 
         countdownDisplay.SetNumber(0);
-        yield return new WaitForSeconds(1);
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.countDownWhistle);
+
+        yield return new WaitForSecondsRealtime(1);
         countdownDisplay.gameObject.SetActive(false);
     }
 

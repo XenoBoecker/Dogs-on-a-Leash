@@ -6,12 +6,6 @@ public class SoundOptions : MonoBehaviour
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] Slider sfxVolumeSlider;
 
-    SoundManager soundManager;
-
-    private void Awake()
-    {
-        soundManager = FindObjectOfType<SoundManager>();
-    }
 
     private void Start()
     {
@@ -38,8 +32,8 @@ public class SoundOptions : MonoBehaviour
 
     void ReloadSoundManager()
     {
-        if (soundManager == null) return;
+        if (SoundManager.Instance == null) return;
 
-        soundManager.Reload();
+        SoundManager.Instance.Reload();
     }
 }
