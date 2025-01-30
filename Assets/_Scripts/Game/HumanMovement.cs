@@ -66,13 +66,6 @@ public class HumanMovement : MonoBehaviour
         MoveForward();
     }
 
-    private void AddSidewaysForce()
-    {
-        // add a force orthogonal to the current velocity
-        Vector3 direction = Vector3.Cross(rb.velocity, Vector3.up).normalized;
-        rb.AddForce(direction * 0.1f, ForceMode.Impulse);
-    }
-
     private void MoveForward()
     {
         if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;

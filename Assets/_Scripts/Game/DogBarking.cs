@@ -7,16 +7,15 @@ using UnityEngine.VFX;
 
 public class DogBarking : MonoBehaviour
 {
-    public string dogSoundsPath = "Sound/SoundEffects/DogSFX/dog1_bark";
-    private AudioClip[] dogBarkSounds;
-
     [SerializeField] VisualEffect barkEffect;
+
+    Dog dog;
 
     void Awake()
     {
-        dogBarkSounds = Resources.LoadAll<AudioClip>(dogSoundsPath);
-
         barkEffect.Stop();
+
+        dog = GetComponent<Dog>();
     }
 
     void OnEnable()
@@ -33,6 +32,10 @@ public class DogBarking : MonoBehaviour
     private void PlayRandomDogBark()
     {
         barkEffect.Play();
-        SoundManager.Instance.PlaySound(dogBarkSounds);
+
+        if (dog.DogData.id == 0) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkBernard);
+        else if (dog.DogData.id == 1) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkPoodle);
+        else if (dog.DogData.id == 2) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkPug);
+        else if (dog.DogData.id == 3) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkRetreiver);
     }
 }

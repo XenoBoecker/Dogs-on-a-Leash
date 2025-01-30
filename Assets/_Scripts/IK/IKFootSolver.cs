@@ -21,6 +21,8 @@ public class IKFootSolver : MonoBehaviour
 
     Rigidbody rb;
 
+    public event Action OnTakeStep;
+
     private void Start()
     {
         rb = GameObject.Find("Human").GetComponent<Rigidbody>();
@@ -45,6 +47,8 @@ public class IKFootSolver : MonoBehaviour
         {
             if (Vector3.Distance(newPosition, hit.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)
             {
+                OnTakeStep?.Invoke();
+
                 lerp = 0;
 
                 // Calculate the movement direction based on the rigidbody's velocity
