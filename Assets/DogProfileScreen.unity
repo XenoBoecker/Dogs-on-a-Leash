@@ -1105,6 +1105,9 @@ MonoBehaviour:
   - {fileID: 209810880498744709, guid: 75ef1f8da9f03074ca94f2cae104f6a9, type: 3}
   - {fileID: 392251026808411656, guid: 6c21d85ea3549494888e8c26295a2c5e, type: 3}
   dogModelParent: {fileID: 1683640652}
+  nextPanelDelay: 0.3
+  controllerDeadZone: 0.3
+  nextPanelDelayTimer: 0
 --- !u!4 &685010150
 Transform:
   m_ObjectHideFlags: 0
@@ -2651,6 +2654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Back Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}

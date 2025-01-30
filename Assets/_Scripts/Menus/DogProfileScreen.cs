@@ -21,11 +21,40 @@ public class DogProfileScreen : MonoBehaviour
 
     GameObject currentDogModel;
 
+
+    [SerializeField] float nextPanelDelay = 0.3f;
+
+    [SerializeField] float controllerDeadZone = 0.3f;
+
+    [SerializeField] float nextPanelDelayTimer;
+
     void Start()
     {
         dogVisual.transform.Rotate(Vector3.up, 180);
 
         ShowPanel();
+    }
+
+    private void Update()
+    {
+        nextPanelDelayTimer -= Time.deltaTime;
+
+        if (nextPanelDelayTimer > 0) return;
+
+        float xInput = Input.GetAxis("Horizontal");
+
+
+
+        if(xInput < -controllerDeadZone)
+        {
+            ShowPreviousPanel();
+            nextPanelDelayTimer = nextPanelDelay;
+        }
+        else if(xInput > controllerDeadZone)
+        {
+            ShowNextPanel();
+            nextPanelDelayTimer = nextPanelDelay;
+        }
     }
 
 
