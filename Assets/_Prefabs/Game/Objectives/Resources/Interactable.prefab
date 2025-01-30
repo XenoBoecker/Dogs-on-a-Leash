@@ -204,12 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff541e456ef4254d844fc2bd93f3c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showInteractable: {fileID: 3946769450836789517}
+  showInteractable: {fileID: 0}
   singleDogInteractable: 1
-  completeTaskVFX: {fileID: 0}
+  completeTaskVFX: {fileID: 7364876719854687345}
+  spawnVFXTimeDelay: 0.3
   currentInteractors: []
   pointReward: 100
-  destroyTimeDelay: 0.5
 --- !u!1001 &2823578337586681614
 PrefabInstance:
   m_ObjectHideFlags: 0

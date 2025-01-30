@@ -100,25 +100,35 @@ public class Interactable : MonoBehaviour
 
     internal virtual void CompleteTask()
     {
+
+        Debug.Log("complete task");
+
         InteractableDetector.PickupCount++;
 
+        Debug.Log("Spawn VFD Coroutine now");
+
         StartCoroutine(SpawnVFXDelayed());
+
+        Debug.Log("End all Interactinos now");
 
         EndAllInteractions();
     }
 
     IEnumerator SpawnVFXDelayed()
     {
-        Debug.LogWarning("SpawnDelayed");
+        Debug.Log("SpawnDelayed");
         yield return new WaitForSeconds(spawnVFXTimeDelay);
+
+        Debug.Log("Wait time over");
 
         if (completeTaskVFX != null)
         {
-            Debug.LogWarning("SpawnNow");
+            Debug.Log("SpawnNow");
             completeTaskVFX.Play();
             completeTaskVFX.transform.SetParent(null);
             Destroy(completeTaskVFX, 1f);
         }
+        else Debug.Log("no vfx herer");
     }
 
     public void CancelTask(InteractableDetector interactor)
