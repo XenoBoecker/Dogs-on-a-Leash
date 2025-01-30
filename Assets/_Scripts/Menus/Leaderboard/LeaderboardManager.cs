@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class LeaderboardManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class LeaderboardManager : MonoBehaviour
 
 
     [SerializeField] TMP_Text showYourScoreAgain;
+
+    [SerializeField] GameObject playAgainButton;
 
     public Leaderboard leaderboard;
     public GameObject leaderBoardInputObject;
@@ -85,6 +88,8 @@ public class LeaderboardManager : MonoBehaviour
             leaderboard.AddPlayer(playerName, lastGameScore);
             leaderBoardInputObject.SetActive(false);
             submitScoreButton.gameObject.SetActive(false);
+
+            EventSystem.current.SetSelectedGameObject(playAgainButton);
         }
     }
 
