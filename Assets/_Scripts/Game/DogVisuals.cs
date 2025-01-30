@@ -82,6 +82,11 @@ public class DogVisuals : MonoBehaviour
         UpdateVisuals();
     }
 
+    public int GetColorIndex()
+    {
+        return colorIndex;
+    }
+
     public void SetAccessorieIndex(int i)
     {
 

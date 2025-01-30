@@ -36,8 +36,8 @@ public class PlayerDogVisuals : MonoBehaviour
         LeashAttachmentPoint = leashAttachmentPoints[visual.DogID];
     }
 
-    public int GetDogId()
+    public int GetColorID()
     {
-        return visual.DogID;
+        return visual.GetColorIndex();
     }
 }
