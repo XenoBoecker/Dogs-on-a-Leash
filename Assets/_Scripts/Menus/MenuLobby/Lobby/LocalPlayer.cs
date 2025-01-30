@@ -225,10 +225,11 @@ public class LocalPlayer : MonoBehaviour
     {
         if (waitTimeBeforeCanConfirmSelection > 0) return;
 
-        //  Debug.Log("Confirm Selection");
+         
         if (!isSelectionConfirmed) isSelectionConfirmed = true;
         else
         {
+            Debug.Log("Ready to play " + name);
             isReadyToPlay = true;
             lobbyManager.CheckReadyToPlay();
         }

@@ -163,21 +163,21 @@ namespace photonMenuLobby
         {
             LocalPlayer[] localPlayers = FindObjectsOfType<LocalPlayer>();
 
+            connectedDogCount = localPlayers.Length;
 
-
-            int readyCount = 0;
-            for (int i = 0; i < localPlayers.Length; i++)
+            readyToPlayDogCount = 0;
+            for (int i = 0; i < connectedDogCount; i++)
             {
 
-                if (!localPlayers[i].IsReadyToPlay)
+                if (localPlayers[i].IsReadyToPlay)
                 {
                     Debug.Log("Sleector " + i + " is ready");
-                    readyCount++;
+                    readyToPlayDogCount++;
                 }
             }
-            Debug.Log("ReadyCount: " + readyCount + "; dogCount: " + localPlayers.Length);
+            Debug.Log("ReadyCount: " + readyToPlayDogCount + "; dogCount: " + connectedDogCount);
 
-            if (readyCount < localPlayers.Length) return;
+            if (readyToPlayDogCount < connectedDogCount) return;
             
             StartCoroutine(StartGameCountDown());
         }
