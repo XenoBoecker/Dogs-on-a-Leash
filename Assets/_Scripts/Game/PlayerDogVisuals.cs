@@ -11,6 +11,8 @@ public class PlayerDogVisuals : MonoBehaviour
 
     [SerializeField] GameObject[] shadows;
 
+    [SerializeField] GameObject[] circles;
+
     public Transform LeashAttachmentPoint;
 
     private void Awake()
@@ -31,6 +33,12 @@ public class PlayerDogVisuals : MonoBehaviour
         {
             if(i == dog.DogData.id) shadows[i].SetActive(true);
             shadows[i].SetActive(false);
+        }
+
+        for (int i = 0; i < circles.Length; i++)
+        {
+            if (i == dog.ColorIndex) circles[i].SetActive(true);
+            else circles[i].SetActive(false);
         }
 
         LeashAttachmentPoint = leashAttachmentPoints[visual.DogID];
