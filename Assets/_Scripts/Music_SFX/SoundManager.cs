@@ -121,9 +121,9 @@ public class SoundManager : MonoBehaviour
     [System.Serializable]
     public struct DogSFX
     {
-        public AudioClip walk1, walk2, walk3, walk4;
+        public AudioClip walkBernard, walkPoodle, walkPug, walkRetreiver;
         public AudioClip[] walk_street;
-        public AudioClip[] bark1, bark2, bark3, bark4;
+        public AudioClip[] barkBernard, barkPoodle, barkPug, barkRetreiver;
         public AudioClip[] noise;
     }
 
