@@ -8,6 +8,9 @@ public class PlayerDogVisuals : MonoBehaviour
 
     [SerializeField] Transform[] leashAttachmentPoints;
 
+
+    [SerializeField] GameObject[] shadows;
+
     public Transform LeashAttachmentPoint;
 
     private void Awake()
@@ -23,6 +26,12 @@ public class PlayerDogVisuals : MonoBehaviour
         visual.SetDogID(dog.DogData.id);
         visual.SetColorIndex(dog.ColorIndex);
         visual.SetAccessorieIndex(dog.AccessorieIndex);
+
+        for (int i = 0; i < shadows.Length; i++)
+        {
+            if(i == dog.DogData.id) shadows[i].SetActive(true);
+            shadows[i].SetActive(false);
+        }
 
         LeashAttachmentPoint = leashAttachmentPoints[visual.DogID];
     }
