@@ -10,12 +10,23 @@ public class RopeRenderer : MonoBehaviour
     [Min(3)] [SerializeField] private int m_RopeSegmentSides;
     [SerializeField] private Material ropeMaterial;
 
+    [SerializeField] private Gradient[] leashColorGradients;
+
     private MeshFilter m_MeshFilter;
     private MeshRenderer m_MeshRenderer;
     private Mesh m_RopeMesh;
     private LeashVisual leashVisual;
     private Vector3[] m_Vertices;
     private int[] m_Triangles;
+
+    private Material myLeashMat;
+    private Gradient myLeashGradient;
+
+    LeashManager leashManager;
+
+    PlayerDogVisuals myDogVisual;
+    
+
 
     private float m_Angle;
     private int m_NodeCount;
@@ -38,6 +49,21 @@ public class RopeRenderer : MonoBehaviour
         leashVisual = GetComponent<LeashVisual>();
         m_Vertices = new Vector3[leashVisual.leashVisualSegment * m_RopeSegmentSides];
         m_Triangles = new int[m_RopeSegmentSides * (leashVisual.leashVisualSegment - 1) * 6];
+
+        myLeashMat = new Material(ropeMaterial);
+        gameObject.GetComponent<RopeRenderer>().m_MeshRenderer.material = myLeashMat;
+
+        myDogVisual = GetComponent<PlayerDogVisuals>();
+
+        leashManager = gameObject.GetComponent<LeashManager>();
+
+        myLeashGradient = leashColorGradients[myDogVisual.GetDogId()];
+
+    }
+
+    void Update()
+    {
+        UpdateLeashColor();
     }
 
     public void RenderRope(Vector3[] nodes, float radius)
@@ -107,5 +133,14 @@ public class RopeRenderer : MonoBehaviour
         m_MeshFilter.mesh = m_RopeMesh;
         m_MeshFilter.mesh.RecalculateBounds();
         m_MeshFilter.mesh.RecalculateNormals();
+    }
+
+    void UpdateLeashColor()
+    {
+        float currentLength = leashManager.GetCurrentLength();
+        float maxLength = leashManager.GetMaxLeashLength();
+        float t = Mathf.Clamp01(currentLength / maxLength);
+        Color color = myLeashGradient.Evaluate(t);
+        myLeashMat.color = color;
     }
 }
