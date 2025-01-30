@@ -1,5 +1,97 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3920213903294375521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5701694864809952249}
+  - component: {fileID: 5147216625202461469}
+  - component: {fileID: 1381479082843177791}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &5701694864809952249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920213903294375521}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6878670274214699489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!218 &5147216625202461469
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920213903294375521}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: f256b8a33c9e90444ad5fdcfe82831fd, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
+--- !u!154 &1381479082843177791
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920213903294375521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 15600000, guid: f256b8a33c9e90444ad5fdcfe82831fd, type: 2}
+  m_EnableTreeColliders: 1
 --- !u!1001 &152729952534077637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -248,7 +340,7 @@ PrefabInstance:
     - target: {fileID: 2912162959188565990, guid: 9db5e16f712f17948af08a3fd6d429db,
         type: 3}
       propertyPath: m_Name
-      value: Tile_e2
+      value: Tile_e02
       objectReference: {fileID: 0}
     - target: {fileID: 3582549291518620441, guid: 9db5e16f712f17948af08a3fd6d429db,
         type: 3}
@@ -341,7 +433,12 @@ PrefabInstance:
     - {fileID: 1607460095273866569, guid: 9db5e16f712f17948af08a3fd6d429db, type: 3}
     - {fileID: 8261856176946101904, guid: 9db5e16f712f17948af08a3fd6d429db, type: 3}
     - {fileID: 7465272617332329813, guid: 9db5e16f712f17948af08a3fd6d429db, type: 3}
+    - {fileID: 831539978131320040, guid: 9db5e16f712f17948af08a3fd6d429db, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5188484169676853293, guid: 9db5e16f712f17948af08a3fd6d429db,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5701694864809952249}
     - targetCorrespondingSourceObject: {fileID: 2136406633587873414, guid: 9db5e16f712f17948af08a3fd6d429db,
         type: 3}
       insertIndex: -1
@@ -401,6 +498,12 @@ Transform:
 --- !u!4 &2129733864598493276 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 791108912233048464, guid: 9db5e16f712f17948af08a3fd6d429db,
+    type: 3}
+  m_PrefabInstance: {fileID: 1690187930444280268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6878670274214699489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5188484169676853293, guid: 9db5e16f712f17948af08a3fd6d429db,
     type: 3}
   m_PrefabInstance: {fileID: 1690187930444280268}
   m_PrefabAsset: {fileID: 0}
