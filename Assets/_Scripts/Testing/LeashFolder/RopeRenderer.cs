@@ -57,7 +57,7 @@ public class RopeRenderer : MonoBehaviour
 
         leashManager = gameObject.GetComponent<LeashManager>();
 
-        myLeashGradient = leashColorGradients[myDogVisual.GetDogId()];
+        myLeashGradient = leashColorGradients[myDogVisual.GetColorID()];
 
     }
 
