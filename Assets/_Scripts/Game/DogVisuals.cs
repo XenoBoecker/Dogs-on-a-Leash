@@ -25,6 +25,7 @@ public class DogVisuals : MonoBehaviour
     [SerializeField] List<GameObject> retrieverAccessories;
 
     public int AccessorieCount => bernardAccessories.Count;
+    public GameObject CurrentAccessory;
 
     public event Action OnUpdateVisuals;
 
@@ -32,10 +33,11 @@ public class DogVisuals : MonoBehaviour
     {
         for (int i = 0; i < dogModels.Length; i++)
         {
-            dogModels[i].SetActive(false);
+            if(i == dogID) dogModels[dogID].SetActive(true);
+            else dogModels[i].SetActive(false);
         }
 
-        dogModels[dogID].SetActive(true);
+        
         dogModels[dogID].GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = dogMaterials[dogID * 4 + colorIndex];
 
         List<GameObject> currentDogAccessories = GetCurrentDogAccessorieList();
@@ -45,6 +47,7 @@ public class DogVisuals : MonoBehaviour
             currentDogAccessories[i].SetActive(false);
         }
         currentDogAccessories[accessorieIndex].SetActive(true);
+        CurrentAccessory = currentDogAccessories[accessorieIndex];
 
         // Set layer of all children of dogModels[dogID] to: silhouetteColorLayers[colorIndex]
         if (dogID < dogModels.Length && colorIndex < silhouetteColorLayers.Length)
@@ -86,7 +89,6 @@ public class DogVisuals : MonoBehaviour
 
     public void SetAccessorieIndex(int i)
     {
-        Debug.Log("SetAccessorieIndex: " + i);
 
         accessorieIndex = i;
 
@@ -95,8 +97,6 @@ public class DogVisuals : MonoBehaviour
     void SetLayerRecursively(GameObject obj, LayerMask newLayer)
     {
         if (obj == null) return;
-
-        Debug.Log("Layer: " + newLayer);
 
         obj.layer = newLayer; // Set layer for the parent object
 

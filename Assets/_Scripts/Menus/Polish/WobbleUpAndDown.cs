@@ -7,10 +7,16 @@ public class WobbleUpAndDown : MonoBehaviour
 
     private float timeOffset;
 
+    float startY;
+    float startRot;
+
     private void Start()
     {
         // Offset to ensure different objects wobble at different starting points
         timeOffset = Random.Range(0f, Mathf.PI * 2);
+
+        startY = transform.position.y;
+        startRot = transform.rotation.z;
     }
 
     private void Update()
@@ -18,9 +24,9 @@ public class WobbleUpAndDown : MonoBehaviour
         float wobble = Mathf.Sin(Time.time * moveSpeed + timeOffset);
 
         // Move up and down
-        transform.localPosition = new Vector3(transform.localPosition.x, wobble * moveScale, transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, startY + wobble * moveScale, transform.localPosition.z);
 
         // Rotate left and right
-        transform.localRotation = Quaternion.Euler(0, 0, wobble * rotScale);
+        transform.localRotation = Quaternion.Euler(0, 0, startRot + wobble * rotScale);
     }
 }

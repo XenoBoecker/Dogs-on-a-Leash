@@ -91,7 +91,11 @@ public class HumanMovement : MonoBehaviour
 
         debugRBVel = rb.velocity;
 
-        if (rb.velocity.x < minSpeed) rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
+        if (rb.velocity.x < minSpeed)
+        {
+            rb.velocity = new Vector3(minSpeed, rb.velocity.y, rb.velocity.z);
+            rb.AddForce(50 * Vector3.up);
+        }
 
         // decrease z velocity
 
