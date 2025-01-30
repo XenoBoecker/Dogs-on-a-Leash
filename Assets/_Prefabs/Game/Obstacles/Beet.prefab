@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4337138913544480105}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: transform7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 311450350725579646}
   - component: {fileID: 3763008020770869066}
-  m_Layer: 3
+  - component: {fileID: -6660369941468153422}
+  m_Layer: 0
   m_Name: Beet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +86,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.091546, y: 1, z: 5.407448}
   m_Center: {x: -0.012779474, y: 0, z: -0.057704926}
+--- !u!114 &-6660369941468153422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543897375104985416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunTime: 1
+  scoreValue: -100
 --- !u!1 &1774391767208413471
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +111,7 @@ GameObject:
   - component: {fileID: 4408179108368205468}
   - component: {fileID: 4887194255537305884}
   - component: {fileID: 8622998575200113355}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +194,7 @@ GameObject:
   - component: {fileID: 7574032882839358174}
   - component: {fileID: 3464462878581648742}
   - component: {fileID: 7242769153795262495}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +277,7 @@ GameObject:
   - component: {fileID: 2412381690955909235}
   - component: {fileID: 2123486357927958243}
   - component: {fileID: 8404305021097119444}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6274770785760967269}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface17 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +397,7 @@ GameObject:
   - component: {fileID: 8663825449082145484}
   - component: {fileID: 7603501659315403952}
   - component: {fileID: 4938301282524282157}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +480,7 @@ GameObject:
   - component: {fileID: 5499752892066598620}
   - component: {fileID: 8651121379457660781}
   - component: {fileID: 5745366067257781434}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +563,7 @@ GameObject:
   - component: {fileID: 4937969734759513960}
   - component: {fileID: 4738901828684663266}
   - component: {fileID: 90795896084479517}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +646,7 @@ GameObject:
   - component: {fileID: 8893417807491353825}
   - component: {fileID: 710221212796364145}
   - component: {fileID: 4161653986666555741}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +729,7 @@ GameObject:
   - component: {fileID: 831975359104727110}
   - component: {fileID: 6666219743213892572}
   - component: {fileID: 6413888762963080247}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +812,7 @@ GameObject:
   - component: {fileID: 609532409424310608}
   - component: {fileID: 6291800732040927993}
   - component: {fileID: 969012631384602453}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: leraf small (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +895,7 @@ GameObject:
   - component: {fileID: 1040766517713562556}
   - component: {fileID: 3108135744369663011}
   - component: {fileID: 7996060331397649128}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,7 +978,7 @@ GameObject:
   - component: {fileID: 2988391199327716834}
   - component: {fileID: 4149140186001788263}
   - component: {fileID: 8310914245846482404}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (51)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1044,7 +1059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5165192491794478395}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: transform7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1077,7 +1092,7 @@ GameObject:
   - component: {fileID: 2059922606210442816}
   - component: {fileID: 8114022890490522809}
   - component: {fileID: 1850620083141871162}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3463854265356204878}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface17 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1197,7 +1212,7 @@ GameObject:
   - component: {fileID: 7846859676293628370}
   - component: {fileID: 5372205053887483980}
   - component: {fileID: 5191388115227333694}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1295,7 @@ GameObject:
   - component: {fileID: 5629219048548720416}
   - component: {fileID: 1271204748589237148}
   - component: {fileID: 7124045644887883872}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,7 +1378,7 @@ GameObject:
   - component: {fileID: 2821373008661379477}
   - component: {fileID: 1548567557061936355}
   - component: {fileID: 1611711880831454821}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1446,7 +1461,7 @@ GameObject:
   - component: {fileID: 149890033897807627}
   - component: {fileID: 9075859203681099054}
   - component: {fileID: 4380919731493848605}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1529,7 +1544,7 @@ GameObject:
   - component: {fileID: 5117689382433914138}
   - component: {fileID: 2447033180085626029}
   - component: {fileID: 3895049565125930759}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1612,7 +1627,7 @@ GameObject:
   - component: {fileID: 1331817553547223435}
   - component: {fileID: 6106682582390075354}
   - component: {fileID: 8201506495214775996}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: polySurface20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1695,7 +1710,7 @@ GameObject:
   - component: {fileID: 8936214102935269262}
   - component: {fileID: 7724378242854136604}
   - component: {fileID: 9081815653979173352}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1778,7 +1793,7 @@ GameObject:
   - component: {fileID: 8590419758065085933}
   - component: {fileID: 8992591935785712674}
   - component: {fileID: 5412399827134259324}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Blume (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1861,12 +1876,12 @@ PrefabInstance:
     - target: {fileID: 173064471985898682, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1959995742517316471, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623190584322511209, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
@@ -1941,27 +1956,27 @@ PrefabInstance:
     - target: {fileID: 5396119331015311607, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5849701023323294226, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7286814195414060997, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7753884432469754513, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8247015950576156298, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8734900679226827824, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
@@ -1995,7 +2010,7 @@ PrefabInstance:
     - target: {fileID: 173064471985898682, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1186871205948658125, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
@@ -2010,7 +2025,7 @@ PrefabInstance:
     - target: {fileID: 1959995742517316471, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623190584322511209, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
@@ -2085,12 +2100,12 @@ PrefabInstance:
     - target: {fileID: 5396119331015311607, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5849701023323294226, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8734900679226827824, guid: 35bbce4b9ae27b0489cc4bdfa896a55a,
         type: 3}
@@ -2193,6 +2208,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Beet 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894421042816675940, guid: 530c5a4d3b6b5f447b5de18dc2f54e17,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
