@@ -94,6 +94,8 @@ public class LobbyDogSelector : MonoBehaviour
 
     internal void SetReadyToPlay(bool isReadyToPlay)
     {
+        Debug.Log(name + "  Selector set ready to play: " + isReadyToPlay + "; was " + this.isReadyToPlay);
+
         if (this.isReadyToPlay == isReadyToPlay) return;
 
         this.isReadyToPlay = isReadyToPlay;

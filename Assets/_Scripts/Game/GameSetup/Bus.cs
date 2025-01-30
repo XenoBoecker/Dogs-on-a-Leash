@@ -47,6 +47,7 @@ public class Bus : MonoBehaviour
 
             yield return null;
         }
+        transform.position = stop.position;
 
         permaBusUpAndDown = StartCoroutine(PermaBusUpAndDown());
     }
@@ -82,6 +83,7 @@ public class Bus : MonoBehaviour
 
             yield return null;
         }
+        transform.position = end.position;
     }
 
     private IEnumerator HumanEnterBusCoroutine()
@@ -89,11 +91,17 @@ public class Bus : MonoBehaviour
         // wait for human to get in
         HumanMovement human = FindObjectOfType<HumanMovement>();
         human.enabled = false;
+
+        float addedVelocity = 0;
+
         while(Vector3.Distance(human.transform.position, doorOut.position) > humanDoorTriggerDistance)
         {
             Debug.Log("Dist: " + Vector3.Distance(human.transform.position, doorOut.position));
 
-            human.transform.Translate((doorOut.position - human.transform.position).normalized * human.speed * 2 * Time.deltaTime, Space.World);
+            human.transform.Translate((doorOut.position - human.transform.position).normalized * human.speed * (2 + addedVelocity) * Time.deltaTime, Space.World);
+
+            addedVelocity += Time.deltaTime;
+
             yield return null;
         }
 
@@ -124,6 +132,8 @@ public class Bus : MonoBehaviour
             // busCarossery.transform.rotation = Quaternion.Euler(0, 0, sin * busBobbleRotScale);
             yield return null;
         }
+        busCarossery.transform.position = carosseryStartPos;
+        busCarossery.transform.rotation = Quaternion.identity;
     }
 
     private IEnumerator OpenDoorsCoroutine()
@@ -134,6 +144,7 @@ public class Bus : MonoBehaviour
 
             yield return null;
         }
+        door.transform.position = doorOut.position;
 
         for (float i = 0; i < doorAnimDuration / 2; i += Time.unscaledDeltaTime)
         {
@@ -141,6 +152,7 @@ public class Bus : MonoBehaviour
 
             yield return null;
         }
+        door.transform.position = doorEnd.position;
     }
 
     private IEnumerator CloseDoorsCoroutine()
@@ -151,6 +163,7 @@ public class Bus : MonoBehaviour
 
             yield return null;
         }
+        door.transform.position = doorOut.position;
 
         for (float i = 0; i < doorAnimDuration / 2; i += Time.unscaledDeltaTime)
         {
@@ -158,5 +171,6 @@ public class Bus : MonoBehaviour
 
             yield return null;
         }
+        door.transform.position = doorStart.position;
     }
 }

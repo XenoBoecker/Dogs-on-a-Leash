@@ -51,6 +51,7 @@ namespace photonMenuLobby
 
         [SerializeField] Transform clientParent;
 
+        bool startGame;
         public bool IsInDogSelection;
         int readyToPlayDogCount;
         int seed;
@@ -158,33 +159,55 @@ namespace photonMenuLobby
             }
         }
 
-        public void ReadyToPlayCountAdd(int i)
+        public void CheckReadyToPlay()
         {
-            readyToPlayDogCount += i;
+            LocalPlayer[] localPlayers = FindObjectsOfType<LocalPlayer>();
 
-            if (readyToPlayDogCount == connectedDogCount) StartCoroutine(StartGameCountDown());
+
+
+            int readyCount = 0;
+            for (int i = 0; i < localPlayers.Length; i++)
+            {
+
+                if (!localPlayers[i].IsReadyToPlay)
+                {
+                    Debug.Log("Sleector " + i + " is ready");
+                    readyCount++;
+                }
+            }
+            Debug.Log("ReadyCount: " + readyCount + "; dogCount: " + localPlayers.Length);
+
+            if (readyCount < localPlayers.Length) return;
+            
+            StartCoroutine(StartGameCountDown());
         }
 
         IEnumerator StartGameCountDown()
         {
-            bool startGame = true;
+            if (startGame) yield break;
+
+            Debug.Log("Start Countdown");
+
+            startGame = true;
             startGameButton.SetActive(true);
 
-            for (int i = 0; i < countdownTime; i++)
+            for (float i = 0; i < countdownTime; i+=Time.unscaledDeltaTime)
             {
-                countdownText.text = (countdownTime-i).ToString();
-
-                yield return new WaitForSeconds(1);
+                countdownText.text = (countdownTime-(int)i).ToString();
 
                 if(readyToPlayDogCount < connectedDogCount)
                 {
+                    Debug.Log("Cancel Start game");
                     startGame = false;
                     countdownText.text = "";
                     startGameButton.SetActive(false);
+                    yield break;
                 }
+                yield return null;
             }
 
             if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game_1");
+            else Debug.Log("Yield Break did not work");
         }
 
         void ActivatePanel(GameObject panel)

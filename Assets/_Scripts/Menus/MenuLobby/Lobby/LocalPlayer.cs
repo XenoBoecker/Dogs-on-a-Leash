@@ -230,7 +230,7 @@ public class LocalPlayer : MonoBehaviour
         else
         {
             isReadyToPlay = true;
-            lobbyManager.ReadyToPlayCountAdd(1);
+            lobbyManager.CheckReadyToPlay();
         }
 
         lobbyDogSelector?.SetConfirmSelection(isSelectionConfirmed);
@@ -246,7 +246,7 @@ public class LocalPlayer : MonoBehaviour
         if (isReadyToPlay)
         {
             isReadyToPlay = false;
-            lobbyManager.ReadyToPlayCountAdd(-1);
+            lobbyManager.CheckReadyToPlay();
         }
         else isSelectionConfirmed = false;
 

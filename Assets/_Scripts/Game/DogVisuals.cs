@@ -81,7 +81,6 @@ public class DogVisuals : MonoBehaviour
 
     public void SetAccessorieIndex(int i)
     {
-        Debug.Log("SetAccessorieIndex: " + i);
 
         accessorieIndex = i;
 
@@ -90,8 +89,6 @@ public class DogVisuals : MonoBehaviour
     void SetLayerRecursively(GameObject obj, LayerMask newLayer)
     {
         if (obj == null) return;
-
-        Debug.Log("Layer: " + newLayer);
 
         obj.layer = newLayer; // Set layer for the parent object
 
