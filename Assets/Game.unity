@@ -452,16 +452,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224081557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8799908, y: 0.8799908, z: 0.8799908}
+  m_LocalScale: {x: 1.839138, y: 1.839138, z: 1.839138}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 262966022}
+  m_Father: {fileID: 734629752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 433.33, y: 257.9}
+  m_AnchoredPosition: {x: 29.259369, y: -12.330719}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224081559
@@ -780,7 +780,6 @@ RectTransform:
   - {fileID: 35597150}
   - {fileID: 1259010533}
   - {fileID: 734629752}
-  - {fileID: 224081558}
   - {fileID: 599085323}
   - {fileID: 1968805398}
   - {fileID: 489055953}
@@ -1533,6 +1532,7 @@ GameObject:
   - component: {fileID: 734629752}
   - component: {fileID: 734629754}
   - component: {fileID: 734629753}
+  - component: {fileID: 734629755}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -1551,7 +1551,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.47848, y: 0.47848, z: 0.47848}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 224081558}
   m_Father: {fileID: 262966022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1597,6 +1598,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734629751}
   m_CullTransparentMesh: 1
+--- !u!225 &734629755
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734629751}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &745677490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,8 +1668,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6282fb841c89a8c4ca64e828596f4682, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1992,8 +2005,13 @@ MonoBehaviour:
   startTiles:
   - {fileID: 4143699337203293510, guid: 56f9443f11d9fad4f9155981382a0270, type: 3}
   availableTiles:
+  - {fileID: 1285224991620974283, guid: 2d978702df6b14d45af2ed9081cd3bb7, type: 3}
   - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
-  - {fileID: 164057516187076530, guid: 723b620b2feda694fba01c2b35a33bb2, type: 3}
+  - {fileID: 4403858183072681397, guid: eb776cc9fd07c46429d79af02383e1d8, type: 3}
+  - {fileID: 3056085254788234361, guid: 848769549fb9db94b89f33efcefd8764, type: 3}
+  - {fileID: 181986084363695961, guid: 0004d2535f6150e4881fc0dba91777e9, type: 3}
+  - {fileID: 9130154981189785167, guid: fe086f7d78a419f46aa0e08e046055d3, type: 3}
+  - {fileID: 3512764961158888544, guid: e2382e001e2855b47a9d3620b1fbf46d, type: 3}
   highDifficultyTiles: []
   endTiles:
   - {fileID: 8441380502640770909, guid: 1fd69f8340b6416469117aa29b16b6fa, type: 3}
@@ -2922,7 +2940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endGameSceneName: GameOver
   failedEndGameSceneName: GameOverFailed
-  totalTime: 60
+  totalTime: 120
 --- !u!114 &1973408251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2964,6 +2982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb38b9c3a3abb841bfa222ea6126039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeTextParent: {fileID: 734629752}
   timeText: {fileID: 224081559}
   scoreText: {fileID: 599085324}
   popScoreCurve:
@@ -3004,7 +3023,8 @@ MonoBehaviour:
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   gainColor: {r: 0.7924528, g: 0.70664907, b: 0.41491634, a: 1}
   lossColor: {r: 0.8962264, g: 0.43543077, b: 0.43543077, a: 1}
-  waitBeforeAnimStart: 0.5
+  timeTextFadeInTime: 0.3
+  waitBeforeAnimStart: 0.2
   start: {fileID: 799516177}
   center: {fileID: 627821521}
   end: {fileID: 35597150}

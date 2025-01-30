@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -20,10 +21,21 @@ public class Leaderboard : MonoBehaviour
 
     // List to hold players
     public List<Player> players = new List<Player>();
+    public event Action OnPlayerScoresChanged;
 
     public List<Player> GetPlayerScores()
     {
         return players;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) AddRandomPlayerScore();
+    }
+
+    public void AddRandomPlayerScore()
+    {
+        AddPlayer("Name_" + UnityEngine.Random.Range(0, 100), UnityEngine.Random.Range(0, 100) * 100);
     }
 
     // Method to add a player
@@ -35,6 +47,8 @@ public class Leaderboard : MonoBehaviour
         players.Add(player);
         players.Sort((x, y) => y.score.CompareTo(x.score)); // Sort by score in descending order
         SaveLeaderboard(); // Save the leaderboard whenever a new player is added
+
+        OnPlayerScoresChanged?.Invoke();
     }
 
     // Method to update a player's score
@@ -85,5 +99,6 @@ public class Leaderboard : MonoBehaviour
     {
         players.Clear();
         SaveLeaderboard();
+        OnPlayerScoresChanged?.Invoke();
     }
 }

@@ -198,6 +198,14 @@ MonoBehaviour:
   BumpedCount: 0
   bumpPointLossVFX: {fileID: 6970946585652909361}
   stunVFX: {fileID: 1886320410726248748}
+  bumpVignette: {fileID: 0}
+  vignettePopCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  vignetteDuration: 0
 --- !u!114 &802700166051398678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +326,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449151058367756402}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: d18184b686d22e64b8365e63ae7a1036, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -660,7 +668,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2938661748887506604}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: c33b374ce6ddead4690a29d981052795, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: c438e44a18c271e4fbf1fb9cf47f66cb, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0

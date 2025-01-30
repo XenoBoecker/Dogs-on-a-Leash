@@ -121,11 +121,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3091385039623171436}
   - {fileID: 16603739449912730}
   - {fileID: 2979882657784493339}
   - {fileID: 8564313808722270345}
   - {fileID: 4549031335267334947}
+  - {fileID: 3091385039623171436}
   - {fileID: 840083346877254798}
   - {fileID: 3719006845512577647}
   - {fileID: 8389763034238422914}
@@ -349,7 +349,6 @@ GameObject:
   m_Component:
   - component: {fileID: 393097757551573490}
   - component: {fileID: 8099731765652890730}
-  - component: {fileID: 4763599462624240251}
   - component: {fileID: 525457211503048650}
   m_Layer: 0
   m_Name: Main Tile
@@ -391,26 +390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileLength: 30
---- !u!114 &4763599462624240251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7286743138418472505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659edeff33cc4a148b1b68f89c3feb2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectivePrefabs:
-  - {fileID: 7590577020436174935, guid: 7fd0e7eb8a57e26458aee2226a1f2f4d, type: 3}
-  - {fileID: 7590577020436174935, guid: 67bca0b58adf484428a011fcf2a56822, type: 3}
-  objectiveCount: 10
-  mapSize: {x: 30, y: 30}
-  minDistBetweenObjectives: 2
-  minDistToCenter: 1
-  objectiveParent: {fileID: 9137832217999728955}
 --- !u!114 &525457211503048650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,11 +441,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6581839030630356653}
   - {fileID: 5087820108603836425}
   - {fileID: 5212675981044104495}
   - {fileID: 1075648695981882597}
   - {fileID: 1594790974976155799}
+  - {fileID: 6581839030630356653}
   - {fileID: 6674763846662280295}
   - {fileID: 5089197574401487528}
   - {fileID: 8736917332675423440}
