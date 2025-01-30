@@ -111,8 +111,6 @@ public class LocalPlayer : MonoBehaviour
 
                     nextDogWaitTimer = selectNextDogDelay;
 
-                    Debug.Log("X: " + x + "; Y: " + y);
-
 
                     if (lobbyDogSelector.IsSelectionConfirmed)
                     {
@@ -131,15 +129,12 @@ public class LocalPlayer : MonoBehaviour
                     {
                         if (Mathf.Abs(x) > Mathf.Abs(y))
                         {
-                            Debug.Log("X dir: " + x);
                             if (x < -controllerInputDeadZone)
                             {
-                                Debug.Log("prev");
                                 lobbyDogSelector.SelectPreviousDog();
                             }
                             else if (x > controllerInputDeadZone)
                             {
-                                Debug.Log("Next");
                                 lobbyDogSelector.SelectNextDog();
                             }
                         }
@@ -225,12 +220,13 @@ public class LocalPlayer : MonoBehaviour
     {
         if (waitTimeBeforeCanConfirmSelection > 0) return;
 
-        //  Debug.Log("Confirm Selection");
+         
         if (!isSelectionConfirmed) isSelectionConfirmed = true;
         else
         {
+            Debug.Log("Ready to play " + name);
             isReadyToPlay = true;
-            lobbyManager.ReadyToPlayCountAdd(1);
+            lobbyManager.CheckReadyToPlay();
         }
 
         lobbyDogSelector?.SetConfirmSelection(isSelectionConfirmed);
@@ -246,7 +242,7 @@ public class LocalPlayer : MonoBehaviour
         if (isReadyToPlay)
         {
             isReadyToPlay = false;
-            lobbyManager.ReadyToPlayCountAdd(-1);
+            lobbyManager.CheckReadyToPlay();
         }
         else isSelectionConfirmed = false;
 

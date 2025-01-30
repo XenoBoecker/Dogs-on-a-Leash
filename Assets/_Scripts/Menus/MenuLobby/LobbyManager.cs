@@ -51,6 +51,7 @@ namespace photonMenuLobby
 
         [SerializeField] Transform clientParent;
 
+        bool startGame;
         public bool IsInDogSelection;
         int readyToPlayDogCount;
         int seed;
@@ -158,30 +159,46 @@ namespace photonMenuLobby
             }
         }
 
-        public void ReadyToPlayCountAdd(int i)
+        public void CheckReadyToPlay()
         {
-            readyToPlayDogCount += i;
+            LocalPlayer[] localPlayers = FindObjectsOfType<LocalPlayer>();
 
-            if (readyToPlayDogCount == connectedDogCount) StartCoroutine(StartGameCountDown());
+            connectedDogCount = localPlayers.Length;
+
+            readyToPlayDogCount = 0;
+            for (int i = 0; i < connectedDogCount; i++)
+            {
+
+                if (localPlayers[i].IsReadyToPlay)
+                {
+                    readyToPlayDogCount++;
+                }
+            }
+
+            if (readyToPlayDogCount < connectedDogCount) return;
+            
+            StartCoroutine(StartGameCountDown());
         }
 
         IEnumerator StartGameCountDown()
         {
-            bool startGame = true;
+            if (startGame) yield break;
+
+            startGame = true;
             startGameButton.SetActive(true);
 
-            for (int i = 0; i < countdownTime; i++)
+            for (float i = 0; i < countdownTime; i+=Time.unscaledDeltaTime)
             {
-                countdownText.text = (countdownTime-i).ToString();
-
-                yield return new WaitForSeconds(1);
+                countdownText.text = (countdownTime-(int)i).ToString();
 
                 if(readyToPlayDogCount < connectedDogCount)
                 {
                     startGame = false;
                     countdownText.text = "";
                     startGameButton.SetActive(false);
+                    yield break;
                 }
+                yield return null;
             }
 
             if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game_1");

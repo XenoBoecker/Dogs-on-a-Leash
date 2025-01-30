@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
@@ -10,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pausePanel;
 
     bool isPaused;
+
+    bool canPause => Time.timeScale > 0;
 
     private void Awake()
     {
@@ -24,6 +27,8 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        if (!canPause) return;
+
         pausePanel.SetActive(true);
         Time.timeScale = 0;
 
