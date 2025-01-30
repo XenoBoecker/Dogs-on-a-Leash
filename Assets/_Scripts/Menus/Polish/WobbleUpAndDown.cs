@@ -15,8 +15,8 @@ public class WobbleUpAndDown : MonoBehaviour
         // Offset to ensure different objects wobble at different starting points
         timeOffset = Random.Range(0f, Mathf.PI * 2);
 
-        startY = transform.position.y;
-        startRot = transform.rotation.z;
+        startY = transform.localPosition.y;
+        startRot = transform.localRotation.z;
     }
 
     private void Update()
