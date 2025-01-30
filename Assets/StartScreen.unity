@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 590982203}
   - component: {fileID: 590982205}
   - component: {fileID: 590982204}
+  - component: {fileID: 590982206}
   m_Layer: 5
   m_Name: 'Human '
   m_TagString: Untagged
@@ -773,6 +774,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590982202}
   m_CullTransparentMesh: 1
+--- !u!114 &590982206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590982202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2489d5b1a993514f868b741bcf0329c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1.72
+  moveScale: 1.48
+  rotSpeed: 1.38
+  rotScale: 3.18
 --- !u!1 &738208416
 GameObject:
   m_ObjectHideFlags: 0
