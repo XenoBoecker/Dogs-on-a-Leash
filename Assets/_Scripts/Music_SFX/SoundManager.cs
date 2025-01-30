@@ -82,13 +82,17 @@ public class SoundManager : MonoBehaviour
 
         source.PlayOneShot(clip, volumeMultiplier);
     }
-    public void PlaySound(AudioClip[] clips, AudioSource source = null, float volumeMultiplier = 1)
+    public AudioClip PlaySound(AudioClip[] clips, AudioSource source = null, float volumeMultiplier = 1)
     {
-        if (clips.Length == 0) return;
+        if (clips.Length == 0) return null;
 
         int rand = UnityEngine.Random.Range(0, clips.Length);
 
-        PlaySound(clips[rand], source, volumeMultiplier);
+        AudioClip clip = clips[rand];
+
+        PlaySound(clip, source, volumeMultiplier);
+
+        return clip;
     }
 
     public void PlaySoundWithRandomPitch(AudioClip clip, AudioSource source = null, float min = 0.1f, float max = 2f)
