@@ -111,8 +111,6 @@ public class LocalPlayer : MonoBehaviour
 
                     nextDogWaitTimer = selectNextDogDelay;
 
-                    Debug.Log("X: " + x + "; Y: " + y);
-
 
                     if (lobbyDogSelector.IsSelectionConfirmed)
                     {
@@ -131,15 +129,12 @@ public class LocalPlayer : MonoBehaviour
                     {
                         if (Mathf.Abs(x) > Mathf.Abs(y))
                         {
-                            Debug.Log("X dir: " + x);
                             if (x < -controllerInputDeadZone)
                             {
-                                Debug.Log("prev");
                                 lobbyDogSelector.SelectPreviousDog();
                             }
                             else if (x > controllerInputDeadZone)
                             {
-                                Debug.Log("Next");
                                 lobbyDogSelector.SelectNextDog();
                             }
                         }

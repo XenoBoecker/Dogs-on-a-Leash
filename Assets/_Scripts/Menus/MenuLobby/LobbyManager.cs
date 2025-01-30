@@ -171,11 +171,9 @@ namespace photonMenuLobby
 
                 if (localPlayers[i].IsReadyToPlay)
                 {
-                    Debug.Log("Sleector " + i + " is ready");
                     readyToPlayDogCount++;
                 }
             }
-            Debug.Log("ReadyCount: " + readyToPlayDogCount + "; dogCount: " + connectedDogCount);
 
             if (readyToPlayDogCount < connectedDogCount) return;
             
@@ -186,8 +184,6 @@ namespace photonMenuLobby
         {
             if (startGame) yield break;
 
-            Debug.Log("Start Countdown");
-
             startGame = true;
             startGameButton.SetActive(true);
 
@@ -197,7 +193,6 @@ namespace photonMenuLobby
 
                 if(readyToPlayDogCount < connectedDogCount)
                 {
-                    Debug.Log("Cancel Start game");
                     startGame = false;
                     countdownText.text = "";
                     startGameButton.SetActive(false);
@@ -207,7 +202,6 @@ namespace photonMenuLobby
             }
 
             if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game_1");
-            else Debug.Log("Yield Break did not work");
         }
 
         void ActivatePanel(GameObject panel)

@@ -26,6 +26,8 @@ public class LobbyShowDog : MonoBehaviour
     [SerializeField] GameObject showConfirmed;
     [SerializeField] TextMeshProUGUI dogNameText;
 
+    [SerializeField] TMP_Text accessoryNameText;
+
     private void Awake()
     {
         lobbyDogSelector = GetComponent<LobbyDogSelector>();
@@ -69,6 +71,7 @@ public class LobbyShowDog : MonoBehaviour
         visuals.SetDogID(dogData.id);
         visuals.SetColorIndex(colorIndex);
         visuals.SetAccessorieIndex(lobbyDogSelector.CurrentSelectedAccessorieIndex);
+        accessoryNameText.text = visuals.CurrentAccessory.name;
 
         if (lobbyDogSelector.IsSelectionConfirmed)
         {
