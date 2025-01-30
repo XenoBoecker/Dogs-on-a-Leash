@@ -96,8 +96,6 @@ public class Bus : MonoBehaviour
 
         while(Vector3.Distance(human.transform.position, doorOut.position) > humanDoorTriggerDistance)
         {
-            Debug.Log("Dist: " + Vector3.Distance(human.transform.position, doorOut.position));
-
             human.transform.Translate((doorOut.position - human.transform.position).normalized * human.speed * (2 + addedVelocity) * Time.deltaTime, Space.World);
 
             addedVelocity += Time.deltaTime;

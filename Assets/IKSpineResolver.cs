@@ -38,7 +38,7 @@ public class IKSpineResolver : MonoBehaviour
             return;
         }
 
-        Debug.Log("pullMagnitude: " + pullMagnitude);
+        // Debug.Log("pullMagnitude: " + pullMagnitude);
 
         float targetAngle = 0;
 
