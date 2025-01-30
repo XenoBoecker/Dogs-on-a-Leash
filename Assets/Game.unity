@@ -375,7 +375,7 @@ PrefabInstance:
     - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
         type: 3}
       propertyPath: vignetteDuration
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
         type: 3}
@@ -385,7 +385,7 @@ PrefabInstance:
     - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
         type: 3}
       propertyPath: vignettePopCurve.m_Curve.Array.data[1].time
-      value: 0.5000349
+      value: 0.08128798
       objectReference: {fileID: 0}
     - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
         type: 3}
@@ -395,7 +395,7 @@ PrefabInstance:
     - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
         type: 3}
       propertyPath: vignettePopCurve.m_Curve.Array.data[1].value
-      value: 0.99775547
+      value: 0.9852547
       objectReference: {fileID: 0}
     - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
         type: 3}
@@ -2646,7 +2646,7 @@ GameObject:
   - component: {fileID: 1586381698}
   - component: {fileID: 1586381697}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Bumb Vignette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2703,7 +2703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fb96e96415ad3e4bb60405ae5856a4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8809b798ed47998478e6261729b424f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
