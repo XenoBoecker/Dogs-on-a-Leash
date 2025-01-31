@@ -156,7 +156,7 @@ RectTransform:
   m_Father: {fileID: 936652076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 40, y: -0.000017166138}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1022,7 +1022,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: ba5edd82e6a82db468f20572e15dce3c,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: ba5edd82e6a82db468f20572e15dce3c, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1356,7 +1356,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 1b12497527cb5694d9b77fa135fad45e,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 1b12497527cb5694d9b77fa135fad45e, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -3146,6 +3146,7 @@ MonoBehaviour:
   playerScoreShowPrefab: {fileID: -8594040249275831485, guid: e12ff0420b84c6945b25c27646b08681,
     type: 3}
   showYourScoreAgain: {fileID: 1824962913}
+  playAgainButton: {fileID: 898915171}
   leaderboard: {fileID: 1720880080}
   leaderBoardInputObject: {fileID: 391368023561763311}
   playerNameInput: {fileID: 6246682698384286380}
