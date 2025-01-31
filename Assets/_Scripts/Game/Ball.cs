@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
         if (transform.position.x > goalDist)
         {
             done = true;
-            FindObjectOfType<ScoreManager>().AddScore(1);
+            FindObjectOfType<ScoreManager>().AddScore(1); // Explosion
         }
     }
 }
