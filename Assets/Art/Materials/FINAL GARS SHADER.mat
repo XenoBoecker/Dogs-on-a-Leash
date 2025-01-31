@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sea grass
+  m_Name: FINAL GARS SHADER
   m_Shader: {fileID: -6465566751694194690, guid: 880679bd19c48e341b1c3982a4f425e4,
     type: 3}
   m_Parent: {fileID: 0}
@@ -75,6 +75,7 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _AlphaToMask: 0
+    - _Bend_of_gras: 0.95
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 0
@@ -82,6 +83,7 @@ Material:
     - _DstBlend: 10
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Radius: 1.88
     - _ReceiveShadows: 1
     - _SrcBlend: 1
     - _Strength: 0.11
