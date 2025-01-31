@@ -785,7 +785,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxSpeed: 5
+  maxSpeed: 7
   speedMultiplier: 1
   turnSpeed: 5
   accelerationTime: 0.8
@@ -885,7 +885,7 @@ MonoBehaviour:
   maxLeashLength: 6
   leashSegmentAngle: 10
   leashPullForce: 100
-  humanPullForce: 0.07
+  humanPullForce: 0.12
   leashLeeway: 4
   enableDraggingMode: 1
 --- !u!114 &681216294474919457
@@ -900,7 +900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd7dc02413cc844cbb64e9a6bb2e5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dogSoundsPath: Sound/SoundEffects/DogSFX/dog1_bark
   barkEffect: {fileID: 4299828620763035163}
 --- !u!114 &2641997452236789272
 MonoBehaviour:
@@ -932,6 +931,7 @@ MonoBehaviour:
   - {fileID: 6326096711368792698}
   - {fileID: 3007450196751774533}
   - {fileID: 2810411692405447119}
+  shadows: []
   LeashAttachmentPoint: {fileID: 0}
 --- !u!114 &-2074247320880927037
 MonoBehaviour:
