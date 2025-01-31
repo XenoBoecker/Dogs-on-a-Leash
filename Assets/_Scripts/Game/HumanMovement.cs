@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.VFX;
 
 public class HumanMovement : MonoBehaviour
@@ -32,6 +33,8 @@ public class HumanMovement : MonoBehaviour
     [SerializeField] AnimationCurve vignettePopCurve;
     [SerializeField] float vignetteDuration;
 
+    [SerializeField] float grassShaderActivationHeight = 2.5f;
+
     public event Action<Obstacle> OnHitObstacle;
 
     void Awake()
@@ -45,6 +48,10 @@ public class HumanMovement : MonoBehaviour
         bumpPointLossVFX.Stop();
         stunVFX.Stop();
         stunVFX.gameObject.SetActive(false);
+    }
+    private void Update()
+    {
+        Shader.SetGlobalVector("_Human", transform.position + Vector3.up * grassShaderActivationHeight);
     }
 
     void FixedUpdate()

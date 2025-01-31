@@ -15,7 +15,7 @@ public class PlayerDogVisuals : MonoBehaviour
 
     public Transform LeashAttachmentPoint;
 
-    public float Height;
+    [SerializeField] float grassShaderActivationHeight;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class PlayerDogVisuals : MonoBehaviour
 
     private void Update()
     {
-        Shader.SetGlobalVector("_Player", transform.position+ Vector3.up * Height);
+        Shader.SetGlobalVector("_Dog_" + dog.ColorIndex.ToString(), transform.position + Vector3.up * grassShaderActivationHeight);
     }
 
     private void GetDogInformation()
