@@ -15,12 +15,19 @@ public class PlayerDogVisuals : MonoBehaviour
 
     public Transform LeashAttachmentPoint;
 
+    public float Height;
+
     private void Awake()
     {
         dog = GetComponent<Dog>();
         dog.OnDogDataChanged += GetDogInformation;
 
         GetDogInformation();
+    }
+
+    private void Update()
+    {
+        Shader.SetGlobalVector("_Player", transform.position+ Vector3.up * Height);
     }
 
     private void GetDogInformation()
