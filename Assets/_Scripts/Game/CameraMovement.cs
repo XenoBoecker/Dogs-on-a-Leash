@@ -33,13 +33,30 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] NumberDisplay countdownDisplay;
     [SerializeField] int startCountdownDuration = 3;
 
+
+    [SerializeField] AnimationCurve gameLostFlyToBusCurve;
+
+    [SerializeField] float distancePerSecond = 10;
+
     bool inFlyThrough;
+    bool cameraMovementDeactivated;
 
     public event Action OnFlyThroughFinished;
 
     private void Start()
     {
         countdownDisplay.gameObject.SetActive(false);
+    }
+
+    private void LateUpdate()
+    {
+        if (!human) return;
+        if (inFlyThrough) return;
+        if (cameraMovementDeactivated) return;
+
+        float lerpedX = Mathf.Lerp(transform.position.x + offset.x, human.position.x, Time.deltaTime * lerpSpeed);
+
+        transform.position = new Vector3(lerpedX, transform.position.y, transform.position.z);
     }
 
     internal void Setup()
@@ -128,14 +145,24 @@ public class CameraMovement : MonoBehaviour
         OnFlyThroughFinished?.Invoke();
     }
 
-    private void LateUpdate()
+    public IEnumerator FlyToBusCoroutine()
     {
-        if (!human) return;
-        if (inFlyThrough) return;
+        float startPos = transform.position.x;
+        float endPos = FindObjectOfType<MapManager>().currentPathLength -15;
+        float dist = endPos - startPos;
+        float flyDuration = dist / distancePerSecond;
 
-        float lerpedX = Mathf.Lerp(transform.position.x + offset.x, human.position.x, Time.deltaTime * lerpSpeed);
+        for (float i = 0; i < flyDuration; i+=Time.unscaledDeltaTime)
+        {
+            float xPos = startPos + gameLostFlyToBusCurve.Evaluate(i / flyDuration) * dist;
 
-        transform.position = new Vector3(lerpedX, transform.position.y, transform.position.z);
+            transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+
+            yield return null;
+        }
+        transform.position = new Vector3(endPos, transform.position.y, transform.position.z);
+
+        cameraMovementDeactivated = true;
     }
 
     public void HackSkipFlythrough()

@@ -16,6 +16,8 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] int totalTime;
 
+    [SerializeField] int warningTime = 10;
+
     float timeLeft;
     public float TimeLeft => timeLeft;
 
@@ -25,6 +27,8 @@ public class ScoreManager : MonoBehaviour
     bool gameOver;
 
     public event Action<int, bool> OnScoreChanged;
+
+    public event Action OnCloseToEnd;
 
     private void Awake()
     {
@@ -55,6 +59,8 @@ public class ScoreManager : MonoBehaviour
         if (waitingForGameStart) return;
 
         timeLeft -= Time.deltaTime;
+
+        if (timeLeft <= warningTime) OnCloseToEnd?.Invoke();
 
         if (timeLeft <= 0)
         {
@@ -100,16 +106,27 @@ public class ScoreManager : MonoBehaviour
 
         if ((int)timeLeft == 0)
         {
-            sceneChanger.LoadScene(failedEndGameSceneName);
-
+            StartCoroutine(EndGameFailedCoroutine());
         }
         else
         {
-            StartCoroutine(EndGameCoroutine());
+            StartCoroutine(EndGameSuccessCoroutine());
         }
     }
+    IEnumerator EndGameFailedCoroutine()
+    {
+        Time.timeScale = 0;
 
-    IEnumerator EndGameCoroutine()
+        yield return StartCoroutine(FindObjectOfType<CameraMovement>().FlyToBusCoroutine());
+
+        yield return StartCoroutine(FindObjectOfType<Bus>().BusDriveAwayCoroutine());
+
+        Time.timeScale = 1;
+
+        sceneChanger.LoadScene(failedEndGameSceneName);
+    }
+
+    IEnumerator EndGameSuccessCoroutine()
     {
         yield return StartCoroutine(FindObjectOfType<Bus>().BusLeavingCoroutine());
 

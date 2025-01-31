@@ -76,6 +76,13 @@ public class Bus : MonoBehaviour
 
         yield return StartCoroutine(CloseDoorsCoroutine());
 
+        yield return StartCoroutine(BusDriveAwayCoroutine());
+    }
+
+    public IEnumerator BusDriveAwayCoroutine()
+    {
+        StopCoroutine(permaBusUpAndDown);
+
         // Bus leaving
         for (float i = 0; i < busArrivalDuration; i += Time.unscaledDeltaTime)
         {

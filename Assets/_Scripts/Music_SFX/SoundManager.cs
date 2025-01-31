@@ -170,6 +170,7 @@ public class SoundManager : MonoBehaviour
         public AudioClip countDown, popUp; //TODO: countDown not needed anymore, instead countDownTick & countDownWhistle
         public AudioClip countDownTick, countDownWhistle;
         public AudioClip endOfGameTick, endOfGameWhistle;
+        public AudioClip timeAlmostUpWarning;
     }
 }
 
