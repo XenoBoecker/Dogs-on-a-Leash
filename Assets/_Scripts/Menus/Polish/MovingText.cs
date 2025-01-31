@@ -26,4 +26,9 @@ public class MovingText : MonoBehaviour
     {
         this.speed = speed;
     }
+
+    public void SetIsDone(bool v)
+    {
+        isDone = v;
+    }
 }
