@@ -47,6 +47,7 @@ public class ScoreUI : MonoBehaviour
     private void Start()
     {
         ScoreManager.Instance.OnScoreChanged += OnScoreChanged;
+        ScoreManager.Instance.OnCloseToEnd += () => StartCoroutine(CloseToEndWarning());
 
         scoreTextStartScale = scoreText.transform.localScale;
 
@@ -132,17 +133,7 @@ public class ScoreUI : MonoBehaviour
         timeTextParent.transform.position = center.position;
         timeTextParent.transform.localScale = startScale * (1 + sizeScale);
 
-        Vector3 blinkStartScale = timeTextParent.transform.localScale;
-        for (float i = 0; i < centerWaitTime; i += Time.unscaledDeltaTime)
-        {
-            float sinSquare = Mathf.Pow(Mathf.Sin(i * 2 * Mathf.PI * warnBlinkSpeed),2);
-            timeText.color = Color.Lerp(baseColor, warningBlinkColor, sinSquare);// alternate between baseColor and warningBlinkColor
-            timeTextParent.transform.localScale = blinkStartScale * (1 + sinSquare * blinkSizeScale);
-
-            yield return null;
-        }
-        timeText.color = baseColor;
-        timeTextParent.transform.localScale = blinkStartScale;
+        yield return StartCoroutine(BlinkTheTimer());
 
         for (float i = 0; i < animDuration; i += Time.unscaledDeltaTime)
         {
@@ -154,5 +145,27 @@ public class ScoreUI : MonoBehaviour
         timeTextParent.transform.position = end.position;
         timeTextParent.transform.localScale = startScale;
 
+    }
+
+    IEnumerator BlinkTheTimer()
+    {
+        Vector3 blinkStartScale = timeTextParent.transform.localScale;
+        for (float i = 0; i < centerWaitTime; i += Time.unscaledDeltaTime)
+        {
+            float sinSquare = Mathf.Pow(Mathf.Sin(i * 2 * Mathf.PI * warnBlinkSpeed), 2);
+            timeText.color = Color.Lerp(baseColor, warningBlinkColor, sinSquare);// alternate between baseColor and warningBlinkColor
+            timeTextParent.transform.localScale = blinkStartScale * (1 + sinSquare * blinkSizeScale);
+
+            yield return null;
+        }
+        timeText.color = baseColor;
+        timeTextParent.transform.localScale = blinkStartScale;
+    }
+
+    IEnumerator CloseToEndWarning()
+    {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.timeAlmostUpWarning);
+
+        yield return BlinkTheTimer();
     }
 }

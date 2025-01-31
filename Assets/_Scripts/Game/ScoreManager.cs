@@ -16,6 +16,19 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] int totalTime;
 
+    [SerializeField] int warningTime = 10;
+
+    [SerializeField] GameObject finishText;
+
+    [SerializeField] AnimationCurve finishTextPopCurve;
+
+    [SerializeField] float finishTextPopDuration;
+
+    [SerializeField]
+    float waitForFinishTextVanishTime = 0.5f;
+    [SerializeField] float finishTextVanishTime;
+    Vector3 finishTexBaseScale;
+
     float timeLeft;
     public float TimeLeft => timeLeft;
 
@@ -25,6 +38,8 @@ public class ScoreManager : MonoBehaviour
     bool gameOver;
 
     public event Action<int, bool> OnScoreChanged;
+
+    public event Action OnCloseToEnd;
 
     private void Awake()
     {
@@ -44,6 +59,9 @@ public class ScoreManager : MonoBehaviour
         mapManager.OnGameEnd += EndGame;
 
         timeLeft = totalTime;
+        finishText.SetActive(false);
+        finishTexBaseScale = finishText.transform.localScale;
+
 
         AddScore(0);
     }
@@ -55,6 +73,8 @@ public class ScoreManager : MonoBehaviour
         if (waitingForGameStart) return;
 
         timeLeft -= Time.deltaTime;
+
+        if (timeLeft <= warningTime) OnCloseToEnd?.Invoke();
 
         if (timeLeft <= 0)
         {
@@ -100,20 +120,59 @@ public class ScoreManager : MonoBehaviour
 
         if ((int)timeLeft == 0)
         {
-            sceneChanger.LoadScene(failedEndGameSceneName);
-
+            StartCoroutine(EndGameFailedCoroutine());
         }
         else
         {
-            StartCoroutine(EndGameCoroutine());
+            StartCoroutine(EndGameSuccessCoroutine());
         }
     }
-
-    IEnumerator EndGameCoroutine()
+    IEnumerator EndGameFailedCoroutine()
     {
+        Time.timeScale = 0;
+
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.endOfGameLossWhistle);
+
+        yield return StartCoroutine(FindObjectOfType<CameraMovement>().FlyToBusCoroutine());
+
+        yield return StartCoroutine(FindObjectOfType<Bus>().BusDriveAwayCoroutine());
+
+        Time.timeScale = 1;
+
+        sceneChanger.LoadScene(failedEndGameSceneName);
+    }
+
+    IEnumerator EndGameSuccessCoroutine()
+    {
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.endOfGameSuccessWhistle);
+
+        StartCoroutine(PopFinishText());
+
         yield return StartCoroutine(FindObjectOfType<Bus>().BusLeavingCoroutine());
 
         sceneChanger.LoadScene(endGameSceneName);
+    }
+
+    IEnumerator PopFinishText()
+    {
+        finishText.SetActive(true);
+
+        for (float i = 0; i < finishTextPopDuration; i+=Time.deltaTime)
+        {
+            finishText.transform.localScale = finishTexBaseScale * finishTextPopCurve.Evaluate(i / finishTextPopDuration);
+            yield return null;
+        }
+        finishText.transform.localScale = finishTexBaseScale;
+
+        yield return new WaitForSeconds(waitForFinishTextVanishTime);
+
+        for (float i = 0; i < finishTextVanishTime; i+=Time.deltaTime)
+        {
+            finishText.transform.localScale = finishTexBaseScale * (1- i/ finishTextVanishTime);
+            yield return null;
+        }
+        finishText.transform.localScale = Vector3.zero;
+        finishText.SetActive(false);
     }
 
     public void HackSetTimeLeft(float t)
