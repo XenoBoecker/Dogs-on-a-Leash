@@ -169,7 +169,7 @@ public class SoundManager : MonoBehaviour
         public AudioClip buttonHoverSound;
         public AudioClip countDown, popUp; //TODO: countDown not needed anymore, instead countDownTick & countDownWhistle
         public AudioClip countDownTick, countDownWhistle;
-        public AudioClip endOfGameTick, endOfGameWhistle;
+        public AudioClip endOfGameTick, endOfGameSuccessWhistle, endOfGameLossWhistle;
         public AudioClip timeAlmostUpWarning;
     }
 }
