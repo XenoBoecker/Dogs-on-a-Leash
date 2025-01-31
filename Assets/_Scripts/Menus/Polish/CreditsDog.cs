@@ -17,29 +17,13 @@ public class CreditsDog : MonoBehaviour
 
     [SerializeField] float offsetDistance = 2.5f;
 
+    Vector3 startPos, movingTextStartPos;
+
+    static int lastDogIndex = -1;
+
     private void Start()
     {
-        int dogID = Random.Range(0, 4);
-
-        for (int i = 0; i < shadows.Length; i++)
-        {
-            if (i == dogID) shadows[i].SetActive(true);
-            else shadows[i].SetActive(false);
-        }
-
         visual = GetComponentInChildren<DogVisuals>();
-
-        visual.SetDogID(dogID);
-        visual.SetColorIndex(Random.Range(0, 4));
-        visual.SetAccessorieIndex(Random.Range(0, visual.AccessorieCount));
-
-        anim = GetComponentInChildren<Animator>();
-
-        anim.SetTrigger("OnStartWalking");
-        anim.SetBool("Walking", true);
-
-        anim.SetFloat("MovSpeedPercentage", 1);
-
 
         if (goLeft)
         {
@@ -65,6 +49,45 @@ public class CreditsDog : MonoBehaviour
             transform.Translate(Vector3.left * dist, Space.World);
             movingText.transform.Translate(Vector3.left * dist, Space.World);
         }
+
+        startPos = transform.position;
+        movingTextStartPos = movingText.transform.position;
+    }
+
+    public void ResetToStartPosition()
+    {
+        transform.position = startPos;
+        movingText.transform.position = new Vector3(movingTextStartPos.x, movingText.transform.position.y, 0);
+        movingText.SetIsDone(false);
+
+        SetupRandomDog();
+    }
+
+    public void SetupRandomDog()
+    {
+
+        int dogID = Random.Range(0, 4);
+
+        while (dogID == lastDogIndex) dogID = Random.Range(0, 4);
+        lastDogIndex = dogID;
+        Debug.Log("ID: " + dogID);
+
+        for (int i = 0; i < shadows.Length; i++)
+        {
+            if (i == dogID) shadows[i].SetActive(true);
+            else shadows[i].SetActive(false);
+        }
+
+        visual.SetDogID(dogID);
+        visual.SetColorIndex(Random.Range(0, 4));
+        visual.SetAccessorieIndex(Random.Range(0, visual.AccessorieCount));
+
+        anim = GetComponentInChildren<Animator>();
+
+        anim.SetTrigger("OnStartWalking");
+        anim.SetBool("Walking", true);
+
+        anim.SetFloat("MovSpeedPercentage", 1);
     }
 
     private void Update()
