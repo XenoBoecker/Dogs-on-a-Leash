@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3588120473319665245
+--- !u!114 &-2460974555392695267
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,16 +20,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sea grass
-  m_Shader: {fileID: -6465566751694194690, guid: 880679bd19c48e341b1c3982a4f425e4,
+  m_Name: Tiny Gras FINAl
+  m_Shader: {fileID: -6465566751694194690, guid: 26771b692aa82be4bbb94ca031a01a63,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ALPHAPREMULTIPLY_ON
-  - _SURFACE_TYPE_TRANSPARENT
-  m_LightmapFlags: 2
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -39,24 +37,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_0d4a590c9fa54a51892f161c0b5c04cc_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 89f852d16aff05640bb207fe5f8d4def, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_0da668048bd54a8d90038d031db0c8d4_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: f4ce4599aa4e850409a02b8534559c48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex_Farbe:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ad86e1f83e74426428d3f880cbbdc99d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex_Stencil:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texzture_Farbe:
-        m_Texture: {fileID: 2800000, guid: afa67ffcf39fb5047a2f2492feb0917a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -73,28 +63,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 1
-    - _AlphaToMask: 0
     - _Bend_of_gras: 1
-    - _Blend: 0
-    - _BlendModePreserveSpecular: 1
-    - _CastShadows: 0
-    - _Cull: 2
-    - _DstBlend: 10
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Radius: 1
-    - _ReceiveShadows: 1
-    - _SrcBlend: 1
-    - _Strength: 0.29
-    - _Surface: 1
-    - _WindSpeed: 0.14
-    - _WorkflowMode: 1
-    - _ZTest: 4
-    - _ZWrite: 0
-    - _ZWriteControl: 0
+    - _Strength: 0.25
+    - _WindSpeed: 0.62
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Gradeint_1: {r: 1, g: 1, b: 1, a: 0}
-    - _Gradeint_2: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: 0, g: -0.17, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 2.12, b: 0, a: 0}
   m_BuildTextureStacks: []
