@@ -279,26 +279,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -356,17 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -374,11 +344,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 1425694634}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -707,26 +672,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -784,17 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -802,11 +737,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 1671578186}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1132,26 +1062,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1209,29 +1119,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
       propertyPath: movingText
       value: 
       objectReference: {fileID: 870482585}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1251,26 +1141,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1328,17 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -1346,11 +1206,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 1251936097}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1666,7 +1521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.5679932, y: -959}
+  m_AnchoredPosition: {x: -2.5679932, y: -989}
   m_SizeDelta: {x: -488.205, y: 634.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813503996
@@ -2527,26 +2382,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2604,29 +2439,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
       propertyPath: movingText
       value: 
       objectReference: {fileID: 368242351}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2646,26 +2461,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2723,29 +2518,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
       propertyPath: movingText
       value: 
       objectReference: {fileID: 624658193}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2765,26 +2540,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2842,29 +2597,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
       propertyPath: movingText
       value: 
       objectReference: {fileID: 954063809}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3103,7 +2838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credits: {fileID: 813503994}
-  speed: 1
+  speed: 0.7
   pointOfReturn: 10
 --- !u!4 &1247288709
 Transform:
@@ -3128,26 +2863,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3205,17 +2920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -3223,11 +2928,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 897163191}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3474,26 +3174,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3551,29 +3231,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
       propertyPath: movingText
       value: 
       objectReference: {fileID: 1664068246}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3610,7 +3270,7 @@ Transform:
   m_GameObject: {fileID: 1337506637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10.2, z: 0}
+  m_LocalPosition: {x: 0, y: -10.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3640,26 +3300,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3717,17 +3357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -3735,11 +3365,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 1397677732}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3909,26 +3534,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3986,29 +3591,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
       propertyPath: movingText
       value: 
       objectReference: {fileID: 494472084}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4176,26 +3761,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4253,17 +3818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -4271,11 +3826,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 2103139243}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4835,26 +4385,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4912,17 +4442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -4930,11 +4450,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 987295231}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5099,26 +4614,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5176,17 +4671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
+      propertyPath: goLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
@@ -5194,11 +4679,6 @@ PrefabInstance:
       propertyPath: movingText
       value: 
       objectReference: {fileID: 499362268}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5218,26 +4698,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1337506638}
     m_Modifications:
-    - target: {fileID: 2161338125325484620, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382080031010385227, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5295,29 +4755,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
         type: 3}
-      propertyPath: speed.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: speed.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
       propertyPath: movingText
       value: 
       objectReference: {fileID: 1211303039}
-    - target: {fileID: 7385429885280000154, guid: 8f37ad3c8c26f154c8cc147f96025b41,
-        type: 3}
-      propertyPath: movSpeedLeft
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

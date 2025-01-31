@@ -6,6 +6,7 @@ public class CreditsDog : MonoBehaviour
     Animator anim;
 
 
+    [SerializeField] bool goLeft = true;
     [SerializeField] Vector3 speed;
 
 
@@ -39,9 +40,20 @@ public class CreditsDog : MonoBehaviour
 
         anim.SetFloat("MovSpeedPercentage", 1);
 
+
+        if (goLeft)
+        {
+            speed = new Vector3(-speed.x, speed.y, speed.z);
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+
         movingText.SetSpeed(speed.x);
 
-        float dist = 10 + Mathf.Abs(transform.position.x) + Mathf.Abs(speed.x) * -transform.position.y + offsetDistance;
+        float dist = Mathf.Abs(speed.x) * (-transform.position.y / speed.y + offsetDistance);
 
         if(speed.x < 0)
         {
