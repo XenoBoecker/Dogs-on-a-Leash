@@ -78,13 +78,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300672506925135513}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7115617, z: -0, w: 0.7026237}
-  m_LocalPosition: {x: 4.39, y: -0.26, z: 4.15}
+  m_LocalRotation: {x: -0, y: 0.86693025, z: -0, w: 0.49842942}
+  m_LocalPosition: {x: 10.2, y: -0.26, z: 4.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8971421669622280257}
-  m_LocalEulerAnglesHint: {x: 0, y: 90.724, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 120.208, z: 0}
 --- !u!65 &4181931639632005645
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.0124142, y: 2.0406284, z: 1}
+  m_Size: {x: 6.91, y: 2.0406284, z: 1}
   m_Center: {x: 9.47517, y: 0.52031416, z: -7.570389e-10}
 --- !u!1 &1835905673429072186
 GameObject:
@@ -3197,7 +3197,7 @@ PrefabInstance:
     - target: {fileID: 4143699337203293510, guid: 56f9443f11d9fad4f9155981382a0270,
         type: 3}
       propertyPath: tileLength
-      value: 30
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 4414555139929138404, guid: 56f9443f11d9fad4f9155981382a0270,
         type: 3}
