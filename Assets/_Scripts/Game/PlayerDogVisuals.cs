@@ -29,6 +29,9 @@ public class PlayerDogVisuals : MonoBehaviour
         visual.SetColorIndex(dog.ColorIndex);
         visual.SetAccessorieIndex(dog.AccessorieIndex);
 
+        int accessoryUsedCount = PlayerPrefs.GetInt("Accessory_" + dog.AccessorieIndex.ToString());
+        PlayerPrefs.SetInt("Accessory_" + dog.AccessorieIndex.ToString(), accessoryUsedCount+1);
+
         for (int i = 0; i < shadows.Length; i++)
         {
             if(i == dog.DogData.id) shadows[i].SetActive(true);
