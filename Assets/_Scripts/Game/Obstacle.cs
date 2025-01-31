@@ -6,7 +6,7 @@ public class Obstacle : MonoBehaviour
 {
 
     float pushBackForce = 2f;
-    public float CurrentPushBackForce => pushBackForce * (playerCollisionCounter + 1);
+    public float CurrentPushBackForce => pushBackForce * (Mathf.Min(playerCollisionCounter, 2) + 1);
 
     [HideInInspector]
     public float stunTime = 1f;
@@ -17,7 +17,7 @@ public class Obstacle : MonoBehaviour
 
     [HideInInspector]
     public int scoreValue = -100;
-    public int CurrentScoreValue => scoreValue * (playerCollisionCounter + 1);
+    public int ScoreValue => scoreValue;
 
     int playerCollisionCounter;
 
