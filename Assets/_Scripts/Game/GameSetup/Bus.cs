@@ -126,10 +126,12 @@ public class Bus : MonoBehaviour
     {
         if(permaBusUpAndDown != null) StopCoroutine(permaBusUpAndDown);
 
+        int count = 0;
         Vector3 carosseryStartPos = busCarossery.transform.position;
         // bobble the bus
         for (float i = 0; i < busBobbleDuration; i += Time.unscaledDeltaTime)
         {
+            Debug.Log(count++);
             float sin = Mathf.Sin(2 * Mathf.PI * i * busBobbleSpeed);
 
             busCarossery.transform.position = carosseryStartPos + (Vector3.up * sin * busBobbleScale);
