@@ -47,6 +47,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: f4ce4599aa4e850409a02b8534559c48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Tex_Farbe:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex_Stencil:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texzture_Farbe:
         m_Texture: {fileID: 2800000, guid: afa67ffcf39fb5047a2f2492feb0917a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -67,6 +75,7 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _AlphaToMask: 0
+    - _Bend_of_gras: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 0
@@ -74,6 +83,7 @@ Material:
     - _DstBlend: 10
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Radius: 1
     - _ReceiveShadows: 1
     - _SrcBlend: 1
     - _Strength: 0.29

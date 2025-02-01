@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6224923602467003141}
+  - component: {fileID: 6132059013353374649}
   m_Layer: 0
   m_Name: Duckie
   m_TagString: Untagged
@@ -32,6 +33,32 @@ Transform:
   - {fileID: 6275356930541569753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6132059013353374649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251312742144234071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6a66435f81f184408abf4457ba88e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetDuck: {fileID: 0}
+  allDucklings: []
+  followDistance: 2
+  separationDistance: 1
+  moveSpeed: 0.3
+  rotationSpeed: 3
+  wanderRange: 1.5
+  wanderChance: 0.2
+  wantedDistToMamaDuck: 2
+  speedBostStartDist: 4
+  speedBoostMultiplier: 3
+  speedUpTime: 0
+  speedDownTime: 0.7
+  distRandomizerMultiplier: 0.3
 --- !u!1001 &5808573265887240498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73,7 +100,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 25818a8671897e04eb179e7f97005db3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 25818a8671897e04eb179e7f97005db3,
         type: 3}
@@ -83,12 +110,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 25818a8671897e04eb179e7f97005db3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 25818a8671897e04eb179e7f97005db3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 25818a8671897e04eb179e7f97005db3,
         type: 3}
@@ -98,7 +125,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 25818a8671897e04eb179e7f97005db3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 25818a8671897e04eb179e7f97005db3,
         type: 3}

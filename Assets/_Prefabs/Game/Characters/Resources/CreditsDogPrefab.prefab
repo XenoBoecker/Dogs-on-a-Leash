@@ -217,14 +217,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5599704e21a36b9418ae91f2a8c2fdb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: -4, y: 1, z: 0}
+  goLeft: 1
+  speed: {x: 2, y: 0.7, z: 0}
   shadows:
   - {fileID: 2857591263859674597}
   - {fileID: 1936995738233262164}
   - {fileID: 5996962541629447210}
   - {fileID: 4503688507348653497}
   movingText: {fileID: 0}
-  offsetDistance: -15
+  offsetDistance: -3
 --- !u!1 &4503688507348653497
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +411,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DogVisuals
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466410269292631659, guid: e95527dde6120fc4db700499a2d7f0aa,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.77903
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466410269292631659, guid: e95527dde6120fc4db700499a2d7f0aa,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.77903
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466410269292631659, guid: e95527dde6120fc4db700499a2d7f0aa,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.77903
       objectReference: {fileID: 0}
     - target: {fileID: 8466410269292631659, guid: e95527dde6120fc4db700499a2d7f0aa,
         type: 3}
