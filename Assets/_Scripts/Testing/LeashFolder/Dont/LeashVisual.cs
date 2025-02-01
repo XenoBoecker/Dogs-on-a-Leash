@@ -10,6 +10,8 @@ public class LeashVisual : MonoBehaviour
     public LeashManager leashManager;
     public int leashVisualSegment = 10;
 
+    public Material[] leashMaterials;
+
     private List<Vector3> leashPoints;
     private List<Vector3> currentPositions;
     private float leashLength;
@@ -28,6 +30,11 @@ public class LeashVisual : MonoBehaviour
         leashPoints = new List<Vector3>();
         currentPositions = new List<Vector3>(new Vector3[leashVisualSegment]);
         lineRenderer.positionCount = leashVisualSegment;
+        lineRenderer.material = leashMaterials[gameObject.GetComponent<PlayerDogVisuals>().GetColorID()];
+
+        // Set the width of the line renderer
+        lineRenderer.startWidth = 0.3f; // Adjust this value as needed
+        lineRenderer.endWidth = 0.3f;   // Adjust this value as needed
     }
 
     // Update is called once per frame

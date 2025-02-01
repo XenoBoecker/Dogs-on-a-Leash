@@ -487,7 +487,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -1498,6 +1498,11 @@ MonoBehaviour:
   endPoint: {fileID: 0}
   leashManager: {fileID: 4966345517387302025}
   leashVisualSegment: 30
+  leashMaterials:
+  - {fileID: 2100000, guid: 281f340ac568a724fa9430025d7ba546, type: 2}
+  - {fileID: 2100000, guid: 0c081f58fc3070e4bb7cb575ce14f2c2, type: 2}
+  - {fileID: 2100000, guid: 94ffbb0c7984fda4795d85527008c938, type: 2}
+  - {fileID: 2100000, guid: a1f1e6b227d06a247b5b1d9f0c4f1271, type: 2}
   moveSpeed: 10
 --- !u!23 &8219247259153498988
 MeshRenderer:
