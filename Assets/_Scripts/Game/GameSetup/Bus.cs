@@ -129,15 +129,14 @@ public class Bus : MonoBehaviour
         int count = 0;
         Vector3 carosseryStartPos = busCarossery.transform.position;
         // bobble the bus
-        for (float i = 0; i < busBobbleDuration; i += Time.unscaledDeltaTime)
+        for (float i = 0; i < busBobbleDuration; i += Time.fixedUnscaledDeltaTime)
         {
-            Debug.Log(count++);
             float sin = Mathf.Sin(2 * Mathf.PI * i * busBobbleSpeed);
 
             busCarossery.transform.position = carosseryStartPos + (Vector3.up * sin * busBobbleScale);
             busCarossery.transform.Rotate(0, 0, (sin - transform.rotation.z) * busBobbleRotScale);
             // busCarossery.transform.rotation = Quaternion.Euler(0, 0, sin * busBobbleRotScale);
-            yield return null;
+            yield return new WaitForSeconds(Time.fixedUnscaledDeltaTime);
         }
         busCarossery.transform.position = carosseryStartPos;
         busCarossery.transform.rotation = Quaternion.identity;
