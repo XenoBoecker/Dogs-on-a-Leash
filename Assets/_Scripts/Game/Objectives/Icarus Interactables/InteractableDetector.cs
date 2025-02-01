@@ -52,7 +52,13 @@ public class InteractableDetector : MonoBehaviour
 
         if(currentInteractingInteractable != null)
         {
+            //freeze y rotation of dog
+            dogRB.constraints |= RigidbodyConstraints.FreezeRotationY; 
             RotateTowardsAndStayAtInteractable();
+        }
+        else
+        {
+            dogRB.constraints &= ~RigidbodyConstraints.FreezeRotationY; 
         }
     }
     private void RotateTowardsAndStayAtInteractable()
