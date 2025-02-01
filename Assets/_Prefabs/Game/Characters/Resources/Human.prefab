@@ -195,7 +195,7 @@ MonoBehaviour:
   startWalkingDelay: 3
   minSpeed: 0.8
   acceleration: 50
-  speed: 2.5
+  speed: 1.5
   rotationSpeed: 10
   BumpedCount: 0
   bumpPointLossVFX: {fileID: 6970946585652909361}
@@ -235,6 +235,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   vignetteDuration: 1
+  grassShaderActivationHeight: 2.5
 --- !u!114 &802700166051398678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,8 +329,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepAudioSource: {fileID: -143727492480199056}
   stepVolumeMultiplier: 0.5
-  minHumanNoiseDelay: 2
-  maxHumanNoiseDelay: 10
+  minHumanNoiseDelay: 20
+  maxHumanNoiseDelay: 45
 --- !u!82 &-143727492480199056
 AudioSource:
   m_ObjectHideFlags: 0
