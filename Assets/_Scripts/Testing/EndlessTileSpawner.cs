@@ -17,7 +17,7 @@ public class EndlessTileSpawner : MapManager
     // Update is called once per frame
     void Update()
     {
-        if (currentPathLength - human.transform.position.x < 50 || currentPathLength - Camera.main.transform.position.x < 50)
+        if (TotalPathLength - human.transform.position.x < 50 || TotalPathLength - Camera.main.transform.position.x < 50)
         {
             PlaceNextTile();
         }

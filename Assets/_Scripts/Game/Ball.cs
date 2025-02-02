@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        goalDist = FindObjectOfType<MapManager>().currentPathLength - 15;
+        goalDist = FindObjectOfType<MapManager>().TotalPathLength;
     }
 
     // Update is called once per frame

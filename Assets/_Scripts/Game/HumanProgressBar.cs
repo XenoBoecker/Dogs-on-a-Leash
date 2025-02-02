@@ -24,7 +24,7 @@ public class HumanProgressBar : MonoBehaviour
             return;
         }
 
-        float progressPercentage = human.transform.position.x / (mapGen.currentPathLength - 15);
+        float progressPercentage = human.transform.position.x / mapGen.TotalPathLength;
 
         slider.value = progressPercentage;
     }

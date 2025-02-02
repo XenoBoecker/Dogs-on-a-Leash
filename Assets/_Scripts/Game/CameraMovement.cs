@@ -69,7 +69,7 @@ public class CameraMovement : MonoBehaviour
     {
         inFlyThrough = true;
 
-        int totalDist = FindObjectOfType<MapManager>().currentPathLength - 15;
+        int totalDist = FindObjectOfType<MapManager>().TotalPathLength;
 
         transform.position = new Vector3(totalDist, transform.position.y, transform.position.z);
 
@@ -148,7 +148,7 @@ public class CameraMovement : MonoBehaviour
     public IEnumerator FlyToBusCoroutine()
     {
         float startPos = transform.position.x;
-        float endPos = FindObjectOfType<MapManager>().currentPathLength -15;
+        float endPos = FindObjectOfType<MapManager>().TotalPathLength;
         float dist = endPos - startPos;
         float flyDuration = dist / distancePerSecond;
 
