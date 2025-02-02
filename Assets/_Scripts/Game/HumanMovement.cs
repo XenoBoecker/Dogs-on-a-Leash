@@ -24,6 +24,8 @@ public class HumanMovement : MonoBehaviour
     float stunTime;
     bool isStunned => stunTime > 0;
 
+    public bool IsOnStreet;
+
     public int BumpedCount;
 
 
@@ -146,5 +148,11 @@ public class HumanMovement : MonoBehaviour
 
         stunVFX.gameObject.SetActive(true);
         stunVFX.Play();
+    }
+
+    internal void SetIsOnStreet(bool v)
+    {
+        Debug.Log("IsOnStreet: " + v);
+        IsOnStreet = v;
     }
 }

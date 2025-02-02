@@ -10,8 +10,12 @@ public class HumanSounds : MonoBehaviour
     [SerializeField] float minHumanNoiseDelay, maxHumanNoiseDelay;
     float humanNoiseTimer;
 
+    HumanMovement humanMovement;
+
     void Start()
     {
+        humanMovement = GetComponent<HumanMovement>();
+
         SoundManager.Instance.OnSoundReload += Reload;
         Reload();
 
@@ -36,7 +40,8 @@ public class HumanSounds : MonoBehaviour
 
     private void PlayStepSound()
     {
-        SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.walking, stepAudioSource, stepVolumeMultiplier);
+        if(humanMovement.IsOnStreet) SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.walking_street, stepAudioSource, stepVolumeMultiplier * 10);
+        else SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.walking, stepAudioSource, stepVolumeMultiplier);
     }
 
     private void Reload()

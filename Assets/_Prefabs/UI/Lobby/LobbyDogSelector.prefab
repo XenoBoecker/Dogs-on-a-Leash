@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 2137849765933806916}
   - component: {fileID: 710046570269218740}
   - component: {fileID: 4491804627662066393}
+  - component: {fileID: 8054613303933550350}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -207,6 +208,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8054613303933550350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427072720064741432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.2
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.12761581
+      outSlope: -0.12761581
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18773916
+    - serializedVersion: 3
+      time: 0.49642807
+      value: 1.001328
+      inSlope: 0.1405422
+      outSlope: 0.1405422
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16024776
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9949341
+      value: 0.00093078613
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &1980556575134170182
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +424,7 @@ GameObject:
   - component: {fileID: 5815547672972326101}
   - component: {fileID: 6861432596697208592}
   - component: {fileID: 1720815373836891522}
+  - component: {fileID: 3650171147086097130}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -490,6 +545,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3650171147086097130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331588885129380691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.2
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.12761581
+      outSlope: -0.12761581
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18773916
+    - serializedVersion: 3
+      time: 0.49642807
+      value: 1.001328
+      inSlope: 0.1405422
+      outSlope: 0.1405422
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16024776
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9949341
+      value: 0.00093078613
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &3875961161850740186
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +764,7 @@ GameObject:
   - component: {fileID: 5373222644366973630}
   - component: {fileID: 395529323106656917}
   - component: {fileID: 2629810701414652221}
+  - component: {fileID: 1137089598397415607}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -776,6 +885,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1137089598397415607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613867749688265083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.2
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.12761581
+      outSlope: -0.12761581
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18773916
+    - serializedVersion: 3
+      time: 0.49642807
+      value: 1.001328
+      inSlope: 0.1405422
+      outSlope: 0.1405422
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16024776
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9949341
+      value: 0.00093078613
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2
 --- !u!1 &5278065071909479233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,6 +1512,7 @@ GameObject:
   - component: {fileID: 8392311381833684161}
   - component: {fileID: 7497602154289191669}
   - component: {fileID: 4499497214882315251}
+  - component: {fileID: 8914134140123191031}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1470,3 +1633,56 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8914134140123191031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027347335374765932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
+  buttonObject: {fileID: 0}
+  bobSpeed: 3
+  bobScaleFactor: 1.2
+  returnSpeed: 5
+  onlyOnce: 1
+  sizeIncreaseAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.12761581
+      outSlope: -0.12761581
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18773916
+    - serializedVersion: 3
+      time: 0.49642807
+      value: 1.001328
+      inSlope: 0.1405422
+      outSlope: 0.1405422
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16024776
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9949341
+      value: 0.00093078613
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animDuration: 0.2

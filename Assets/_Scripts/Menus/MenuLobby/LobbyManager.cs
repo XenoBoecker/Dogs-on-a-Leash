@@ -79,6 +79,11 @@ namespace photonMenuLobby
         public event Action OnPlayerListChanged;
         public event Action OnBackToPlayerRegistration;
 
+        private void Awake()
+        {
+            seedInputField.onValueChanged.AddListener(OnSeedInputChanged);
+        }
+
         private void Start()
         {
             DeletePreviousLocalPlayers();
@@ -103,7 +108,7 @@ namespace photonMenuLobby
                 UpdatePlayerList();
             }
 
-            seedInputField.onValueChanged.AddListener(OnSeedInputChanged);
+            seedInputField.text = UnityEngine.Random.Range(100000000, 999999999).ToString();
         }
 
         private void Update()
@@ -138,6 +143,8 @@ namespace photonMenuLobby
 
         void OnSeedInputChanged(string input)
         {
+            Debug.Log("Set Seed to " + input);
+
             // Attempt to parse the string input to an integer
             if (int.TryParse(input, out int parsedSeed))
             {
@@ -201,7 +208,12 @@ namespace photonMenuLobby
                 yield return null;
             }
 
-            if(startGame) FindObjectOfType<ChangeScenes>().LoadScene("Game_1");
+            if (startGame)
+            {
+                Debug.Log("Start game");
+                OnSeedInputChanged(seedInputField.text);
+                FindObjectOfType<ChangeScenes>().LoadScene("Game_1");
+            }
         }
 
         void ActivatePanel(GameObject panel)
