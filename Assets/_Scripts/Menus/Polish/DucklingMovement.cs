@@ -87,8 +87,6 @@ public class DucklingMovement : MonoBehaviour
 
         distRandor = 1 + Random.Range(-distRandomizerMultiplier, +distRandomizerMultiplier);
 
-        Debug.Log("Start Boost");
-
         float distToMamaDuck = Mathf.Infinity;
 
         moveSpeed *= speedBoostMultiplier;
@@ -99,8 +97,6 @@ public class DucklingMovement : MonoBehaviour
             
             yield return null;
         }
-
-        Debug.Log("End Boost");
 
         float speed = moveSpeed;
         float goalSpeed = moveSpeed / speedBoostMultiplier;

@@ -54,6 +54,8 @@ public class InteractableDetector : MonoBehaviour
             buddelVFXs[i].gameObject.SetActive(false);
             buddelVFXs[i].Stop();
         }
+
+        PickupCount = 0;
     }
 
     private void Update()
@@ -165,17 +167,21 @@ public class InteractableDetector : MonoBehaviour
 
         currentInteractingInteractable.Interact(this);
 
-        if(currentInteractingInteractable.Task is HoldButtonTask)
-        {
-            for (int i = 0; i < buddelVFXs.Length; i++)
-            {
-                buddelVFXs[i].gameObject.SetActive(true);
-                buddelVFXs[i].Play();
-            }
-        }
 
         // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
-        if (currentInteractingInteractable != null) OnInteracted?.Invoke();
+        if (currentInteractingInteractable != null)
+        {
+            if (currentInteractingInteractable.Task is HoldButtonTask)
+            {
+                for (int i = 0; i < buddelVFXs.Length; i++)
+                {
+                    buddelVFXs[i].gameObject.SetActive(true);
+                    buddelVFXs[i].Play();
+                }
+            }
+
+            OnInteracted?.Invoke();
+        }
     }
 
     void InteractWithClosestInteractable()

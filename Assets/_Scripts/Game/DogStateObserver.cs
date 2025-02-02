@@ -67,7 +67,6 @@ public class DogStateObserver : MonoBehaviour
     {
         if (!wasWalkingLastFrame && IsWalking())
         {
-            Debug.Log("start walking");
             OnStartWalking?.Invoke();
         }
         else if (wasWalkingLastFrame && !IsWalking())

@@ -23,6 +23,8 @@ public class Interactable : MonoBehaviour
 
     public List<InteractableDetector> currentInteractors = new List<InteractableDetector>();
     bool isInteracting;
+
+    protected bool isCompleted;
     public void SetIsInteracting(bool value) 
     {
         isInteracting = value;
@@ -46,8 +48,6 @@ public class Interactable : MonoBehaviour
 
     public void Interact(InteractableDetector interactor)
     {
-        Debug.Log("Current Interactors Count: " + currentInteractors.Count);
-
         if (isInteracting && singleDogInteractable) return;
 
         currentInteractors.Add(interactor);
@@ -100,35 +100,29 @@ public class Interactable : MonoBehaviour
 
     internal virtual void CompleteTask()
     {
+        if (!isCompleted)
+        {
+            InteractableDetector.PickupCount++;
+            Debug.Log("New PickupCount: " + InteractableDetector.PickupCount);
 
-        Debug.Log("complete task");
+            StartCoroutine(SpawnVFXDelayed());
 
-        InteractableDetector.PickupCount++;
-
-        Debug.Log("Spawn VFD Coroutine now");
-
-        StartCoroutine(SpawnVFXDelayed());
-
-        Debug.Log("End all Interactinos now");
+            isCompleted = true;
+        }
 
         EndAllInteractions();
     }
 
     IEnumerator SpawnVFXDelayed()
     {
-        Debug.Log("SpawnDelayed");
         yield return new WaitForSeconds(spawnVFXTimeDelay);
-
-        Debug.Log("Wait time over");
 
         if (completeTaskVFX != null)
         {
-            Debug.Log("SpawnNow");
             completeTaskVFX.Play();
             completeTaskVFX.transform.SetParent(null);
             Destroy(completeTaskVFX, 1f);
         }
-        else Debug.Log("no vfx herer");
     }
 
     public void CancelTask(InteractableDetector interactor)

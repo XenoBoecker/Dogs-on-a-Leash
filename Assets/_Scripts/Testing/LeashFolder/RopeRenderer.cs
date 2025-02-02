@@ -27,12 +27,6 @@ public class RopeRenderer : MonoBehaviour
 
     PlayerDogVisuals myDogVisual;
 
-    [Header("Rope Outline")]
-    Mesh m_RopeOutlineMesh;
-    [SerializeField] Material ropeOutlineMaterial;
-    private MeshFilter m_OutlineMeshFilter;
-    private MeshRenderer m_OutlineMeshRenderer;
-
 
     private float m_Angle;
     private int m_NodeCount;
@@ -45,10 +39,6 @@ public class RopeRenderer : MonoBehaviour
 
         m_RopeMesh = new Mesh();
         m_MeshRenderer.material = ropeMaterial;
-
-        //outline
-        m_RopeOutlineMesh = new Mesh();
-        m_OutlineMeshRenderer.material = ropeOutlineMaterial;
 
         m_Angle = ((m_RopeSegmentSides - 2) * 180) / m_RopeSegmentSides;
         m_IsInitialized = false;
