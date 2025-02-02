@@ -5783,21 +5783,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5188484169676853293}
     m_Modifications:
-    - target: {fileID: 6027667020626186662, guid: f5336bb00584f6a429768f97b91bd611,
+    - target: {fileID: 5381842538203374747, guid: f5336bb00584f6a429768f97b91bd611,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7811786
+      propertyPath: ducklings.Array.size
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 6027667020626186662, guid: f5336bb00584f6a429768f97b91bd611,
+    - target: {fileID: 5381842538203374747, guid: f5336bb00584f6a429768f97b91bd611,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.7811786
-      objectReference: {fileID: 0}
-    - target: {fileID: 6027667020626186662, guid: f5336bb00584f6a429768f97b91bd611,
+      propertyPath: ducklings.Array.data[0]
+      value: 
+      objectReference: {fileID: 5399026829966774165}
+    - target: {fileID: 5381842538203374747, guid: f5336bb00584f6a429768f97b91bd611,
         type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.7811786
-      objectReference: {fileID: 0}
+      propertyPath: ducklings.Array.data[1]
+      value: 
+      objectReference: {fileID: 5493154898195182247}
+    - target: {fileID: 5381842538203374747, guid: f5336bb00584f6a429768f97b91bd611,
+        type: 3}
+      propertyPath: ducklings.Array.data[2]
+      value: 
+      objectReference: {fileID: 5470756728821851722}
     - target: {fileID: 6027667020626186662, guid: f5336bb00584f6a429768f97b91bd611,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5861,11 +5866,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6662234575501429742, guid: f5336bb00584f6a429768f97b91bd611,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6541096602080547401}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5336bb00584f6a429768f97b91bd611, type: 3}
 --- !u!4 &1517964901757404240 stripped
 Transform:
@@ -5873,29 +5874,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5095389982214854134}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1928513971792813592 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6662234575501429742, guid: f5336bb00584f6a429768f97b91bd611,
-    type: 3}
-  m_PrefabInstance: {fileID: 5095389982214854134}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6541096602080547401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1928513971792813592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621553d0485f4884b96f44b0a3e45be8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ducklings:
-  - {fileID: 5399026829966774165}
-  - {fileID: 5493154898195182247}
-  - {fileID: 5470756728821851722}
-  mainDuck: {fileID: 1517964901757404240}
 --- !u!1001 &5145182201486256597
 PrefabInstance:
   m_ObjectHideFlags: 0
