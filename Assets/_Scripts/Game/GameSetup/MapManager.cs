@@ -18,7 +18,8 @@ public class MapManager : MonoBehaviour
 
     public int levelLength = 120;
 
-    public int currentPathLength;
+    int currentPathLength;
+    public int TotalPathLength => currentPathLength - 15;
 
     List<int> tilesUsedIndices = new List<int>();
     bool highDifficultyActivated;
@@ -37,7 +38,7 @@ public class MapManager : MonoBehaviour
     {
         if (!humanMovement) return;
 
-        if (humanMovement.transform.position.x >= currentPathLength - 15) EndGame();
+        if (humanMovement.transform.position.x >= TotalPathLength) EndGame();
     }
 
     private void EndGame()
