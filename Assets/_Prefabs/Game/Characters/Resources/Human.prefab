@@ -193,10 +193,11 @@ MonoBehaviour:
   debugRBVel: {x: 0, y: 0, z: 0}
   LeashAttachmentPoint: {fileID: 3591112405109623007}
   startWalkingDelay: 3
-  minSpeed: 0.8
+  minSpeed: 0
   acceleration: 50
-  speed: 1.5
+  speed: 0
   rotationSpeed: 10
+  IsOnStreet: 0
   BumpedCount: 0
   bumpPointLossVFX: {fileID: 6970946585652909361}
   stunVFX: {fileID: 1886320410726248748}
