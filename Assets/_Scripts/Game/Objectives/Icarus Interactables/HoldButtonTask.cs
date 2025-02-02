@@ -17,7 +17,7 @@ public class HoldButtonTask : Task
     {
         base.Start();
 
-        vfx.Stop();
+        if(vfx != null) vfx.Stop();
     }
 
     protected override void UpdateLogic()
@@ -49,13 +49,13 @@ public class HoldButtonTask : Task
         currentTime = 0f;
         fillImage.fillAmount = 0f;
 
-        vfx.Play();
+        if (vfx != null) vfx.Play();
     }
 
     public override void EndTask()
     {
         base.EndTask();
 
-        vfx.Stop();
+        if (vfx != null) vfx.Stop();
     }
 }
