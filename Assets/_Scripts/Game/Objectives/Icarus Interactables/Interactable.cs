@@ -103,7 +103,6 @@ public class Interactable : MonoBehaviour
         if (!isCompleted)
         {
             InteractableDetector.PickupCount++;
-            Debug.Log("New PickupCount: " + InteractableDetector.PickupCount);
 
             StartCoroutine(SpawnVFXDelayed());
 
