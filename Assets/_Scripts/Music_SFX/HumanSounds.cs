@@ -4,7 +4,7 @@ public class HumanSounds : MonoBehaviour
 {
     [SerializeField] AudioSource stepAudioSource;
 
-    [SerializeField] float stepVolumeMultiplier = 0.5f;
+    [SerializeField] float stepVolumeMultiplier = 0.5f, streetStepVolumeMultiplier = 5f;
 
 
     [SerializeField] float minHumanNoiseDelay, maxHumanNoiseDelay;
@@ -40,7 +40,7 @@ public class HumanSounds : MonoBehaviour
 
     private void PlayStepSound()
     {
-        if(humanMovement.IsOnStreet) SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.walking_street, stepAudioSource, stepVolumeMultiplier * 10);
+        if(humanMovement.IsOnStreet) SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.walking_street, stepAudioSource, streetStepVolumeMultiplier);
         else SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.walking, stepAudioSource, stepVolumeMultiplier);
     }
 
