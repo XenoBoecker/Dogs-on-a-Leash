@@ -2346,6 +2346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileLength: 15
+  IsStreetTile: 0
 --- !u!114 &4107261340052210045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4611,6 +4612,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7541160845539780886}
     m_Modifications:
+    - target: {fileID: 1175316106025338916, guid: b77f091e54977c24fbd822af59275cb5,
+        type: 3}
+      propertyPath: maxRespawnCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6963875901839240437, guid: b77f091e54977c24fbd822af59275cb5,
         type: 3}
       propertyPath: m_Name
