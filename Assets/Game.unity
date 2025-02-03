@@ -332,36 +332,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5334314349545435680, guid: c5495702b33683048a0a1dcea8e2bd1a,
-        type: 3}
-      propertyPath: speed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5334314349545435680, guid: c5495702b33683048a0a1dcea8e2bd1a,
-        type: 3}
-      propertyPath: stepLength
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5334314349545435680, guid: c5495702b33683048a0a1dcea8e2bd1a,
-        type: 3}
-      propertyPath: stepDistance
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6781891773505149805, guid: c5495702b33683048a0a1dcea8e2bd1a,
-        type: 3}
-      propertyPath: speed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6781891773505149805, guid: c5495702b33683048a0a1dcea8e2bd1a,
-        type: 3}
-      propertyPath: stepLength
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6781891773505149805, guid: c5495702b33683048a0a1dcea8e2bd1a,
-        type: 3}
-      propertyPath: stepDistance
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7492075279268590182, guid: c5495702b33683048a0a1dcea8e2bd1a,
         type: 3}
       propertyPath: bumpVignette
@@ -2018,22 +1988,23 @@ MonoBehaviour:
   startTiles:
   - {fileID: 2610819224156951825, guid: 26f2c0d711c078c458ca7b19146d6da7, type: 3}
   availableTiles:
-  - {fileID: 6255358494768599270, guid: ba1d1ff92e5035145bd14a49c7a480f8, type: 3}
-  - {fileID: 312841943348570835, guid: 3b352266208973d47a2daa86d93811fe, type: 3}
-  - {fileID: 8654930303911254441, guid: c3551a1ae69bdda47b4eacb3cbab916a, type: 3}
-  - {fileID: 3056085254788234361, guid: 848769549fb9db94b89f33efcefd8764, type: 3}
-  - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
-  - {fileID: 5545411547806192663, guid: 7829e953e0bd2f94f91b858572a271f5, type: 3}
-  - {fileID: 4403858183072681397, guid: a82dffd6467ac2f42bc439d1065d1796, type: 3}
-  - {fileID: 4403858183072681397, guid: 44fcd32911bb89d4d8998d8dffd7c377, type: 3}
-  - {fileID: 4403858183072681397, guid: 5d4a729a59c4eda45b5104885734fdb0, type: 3}
   - {fileID: 1285224991620974283, guid: 2d978702df6b14d45af2ed9081cd3bb7, type: 3}
+  - {fileID: 4403858183072681397, guid: 308172e9fa6dace45bbfc5870bc1d618, type: 3}
+  - {fileID: 4403858183072681397, guid: 5d4a729a59c4eda45b5104885734fdb0, type: 3}
+  - {fileID: 4403858183072681397, guid: 44fcd32911bb89d4d8998d8dffd7c377, type: 3}
+  - {fileID: 4403858183072681397, guid: a82dffd6467ac2f42bc439d1065d1796, type: 3}
   - {fileID: 4403858183072681397, guid: 02db81dddbd443a43b5577a442b71249, type: 3}
+  - {fileID: 5545411547806192663, guid: 7829e953e0bd2f94f91b858572a271f5, type: 3}
+  - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
   - {fileID: 4403858183072681397, guid: eb776cc9fd07c46429d79af02383e1d8, type: 3}
+  - {fileID: 3056085254788234361, guid: 848769549fb9db94b89f33efcefd8764, type: 3}
   - {fileID: 1248318217813899270, guid: e304d29b966afbf4c9cf6a3d9b4e44ac, type: 3}
   - {fileID: 8606979284891487552, guid: 0bb62a6f8cf9e434eb7899857b43e97d, type: 3}
+  - {fileID: 8654930303911254441, guid: c3551a1ae69bdda47b4eacb3cbab916a, type: 3}
+  - {fileID: 8036450800973210844, guid: d88500abcbd9f994d87095074fcba524, type: 3}
+  - {fileID: 312841943348570835, guid: 3b352266208973d47a2daa86d93811fe, type: 3}
+  - {fileID: 6255358494768599270, guid: ba1d1ff92e5035145bd14a49c7a480f8, type: 3}
   - {fileID: 1955205206164237955, guid: e8ca6dce2be7e784e804a02c3b554e5e, type: 3}
-  - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
   highDifficultyTiles:
   - {fileID: 1579474598533070777, guid: 69d70ed81f4425c439cef4ac4dac2511, type: 3}
   - {fileID: 3470216341508307373, guid: f68d4f87a7687814bba9f937b4b71f2a, type: 3}
@@ -2756,6 +2727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endGameWellScore: 7500
   endGameWellTimeLeft: 7
+  timeScale: 1
 --- !u!4 &1358238660
 Transform:
   m_ObjectHideFlags: 0

@@ -77,6 +77,14 @@ public class IKFootSolver : MonoBehaviour
             currentPosition = tempPosition;
             currentNormal = Vector3.Lerp(oldNormal, newNormal, lerp);
             lerp += Time.deltaTime * speed;
+
+            if (currentPosition.x < transform.position.x)
+            {
+                Debug.Log("Go Back: " + oldPosition + " to " + newPosition + " current: " + currentPosition.x + "; lerp: " + lerp);
+                Debug.Log("Should be: " + ((newPosition.x - oldPosition.x) * lerp + oldPosition.x));
+
+                currentPosition = new Vector3((newPosition.x - oldPosition.x) * lerp + oldPosition.x, currentPosition.y, currentPosition.z);
+            }
         }
         else
         {
