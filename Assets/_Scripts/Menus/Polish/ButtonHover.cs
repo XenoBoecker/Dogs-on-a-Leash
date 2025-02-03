@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
@@ -14,7 +15,11 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     protected virtual void Start()
     {
-
+        Button button = GetComponent<Button>();
+        if (button != null)
+        {
+            button.onClick.AddListener(OnButtonClick);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -56,7 +61,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     private System.Collections.IEnumerator SetSelectedAfterFrame()
     {
-        if (isSelecting) yield break;
+        if (isSelecting) yield break; // to not be able to call this multiple times in a frame, which causes problems
 
         isSelecting = true;
         yield return null; // Wait until the end of the frame
