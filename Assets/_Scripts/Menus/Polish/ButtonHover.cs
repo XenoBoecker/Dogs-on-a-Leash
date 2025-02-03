@@ -11,7 +11,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     static bool isSelecting;
 
-    static Coroutine setSelectedCoroutine;
+    float noInstantSoundTimer = 0.1f;
 
     protected virtual void Start()
     {
@@ -20,6 +20,10 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             button.onClick.AddListener(OnButtonClick);
         }
+    }
+    void Update()
+    {
+        noInstantSoundTimer -= Time.deltaTime;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -36,7 +40,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         // if (setSelectedCoroutine != null) StopCoroutine(setSelectedCoroutine); // does not work for some reason
         StartCoroutine(SetSelectedAfterFrame());
-        if (playSoundOnHover) SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
+        if (playSoundOnHover && noInstantSoundTimer < 0) SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
     }
 
     public virtual void OnHoverExit()

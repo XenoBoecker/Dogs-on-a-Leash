@@ -220,10 +220,15 @@ public class LocalPlayer : MonoBehaviour
     {
         if (waitTimeBeforeCanConfirmSelection > 0) return;
 
-         
-        if (!isSelectionConfirmed) isSelectionConfirmed = true;
+
+        if (!isSelectionConfirmed)
+        {
+            isSelectionConfirmed = true;
+            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.confirmDogSelection);
+        }
         else
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.confirmAccessorySelection);
             Debug.Log("Ready to play " + name);
             isReadyToPlay = true;
             lobbyManager.CheckReadyToPlay();

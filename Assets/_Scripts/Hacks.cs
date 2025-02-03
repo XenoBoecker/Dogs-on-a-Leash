@@ -14,6 +14,8 @@ public class Hacks : MonoBehaviour
 
     [SerializeField] float timeScale = 1;
 
+    [SerializeField] bool controlTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,7 @@ public class Hacks : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.U)) camMov.ScreenShake(null);
 
-        Time.timeScale = timeScale;
+        if(controlTime) Time.timeScale = timeScale;
     }
 
     private void EndGameWell()

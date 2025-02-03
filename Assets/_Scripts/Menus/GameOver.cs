@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using static Unity.VisualScripting.Member;
 
 public class GameOver : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] float waitBeforeStartingCalculation = 0.3f, waitTimeBetweenCalculations = 0.3f;
 
+
+    [SerializeField] AudioSource audioSource;
+
+    [SerializeField] float volumeMultiplier;
+
     int objectiveScore;
     int timeLeft;
 
@@ -42,6 +48,10 @@ public class GameOver : MonoBehaviour
         finalScore = CalculateTotalScore();
 
         PlayerPrefs.SetInt("FinalScore", finalScore);
+
+        SoundManager.Instance.OnSoundReload += SoundReload;
+        audioSource.clip = SoundManager.Instance.uiSFX.scoreCounting;
+        SoundReload();
     }
 
     private void Start()
@@ -63,6 +73,8 @@ public class GameOver : MonoBehaviour
 
         yield return new WaitForSeconds(waitBeforeStartingCalculation);
 
+        audioSource.Play();
+
         for (float i = 0; i < calcDuration; i+=Time.deltaTime)
         {
             int score = (int)(objectiveScore * i / calcDuration);
@@ -73,11 +85,15 @@ public class GameOver : MonoBehaviour
             yield return null;
         }
 
+        audioSource.Stop();
+
         objectiveScoreText.text = objectiveScore.ToString();
 
         yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
 
         // spawn plus poping
+
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.popUp);
 
         for (float i = 0; i < popDuration; i += Time.deltaTime)
         {
@@ -88,6 +104,8 @@ public class GameOver : MonoBehaviour
 
         yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
 
+        audioSource.Play();
+
         for (float i = 0; i < calcDuration; i += Time.deltaTime)
         {
             int score = (int)(timeLeft * scorePerSecondLeft * i / calcDuration);
@@ -96,9 +114,13 @@ public class GameOver : MonoBehaviour
             yield return null;
         }
 
+        audioSource.Stop();
+
         timeLeftScoreText.text = (timeLeft * scorePerSecondLeft).ToString();
 
         yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
+
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.popUp);
 
         // spawn = popping
         for (float i = 0; i < popDuration; i += Time.deltaTime)
@@ -110,6 +132,8 @@ public class GameOver : MonoBehaviour
 
         yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
 
+        audioSource.Play();
+
         //calculate final score
         for (float i = 0; i < calcDuration; i += Time.deltaTime)
         {
@@ -119,6 +143,8 @@ public class GameOver : MonoBehaviour
 
             yield return null;
         }
+
+        audioSource.Stop();
 
         finalScoreText.text = finalScore.ToString();
 
@@ -144,5 +170,9 @@ public class GameOver : MonoBehaviour
         scorePanel.SetActive(false);
 
         OnShowLeaderboard?.Invoke();
+    }
+    private void SoundReload()
+    {
+        audioSource.volume = SoundManager.Instance.SFXVolume * volumeMultiplier;
     }
 }
