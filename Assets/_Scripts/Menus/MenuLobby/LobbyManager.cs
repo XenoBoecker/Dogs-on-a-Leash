@@ -201,7 +201,11 @@ namespace photonMenuLobby
 
             for (float i = 0; i < countdownTime; i+=Time.unscaledDeltaTime)
             {
-                countdownText.text = (countdownTime-(int)i).ToString();
+                int nbr = (countdownTime - (int)i);
+
+                if (countdownText.text != nbr.ToString()) SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.dogSelectionCountdownTick);
+
+                countdownText.text = nbr.ToString();
 
                 if(readyToPlayDogCount < connectedDogCount)
                 {
@@ -215,6 +219,8 @@ namespace photonMenuLobby
 
             if (startGame)
             {
+                SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.dogSelectionCountdownFinish);
+
                 Debug.Log("Start game");
                 OnSeedInputChanged(seedInputField.text);
                 FindObjectOfType<ChangeScenes>().LoadScene("Game_1");

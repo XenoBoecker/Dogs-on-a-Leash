@@ -167,10 +167,16 @@ public class SoundManager : MonoBehaviour
     {
         public AudioClip buttonClickSound;
         public AudioClip buttonHoverSound;
-        public AudioClip countDown, popUp; //TODO: countDown not needed anymore, instead countDownTick & countDownWhistle
+        public AudioClip popUp; // when player registers and paw pops up
         public AudioClip countDownTick, countDownWhistle;
-        public AudioClip endOfGameTick, endOfGameSuccessWhistle, endOfGameLossWhistle;
+        public AudioClip endOfGameTick, endOfGameSuccessWhistle, endOfGameLossWhistle, endOfGameHumanEnterBus;
         public AudioClip timeAlmostUpWarning;
+
+        public AudioClip confirmDogSelection, confirmAccessorySelection;
+
+        public AudioClip dogSelectionCountdownTick, dogSelectionCountdownFinish;
+
+        public AudioClip scoreCounting;
     }
 }
 

@@ -55,6 +55,8 @@ namespace photonMenuLobby
 
             // Debug.Log("Start Pop: 2)" + t.name + "; duration: " + popDuration);
 
+            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.popUp);
+
             hasPoppedAlready.Add(t);
 
             Vector3 startScale = t.localScale;

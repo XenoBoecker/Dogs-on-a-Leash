@@ -110,6 +110,8 @@ public class Bus : MonoBehaviour
             yield return null;
         }
 
+        SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.endOfGameHumanEnterBus);
+
         human.gameObject.SetActive(false);
 
         PlayerDogController[] dogs = FindObjectsOfType < PlayerDogController > ();

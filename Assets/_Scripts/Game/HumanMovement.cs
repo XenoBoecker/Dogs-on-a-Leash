@@ -126,6 +126,8 @@ public class HumanMovement : MonoBehaviour
 
         BumpedCount++;
 
+        SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.hit_obstacle);
+
         StartCoroutine(BumpVignettePopCoroutine());
 
         OnHitObstacle?.Invoke(obstacle);
