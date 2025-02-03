@@ -10,6 +10,7 @@ public class RopeRenderer : MonoBehaviour
     [Min(3)] [SerializeField] private int m_RopeSegmentSides;
     [SerializeField] private Material ropeMaterial;
 
+
     [SerializeField] private Gradient[] leashColorGradients;
 
     private MeshFilter m_MeshFilter;
@@ -25,7 +26,6 @@ public class RopeRenderer : MonoBehaviour
     LeashManager leashManager;
 
     PlayerDogVisuals myDogVisual;
-    
 
 
     private float m_Angle;
@@ -39,7 +39,7 @@ public class RopeRenderer : MonoBehaviour
 
         m_RopeMesh = new Mesh();
         m_MeshRenderer.material = ropeMaterial;
-        
+
         m_Angle = ((m_RopeSegmentSides - 2) * 180) / m_RopeSegmentSides;
         m_IsInitialized = false;
     }

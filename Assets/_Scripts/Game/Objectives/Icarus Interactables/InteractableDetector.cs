@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class InteractableDetector : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class InteractableDetector : MonoBehaviour
 
     [SerializeField] float stayAtInteractableForce = 30f;
 
+
+    [SerializeField] VisualEffect[] buddelVFXs;
+
     public event Action OnInteract;
     public event Action OnInteracted;
 
@@ -44,6 +48,14 @@ public class InteractableDetector : MonoBehaviour
         playerDogController.OnStopInteract += CancelTask;
 
         dogRB = playerDogController.GetComponent<Rigidbody>();
+
+        for (int i = 0; i < buddelVFXs.Length; i++)
+        {
+            buddelVFXs[i].gameObject.SetActive(false);
+            buddelVFXs[i].Stop();
+        }
+
+        PickupCount = 0;
     }
 
     private void Update()
@@ -155,8 +167,21 @@ public class InteractableDetector : MonoBehaviour
 
         currentInteractingInteractable.Interact(this);
 
+
         // only call if the interaction has not already ended inside the Interact(), because there is no Task (then EndInteract would be called before onInteracted)
-        if (currentInteractingInteractable != null) OnInteracted?.Invoke();
+        if (currentInteractingInteractable != null)
+        {
+            if (currentInteractingInteractable.Task is HoldButtonTask)
+            {
+                for (int i = 0; i < buddelVFXs.Length; i++)
+                {
+                    buddelVFXs[i].gameObject.SetActive(true);
+                    buddelVFXs[i].Play();
+                }
+            }
+
+            OnInteracted?.Invoke();
+        }
     }
 
     void InteractWithClosestInteractable()
@@ -174,6 +199,12 @@ public class InteractableDetector : MonoBehaviour
         currentInteractingInteractable = null;
 
         playerDogController.StartMovement();
+
+        for (int i = 0; i < buddelVFXs.Length; i++)
+        {
+            buddelVFXs[i].gameObject.SetActive(false);
+            buddelVFXs[i].Stop();
+        }
 
         OnInteractEnded?.Invoke();
     }

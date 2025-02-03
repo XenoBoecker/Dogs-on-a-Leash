@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon.StructWrapping;
@@ -11,11 +12,20 @@ public class DogBarking : MonoBehaviour
 
     Dog dog;
 
+    float barkWaitTimer;
+
+    public event Action OnBark;
+
     void Awake()
     {
         barkEffect.Stop();
 
         dog = GetComponent<Dog>();
+    }
+
+    private void Update()
+    {
+        barkWaitTimer -= Time.deltaTime;
     }
 
     void OnEnable()
@@ -31,11 +41,17 @@ public class DogBarking : MonoBehaviour
     // Make the dogs go b a r k
     private void PlayRandomDogBark()
     {
+        if (barkWaitTimer > 0){
+            return;
+        }
+
         barkEffect.Play();
 
-        if (dog.DogData.id == 0) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkBernard);
-        else if (dog.DogData.id == 1) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkPoodle);
-        else if (dog.DogData.id == 2) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkPug);
-        else if (dog.DogData.id == 3) SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkRetreiver);
+        if (dog.DogData.id == 0) barkWaitTimer = SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkBernard).length;
+        else if (dog.DogData.id == 1) barkWaitTimer = SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkPoodle).length;
+        else if (dog.DogData.id == 2) barkWaitTimer = SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkPug).length;
+        else if (dog.DogData.id == 3) barkWaitTimer = SoundManager.Instance.PlaySound(SoundManager.Instance.dogSFX.barkRetreiver).length;
+
+        OnBark?.Invoke();
     }
 }

@@ -1174,6 +1174,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile_e16_Parkinglot
       objectReference: {fileID: 0}
+    - target: {fileID: 4403858183072681397, guid: 9db5e16f712f17948af08a3fd6d429db,
+        type: 3}
+      propertyPath: IsStreetTile
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5188484169676853293, guid: 9db5e16f712f17948af08a3fd6d429db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1612,8 +1617,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 2751214812651508106, guid: b2480695e61a98f42a21bb52ac9633ae, type: 3}
+    - {fileID: 8539732178808950057, guid: b2480695e61a98f42a21bb52ac9633ae, type: 3}
+    - {fileID: 6364304137360941559, guid: b2480695e61a98f42a21bb52ac9633ae, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 9029717963601762159, guid: b2480695e61a98f42a21bb52ac9633ae, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2480695e61a98f42a21bb52ac9633ae, type: 3}
@@ -1686,8 +1695,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car_Blue Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 7718987919770794210, guid: 6023387c39e98864aa7f9ac5478b0c97, type: 3}
+    - {fileID: 4301541266585003073, guid: 6023387c39e98864aa7f9ac5478b0c97, type: 3}
+    - {fileID: 1541235144284194975, guid: 6023387c39e98864aa7f9ac5478b0c97, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 3486099968029670919, guid: 6023387c39e98864aa7f9ac5478b0c97, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6023387c39e98864aa7f9ac5478b0c97, type: 3}
@@ -2057,8 +2070,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car_Red Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 4722810921662847653, guid: 1fb59cdff5340be4b8a881b511a5d6a0, type: 3}
+    - {fileID: 7481028770109035498, guid: 1fb59cdff5340be4b8a881b511a5d6a0, type: 3}
+    - {fileID: 1518756708268173132, guid: 1fb59cdff5340be4b8a881b511a5d6a0, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 6300965294065830815, guid: 1fb59cdff5340be4b8a881b511a5d6a0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fb59cdff5340be4b8a881b511a5d6a0, type: 3}

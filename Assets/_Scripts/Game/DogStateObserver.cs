@@ -6,6 +6,7 @@ public class DogStateObserver : MonoBehaviour
     PlayerDogController pdc;
     Rigidbody dogRB;
     InteractableDetector detector;
+    DogBarking db;
 
     public event Action OnStartWalking;
     public event Action OnStopWalking;
@@ -30,8 +31,9 @@ public class DogStateObserver : MonoBehaviour
         pdc = GetComponent<PlayerDogController>();
         dogRB = GetComponent<Rigidbody>();
         detector = GetComponentInChildren<InteractableDetector>();
+        db = GetComponent<DogBarking>();
 
-        pdc.OnBark += () => OnBark?.Invoke();
+        db.OnBark += () => OnBark?.Invoke();
         detector.OnInteract += OnInteract;
     }
 
@@ -42,6 +44,11 @@ public class DogStateObserver : MonoBehaviour
 
         Digging = IsDigging();
         wasWalkingLastFrame = IsWalking();
+
+    }
+
+    void CheckBarking()
+    {
 
     }
 
@@ -67,7 +74,6 @@ public class DogStateObserver : MonoBehaviour
     {
         if (!wasWalkingLastFrame && IsWalking())
         {
-            Debug.Log("start walking");
             OnStartWalking?.Invoke();
         }
         else if (wasWalkingLastFrame && !IsWalking())

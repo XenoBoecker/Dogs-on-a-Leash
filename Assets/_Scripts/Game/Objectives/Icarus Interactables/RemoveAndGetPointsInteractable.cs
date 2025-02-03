@@ -5,7 +5,11 @@ public class RemoveAndGetPointsInteractable : Interactable
     [SerializeField] int pointReward = 100;
     internal override void CompleteTask()
     {
+        bool wasCompleted = isCompleted;
+
         base.CompleteTask();
+
+        if (wasCompleted) return;
 
         ScoreManager.Instance.AddScore(pointReward);
 

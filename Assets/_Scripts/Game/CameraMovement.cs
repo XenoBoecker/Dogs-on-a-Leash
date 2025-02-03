@@ -35,8 +35,15 @@ public class CameraMovement : MonoBehaviour
 
 
     [SerializeField] AnimationCurve gameLostFlyToBusCurve;
-
     [SerializeField] float distancePerSecond = 10;
+
+
+
+    [SerializeField] Transform shakeObject;
+    [SerializeField] float shakeDuration;
+    [SerializeField] float shakeScale = 5;
+    [SerializeField] AnimationCurve shakeCurve;
+    float shakeValue;
 
     bool inFlyThrough;
     bool cameraMovementDeactivated;
@@ -45,6 +52,8 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
+        human.GetComponent<HumanMovement>().OnHitObstacle += ScreenShake;
+
         countdownDisplay.gameObject.SetActive(false);
     }
 
@@ -69,7 +78,7 @@ public class CameraMovement : MonoBehaviour
     {
         inFlyThrough = true;
 
-        int totalDist = FindObjectOfType<MapManager>().currentPathLength - 15;
+        int totalDist = FindObjectOfType<MapManager>().TotalPathLength;
 
         transform.position = new Vector3(totalDist, transform.position.y, transform.position.z);
 
@@ -148,7 +157,7 @@ public class CameraMovement : MonoBehaviour
     public IEnumerator FlyToBusCoroutine()
     {
         float startPos = transform.position.x;
-        float endPos = FindObjectOfType<MapManager>().currentPathLength -15;
+        float endPos = FindObjectOfType<MapManager>().TotalPathLength;
         float dist = endPos - startPos;
         float flyDuration = dist / distancePerSecond;
 
@@ -169,5 +178,26 @@ public class CameraMovement : MonoBehaviour
     {
         StopAllCoroutines();
         EndFlyThrough();
+    }
+
+    internal void ScreenShake(Obstacle obstacle)
+    {
+        Debug.Log("Shake");
+        StartCoroutine(ScreenShakeCoroutine());
+    }
+
+
+    IEnumerator ScreenShakeCoroutine()
+    {
+        Vector3 startPos = shakeObject.transform.position;
+
+        for (float i = 0; i < shakeDuration; i+=Time.deltaTime)
+        {
+            shakeValue = shakeCurve.Evaluate(i / shakeDuration) * shakeScale;
+
+            shakeObject.transform.position = startPos + Vector3.left * shakeValue;
+            yield return null;
+        }
+        shakeObject.transform.position = startPos;
     }
 }

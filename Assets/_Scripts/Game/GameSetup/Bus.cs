@@ -179,4 +179,35 @@ public class Bus : MonoBehaviour
         }
         door.transform.position = doorStart.position;
     }
+
+    [Header("Honk Honk")]
+
+    [SerializeField] float honkDuration;
+    [SerializeField] float honkScale, honkCount;
+
+
+    [SerializeField] Transform[] honkObjects;
+
+    public IEnumerator HonkTheBus()
+    {
+        if (permaBusUpAndDown != null) StopCoroutine(permaBusUpAndDown);
+
+        Vector3[] startScales = new Vector3[honkObjects.Length];
+        for (int i = 0; i < startScales.Length; i++)
+        {
+            startScales[i] = honkObjects[i].localScale;
+        }
+
+        for (float i = 0; i < honkDuration; i+=Time.deltaTime)
+        {
+            float sinSquare = Mathf.Pow(Mathf.Sin(i/honkDuration * honkCount * Mathf.PI), 2) * honkScale;
+
+            for (int j = 0; j < honkObjects.Length; j++)
+            {
+                honkObjects[j].transform.localScale = startScales[j] * (1 + sinSquare);
+            }
+
+            yield return null;
+        }
+    }
 }

@@ -114,7 +114,7 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("Distance", (int)human.transform.position.x);
         PlayerPrefs.SetInt("PickupCount", InteractableDetector.PickupCount);
         PlayerPrefs.SetInt("BumpedCount", human.BumpedCount);
-        PlayerPrefs.SetInt("LevelLength", mapManager.currentPathLength);
+        PlayerPrefs.SetInt("LevelLength", mapManager.TotalPathLength);
 
 
 

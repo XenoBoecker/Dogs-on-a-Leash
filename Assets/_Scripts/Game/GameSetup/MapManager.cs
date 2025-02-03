@@ -18,7 +18,12 @@ public class MapManager : MonoBehaviour
 
     public int levelLength = 120;
 
-    public int currentPathLength;
+    int currentPathLength;
+    public int TotalPathLength => currentPathLength - 15;
+
+    List<Tile> placedTiles = new List<Tile>();
+    int humanOnTileIndex;
+    int nextTileTransitionPosition;
 
     List<int> tilesUsedIndices = new List<int>();
     bool highDifficultyActivated;
@@ -37,7 +42,16 @@ public class MapManager : MonoBehaviour
     {
         if (!humanMovement) return;
 
-        if (humanMovement.transform.position.x >= currentPathLength - 15) EndGame();
+        if(humanMovement.transform.position.x > nextTileTransitionPosition)
+        {
+            humanOnTileIndex++;
+            nextTileTransitionPosition += placedTiles[humanOnTileIndex].tileLength;
+
+            if (placedTiles[humanOnTileIndex].IsStreetTile) humanMovement.SetIsOnStreet(true);
+            else humanMovement.SetIsOnStreet(false);
+        }
+
+        if (humanMovement.transform.position.x >= TotalPathLength) EndGame();
     }
 
     private void EndGame()
@@ -69,6 +83,8 @@ public class MapManager : MonoBehaviour
         }
 
         PlaceEndTile();
+
+        nextTileTransitionPosition = placedTiles[0].tileLength;
     }
 
     protected void PlaceStartTile()
@@ -108,6 +124,8 @@ public class MapManager : MonoBehaviour
         newTile.transform.SetParent(tileParent);
 
         newTile.Setup();
+
+        placedTiles.Add(newTile);
 
         currentPathLength += tile.tileLength;
     }

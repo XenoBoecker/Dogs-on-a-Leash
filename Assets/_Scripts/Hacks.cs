@@ -25,6 +25,8 @@ public class Hacks : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P)) scoreManager.AddScore(Random.Range(1, 20) * 100);
         if (Input.GetKeyDown(KeyCode.I)) scoreManager.AddScore(-Random.Range(1, 20) * 100);
 
+        if (Input.GetKeyDown(KeyCode.U)) camMov.ScreenShake(null);
+
     }
 
     private void EndGameWell()
