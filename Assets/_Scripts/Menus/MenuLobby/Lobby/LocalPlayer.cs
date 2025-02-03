@@ -228,7 +228,7 @@ public class LocalPlayer : MonoBehaviour
         }
         else
         {
-            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.confirmAccessorySelection);
+            if(!isReadyToPlay) SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.confirmAccessorySelection);
             Debug.Log("Ready to play " + name);
             isReadyToPlay = true;
             lobbyManager.CheckReadyToPlay();
