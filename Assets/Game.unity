@@ -2034,9 +2034,6 @@ MonoBehaviour:
   - {fileID: 8606979284891487552, guid: 0bb62a6f8cf9e434eb7899857b43e97d, type: 3}
   - {fileID: 1955205206164237955, guid: e8ca6dce2be7e784e804a02c3b554e5e, type: 3}
   - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
-  - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
-  - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
-  - {fileID: 164057516187076530, guid: b3ca248009050b34ea4d2358f5ce9df9, type: 3}
   highDifficultyTiles:
   - {fileID: 1579474598533070777, guid: 69d70ed81f4425c439cef4ac4dac2511, type: 3}
   - {fileID: 3470216341508307373, guid: f68d4f87a7687814bba9f937b4b71f2a, type: 3}
@@ -2506,6 +2503,58 @@ MonoBehaviour:
   flyThroughDuration: 5
   countdownDisplay: {fileID: 489055954}
   startCountdownDuration: 3
+  countdownPopCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.13642928
+      value: 0.676526
+      inSlope: 2.7470036
+      outSlope: 2.7470036
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.497379
+      value: 0.99915314
+      inSlope: -0.058541838
+      outSlope: -0.058541838
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17184182
+    - serializedVersion: 3
+      time: 0.92321515
+      value: 0.6494933
+      inSlope: -2.8375218
+      outSlope: -2.8375218
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9971547
+      value: 0.008962402
+      inSlope: -6.9587803
+      outSlope: -6.9587803
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.40279886
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  countdownPopScale: 1.05
   gameLostFlyToBusCurve:
     serializedVersion: 2
     m_Curve:
@@ -2705,6 +2754,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fbf3412b6bd2641ac691ff7ba338e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endGameWellScore: 7500
+  endGameWellTimeLeft: 7
 --- !u!4 &1358238660
 Transform:
   m_ObjectHideFlags: 0

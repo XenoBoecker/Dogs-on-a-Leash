@@ -23,12 +23,14 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public virtual void OnHoverEnter()
     {
+        EventSystem.current.SetSelectedGameObject(gameObject);
+
         SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
     }
 
     public virtual void OnHoverExit()
     {
-        
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void OnSelect(BaseEventData eventData)

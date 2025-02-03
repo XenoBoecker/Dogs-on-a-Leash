@@ -32,7 +32,9 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] NumberDisplay countdownDisplay;
     [SerializeField] int startCountdownDuration = 3;
-
+    [SerializeField] AnimationCurve countdownPopCurve;
+    [SerializeField] float countdownPopScale = 1.05f;
+    Vector3 countdownStartScale;
 
     [SerializeField] AnimationCurve gameLostFlyToBusCurve;
     [SerializeField] float distancePerSecond = 10;
@@ -55,6 +57,7 @@ public class CameraMovement : MonoBehaviour
         human.GetComponent<HumanMovement>().OnHitObstacle += ScreenShake;
 
         countdownDisplay.gameObject.SetActive(false);
+        countdownStartScale = countdownDisplay.transform.localScale;
     }
 
     private void LateUpdate()
@@ -125,6 +128,8 @@ public class CameraMovement : MonoBehaviour
 
             SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.countDownTick);
 
+            StartCoroutine(PopCountdownNumber());
+
             yield return new WaitForSecondsRealtime(1);
         }
 
@@ -135,8 +140,21 @@ public class CameraMovement : MonoBehaviour
         countdownDisplay.SetNumber(0);
         SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.countDownWhistle);
 
+        StartCoroutine(PopCountdownNumber());
+
         yield return new WaitForSecondsRealtime(1);
         countdownDisplay.gameObject.SetActive(false);
+    }
+
+
+    IEnumerator PopCountdownNumber()
+    {
+        for (float i = 0; i < 1; i+= Time.unscaledDeltaTime)
+        {
+            countdownDisplay.transform.localScale = countdownStartScale * countdownPopCurve.Evaluate(i) * countdownPopScale;
+            yield return null;
+        }
+        countdownDisplay.transform.localScale = Vector3.zero;
     }
 
     void EndFlyThrough()

@@ -8,6 +8,9 @@ public class Hacks : MonoBehaviour
     ScoreManager scoreManager;
     CameraMovement camMov;
 
+
+    [SerializeField] int endGameWellScore = 7500, endGameWellTimeLeft = 7;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +34,8 @@ public class Hacks : MonoBehaviour
 
     private void EndGameWell()
     {
-        scoreManager.AddScore(Random.Range(1, 100) * 100);
-        scoreManager.HackSetTimeLeft(7);
+        scoreManager.AddScore(endGameWellScore);
+        scoreManager.HackSetTimeLeft(endGameWellTimeLeft);
         scoreManager.HackEndGame();
     }
 }
