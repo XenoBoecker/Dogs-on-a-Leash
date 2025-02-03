@@ -23,6 +23,8 @@ public class Leaderboard : MonoBehaviour
     public List<Player> players = new List<Player>();
     public event Action OnPlayerScoresChanged;
 
+    public List<string> playerNames;
+
     public List<Player> GetPlayerScores()
     {
         return players;
@@ -35,7 +37,7 @@ public class Leaderboard : MonoBehaviour
 
     public void AddRandomPlayerScore()
     {
-        AddPlayer("Name_" + UnityEngine.Random.Range(0, 100), UnityEngine.Random.Range(0, 100) * 100);
+        AddPlayer(playerNames[players.Count], UnityEngine.Random.Range(0, 100) * 100);
     }
 
     // Method to add a player

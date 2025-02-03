@@ -71,6 +71,7 @@ public class ScoreManager : MonoBehaviour
     {
 
         if (waitingForGameStart) return;
+        if (gameOver) return;
 
         timeLeft -= Time.deltaTime;
 

@@ -78,6 +78,12 @@ public class CreditsDog : MonoBehaviour
             else shadows[i].SetActive(false);
         }
 
+        if(visual == null)
+        {
+            Debug.Log("no visual found: " + name);
+            visual = GetComponentInChildren<DogVisuals>();
+        }
+
         visual.SetDogID(dogID);
         visual.SetColorIndex(Random.Range(0, 4));
         visual.SetAccessorieIndex(Random.Range(0, visual.AccessorieCount));

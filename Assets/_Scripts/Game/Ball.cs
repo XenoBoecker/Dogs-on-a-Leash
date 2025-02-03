@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
 
     [SerializeField] float respawnActivateDist = 30, respawnForwardDist = 30, minRestPathLength = 50;
 
-    [SerializeField] int maxRespawnCount;
+    [SerializeField] int maxRespawnCount = 2;
     int respawnCount;
 
     // Start is called before the first frame update
@@ -31,13 +31,10 @@ public class Ball : MonoBehaviour
 
         if(human.transform.position.x - transform.position.x > respawnActivateDist)
         {
-            Debug.Log("RespawnDist");
             if(human.transform.position.x + respawnForwardDist + minRestPathLength < goalDist)
             {
-                Debug.Log("still enough space");
                 if(respawnCount < maxRespawnCount)
                 {
-                    Debug.Log("respawn");
                     GetComponent<Rigidbody>().velocity = Vector3.zero;
                     transform.position = new Vector3(human.transform.position.x + respawnForwardDist, 1f, 0f);
 
