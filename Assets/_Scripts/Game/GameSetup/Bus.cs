@@ -101,7 +101,7 @@ public class Bus : MonoBehaviour
 
         float addedVelocity = 0;
 
-        while(Vector3.Distance(human.transform.position, doorOut.position) > humanDoorTriggerDistance)
+        while (Vector3.Distance(human.transform.position, doorOut.position) > humanDoorTriggerDistance)
         {
             human.transform.Translate((doorOut.position - human.transform.position).normalized * human.speed * (2 + addedVelocity) * Time.deltaTime, Space.World);
 
@@ -112,7 +112,7 @@ public class Bus : MonoBehaviour
 
         human.gameObject.SetActive(false);
 
-        PlayerDogController[] dogs = FindObjectsOfType < PlayerDogController > ();
+        PlayerDogController[] dogs = FindObjectsOfType<PlayerDogController>();
 
         for (int i = 0; i < dogs.Length; i++)
         {
@@ -124,7 +124,7 @@ public class Bus : MonoBehaviour
 
     IEnumerator BobbleTheBus()
     {
-        if(permaBusUpAndDown != null) StopCoroutine(permaBusUpAndDown);
+        if (permaBusUpAndDown != null) StopCoroutine(permaBusUpAndDown);
 
         int count = 0;
         Vector3 carosseryStartPos = busCarossery.transform.position;
@@ -178,5 +178,36 @@ public class Bus : MonoBehaviour
             yield return null;
         }
         door.transform.position = doorStart.position;
+    }
+
+    [Header("Honk Honk")]
+
+    [SerializeField] float honkDuration;
+    [SerializeField] float honkScale, honkCount;
+
+
+    [SerializeField] Transform[] honkObjects;
+
+    public IEnumerator HonkTheBus()
+    {
+        if (permaBusUpAndDown != null) StopCoroutine(permaBusUpAndDown);
+
+        Vector3[] startScales = new Vector3[honkObjects.Length];
+        for (int i = 0; i < startScales.Length; i++)
+        {
+            startScales[i] = honkObjects[i].localScale;
+        }
+
+        for (float i = 0; i < honkDuration; i += Time.deltaTime)
+        {
+            float sinSquare = Mathf.Pow(Mathf.Sin(i / honkDuration * honkCount * Mathf.PI), 2) * honkScale;
+
+            for (int j = 0; j < honkObjects.Length; j++)
+            {
+                honkObjects[j].transform.localScale = startScales[j] * (1 + sinSquare);
+            }
+
+            yield return null;
+        }
     }
 }
