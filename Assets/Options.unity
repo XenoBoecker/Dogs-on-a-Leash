@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 193227892}
   - component: {fileID: 193227891}
   - component: {fileID: 193227890}
+  - component: {fileID: 193227893}
   m_Layer: 5
   m_Name: Music
   m_TagString: Untagged
@@ -446,7 +447,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 22a87733278ace74285939d5bd51d07f,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 22a87733278ace74285939d5bd51d07f, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -497,6 +498,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193227888}
   m_CullTransparentMesh: 1
+--- !u!114 &193227893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193227888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae03c1ce6252e04c8d6daad40d7b21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSoundOnHover: 1
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
 --- !u!1001 &513233897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -589,6 +605,7 @@ GameObject:
   - component: {fileID: 722757681}
   - component: {fileID: 722757680}
   - component: {fileID: 722757679}
+  - component: {fileID: 722757682}
   m_Layer: 5
   m_Name: 'SFX '
   m_TagString: Untagged
@@ -648,7 +665,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: eef8e98824103b74e867357b9cff6c87,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: eef8e98824103b74e867357b9cff6c87, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -699,6 +716,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722757677}
   m_CullTransparentMesh: 1
+--- !u!114 &722757682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722757677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae03c1ce6252e04c8d6daad40d7b21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSoundOnHover: 1
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
 --- !u!1 &751573079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,6 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c03ea637175a143bc2d61ee96ea601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnHover: 0
   audioPitchMin: 0.9
   audioPitchMax: 1.1
   bgImage: {fileID: 722757680}
@@ -1557,6 +1590,7 @@ GameObject:
   - component: {fileID: 1421685997}
   - component: {fileID: 1421685996}
   - component: {fileID: 1421685995}
+  - component: {fileID: 1421685998}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -1679,6 +1713,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421685993}
   m_CullTransparentMesh: 1
+--- !u!114 &1421685998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421685993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae03c1ce6252e04c8d6daad40d7b21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSoundOnHover: 1
+  audioPitchMin: 0.9
+  audioPitchMax: 1.1
 --- !u!1 &1421874115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,6 +2538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c03ea637175a143bc2d61ee96ea601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnHover: 0
   audioPitchMin: 0.9
   audioPitchMax: 1.1
   bgImage: {fileID: 193227891}
