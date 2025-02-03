@@ -152,6 +152,8 @@ public class InteractableDetector : MonoBehaviour
 
     void StartInteraction(Interactable interactable)
     {
+        Debug.Log("detection interact OnInteract");
+
         OnInteract?.Invoke();
 
         currentInteractingInteractable = interactable;

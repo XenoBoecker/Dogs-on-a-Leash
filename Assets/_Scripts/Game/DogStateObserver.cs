@@ -34,7 +34,8 @@ public class DogStateObserver : MonoBehaviour
         db = GetComponent<DogBarking>();
 
         db.OnBark += () => OnBark?.Invoke();
-        detector.OnInteract += OnInteract;
+        detector.OnInteract += () =>  OnInteract?.Invoke();
+        detector.OnInteract += () => Debug.Log("state obc OnInteract");
     }
 
     private void Update()
@@ -43,6 +44,7 @@ public class DogStateObserver : MonoBehaviour
         CheckLeaning();
 
         Digging = IsDigging();
+
         wasWalkingLastFrame = IsWalking();
 
     }
@@ -84,6 +86,7 @@ public class DogStateObserver : MonoBehaviour
     private bool IsDigging()
     {
         Interactable currentInteractable = detector.CurrentInteractingInteractable;
+
 
         if (currentInteractable == null) return false;
 

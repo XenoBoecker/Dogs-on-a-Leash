@@ -17,6 +17,7 @@ public class DogAnimationController : MonoBehaviour
 
         dogStateTracker.OnBark += () => anim.SetTrigger("OnBark");
         dogStateTracker.OnInteract += () => anim.SetTrigger("OnInteract");
+        dogStateTracker.OnInteract += () => Debug.Log("OnInteract");
     }
 
     private void Update()
@@ -24,5 +25,7 @@ public class DogAnimationController : MonoBehaviour
         anim.SetFloat("MovSpeedPercentage", dogStateTracker.CurrentSpeedPercentage);
         anim.SetInteger("LeanDirInt", dogStateTracker.LeanDirInt);
         anim.SetBool("Digging", dogStateTracker.Digging);
+
+        if(dogStateTracker.Digging) Debug.Log("IsDUiongsoine");
     }
 }

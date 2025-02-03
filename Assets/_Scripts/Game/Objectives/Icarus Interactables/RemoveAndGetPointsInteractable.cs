@@ -6,13 +6,14 @@ public class RemoveAndGetPointsInteractable : Interactable
     internal override void CompleteTask()
     {
         return;
+
         bool wasCompleted = isCompleted;
 
         base.CompleteTask();
 
         if (wasCompleted) return;
 
-        ScoreManager.Instance.AddScore(pointReward);
+        if(ScoreManager.Instance != null) ScoreManager.Instance.AddScore(pointReward);
 
         Destroy(gameObject, spawnVFXTimeDelay + 0.1f);
     }
