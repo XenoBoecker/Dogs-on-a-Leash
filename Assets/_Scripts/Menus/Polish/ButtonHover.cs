@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
 
+
+    [SerializeField] bool playSoundOnHover = true;
     [SerializeField] float audioPitchMin = 0.9f, audioPitchMax = 1.1f;
 
     protected virtual void Start()
@@ -25,7 +27,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         EventSystem.current.SetSelectedGameObject(gameObject);
 
-        SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
+        if(playSoundOnHover) SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
     }
 
     public virtual void OnHoverExit()
