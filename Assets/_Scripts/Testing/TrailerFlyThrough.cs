@@ -18,9 +18,19 @@ public class TrailerFlyThrough : MonoBehaviour
 
     Vector3 startPos, endPos;
 
+    Camera cam;
+
+    [SerializeField] float camStartFOV, camEndFOV;
+
+    [SerializeField] AnimationCurve fovCurve;
+
     // Start is called before the first frame update
     void Start()
     {
+        cam = GetComponent<Camera>();
+
+        if (camStartFOV == 0) camStartFOV = cam.fieldOfView;
+
         if (startPoint == null) startPos = transform.position;
         else startPos = startPoint.position;
         endPos = endPoint.position;
@@ -43,6 +53,11 @@ public class TrailerFlyThrough : MonoBehaviour
             float z = Mathf.Lerp(startPos.z, endPos.z, curveValue);
 
             transform.position = new(x, y, z);
+
+            float fovCurveValue = fovCurve.Evaluate(i / flyDuration);
+
+            cam.fieldOfView = Mathf.Lerp(camStartFOV, camEndFOV, fovCurveValue);
+
             yield return null;
         }
         transform.position = endPos;

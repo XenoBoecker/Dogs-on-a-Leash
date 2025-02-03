@@ -7,6 +7,8 @@ public class TrailerBusStart : MonoBehaviour
 
     [SerializeField] KeyCode startBusArrivalKey = KeyCode.R;
 
+    [SerializeField] KeyCode honkKey = KeyCode.Space;
+
     private void Start()
     {
         bus = FindObjectOfType<Bus>();
@@ -15,5 +17,7 @@ public class TrailerBusStart : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(startBusArrivalKey)) StartCoroutine(bus.BusArrivingCoroutine());
+
+        if (Input.GetKeyDown(honkKey)) StartCoroutine(bus.HonkTheBus());
     }
 }
