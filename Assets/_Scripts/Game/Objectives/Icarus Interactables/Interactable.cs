@@ -118,6 +118,8 @@ public class Interactable : MonoBehaviour
 
         if (completeTaskVFX != null)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.scoreSFX.smallGain);
+
             completeTaskVFX.Play();
             completeTaskVFX.transform.SetParent(null);
             Destroy(completeTaskVFX, 1f);
