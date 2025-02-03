@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
@@ -8,9 +9,17 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] bool playSoundOnHover = true;
     [SerializeField] float audioPitchMin = 0.9f, audioPitchMax = 1.1f;
 
+    static bool isSelecting;
+
+    static Coroutine setSelectedCoroutine;
+
     protected virtual void Start()
     {
-
+        Button button = GetComponent<Button>();
+        if (button != null)
+        {
+            button.onClick.AddListener(OnButtonClick);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -25,14 +34,14 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public virtual void OnHoverEnter()
     {
-        EventSystem.current.SetSelectedGameObject(gameObject);
-
-        if(playSoundOnHover) SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
+        // if (setSelectedCoroutine != null) StopCoroutine(setSelectedCoroutine); // does not work for some reason
+        StartCoroutine(SetSelectedAfterFrame());
+        if (playSoundOnHover) SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
     }
 
     public virtual void OnHoverExit()
     {
-        EventSystem.current.SetSelectedGameObject(null);
+        
     }
 
     public void OnSelect(BaseEventData eventData)
@@ -47,6 +56,16 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnButtonClick()
     {
+        Debug.Log("OnButtonClick");
         SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.buttonClickSound);
+    }
+    private System.Collections.IEnumerator SetSelectedAfterFrame()
+    {
+        if (isSelecting) yield break; // to not be able to call this multiple times in a frame, which causes problems
+
+        isSelecting = true;
+        yield return null; // Wait until the end of the frame
+        EventSystem.current.SetSelectedGameObject(gameObject);
+        isSelecting = false;
     }
 }
