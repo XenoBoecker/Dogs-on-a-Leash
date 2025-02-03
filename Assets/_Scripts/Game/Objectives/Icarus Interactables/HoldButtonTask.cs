@@ -26,6 +26,7 @@ public class HoldButtonTask : Task
 
         if (isInteracting) HoldingDown();
 
+        if (fillImage != null) 
         fillImage.fillAmount = currentTime / holdDownTime;
 
         if (currentTime >= holdDownTime)
@@ -47,7 +48,7 @@ public class HoldButtonTask : Task
         base.StartTask(interactable);
 
         currentTime = 0f;
-        fillImage.fillAmount = 0f;
+        if (fillImage !=null ) fillImage.fillAmount = 0f;
 
         if (vfx != null) vfx.Play();
     }
