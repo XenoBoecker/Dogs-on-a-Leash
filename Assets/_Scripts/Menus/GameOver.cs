@@ -30,7 +30,7 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] AudioSource audioSource;
 
-    [SerializeField] float volumeMultiplier;
+    [SerializeField] float volumeMultiplier = 1;
 
     int objectiveScore;
     int timeLeft;
@@ -42,6 +42,7 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         objectiveScore = PlayerPrefs.GetInt("Score");
         timeLeft = PlayerPrefs.GetInt("TimeLeft");
 
@@ -49,6 +50,7 @@ public class GameOver : MonoBehaviour
 
         PlayerPrefs.SetInt("FinalScore", finalScore);
 
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
         SoundManager.Instance.OnSoundReload += SoundReload;
         audioSource.clip = SoundManager.Instance.uiSFX.scoreCounting;
         SoundReload();
