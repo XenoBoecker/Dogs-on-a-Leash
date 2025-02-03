@@ -2506,6 +2506,58 @@ MonoBehaviour:
   flyThroughDuration: 5
   countdownDisplay: {fileID: 489055954}
   startCountdownDuration: 3
+  countdownPopCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.13642928
+      value: 0.676526
+      inSlope: 2.7470036
+      outSlope: 2.7470036
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.497379
+      value: 0.99915314
+      inSlope: -0.058541838
+      outSlope: -0.058541838
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17184182
+    - serializedVersion: 3
+      time: 0.92321515
+      value: 0.6494933
+      inSlope: -2.8375218
+      outSlope: -2.8375218
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9971547
+      value: 0.008962402
+      inSlope: -6.9587803
+      outSlope: -6.9587803
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.40279886
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  countdownPopScale: 1.05
   gameLostFlyToBusCurve:
     serializedVersion: 2
     m_Curve:
