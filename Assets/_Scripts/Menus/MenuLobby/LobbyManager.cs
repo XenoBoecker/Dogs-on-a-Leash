@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace photonMenuLobby
@@ -67,6 +68,8 @@ namespace photonMenuLobby
 
         [SerializeField] GameObject playButton;
 
+        [SerializeField] GameObject hiddenButton;
+
         [SerializeField] string gameSceneName = "Game";
 
         [SerializeField] bool testing;
@@ -127,7 +130,9 @@ namespace photonMenuLobby
                 if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel);
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel); // Hacks
+
+            if (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(hiddenButton);
         }
 
         void SetSeed(int v)
