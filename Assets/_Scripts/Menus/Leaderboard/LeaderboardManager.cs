@@ -32,6 +32,8 @@ public class LeaderboardManager : MonoBehaviour
     public Button resetScoresButton;
     private int lastGameScore = 0; // Assume this is set when the game ends
 
+    bool scoreSubmitted;
+
     private void Awake()
     {
         leaderboardPanel.SetActive(false);
@@ -82,6 +84,9 @@ public class LeaderboardManager : MonoBehaviour
 
     public void OnSubmitScore()
     {
+        if (scoreSubmitted) return;
+        scoreSubmitted = true;
+
         string playerName = playerNameInput.text;
         if (!string.IsNullOrEmpty(playerName))
         {
