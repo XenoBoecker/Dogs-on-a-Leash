@@ -59,7 +59,7 @@ public class IKFootSolver : MonoBehaviour
                 if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.z))
                 {
                     // If moving sideways, adjust the step length
-                    stepLengthAdjusted *= 1.5f; // Adjust this factor as needed
+                    stepLengthAdjusted *= 1.7f; // Adjust this factor as needed
                 }
 
                 // Adjust newPosition to account for both forward and sideways movement

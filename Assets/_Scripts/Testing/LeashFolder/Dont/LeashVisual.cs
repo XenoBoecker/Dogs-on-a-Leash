@@ -33,8 +33,8 @@ public class LeashVisual : MonoBehaviour
         lineRenderer.material = leashMaterials[gameObject.GetComponent<PlayerDogVisuals>().GetColorID()];
 
         // Set the width of the line renderer
-        lineRenderer.startWidth = 0.2f; // Adjust this value as needed
-        lineRenderer.endWidth = 0.2f;   // Adjust this value as needed
+        lineRenderer.startWidth = 0.15f; // Adjust this value as needed
+        lineRenderer.endWidth = 0.15f;   // Adjust this value as needed
     }
 
     // Update is called once per frame
