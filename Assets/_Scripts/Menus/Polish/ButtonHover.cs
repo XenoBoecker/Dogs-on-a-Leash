@@ -21,7 +21,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             button.onClick.AddListener(OnButtonClick);
         }
     }
-    void Update()
+    protected virtual void Update()
     {
         noInstantSoundTimer -= Time.deltaTime;
     }

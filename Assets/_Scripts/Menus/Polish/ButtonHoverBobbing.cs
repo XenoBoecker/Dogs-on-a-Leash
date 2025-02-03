@@ -38,8 +38,10 @@ public class ButtonHoverBobbing : ButtonHover
         startScale = buttonObject.transform.localScale;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (isBobbing)
         {
             // Handle bobbing animation

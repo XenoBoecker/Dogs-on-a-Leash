@@ -176,7 +176,7 @@ public class SoundManager : MonoBehaviour
 
         public AudioClip dogSelectionCountdownTick, dogSelectionCountdownFinish;
 
-        public AudioClip scoreCounting;
+        public AudioClip scoreCounting; 
     }
 }
 
