@@ -130,7 +130,7 @@ namespace photonMenuLobby
                 if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel); // Hacks
+            // if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel); // Hacks
 
             if (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(hiddenButton);
         }
