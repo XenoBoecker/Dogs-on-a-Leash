@@ -189,6 +189,8 @@ public class ScoreManager : MonoBehaviour
     {
         for (int i = 0; i < warningTime-1; i++)
         {
+            if (gameOver) yield break;
+
             SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.timeWarnTick, null, warningSoundVolumeMultiplier);
 
             yield return new WaitForSeconds(1);
