@@ -14,6 +14,8 @@ public class ChangeScenes : MonoBehaviour
     [SerializeField] Animator currentAnimator; // Tracks the current animator
     static int currentAnimatorIndex;
 
+    bool isChangingScene;
+
     private void Start()
     {
         currentAnimator = transitionAnimators[currentAnimatorIndex];
@@ -62,6 +64,9 @@ public class ChangeScenes : MonoBehaviour
 
     private IEnumerator LoadSceneRoutine(string sceneName)
     {
+        if (isChangingScene) yield break;
+
+        isChangingScene = true;
         if (currentAnimator != null)
         {
             // Debug.Log("StartAnim " + currentAnimator.name);
@@ -69,6 +74,8 @@ public class ChangeScenes : MonoBehaviour
         }
 
         yield return new WaitForSeconds(currentAnimator.runtimeAnimatorController.animationClips[0].length);
+
+        isChangingScene = false;
 
         // Load the scene using Photon or SceneManager
         if (PhotonNetwork.IsConnected)
