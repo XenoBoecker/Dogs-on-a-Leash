@@ -170,7 +170,7 @@ public class SoundManager : MonoBehaviour
         public AudioClip popUp; // when player registers and paw pops up
         public AudioClip countDownTick, countDownWhistle;
         public AudioClip timeWarnTick;
-        public AudioClip endOfGameTick, endOfGameSuccessWhistle, endOfGameLossWhistle, endOfGameHumanEnterBus;
+        public AudioClip endOfGameSuccessWhistle, endOfGameLossWhistle, endOfGameHumanEnterBus;
         public AudioClip timeAlmostUpWarning;
 
         public AudioClip confirmDogSelection, confirmAccessorySelection;

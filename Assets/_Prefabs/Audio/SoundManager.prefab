@@ -309,16 +309,27 @@ MonoBehaviour:
   musicVolume: 0.5
   sfxVolume: 0.5
   uiSFX:
-    buttonClickSound: {fileID: 8300000, guid: 934431581b021594691bec2bc3c7789a, type: 3}
+    buttonClickSound: {fileID: 8300000, guid: 3d076c086663ba9488aa5cc9e77e9ef6, type: 3}
     buttonHoverSound: {fileID: 8300000, guid: 987ff56b4fb9a404fbe3f1f37e7df617, type: 3}
-    countDown: {fileID: 8300000, guid: 24e59cd6497d90b43b1d3b081ca6d7a1, type: 3}
-    popUp: {fileID: 8300000, guid: 6dd3d874802dfb34babb598fc288bdd5, type: 3}
+    popUp: {fileID: 8300000, guid: be97cb9e0d0c68a41870e020f071a5f0, type: 3}
     countDownTick: {fileID: 8300000, guid: dbe2293a7522f89418abcdde0120c09c, type: 3}
     countDownWhistle: {fileID: 8300000, guid: ba74716d767b242418b2fbad079544da, type: 3}
-    endOfGameTick: {fileID: 8300000, guid: 4bf6e81b9353b0a4d93318249fbcbb1e, type: 3}
-    endOfGameSuccessWhistle: {fileID: 0}
-    endOfGameLossWhistle: {fileID: 0}
+    timeWarnTick: {fileID: 8300000, guid: 4bf6e81b9353b0a4d93318249fbcbb1e, type: 3}
+    endOfGameSuccessWhistle: {fileID: 8300000, guid: 493c9372efb22184e806a99f5f804452,
+      type: 3}
+    endOfGameLossWhistle: {fileID: 8300000, guid: 493c9372efb22184e806a99f5f804452,
+      type: 3}
+    endOfGameHumanEnterBus: {fileID: 0}
     timeAlmostUpWarning: {fileID: 0}
+    confirmDogSelection: {fileID: 8300000, guid: be97cb9e0d0c68a41870e020f071a5f0,
+      type: 3}
+    confirmAccessorySelection: {fileID: 8300000, guid: be97cb9e0d0c68a41870e020f071a5f0,
+      type: 3}
+    dogSelectionCountdownTick: {fileID: 8300000, guid: 4bf6e81b9353b0a4d93318249fbcbb1e,
+      type: 3}
+    dogSelectionCountdownFinish: {fileID: 8300000, guid: 493c9372efb22184e806a99f5f804452,
+      type: 3}
+    scoreCounting: {fileID: 8300000, guid: 4a70f3040677ddc40ae5126d73566b7a, type: 3}
   dogSFX:
     walkBernard: {fileID: 0}
     walkPoodle: {fileID: 0}
@@ -394,7 +405,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: cd6da951ee560394d8e7dc2f0cd25395, type: 3}
     noise: []
   scoreSFX:
-    smallGain: {fileID: 8300000, guid: 9f857e8b7d6c42c4980fb1739e325f88, type: 3}
+    smallGain: {fileID: 8300000, guid: 2ce13ef55361df04e867da83e48a6177, type: 3}
     bigGain: {fileID: 8300000, guid: 4a70f3040677ddc40ae5126d73566b7a, type: 3}
     smallLoss: {fileID: 0}
     bigLoss: {fileID: 0}
@@ -467,4 +478,4 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 01d8df78e7d01294ba45ebf896370761, type: 3}
     - {fileID: 8300000, guid: d9857eb0e6b79bd48a1a8f7e7ef1fdb2, type: 3}
     - {fileID: 8300000, guid: fe7d536dd668c7346aa1d276c89c7c91, type: 3}
-    hit_obstacle: {fileID: 8300000, guid: 9281abb189b04cf428d87e0fe5ea6b3c, type: 3}
+    hit_obstacle: {fileID: 8300000, guid: afc622630521a3f40b2b62937f63e38e, type: 3}
