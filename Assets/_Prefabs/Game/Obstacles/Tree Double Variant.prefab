@@ -71,16 +71,24 @@ PrefabInstance:
     - target: {fileID: 5853842152982818969, guid: d0bf9c82cd7ce3446be42c77150fbe55,
         type: 3}
       propertyPath: m_Radius
-      value: 1.17
+      value: 0.48410127
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853842152982818969, guid: d0bf9c82cd7ce3446be42c77150fbe55,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.033342272
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853842152982818969, guid: d0bf9c82cd7ce3446be42c77150fbe55,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 2.2199998
       objectReference: {fileID: 0}
     - target: {fileID: 5853842152982818969, guid: d0bf9c82cd7ce3446be42c77150fbe55,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.6
+      value: -0.004924476
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5853842152982818969, guid: d0bf9c82cd7ce3446be42c77150fbe55, type: 3}
-    - {fileID: -8137401375103702744, guid: d0bf9c82cd7ce3446be42c77150fbe55, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1004484154257057647, guid: d0bf9c82cd7ce3446be42c77150fbe55, type: 3}
     m_AddedGameObjects:
@@ -217,7 +225,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackForce: 2
   stunTime: 0.5
-  pushBackCD: 2
   scoreValue: -100

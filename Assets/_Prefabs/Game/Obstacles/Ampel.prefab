@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5201933930916490935}
-  - component: {fileID: 5853842152982818969}
   - component: {fileID: -8137401375103702744}
+  - component: {fileID: 5853842152982818969}
   m_Layer: 3
   m_Name: Ampel
   m_TagString: Untagged
@@ -34,6 +34,20 @@ Transform:
   - {fileID: 485110752369212885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8137401375103702744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780361715782208750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunTime: 1
+  scoreValue: -100
 --- !u!136 &5853842152982818969
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -57,22 +71,6 @@ CapsuleCollider:
   m_Height: 5.91
   m_Direction: 1
   m_Center: {x: 0, y: 2.22, z: 0}
---- !u!114 &-8137401375103702744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780361715782208750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa8e3c446635ef44a1b272eb10125c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushBackForce: 2
-  stunTime: 1
-  pushBackCD: 2
-  scoreValue: -100
 --- !u!1001 &3417234813916331325
 PrefabInstance:
   m_ObjectHideFlags: 0
