@@ -37,8 +37,8 @@ public class ScoreManager : MonoBehaviour
     int totalScore;
 
     bool waitingForGameStart = true;
+    bool closeToEnd;
     bool gameOver;
-    Coroutine endGameWarning;
 
     public event Action<int, bool> OnScoreChanged;
 
@@ -80,10 +80,11 @@ public class ScoreManager : MonoBehaviour
 
         timeLeft -= Time.deltaTime;
 
-        if (timeLeft <= warningTime)
+        if (timeLeft <= warningTime && !closeToEnd)
         {
+            closeToEnd = true;
             OnCloseToEnd?.Invoke();
-            if(endGameWarning == null) endGameWarning = StartCoroutine(EndWarning());
+            StartCoroutine(EndWarning());
         }
 
         if (timeLeft <= 0)
