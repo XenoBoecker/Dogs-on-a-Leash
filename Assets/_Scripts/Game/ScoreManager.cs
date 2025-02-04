@@ -75,7 +75,11 @@ public class ScoreManager : MonoBehaviour
 
         timeLeft -= Time.deltaTime;
 
-        if (timeLeft <= warningTime) OnCloseToEnd?.Invoke();
+        if (timeLeft <= warningTime)
+        {
+            OnCloseToEnd?.Invoke();
+            StartCoroutine(EndWarning());
+        }
 
         if (timeLeft <= 0)
         {
@@ -174,6 +178,17 @@ public class ScoreManager : MonoBehaviour
         }
         finishText.transform.localScale = Vector3.zero;
         finishText.SetActive(false);
+    }
+
+    IEnumerator EndWarning()
+    {
+        yield return new WaitForSeconds(1);
+
+        for (int i = 0; i < warningTime-1; i++)
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.timeWarnTick);
+
+        }
     }
 
     public void HackSetTimeLeft(float t)
