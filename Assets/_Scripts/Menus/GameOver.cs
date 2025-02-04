@@ -75,19 +75,22 @@ public class GameOver : MonoBehaviour
 
         yield return new WaitForSeconds(waitBeforeStartingCalculation);
 
-        audioSource.Play();
-
-        for (float i = 0; i < calcDuration; i+=Time.deltaTime)
+        if (objectiveScore > 0)
         {
-            int score = (int)(objectiveScore * i / calcDuration);
+            audioSource.Play();
 
-            if (score > objectiveScore) score = objectiveScore;
+            for (float i = 0; i < calcDuration; i += Time.deltaTime)
+            {
+                int score = (int)(objectiveScore * i / calcDuration);
 
-            objectiveScoreText.text = score.ToString();
-            yield return null;
+                if (score > objectiveScore) score = objectiveScore;
+
+                objectiveScoreText.text = score.ToString();
+                yield return null;
+            }
+
+            audioSource.Stop();
         }
-
-        audioSource.Stop();
 
         objectiveScoreText.text = objectiveScore.ToString();
 
