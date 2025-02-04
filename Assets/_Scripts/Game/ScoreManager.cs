@@ -18,6 +18,8 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] int warningTime = 10;
 
+    [SerializeField] float warningSoundVolumeMultiplier = 0.2f;
+
     [SerializeField] GameObject finishText;
 
     [SerializeField] AnimationCurve finishTextPopCurve;
@@ -36,10 +38,13 @@ public class ScoreManager : MonoBehaviour
 
     bool waitingForGameStart = true;
     bool gameOver;
+    Coroutine endGameWarning;
 
     public event Action<int, bool> OnScoreChanged;
 
     public event Action OnCloseToEnd;
+
+
 
     private void Awake()
     {
@@ -78,7 +83,7 @@ public class ScoreManager : MonoBehaviour
         if (timeLeft <= warningTime)
         {
             OnCloseToEnd?.Invoke();
-            StartCoroutine(EndWarning());
+            if(endGameWarning == null) endGameWarning = StartCoroutine(EndWarning());
         }
 
         if (timeLeft <= 0)
@@ -182,12 +187,11 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator EndWarning()
     {
-        yield return new WaitForSeconds(1);
-
         for (int i = 0; i < warningTime-1; i++)
         {
-            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.timeWarnTick);
+            SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.timeWarnTick, null, warningSoundVolumeMultiplier);
 
+            yield return new WaitForSeconds(1);
         }
     }
 
