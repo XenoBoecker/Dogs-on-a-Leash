@@ -216,6 +216,7 @@ namespace photonMenuLobby
                 }
                 yield return null;
             }
+            countdownText.text = "0";
 
             if (startGame)
             {
