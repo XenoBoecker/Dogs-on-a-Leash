@@ -86,11 +86,12 @@ public class LeaderboardManager : MonoBehaviour
     public void OnSubmitScore()
     {
         if (scoreSubmitted) return;
-        scoreSubmitted = true;
 
         string playerName = playerNameInput.text;
         if (!string.IsNullOrEmpty(playerName))
         {
+            scoreSubmitted = true;
+
             leaderboard.AddPlayer(playerName, lastGameScore);
             leaderBoardInputObject.SetActive(false);
             submitScoreButton.gameObject.SetActive(false);
