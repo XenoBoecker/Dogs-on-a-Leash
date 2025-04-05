@@ -39,6 +39,8 @@ public class GameOver : MonoBehaviour
 
     public event Action OnShowLeaderboard;
 
+    public event Action<int> OnFinalScoreCalculated;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -158,7 +160,11 @@ public class GameOver : MonoBehaviour
 
     private int CalculateTotalScore()
     {
-        return objectiveScore + timeLeft * scorePerSecondLeft;
+        int totalScore = objectiveScore + (timeLeft * scorePerSecondLeft);
+
+        OnFinalScoreCalculated?.Invoke(totalScore);
+
+        return totalScore;
     }
 
     // Update is called once per frame
