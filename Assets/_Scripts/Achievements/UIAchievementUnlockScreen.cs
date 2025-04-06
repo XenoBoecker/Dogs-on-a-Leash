@@ -7,6 +7,8 @@ public class UIAchievementUnlockScreen : MonoBehaviour
     [SerializeField] private Transform achievementShowParent;
     [SerializeField] private AchievementShow achievementShowPrefab;
 
+    [SerializeField] private Tooltip tooltip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,7 @@ public class UIAchievementUnlockScreen : MonoBehaviour
             AchievementShow achievementShow = Instantiate(achievementShowPrefab, achievementShowParent);
 
             achievementShow.SetAchievement(Achievements.AllAchievements[i]);
+            achievementShow.SetTooltip(tooltip);
         }
     }
 }

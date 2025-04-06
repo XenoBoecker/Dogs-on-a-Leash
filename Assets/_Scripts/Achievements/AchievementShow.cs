@@ -1,24 +1,39 @@
-﻿using TMPro;
+﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
-    [SerializeField] private GameObject showLocked, showUnlocked, hoverInfo;
-    [SerializeField] private TMP_Text hoverInfoText;
+    [SerializeField] private GameObject showLocked, showUnlocked;
+    [SerializeField] private Image bgSelectedImage, hatImage;
+
+    private Tooltip tooltip;
+
+    Achievements.Achievement achievement;
 
     private void Awake()
     {
         showLocked.SetActive(false);
         showUnlocked.SetActive(false);
-        hoverInfo.SetActive(false);
+        bgSelectedImage.color = new Color(1, 1, 1, 0);
     }
 
     internal void SetAchievement(Achievements.Achievement achievement)
     {
         SetUnlocked(achievement.IsUnlocked);
 
-        hoverInfoText.text = achievement.Description;
+        this.achievement = achievement;
+
+        if (AchievementManager.Instance.HatSprites.Length > achievement.mySpriteIndex)
+        {
+            hatImage.sprite = AchievementManager.Instance.HatSprites[achievement.mySpriteIndex];
+        }
+    }
+
+    public void SetTooltip(Tooltip tooltip)
+    {
+        this.tooltip = tooltip;
     }
 
     public void SetUnlocked(bool isUnlocked)
@@ -29,16 +44,15 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void ShowHoverInfo(bool show)
     {
-        hoverInfo.SetActive(show);
-
         if (show)
         {
-            hoverInfoText.transform.SetParent(transform.parent);
-            hoverInfo.transform.SetAsLastSibling();
+            bgSelectedImage.color = new Color(1,1,1,1);
+            tooltip.Show(transform.position, achievement.Name + "\n" + achievement.Description);
         }
         else
         {
-            hoverInfo.transform.SetParent(transform);
+            bgSelectedImage.color = new Color(1, 1, 1, 0);
+            tooltip.Hide();
         }
     }
 

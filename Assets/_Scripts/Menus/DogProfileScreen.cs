@@ -8,6 +8,9 @@ public class DogProfileScreen : MonoBehaviour
 
     int currentDogIndex;
 
+    [SerializeField] private GameObject dogPanelParent;
+    [SerializeField] private GameObject hatsPanelParent;
+
 
     [SerializeField] GameObject[] dogPanels;
 
