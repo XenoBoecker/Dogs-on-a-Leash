@@ -28,6 +28,7 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (AchievementManager.Instance.HatSprites.Length > achievement.mySpriteIndex)
         {
             hatImage.sprite = AchievementManager.Instance.HatSprites[achievement.mySpriteIndex];
+            if (hatImage.sprite == null) hatImage.color = new Color(1, 1, 1, 0);
         }
     }
 
