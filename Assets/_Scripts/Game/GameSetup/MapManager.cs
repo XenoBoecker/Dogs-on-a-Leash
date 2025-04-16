@@ -30,6 +30,7 @@ public class MapManager : MonoBehaviour
 
     public event Action OnGameEnd;
 
+    public bool endless;
     enum TilePosition
     {
         Start,
@@ -47,11 +48,22 @@ public class MapManager : MonoBehaviour
             humanOnTileIndex++;
             nextTileTransitionPosition += placedTiles[humanOnTileIndex].tileLength;
 
+            if(humanOnTileIndex > 3 && endless)
+            {
+                Destroy(placedTiles[0].gameObject);
+                placedTiles.RemoveAt(0);
+
+                PlaceNextTile();
+                humanOnTileIndex--;
+            }
+
+
+
             if (placedTiles[humanOnTileIndex].IsStreetTile) humanMovement.SetIsOnStreet(true);
             else humanMovement.SetIsOnStreet(false);
         }
 
-        if (humanMovement.transform.position.x >= TotalPathLength) EndGame();
+        if (humanMovement.transform.position.x >= TotalPathLength && !endless) EndGame();
     }
 
     private void EndGame()
@@ -82,7 +94,10 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        PlaceEndTile();
+        // if(!endless)
+        // {
+            PlaceEndTile();
+        // }
 
         nextTileTransitionPosition = placedTiles[0].tileLength;
     }
