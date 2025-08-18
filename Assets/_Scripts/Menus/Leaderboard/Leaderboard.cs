@@ -32,7 +32,7 @@ public class Leaderboard : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) AddRandomPlayerScore();
+        // if (Input.GetKeyDown(KeyCode.P)) AddRandomPlayerScore();
     }
 
     public void AddRandomPlayerScore()
