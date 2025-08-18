@@ -27,15 +27,29 @@ public class Hacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if (Input.GetKeyDown(KeyCode.L)) EndGameWell();
+        // if (Input.GetKeyDown(KeyCode.O)) scoreManager.HackSetTimeLeft(0); // lose game
+        // if (Input.GetKeyDown(KeyCode.P)) scoreManager.AddScore(Random.Range(1, 20) * 100);
+        // if (Input.GetKeyDown(KeyCode.I)) scoreManager.AddScore(-Random.Range(1, 20) * 100);
+
+        // if (Input.GetKeyDown(KeyCode.U)) camMov.ScreenShake(null);
+
+        if (!Input.GetKey(KeyCode.LeftControl))
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.R)) FindObjectOfType<ChangeScenes>().LoadScene("Game_1");
         if (Input.GetKeyDown(KeyCode.K)) camMov.HackSkipFlythrough();
-        if (Input.GetKeyDown(KeyCode.L)) EndGameWell();
-        if (Input.GetKeyDown(KeyCode.O)) scoreManager.HackSetTimeLeft(0); // lose game
-        if (Input.GetKeyDown(KeyCode.P)) scoreManager.AddScore(Random.Range(1, 20) * 100);
-        if (Input.GetKeyDown(KeyCode.I)) scoreManager.AddScore(-Random.Range(1, 20) * 100);
+        //Add time
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            scoreManager.HackSetTimeLeft(scoreManager.TimeLeft + 10);
+        }
+        
 
-        if (Input.GetKeyDown(KeyCode.U)) camMov.ScreenShake(null);
 
-        if(controlTime) Time.timeScale = timeScale;
+
+        // if (controlTime) Time.timeScale = timeScale;
     }
 
     private void EndGameWell()
