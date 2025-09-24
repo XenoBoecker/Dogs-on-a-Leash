@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace photonMenuLobby
 {
@@ -79,12 +80,32 @@ namespace photonMenuLobby
         [SerializeField] float switchPanelDelayAfterAllPlayersRegistered = 0.5f;
         int connectedDogCount;
 
+        // UI navigation control variables
+        private Button playButtonComponent;
+        private bool originalPlayButtonInteractable;
+        private Navigation originalPlayButtonNavigation;
+        
+        // Delay to prevent accidental activation right after player joins
+        private float playButtonActivationDelay = 1.0f;
+        private float lastPlayerJoinTime;
+
         public event Action OnPlayerListChanged;
         public event Action OnBackToPlayerRegistration;
 
         private void Awake()
         {
             seedInputField.onValueChanged.AddListener(OnSeedInputChanged);
+            
+            // Cache the play button component and its original settings
+            if (playButton != null)
+            {
+                playButtonComponent = playButton.GetComponent<Button>();
+                if (playButtonComponent != null)
+                {
+                    originalPlayButtonInteractable = playButtonComponent.interactable;
+                    originalPlayButtonNavigation = playButtonComponent.navigation;
+                }
+            }
         }
 
         private void Start()
@@ -121,6 +142,7 @@ namespace photonMenuLobby
                 if (PhotonNetwork.IsMasterClient)// && PhotonNetwork.CurrentRoom.PlayerCount >= 2)
                 {
                     playButton.SetActive(true);
+                    UpdatePlayButtonVisualState();
                 }
                 else
                 {
@@ -129,10 +151,20 @@ namespace photonMenuLobby
 
                 if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
             }
+            else
+            {
+                // In offline mode, also apply the delay
+                UpdatePlayButtonVisualState();
+            }
 
             // if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel); // Hacks
 
-            if (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(hiddenButton);
+            // Only set the hidden button as selected if we're in dog selection phase
+            // This prevents accidental navigation to UI buttons while players are joining in the room panel
+            if (EventSystem.current.currentSelectedGameObject == null && IsInDogSelection) 
+            {
+                EventSystem.current.SetSelectedGameObject(hiddenButton);
+            }
         }
 
         void SetSeed(int v)
@@ -233,7 +265,12 @@ namespace photonMenuLobby
             if (panel == lobbyPanel) lobbyPanel.SetActive(true);
             else lobbyPanel.SetActive(false);
 
-            if (panel == roomPanel) roomPanel.SetActive(true);
+            if (panel == roomPanel) 
+            {
+                roomPanel.SetActive(true);
+                // Protect UI from accidental input when players are joining
+                ProtectUIFromAccidentalInput();
+            }
             else roomPanel.SetActive(false);
 
             if (panel == dogSelectionPanel)
@@ -243,6 +280,9 @@ namespace photonMenuLobby
 
                 dogSelectionPanel.SetActive(true);
                 dogModelParent.SetActive(true);
+                
+                // Restore normal UI behavior in dog selection
+                RestoreNormalUIBehavior();
             }
             else
             {
@@ -261,6 +301,13 @@ namespace photonMenuLobby
 
         public void GoToDogSelectionPanel()
         {
+            // Prevent accidental activation if called too soon after player joins
+            if (!ShouldPlayButtonBeInteractable())
+            {
+                Debug.Log("GoToDogSelectionPanel blocked - too soon after player joined");
+                return;
+            }
+
             ActivatePanel(dogSelectionPanel);
 
             SetSeed(UnityEngine.Random.Range(100000000, 999999999));
@@ -356,6 +403,9 @@ namespace photonMenuLobby
             }
             clients.Clear();
 
+            // Track when players are joining to add delay
+            lastPlayerJoinTime = Time.time;
+
             if (PhotonNetwork.IsConnected)
             {
                 if (PhotonNetwork.CurrentRoom == null) return;
@@ -388,6 +438,9 @@ namespace photonMenuLobby
         void UpdatePlayerList()
         {
             // Debug.Log("UpdatePlayerList");
+            
+            // Track when player list updates (which happens when local players join)
+            lastPlayerJoinTime = Time.time;
 
             int currentPlayerCount = 0;
 
@@ -440,7 +493,6 @@ namespace photonMenuLobby
                     StartCoroutine(DelayedDogSelectionPanelActivation());
                 }
             }
-
             OnPlayerListChanged?.Invoke();
         }
 
@@ -484,6 +536,67 @@ namespace photonMenuLobby
                 count += clients[i].localPlayers.Count;
             }
             return count;
+        }
+
+        // Methods to prevent accidental UI navigation during player joining
+        private void DisablePlayButtonNavigation()
+        {
+            if (playButtonComponent != null)
+            {
+                Navigation nav = playButtonComponent.navigation;
+                nav.mode = Navigation.Mode.None;
+                playButtonComponent.navigation = nav;
+            }
+        }
+
+        private void EnablePlayButtonNavigation()
+        {
+            if (playButtonComponent != null)
+            {
+                playButtonComponent.navigation = originalPlayButtonNavigation;
+            }
+        }
+
+        private bool ShouldPlayButtonBeInteractable()
+        {
+            // Add delay after player joins to prevent accidental activation
+            bool timeDelayPassed = Time.time - lastPlayerJoinTime > playButtonActivationDelay;
+            
+            // Also check if we have enough players (optional additional safety)
+            int currentPlayers = GetCurrentPlayerCount();
+            bool hasMinimumPlayers = currentPlayers >= 1; // At least one player needed
+            
+            return timeDelayPassed && hasMinimumPlayers;
+        }
+
+        private void UpdatePlayButtonVisualState()
+        {
+            if (playButtonComponent != null)
+            {
+                bool shouldBeInteractable = ShouldPlayButtonBeInteractable();
+                playButtonComponent.interactable = shouldBeInteractable;
+                
+                // Optional: You could add visual feedback here, like changing alpha or color
+                // to indicate when the button will become available
+            }
+        }
+
+        // Call this when switching to room panel to protect against accidental input
+        private void ProtectUIFromAccidentalInput()
+        {
+            DisablePlayButtonNavigation();
+            
+            // Clear any current UI selection to prevent accidental activation
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+        }
+
+        // Call this when entering dog selection to restore normal UI behavior
+        private void RestoreNormalUIBehavior()
+        {
+            EnablePlayButtonNavigation();
         }
     }
 
