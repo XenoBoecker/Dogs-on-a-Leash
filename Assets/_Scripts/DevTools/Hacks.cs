@@ -27,14 +27,13 @@ public class Hacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.L)) EndGameWell();
         // if (Input.GetKeyDown(KeyCode.O)) scoreManager.HackSetTimeLeft(0); // lose game
         // if (Input.GetKeyDown(KeyCode.P)) scoreManager.AddScore(Random.Range(1, 20) * 100);
         // if (Input.GetKeyDown(KeyCode.I)) scoreManager.AddScore(-Random.Range(1, 20) * 100);
 
         // if (Input.GetKeyDown(KeyCode.U)) camMov.ScreenShake(null);
 
-        if (!Input.GetKey(KeyCode.LeftControl))
+        if (!Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.LeftShift))
         {
             return;
         }
@@ -45,7 +44,8 @@ public class Hacks : MonoBehaviour
         {
             scoreManager.HackSetTimeLeft(scoreManager.TimeLeft + 10);
         }
-        
+        if (Input.GetKeyDown(KeyCode.L)) EndGameWell();
+
 
 
 
