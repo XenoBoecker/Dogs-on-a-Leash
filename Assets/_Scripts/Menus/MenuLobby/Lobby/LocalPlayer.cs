@@ -34,6 +34,8 @@ public class LocalPlayer : MonoBehaviour
 
     float waitTimeBeforeCanConfirmSelection = 0.1f;
 
+    private bool isMainPlayer = false;
+
     public event Action OnConfirmSelectionChanged;
 
     private void Awake()
@@ -55,6 +57,11 @@ public class LocalPlayer : MonoBehaviour
         lobbyManager.OnBackToPlayerRegistration += ResetDogSelection;
 
         SetLobbyDogSelector(lobbyManager.ChooseDogSelectors[lobbyManager.GetCurrentPlayerCount() - 1]);
+
+        if(lobbyManager.GetCurrentPlayerCount() == 1)
+        {
+            isMainPlayer = true;
+        }
 
         ColorIndex = lobbyManager.GetCurrentPlayerCount() - 1;
     }

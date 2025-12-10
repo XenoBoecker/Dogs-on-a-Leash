@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static PauseMenu Instance;
-
     [SerializeField] GameObject pausePanel;
+    [SerializeField] string menuSceneName;
+
+    public static PauseMenu Instance;
 
     bool isPaused;
 
@@ -47,5 +49,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (isPaused) ResumeGame();
         else PauseGame();
+    }
+
+    public void ReturnToMenu()
+    {
+        Time.timeScale = 1;
+        ChangeScenes.Instance.LoadScene(menuSceneName);
     }
 }
