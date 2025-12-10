@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
@@ -9,6 +10,8 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     [Tooltip("Event invoked after hold time is reached")]
     public UnityEvent OnHold;
+
+    [SerializeField] private Image holdButtonFillImage;
 
     bool pointerDown;
     float holdTimer;
@@ -32,6 +35,11 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     void Update()
     {
+        if(holdButtonFillImage != null)
+        {
+            holdButtonFillImage.fillAmount = holdTimer / holdTime;
+        }
+
         if (!pointerDown) return;
 
         holdTimer += Time.unscaledDeltaTime; // use unscaled if you want it to ignore timeScale changes
