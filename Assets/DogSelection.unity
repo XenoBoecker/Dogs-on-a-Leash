@@ -4392,6 +4392,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &1325038182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 111836700439437740, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3135788404249878366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1344571161
 GameObject:
   m_ObjectHideFlags: 0
@@ -6095,6 +6101,7 @@ GameObject:
   - component: {fileID: 1769319842}
   - component: {fileID: 1769319841}
   - component: {fileID: 1769319840}
+  - component: {fileID: 1769319844}
   - component: {fileID: 1769319843}
   m_Layer: 5
   m_Name: StartGameButton
@@ -6229,6 +6236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnHover: 1
   audioPitchMin: 0.9
   audioPitchMax: 1.1
   buttonObject: {fileID: 0}
@@ -6261,6 +6269,34 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animDuration: 0.2
+--- !u!114 &1769319844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769319838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803743425b41f19419ec575b80797c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdTime: 1
+  OnHold:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4051074885408400791}
+        m_TargetAssemblyTypeName: ChangeScenes, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Game_1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1781733012
 GameObject:
   m_ObjectHideFlags: 0
@@ -6376,12 +6412,40 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3135788404249878366}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1325038182}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1842793428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325038182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803743425b41f19419ec575b80797c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdTime: 1
+  OnHold:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4051074885408400791}
+        m_TargetAssemblyTypeName: ChangeScenes, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1876748374
 GameObject:
   m_ObjectHideFlags: 0
@@ -6756,6 +6820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -6877,7 +6946,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 111836700439437740, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1973830605}
   m_SourcePrefab: {fileID: 100100000, guid: 99b7faf601e8f074c966b6d0c4c3a40f, type: 3}
 --- !u!224 &1973830603 stripped
 RectTransform:
@@ -6885,6 +6958,40 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1973830602}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1973830604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 111836700439437740, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1973830602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1973830605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973830604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803743425b41f19419ec575b80797c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdTime: 1
+  OnHold:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 335579944}
+        m_TargetAssemblyTypeName: photonMenuLobby.LobbyManager, Assembly-CSharp
+        m_MethodName: BackToPlayerRegistration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1974446269
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,6 +7004,7 @@ GameObject:
   - component: {fileID: 1974446273}
   - component: {fileID: 1974446272}
   - component: {fileID: 1974446271}
+  - component: {fileID: 1974446275}
   - component: {fileID: 1974446274}
   m_Layer: 5
   m_Name: Start Button
@@ -6968,19 +7076,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1974446272}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 335579944}
-        m_TargetAssemblyTypeName: photonMenuLobby.LobbyManager, Assembly-CSharp
-        m_MethodName: GoToDogSelectionPanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1974446272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7031,6 +7127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbd0e29925c473458ea49711945fc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnHover: 1
   audioPitchMin: 0.9
   audioPitchMax: 1.1
   buttonObject: {fileID: 0}
@@ -7045,6 +7142,34 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animDuration: 0.2
+--- !u!114 &1974446275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974446269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803743425b41f19419ec575b80797c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdTime: 1
+  OnHold:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 335579944}
+        m_TargetAssemblyTypeName: photonMenuLobby.LobbyManager, Assembly-CSharp
+        m_MethodName: GoToDogSelectionPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2008691593
 GameObject:
   m_ObjectHideFlags: 0
@@ -7417,6 +7542,11 @@ PrefabInstance:
       objectReference: {fileID: 1974446271}
     - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4051074885408400791}
@@ -7523,7 +7653,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 111836700439437740, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1842793428}
   m_SourcePrefab: {fileID: 100100000, guid: 99b7faf601e8f074c966b6d0c4c3a40f, type: 3}
 --- !u!1001 &4051074885408400790
 PrefabInstance:
