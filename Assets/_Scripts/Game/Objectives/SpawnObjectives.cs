@@ -1,4 +1,3 @@
-using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,8 +26,7 @@ public class SpawnObjectives : MonoBehaviour
 
                 // Instantiate the objective
                 GameObject objective;
-                if (PhotonNetwork.IsConnected) objective = PhotonNetwork.Instantiate(randomObjective.name, position + transform.position, Quaternion.identity);
-                else objective = Instantiate(randomObjective, position + transform.position, Quaternion.identity);
+                objective = Instantiate(randomObjective, position + transform.position, Quaternion.identity);
 
                 objective.transform.SetParent(objectiveParent);
 

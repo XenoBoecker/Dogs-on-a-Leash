@@ -1,13 +1,10 @@
-﻿using Photon.Pun;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class InteractableDetector : MonoBehaviour
 {
-    PhotonView view;
-
     PlayerDogController playerDogController;
     Rigidbody dogRB;
 
@@ -34,11 +31,6 @@ public class InteractableDetector : MonoBehaviour
 
     public event Action OnInteractEnded;
 
-    private void Awake()
-    {
-        view = GetComponentInParent<PhotonView>();
-        if (PhotonNetwork.IsConnected && !view.IsMine) this.enabled = false;
-    }
 
     private void Start()
     {

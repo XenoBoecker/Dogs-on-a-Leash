@@ -1,12 +1,9 @@
-using Photon.Pun;
 using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DogController : MonoBehaviour
 {
-    PhotonView view;
-
     public AnimationCurve accelerationCurve; // Controls speed increase
     public AnimationCurve decelerationCurve; // Controls speed decrease
     public float maxSpeed = 10f; // Maximum speed
@@ -32,11 +29,8 @@ public class DogController : MonoBehaviour
 
     void Awake()
     {
-        view = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody>();
         targetDirection = transform.forward; // Initially face forward
-
-        if (PhotonNetwork.IsConnected && !view.IsMine) rb.isKinematic = true;
     }
 
     void Update()
@@ -74,9 +68,6 @@ public class DogController : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        if (PhotonNetwork.IsConnected && !view.IsMine) return;
-
         // Smoothly rotate towards the target direction
         if (targetDirection != Vector3.zero)
         {

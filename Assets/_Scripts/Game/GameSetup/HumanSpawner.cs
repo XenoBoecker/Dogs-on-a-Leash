@@ -1,5 +1,4 @@
-﻿using Photon.Pun;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HumanSpawner : MonoBehaviour
 {
@@ -8,7 +7,6 @@ public class HumanSpawner : MonoBehaviour
 
     public void Setup()
     {
-        if (PhotonNetwork.IsConnected) PhotonNetwork.Instantiate(nameof(human), Vector3.zero, Quaternion.identity);
-        else Instantiate(human, Vector3.zero, Quaternion.identity);
+        Instantiate(human, Vector3.zero, Quaternion.identity);
     }
 }

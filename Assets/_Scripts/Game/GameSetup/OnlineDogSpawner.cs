@@ -1,5 +1,4 @@
-﻿using Photon.Pun;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,8 +18,7 @@ public class OnlineDogSpawner : MonoBehaviour
         for (int i = 0; i < localPlayers.Length; i++)
         {
             Dog dog;
-            if (PhotonNetwork.IsConnected) dog = PhotonNetwork.Instantiate(dogPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<Dog>();
-            else dog = Instantiate(dogPrefab, spawnPoints[i].position, Quaternion.identity).GetComponent<Dog>();
+            dog = Instantiate(dogPrefab, spawnPoints[i].position, Quaternion.identity).GetComponent<Dog>();
 
             Debug.Log("Local player " + i + ": DogDataIndex: "
                 + localPlayers[i].

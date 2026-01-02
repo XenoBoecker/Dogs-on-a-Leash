@@ -1,4 +1,3 @@
-using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -94,18 +93,8 @@ public class ChangeScenes : MonoBehaviour
 
         isChangingScene = false;
 
-        // Load the scene using Photon or SceneManager
-        if (PhotonNetwork.IsConnected)
-        {
-            Debug.Log("Photon Load Scene");
-            PhotonNetwork.LoadLevel(sceneName);
-        }
-        else
-        {
-
-            Debug.Log("Now Load Scene");
-            SceneManager.LoadScene(sceneName);
-        }
+        Debug.Log("Now Load Scene");
+        SceneManager.LoadScene(sceneName);
     }
 
     void EndAnim()
