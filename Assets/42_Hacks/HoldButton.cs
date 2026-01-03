@@ -3,7 +3,13 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+public class HoldButton : MonoBehaviour,
+    IPointerDownHandler,
+    IPointerUpHandler,
+    IPointerExitHandler,
+    ISelectHandler,
+    IDeselectHandler,
+    ISubmitHandler
 {
     [Tooltip("Seconds the button must be held before invoking OnHold")]
     public float holdTime = 1f;
@@ -14,46 +20,95 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     [SerializeField] private Image holdButtonFillImage;
 
     bool pointerDown;
+    bool mousePointerDown;
+    bool isSelected;
     float holdTimer;
+
+    void Update()
+    {
+        if (holdButtonFillImage != null)
+        {
+            holdButtonFillImage.fillAmount = holdTimer / holdTime;
+        }
+
+        if (!pointerDown)
+            return;
+
+        // Cancel when submit is released (keyboard / controller)
+        if (isSelected && !Input.GetButton("Submit") && !mousePointerDown)
+        {
+            CancelHold();
+            return;
+        }
+
+        holdTimer += Time.unscaledDeltaTime;
+
+        if (holdTimer >= holdTime)
+        {
+            OnHold?.Invoke();
+            CancelHold();
+        }
+    }
+
+    // =====================
+    // Pointer (Mouse / Touch)
+    // =====================
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        pointerDown = true;
-        holdTimer = 0f;
-        Debug.Log("Pointer Down");
+        mousePointerDown = true;
+        StartHold();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        mousePointerDown = false;
         CancelHold();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        mousePointerDown = false;
         CancelHold();
     }
 
-    void Update()
+    // =====================
+    // Keyboard / Controller
+    // =====================
+
+    public void OnSelect(BaseEventData eventData)
     {
-        if(holdButtonFillImage != null)
-        {
-            holdButtonFillImage.fillAmount = holdTimer / holdTime;
-        }
+        isSelected = true;
+    }
 
-        if (!pointerDown) return;
+    public void OnDeselect(BaseEventData eventData)
+    {
+        isSelected = false;
+        CancelHold();
+    }
 
-        holdTimer += Time.unscaledDeltaTime; // use unscaled if you want it to ignore timeScale changes
-        if (holdTimer >= holdTime)
+    // Called when Submit (Enter / A / Cross) is pressed
+    public void OnSubmit(BaseEventData eventData)
+    {
+        if (!pointerDown && isSelected)
         {
-            OnHold?.Invoke();
-            CancelHold(); // reset so it doesn't fire repeatedly; remove if you want repeat behavior
+            StartHold();
         }
+    }
+
+    // =====================
+    // Helpers
+    // =====================
+
+    void StartHold()
+    {
+        pointerDown = true;
+        holdTimer = 0f;
     }
 
     void CancelHold()
     {
         pointerDown = false;
         holdTimer = 0f;
-        Debug.Log("Pointer Up or Exit");
     }
 }
