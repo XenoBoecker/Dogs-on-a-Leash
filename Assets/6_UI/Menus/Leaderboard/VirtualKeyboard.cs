@@ -23,7 +23,6 @@ public class VirtualKeyboard : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("VirtualKeyboard: Subscribing to GameOver OnShowLeaderboard event");
         SetStartSelectedKeyboardKey();
     }
 
@@ -31,8 +30,6 @@ public class VirtualKeyboard : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(Input.inputString))
         {
-
-            Debug.Log("Keyboard input detected, selecting name input field");
             EventSystem.current.SetSelectedGameObject(nameInputField.gameObject);
 
             if (nameInputField.text.Length < 1)
@@ -40,13 +37,11 @@ public class VirtualKeyboard : MonoBehaviour
                 nameInputField.text += Input.inputString;
                 nameInputField.caretPosition = nameInputField.text.Length;
             }
-
         }
     }
 
     private void SetStartSelectedKeyboardKey()
     {
-        Debug.Log("Setting selected game object to name input start selected");
         EventSystem.current.SetSelectedGameObject(nameInputStartSelected);
     }
 
