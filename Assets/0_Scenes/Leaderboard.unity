@@ -491,8 +491,9 @@ GameObject:
   - component: {fileID: 329988919}
   - component: {fileID: 329988921}
   - component: {fileID: 329988920}
+  - component: {fileID: 329988922}
   m_Layer: 5
-  m_Name: 5/12
+  m_Name: Letter Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,6 +616,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329988918}
   m_CullTransparentMesh: 1
+--- !u!114 &329988922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329988918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e132a514f3f25764782362bfd3c9a757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counterText: {fileID: 329988920}
+  nameInputField: {fileID: 6246682698384286380}
 --- !u!1 &371992182
 GameObject:
   m_ObjectHideFlags: 0
@@ -4647,8 +4662,8 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 130
-  m_CharacterLimit: 10
+  m_GlobalPointSize: 100
+  m_CharacterLimit: 16
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
