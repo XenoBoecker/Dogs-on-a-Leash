@@ -172,6 +172,7 @@ public class GameOver : MonoBehaviour
 
     public void ShowLeaderboard()
     {
+        Debug.Log("GameOver: ShowLeaderboard called");
         scorePanel.SetActive(false);
 
         OnShowLeaderboard?.Invoke();

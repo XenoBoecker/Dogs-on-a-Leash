@@ -23,7 +23,7 @@ public class LeaderboardManager : MonoBehaviour
 
     [SerializeField] TMP_Text showYourScoreAgain;
     [SerializeField] GameObject playAgainButton;
-    [SerializeField] GameObject teamNameInputField;
+    [SerializeField] GameObject nameInputStartSelected;
 
     public Leaderboard leaderboard;
     public GameObject leaderBoardInputObject;
@@ -72,7 +72,6 @@ public class LeaderboardManager : MonoBehaviour
             leaderBoardInputObject.SetActive(false);
             submitScoreButton.gameObject.SetActive(false);
         }
-        EventSystem.current.SetSelectedGameObject(teamNameInputField);
     }
 
     public void GameOver(int score)
