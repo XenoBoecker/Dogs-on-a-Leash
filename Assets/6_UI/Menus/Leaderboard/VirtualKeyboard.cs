@@ -47,6 +47,12 @@ public class VirtualKeyboard : MonoBehaviour
 
     public void LetterEntered(string letter)
     {
+        if(nameInputField.text.Length >= nameInputField.characterLimit)
+        {
+            return;
+        }
+
+
         if (isCapsLockOn)
         {
             letter = letter.ToUpper();
