@@ -5225,8 +5225,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585302089}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000030103354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5234,8 +5234,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
-  m_SizeDelta: {x: 1.4580078, y: 1.2890015}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2.039, y: 2.902}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1585302091
 MonoBehaviour:
@@ -5257,7 +5257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6febe3d1fa7db1a48b77c6c6d0247589, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac2301bb72012f4468521c5bbb41bac8, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5808,7 +5808,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697123661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5817,7 +5817,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.458, y: 1.289}
+  m_SizeDelta: {x: 2.039, y: 2.902}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697123663
 MonoBehaviour:
@@ -5839,7 +5839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6febe3d1fa7db1a48b77c6c6d0247589, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac2301bb72012f4468521c5bbb41bac8, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7266,11 +7266,11 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9040837729214255708, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1585302090}
     - targetCorrespondingSourceObject: {fileID: 9040837729214255708, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
-      insertIndex: 1
+      insertIndex: -1
       addedObject: {fileID: 300106693}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 111836700439437740, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
@@ -7984,11 +7984,11 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9040837729214255708, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1697123662}
     - targetCorrespondingSourceObject: {fileID: 9040837729214255708, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
-      insertIndex: 1
+      insertIndex: -1
       addedObject: {fileID: 957874614}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 111836700439437740, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
