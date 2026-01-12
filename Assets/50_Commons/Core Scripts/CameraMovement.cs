@@ -48,6 +48,7 @@ public class CameraMovement : MonoBehaviour
     float shakeValue;
 
     bool inFlyThrough;
+    bool inTutorial;
     bool cameraMovementDeactivated;
 
     public event Action OnFlyThroughFinished;
@@ -89,6 +90,23 @@ public class CameraMovement : MonoBehaviour
         yield return new WaitForSeconds(flyThroughStartWaitTime);
 
         Time.timeScale = 0;
+
+        if (PlayerPrefs.GetInt("ShowTutorial", 1) == 1)
+        {
+            inTutorial = true;
+            TutorialSlides tutorialSlides = FindAnyObjectByType<TutorialSlides>();
+            tutorialSlides.OnTutorialCompleted += () => inTutorial = false;
+            tutorialSlides.ShowSlide(0);
+        }
+        else
+        {
+            inTutorial = false;
+        }
+
+        while (inTutorial)
+        {
+            yield return null;
+        }
 
         // bus drives into screen
         yield return StartCoroutine(FindObjectOfType<Bus>().BusArrivingCoroutine());

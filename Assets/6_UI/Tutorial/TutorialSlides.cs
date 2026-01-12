@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TutorialSlides : MonoBehaviour
@@ -5,6 +6,9 @@ public class TutorialSlides : MonoBehaviour
     [SerializeField] private GameObject[] allSlides;
 
     private int currentSlideIndex = 0;
+
+
+    public event Action OnTutorialCompleted;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,8 @@ public class TutorialSlides : MonoBehaviour
         {
             HideAllSlides();
             currentSlideIndex = 0;
+
+            OnTutorialCompleted?.Invoke();
             return;
         }
         else
