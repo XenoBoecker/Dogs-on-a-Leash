@@ -48,4 +48,9 @@ public class HumanSounds : MonoBehaviour
     {
         stepAudioSource.volume = SoundManager.Instance.SFXVolume;
     }
+
+    private void OnDestroy()
+    {
+        SoundManager.Instance.OnSoundReload -= Reload;
+    }
 }
