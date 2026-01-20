@@ -1,8 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LobbyDogSelector : MonoBehaviour
 {
+    [SerializeField] private HoldButton backButton;
+    [SerializeField] private GameObject goToDogSelectionButton;
     LobbyData lobbyData;
 
     public string PlayerName;
@@ -99,5 +102,19 @@ public class LobbyDogSelector : MonoBehaviour
         this.isReadyToPlay = isReadyToPlay;
 
         OnDataChanged?.Invoke();
+    }
+
+    internal void SetBackButtonSelected(bool isBackButtonSelected)
+    {
+        if (isBackButtonSelected)
+        {
+            EventSystem.current.SetSelectedGameObject(backButton.gameObject);
+            backButton.FromScriptStartHold();
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(goToDogSelectionButton);
+            backButton.FromScriptCancelHold();
+        }
     }
 }

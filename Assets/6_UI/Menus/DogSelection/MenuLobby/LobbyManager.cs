@@ -31,6 +31,7 @@ namespace photonMenuLobby
 
 
         [SerializeField] GameObject startGameButton;
+        [SerializeField] private GameObject goToDogSelectionButton;
         [SerializeField] TMP_Text countdownText;
 
         [SerializeField] int countdownTime = 5;
@@ -142,7 +143,6 @@ namespace photonMenuLobby
                 if (PhotonNetwork.IsMasterClient)// && PhotonNetwork.CurrentRoom.PlayerCount >= 2)
                 {
                     playButton.SetActive(true);
-                    UpdatePlayButtonVisualState();
                 }
                 else
                 {
@@ -150,11 +150,6 @@ namespace photonMenuLobby
                 }
 
                 if (Input.GetKeyDown(KeyCode.Return)) OnClickCreate();
-            }
-            else
-            {
-                // In offline mode, also apply the delay
-                UpdatePlayButtonVisualState();
             }
 
             // if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.L)) ActivatePanel(dogSelectionPanel); // Hacks
@@ -295,19 +290,14 @@ namespace photonMenuLobby
         public void BackToPlayerRegistration()
         {
             ActivatePanel(roomPanel);
+            
+            EventSystem.current.SetSelectedGameObject(goToDogSelectionButton);
 
             OnBackToPlayerRegistration?.Invoke();
         }
 
         public void GoToDogSelectionPanel()
         {
-            // Prevent accidental activation if called too soon after player joins
-            if (!ShouldPlayButtonBeInteractable())
-            {
-                Debug.Log("GoToDogSelectionPanel blocked - too soon after player joined");
-                return;
-            }
-
             ActivatePanel(dogSelectionPanel);
 
             SetSeed(UnityEngine.Random.Range(100000000, 999999999));
@@ -554,30 +544,6 @@ namespace photonMenuLobby
             if (playButtonComponent != null)
             {
                 playButtonComponent.navigation = originalPlayButtonNavigation;
-            }
-        }
-
-        private bool ShouldPlayButtonBeInteractable()
-        {
-            // Add delay after player joins to prevent accidental activation
-            bool timeDelayPassed = Time.time - lastPlayerJoinTime > playButtonActivationDelay;
-            
-            // Also check if we have enough players (optional additional safety)
-            int currentPlayers = GetCurrentPlayerCount();
-            bool hasMinimumPlayers = currentPlayers >= 1; // At least one player needed
-            
-            return timeDelayPassed && hasMinimumPlayers;
-        }
-
-        private void UpdatePlayButtonVisualState()
-        {
-            if (playButtonComponent != null)
-            {
-                bool shouldBeInteractable = ShouldPlayButtonBeInteractable();
-                playButtonComponent.interactable = shouldBeInteractable;
-                
-                // Optional: You could add visual feedback here, like changing alpha or color
-                // to indicate when the button will become available
             }
         }
 

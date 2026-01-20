@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 // TODO: Assign Lobby player to LobbyDogSelector
 
@@ -31,6 +32,8 @@ public class LocalPlayer : MonoBehaviour
 
     bool isSelectionConfirmed;
     public bool IsSelectionConfirmed => isSelectionConfirmed;
+
+    bool isBackButtonSelected;
 
     float waitTimeBeforeCanConfirmSelection = 0.1f;
 
@@ -167,6 +170,12 @@ public class LocalPlayer : MonoBehaviour
             {
                 UnConfirmSelection();
             }
+
+            // if holding down button
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                StopHoldingBackKey();
+            }
         }
         else if (context.action.name == "ExitSelection")
         {
@@ -225,8 +234,14 @@ public class LocalPlayer : MonoBehaviour
 
     public void ConfirmSelection()
     {
+        if (!lobbyManager.IsInDogSelection)
+        {
+            return;
+        }
+
         if (waitTimeBeforeCanConfirmSelection > 0) return;
 
+        isBackButtonSelected = false;
 
         if (!isSelectionConfirmed)
         {
@@ -243,25 +258,51 @@ public class LocalPlayer : MonoBehaviour
 
         lobbyDogSelector?.SetConfirmSelection(isSelectionConfirmed);
         lobbyDogSelector?.SetReadyToPlay(isReadyToPlay);
-
+        lobbyDogSelector?.SetBackButtonSelected(isBackButtonSelected);
 
         OnConfirmSelectionChanged?.Invoke();
     }
 
     private void UnConfirmSelection()
     {
-        // Debug.Log("Unconfirm Selection");
+        if (!lobbyManager.IsInDogSelection)
+        {
+            return;
+        }
+
+        Debug.Log("Unconfirm Selection");
         if (isReadyToPlay)
         {
             isReadyToPlay = false;
             lobbyManager.CheckReadyToPlay();
         }
-        else isSelectionConfirmed = false;
+        else if (isSelectionConfirmed)
+        {
+            Debug.Log("Unselect");
+            isSelectionConfirmed = false;
+        }
+        else
+        {
+            Debug.Log("BackButtonSelect");
+            isBackButtonSelected = true;
+        }
 
         lobbyDogSelector?.SetConfirmSelection(isSelectionConfirmed);
         lobbyDogSelector?.SetReadyToPlay(isReadyToPlay);
+        lobbyDogSelector?.SetBackButtonSelected(isBackButtonSelected);
 
         OnConfirmSelectionChanged?.Invoke();
+    }
+
+    private void StopHoldingBackKey()
+    {
+        if (!lobbyManager.IsInDogSelection)
+        {
+            return;
+        }
+
+        isBackButtonSelected = false;
+        lobbyDogSelector?.SetBackButtonSelected(isBackButtonSelected);
     }
 
     private void ExitDogSelection()

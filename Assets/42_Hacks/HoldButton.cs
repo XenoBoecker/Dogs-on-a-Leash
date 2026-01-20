@@ -21,6 +21,7 @@ public class HoldButton : MonoBehaviour,
 
     bool pointerDown;
     bool mousePointerDown;
+    bool scriptCalledHold;
     bool isSelected;
     float holdTimer;
 
@@ -31,11 +32,11 @@ public class HoldButton : MonoBehaviour,
             holdButtonFillImage.fillAmount = holdTimer / holdTime;
         }
 
-        if (!pointerDown)
+        if (!pointerDown && !scriptCalledHold)
             return;
 
         // Cancel when submit is released (keyboard / controller)
-        if (isSelected && !Input.GetButton("Submit") && !mousePointerDown)
+        if (!scriptCalledHold && isSelected && !Input.GetButton("Submit") && !mousePointerDown)
         {
             CancelHold();
             return;
@@ -110,5 +111,17 @@ public class HoldButton : MonoBehaviour,
     {
         pointerDown = false;
         holdTimer = 0f;
+    }
+
+    public void FromScriptStartHold()
+    {
+        scriptCalledHold = true;
+        StartHold();
+    }
+
+    public void FromScriptCancelHold()
+    {
+        scriptCalledHold = false;
+        CancelHold();
     }
 }
