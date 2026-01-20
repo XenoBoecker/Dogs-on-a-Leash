@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class LobbyDogSelector : MonoBehaviour
 {
     [SerializeField] private HoldButton backButton;
+    [SerializeField] private HoldButton leaveSceneBackButton;
     [SerializeField] private GameObject goToDogSelectionButton;
     LobbyData lobbyData;
 
@@ -115,6 +116,20 @@ public class LobbyDogSelector : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject(goToDogSelectionButton);
             backButton.FromScriptCancelHold();
+        }
+    }
+
+    internal void SetLeaveSceneButtonSelected(bool isLeaveSceneButtonSelected)
+    {
+        if (isLeaveSceneButtonSelected)
+        {
+            EventSystem.current.SetSelectedGameObject(leaveSceneBackButton.gameObject);
+            leaveSceneBackButton.FromScriptStartHold();
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(goToDogSelectionButton);
+            leaveSceneBackButton.FromScriptCancelHold();
         }
     }
 }

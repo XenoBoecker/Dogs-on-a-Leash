@@ -267,6 +267,7 @@ public class LocalPlayer : MonoBehaviour
     {
         if (!lobbyManager.IsInDogSelection)
         {
+            lobbyDogSelector.SetLeaveSceneButtonSelected(true);
             return;
         }
 
@@ -298,6 +299,7 @@ public class LocalPlayer : MonoBehaviour
     {
         if (!lobbyManager.IsInDogSelection)
         {
+            lobbyDogSelector.SetLeaveSceneButtonSelected(false);
             return;
         }
 

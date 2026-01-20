@@ -539,6 +539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 0}
+  leaveSceneBackButton: {fileID: 0}
   goToDogSelectionButton: {fileID: 0}
   PlayerName: 
   currentSelectedDogIndex: 0
@@ -923,6 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 0}
+  leaveSceneBackButton: {fileID: 0}
   goToDogSelectionButton: {fileID: 0}
   PlayerName: 
   currentSelectedDogIndex: 0
@@ -1235,6 +1237,11 @@ PrefabInstance:
       propertyPath: startButton
       value: 
       objectReference: {fileID: 1974446269}
+    - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
+      propertyPath: leaveSceneBackButton
+      value: 
+      objectReference: {fileID: 1842793428}
     - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
       propertyPath: goToDogSelectionButton
@@ -2172,6 +2179,11 @@ PrefabInstance:
       objectReference: {fileID: 1974446269}
     - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
+      propertyPath: leaveSceneBackButton
+      value: 
+      objectReference: {fileID: 1842793428}
+    - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
       propertyPath: goToDogSelectionButton
       value: 
       objectReference: {fileID: 1974446269}
@@ -2332,6 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 0}
+  leaveSceneBackButton: {fileID: 0}
   goToDogSelectionButton: {fileID: 0}
   PlayerName: 
   currentSelectedDogIndex: 0
@@ -3839,6 +3852,11 @@ PrefabInstance:
       objectReference: {fileID: 1974446269}
     - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
+      propertyPath: leaveSceneBackButton
+      value: 
+      objectReference: {fileID: 1842793428}
+    - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
       propertyPath: goToDogSelectionButton
       value: 
       objectReference: {fileID: 1974446269}
@@ -4704,6 +4722,11 @@ PrefabInstance:
       objectReference: {fileID: 1974446269}
     - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
         type: 3}
+      propertyPath: leaveSceneBackButton
+      value: 
+      objectReference: {fileID: 1842793428}
+    - target: {fileID: 5348547364277628424, guid: fc2f6b8d09e093e47b97a2539fa261f8,
+        type: 3}
       propertyPath: goToDogSelectionButton
       value: 
       objectReference: {fileID: 1974446269}
@@ -5002,6 +5025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 0}
+  leaveSceneBackButton: {fileID: 0}
   goToDogSelectionButton: {fileID: 0}
   PlayerName: 
   currentSelectedDogIndex: 0
@@ -7117,6 +7141,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6febe3d1fa7db1a48b77c6c6d0247589,
+        type: 3}
+    - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6febe3d1fa7db1a48b77c6c6d0247589,
+        type: 3}
+    - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -7848,6 +7884,18 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 1974446271}
+    - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6febe3d1fa7db1a48b77c6c6d0247589,
+        type: 3}
+    - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
+        type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6febe3d1fa7db1a48b77c6c6d0247589,
+        type: 3}
     - target: {fileID: 5460603814129703683, guid: 99b7faf601e8f074c966b6d0c4c3a40f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
