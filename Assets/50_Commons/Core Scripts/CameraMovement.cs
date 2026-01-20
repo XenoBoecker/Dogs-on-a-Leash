@@ -1,10 +1,5 @@
-﻿using JetBrains.Annotations;
-using Photon.Pun.Demo.PunBasics;
-using Photon.Pun.Demo.SlotRacer;
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour

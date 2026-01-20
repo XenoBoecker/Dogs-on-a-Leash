@@ -60,7 +60,7 @@ public class InteractableDetector : MonoBehaviour
 
     private void Update()
     {
-        if(Vector3.Distance(transform.position, currentInteractingInteractable.transform.position) > 5)
+        if(currentInteractingInteractable != null && Vector3.Distance(transform.position, currentInteractingInteractable.transform.position) > 5)
         {
             CancelTask();
             EndCurrentInteraction();

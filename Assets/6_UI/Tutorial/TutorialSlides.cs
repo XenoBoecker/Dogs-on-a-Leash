@@ -1,12 +1,16 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TutorialSlides : MonoBehaviour
 {
     [SerializeField] private GameObject[] allSlides;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject selectWhenTutorialCompleted;
+
+    [SerializeField] private Sprite normalNextButtonSprite;
+    [SerializeField] private Sprite finalSlideNextButtonSprite;
 
     private int currentSlideIndex = 0;
 
@@ -27,7 +31,7 @@ public class TutorialSlides : MonoBehaviour
             HideAllSlides();
             currentSlideIndex = 0;
 
-            if(selectWhenTutorialCompleted != null) EventSystem.current.SetSelectedGameObject(selectWhenTutorialCompleted);
+            EventSystem.current.SetSelectedGameObject(selectWhenTutorialCompleted);
 
             OnTutorialCompleted?.Invoke();
             return;
@@ -44,6 +48,15 @@ public class TutorialSlides : MonoBehaviour
         for (int i = 0; i < allSlides.Length; i++)
         {
             allSlides[i].SetActive(i == index);
+        }
+
+        if(index == allSlides.Length - 1)
+        {
+            nextButton.GetComponent<Image>().sprite = finalSlideNextButtonSprite;
+        }
+        else
+        {
+            nextButton.GetComponent<Image>().sprite = normalNextButtonSprite;
         }
 
         EventSystem.current.SetSelectedGameObject(nextButton);
