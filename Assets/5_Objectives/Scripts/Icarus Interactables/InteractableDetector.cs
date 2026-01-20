@@ -60,6 +60,13 @@ public class InteractableDetector : MonoBehaviour
 
     private void Update()
     {
+        if(Vector3.Distance(transform.position, currentInteractingInteractable.transform.position) > 5)
+        {
+            CancelTask();
+            EndCurrentInteraction();
+            currentInteractingInteractable = null;
+        }
+
         ShowClosestInteractable();
 
         if(currentInteractingInteractable != null)
@@ -97,7 +104,12 @@ public class InteractableDetector : MonoBehaviour
 
     void CancelTask() // usually task is canceled from within task, this is for external canceling: e.g. being dragged away too far
     {
-        if (currentInteractingInteractable != null) currentInteractingInteractable.CancelTask(this);
+        if (currentInteractingInteractable != null)
+        {
+            currentInteractingInteractable.CancelTask(this);
+            EndCurrentInteraction();
+            currentInteractingInteractable = null;
+        }
     }
 
     private void ShowClosestInteractable()

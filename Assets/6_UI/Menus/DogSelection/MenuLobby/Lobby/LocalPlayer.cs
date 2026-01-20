@@ -303,8 +303,7 @@ public class LocalPlayer : MonoBehaviour
             return;
         }
 
-        isBackButtonSelected = false;
-        lobbyDogSelector?.SetBackButtonSelected(isBackButtonSelected);
+        lobbyDogSelector?.SetBackButtonSelected(false);
     }
 
     private void ExitDogSelection()

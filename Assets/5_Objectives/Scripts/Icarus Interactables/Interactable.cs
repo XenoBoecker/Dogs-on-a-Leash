@@ -82,7 +82,6 @@ public class Interactable : MonoBehaviour
         if (currentInteractors.Count == 0)
         {
             SetIsInteracting(false);
-
         }
 
         OnInteractEnd?.Invoke();
