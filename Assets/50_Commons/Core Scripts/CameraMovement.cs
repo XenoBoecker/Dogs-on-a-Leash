@@ -134,15 +134,7 @@ public class CameraMovement : MonoBehaviour
             yield return null;
         }
 
-        Time.timeScale = 1;
-        PauseMenu.Instance.PauseGame();
-
-        while (Time.timeScale < 1)
-        {
-            yield return null;
-        }
         Time.timeScale = 0;
-
     }
 
     private IEnumerator GameStartCountdown()
