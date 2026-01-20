@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class TutorialSlides : MonoBehaviour
     [SerializeField] private GameObject[] allSlides;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject selectWhenTutorialCompleted;
+
+    [SerializeField] private TMP_Text slideNumberText;
 
     [SerializeField] private Sprite normalNextButtonSprite;
     [SerializeField] private Sprite finalSlideNextButtonSprite;
@@ -60,6 +63,8 @@ public class TutorialSlides : MonoBehaviour
         }
 
         EventSystem.current.SetSelectedGameObject(nextButton);
+
+        slideNumberText.text = (index+1) + "/" + allSlides.Length;
     }
 
     private void HideAllSlides()

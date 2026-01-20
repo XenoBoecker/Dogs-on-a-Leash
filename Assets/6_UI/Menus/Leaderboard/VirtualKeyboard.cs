@@ -9,6 +9,8 @@ public class VirtualKeyboard : MonoBehaviour
 
     [SerializeField] private GameObject nameInputStartSelected;
 
+    [SerializeField] private RectTransform shiftButtonImage;
+
     private bool isCapsLockOn = false;
 
 
@@ -73,5 +75,7 @@ public class VirtualKeyboard : MonoBehaviour
         isCapsLockOn = !isCapsLockOn;
 
         OnCapsLockToggled?.Invoke(isCapsLockOn);
+
+        shiftButtonImage.localScale = new Vector3(1, isCapsLockOn ? -1 : 1, 1);
     }
 }
