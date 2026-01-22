@@ -1,14 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
     [SerializeField] string menuSceneName;
+
+    [SerializeField] private GameObject continueButton;
 
     public static PauseMenu Instance;
 
@@ -35,6 +33,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
 
         isPaused = true;
+
+        EventSystem.current.SetSelectedGameObject(continueButton);
     }
 
     public void ResumeGame()

@@ -44,5 +44,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetShowTutorial(bool show)
     {
         PlayerPrefs.SetInt("ShowTutorial", show ? 1 : 0);
+
+        Debug.Log("Set ShowTutorial to " + PlayerPrefs.GetInt("ShowTutorial"));
     }
 }
