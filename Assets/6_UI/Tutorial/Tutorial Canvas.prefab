@@ -168,11 +168,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7084584356944507825}
+  - {fileID: 6277271736010406259}
   - {fileID: 2040427710813026597}
   - {fileID: 4838961948267005950}
-  - {fileID: 6277271736010406259}
-  - {fileID: 1900292168281674971}
   - {fileID: 7871912143489549313}
+  - {fileID: 1900292168281674971}
   - {fileID: 7756504718789534963}
   - {fileID: 5267817673846569699}
   m_Father: {fileID: 0}
@@ -258,11 +258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allSlides:
+  - {fileID: 7327817101804622595}
   - {fileID: 3386132459177939797}
   - {fileID: 8181784845277556110}
-  - {fileID: 7327817101804622595}
-  - {fileID: 2950924412675030699}
   - {fileID: 6886669953582263921}
+  - {fileID: 2950924412675030699}
   nextButton: {fileID: 2269752279266170524}
   selectWhenTutorialCompleted: {fileID: 0}
   slideNumberText: {fileID: 5817852298216005633}
@@ -493,7 +493,7 @@ PrefabInstance:
     - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_text
-      value: Gain Points through bones and digging.
+      value: Gain Points by collecting bones.
       objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
@@ -649,7 +649,7 @@ PrefabInstance:
     - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_text
-      value: Lose points when bumping into objects.
+      value: Lose points when human bumps into objects.
       objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
@@ -1148,7 +1148,7 @@ PrefabInstance:
     - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_text
-      value: Press the upper button to dig at marked spots
+      value: Press the upper button to dig at marked spots for extra points.
       objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
