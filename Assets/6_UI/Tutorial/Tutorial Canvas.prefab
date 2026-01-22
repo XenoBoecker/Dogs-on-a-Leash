@@ -168,14 +168,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7084584356944507825}
-  - {fileID: 6277271736010406259}
-  - {fileID: 4838961948267005950}
   - {fileID: 2040427710813026597}
-  - {fileID: 7871912143489549313}
+  - {fileID: 4838961948267005950}
+  - {fileID: 6277271736010406259}
   - {fileID: 1900292168281674971}
+  - {fileID: 7871912143489549313}
   - {fileID: 7756504718789534963}
   - {fileID: 5267817673846569699}
-  - {fileID: 8273964568331506541}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -259,11 +258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allSlides:
-  - {fileID: 7327817101804622595}
-  - {fileID: 8181784845277556110}
   - {fileID: 3386132459177939797}
-  - {fileID: 6886669953582263921}
+  - {fileID: 8181784845277556110}
+  - {fileID: 7327817101804622595}
   - {fileID: 2950924412675030699}
+  - {fileID: 6886669953582263921}
   nextButton: {fileID: 2269752279266170524}
   selectWhenTutorialCompleted: {fileID: 0}
   slideNumberText: {fileID: 5817852298216005633}
@@ -403,81 +402,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &3713815411843374773
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8273964568331506541}
-  - component: {fileID: 6954611092318402915}
-  - component: {fileID: 1598571714112677650}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &8273964568331506541
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3713815411843374773}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1318108670830562864}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6954611092318402915
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3713815411843374773}
-  m_CullTransparentMesh: 1
---- !u!114 &1598571714112677650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3713815411843374773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5cda5ba88633bf94aa99de2b34a9e3ff, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6192748360909298446
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +490,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1010263196817468529}
+    - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_text
+      value: Gain Points through bones and digging.
+      objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -671,6 +600,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialSlide Bones
       objectReference: {fileID: 0}
+    - target: {fileID: 6996675189460387092, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -712,6 +646,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 32900000, guid: 58cbe08153d354b45ba7b379f85ed0ad,
         type: 3}
+    - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_text
+      value: Lose points when bumping into objects.
+      objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -817,6 +756,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialSlide Bump
       objectReference: {fileID: 0}
+    - target: {fileID: 6996675189460387092, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -858,6 +802,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 32900000, guid: af8b2daacfc7b9f458c77b1d2c676724,
         type: 3}
+    - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_text
+      value: Press the lower button to tug on the leash.
+      objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -963,6 +912,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialSlide Pull
       objectReference: {fileID: 0}
+    - target: {fileID: 6996675189460387092, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1035,6 +989,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b3a8c6b6034addf4d8648f1d99d0c319,
         type: 3}
+    - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_text
+      value: Reach the bus before your time runs out.
+      objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1140,6 +1099,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialSlide Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 6996675189460387092, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1181,6 +1145,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 32900000, guid: 5ad5bdb92250b92438caf8d4bbe596e5,
         type: 3}
+    - target: {fileID: 5673747016211572793, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_text
+      value: Press the upper button to dig at marked spots
+      objectReference: {fileID: 0}
     - target: {fileID: 6031961149920276324, guid: 58b293d13996f244e80d8a8b62c8eab9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1285,6 +1254,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TutorialSlide Dig
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996675189460387092, guid: 58b293d13996f244e80d8a8b62c8eab9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
