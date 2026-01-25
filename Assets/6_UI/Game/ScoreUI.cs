@@ -61,12 +61,12 @@ public class ScoreUI : MonoBehaviour
         float timeLeft = ScoreManager.Instance.TimeLeft;
         int minutes = (int)(timeLeft / 60);
         int seconds = (int)(timeLeft % 60);
-        timeText.text = "Time: " + minutes.ToString() + ":" + seconds.ToString("00");
+        timeText.text = "Tijd: " + minutes.ToString() + ":" + seconds.ToString("00");
     }
 
     private void OnScoreChanged(int score, bool positive)
     {
-        scoreText.text = score + ".pts";
+        scoreText.text = score + ".pt";
 
         // Restart the pop effect from the current size
         if (popScoreCoroutine != null)
