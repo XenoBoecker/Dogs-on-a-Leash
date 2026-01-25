@@ -69,7 +69,7 @@ public class GameOver : MonoBehaviour
         timeLeftScoreText.text = "0";
         finalScoreText.text = "0";
 
-        timeLeftText.text = "Time Pts. (" + timeLeft.ToString() + "s. left)";
+        timeLeftText.text = "Tijdspunten (" + timeLeft.ToString() + "s. over)";
         plus.transform.localScale = Vector3.zero;
         equals.transform.localScale = Vector3.zero;
 

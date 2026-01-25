@@ -987,7 +987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -313.3, y: 93.850006}
+  m_AnchoredPosition: {x: -313.3, y: 93.849976}
   m_SizeDelta: {x: 194.85901, y: 124.151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &681873454
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f903def30e9cc5c439b8670055f11573, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76d8b6819520f60449b0e9c759631723, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1322,7 +1322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -118.76813, y: 93.850006}
+  m_AnchoredPosition: {x: -118.76819, y: 93.849976}
   m_SizeDelta: {x: 191.64899, y: 116.12399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &898915173
@@ -1907,7 +1907,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time Pts. ( 44 s. left)
+  m_text: Tijdspunten ( 44 s. over)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: baeb4fbf7b97735488353f389ca71906, type: 2}
   m_sharedMaterial: {fileID: -6133552241563705524, guid: baeb4fbf7b97735488353f389ca71906,
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.39386347, w: 0}
+  m_margin: {x: -36.12085, y: 0, z: -15.659817, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3954,6 +3954,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303406812683819437, guid: f2b01ea03a6a10443bf08d9c1e40193c,
+        type: 3}
+      propertyPath: m_text
+      value: Jullie Teamnaam...
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303406812683819437, guid: f2b01ea03a6a10443bf08d9c1e40193c,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1362113366573230137, guid: f2b01ea03a6a10443bf08d9c1e40193c,
         type: 3}
