@@ -22,7 +22,7 @@ public class PlayerDogController : DogController
         }
         else // just for testing
         {
-            Debug.LogError("PLAYER INPUT NOT FOUND!");
+            Debug.Log("PLAYER INPUT NOT FOUND!", this);
             // playerInput = GetComponent<PlayerInput>();
             // playerInput.onActionTriggered += OnActionTriggered;
         }

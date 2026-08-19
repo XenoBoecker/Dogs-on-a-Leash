@@ -111,6 +111,7 @@ public class HoldButton : MonoBehaviour,
     {
         pointerDown = false;
         holdTimer = 0f;
+        scriptCalledHold = false;
     }
 
     public void FromScriptStartHold()
