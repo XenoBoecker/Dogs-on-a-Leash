@@ -636,6 +636,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""VirtKeyboardCapsToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3cf2d91-7416-4a50-a973-39a8c1beb2bb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""VirtKeyboardBackspace"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fd556b7-bf90-4d07-b9f5-87d7ccd74f82"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1054,6 +1072,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""TrackedDeviceOrientation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1bb1f74-1154-475f-a637-81de78e94c08"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""VirtKeyboardCapsToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bbcf927-7f53-4b96-9b1b-0cf3452fdc34"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""VirtKeyboardBackspace"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1616,6 +1656,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_VirtKeyboardCapsToggle = m_UI.FindAction("VirtKeyboardCapsToggle", throwIfNotFound: true);
+        m_UI_VirtKeyboardBackspace = m_UI.FindAction("VirtKeyboardBackspace", throwIfNotFound: true);
         // Lobby
         m_Lobby = asset.FindActionMap("Lobby", throwIfNotFound: true);
         m_Lobby_ChangeSelectedDog = m_Lobby.FindAction("ChangeSelectedDog", throwIfNotFound: true);
@@ -1796,6 +1838,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_VirtKeyboardCapsToggle;
+    private readonly InputAction m_UI_VirtKeyboardBackspace;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1810,6 +1854,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @VirtKeyboardCapsToggle => m_Wrapper.m_UI_VirtKeyboardCapsToggle;
+        public InputAction @VirtKeyboardBackspace => m_Wrapper.m_UI_VirtKeyboardBackspace;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1849,6 +1895,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @VirtKeyboardCapsToggle.started += instance.OnVirtKeyboardCapsToggle;
+            @VirtKeyboardCapsToggle.performed += instance.OnVirtKeyboardCapsToggle;
+            @VirtKeyboardCapsToggle.canceled += instance.OnVirtKeyboardCapsToggle;
+            @VirtKeyboardBackspace.started += instance.OnVirtKeyboardBackspace;
+            @VirtKeyboardBackspace.performed += instance.OnVirtKeyboardBackspace;
+            @VirtKeyboardBackspace.canceled += instance.OnVirtKeyboardBackspace;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1883,6 +1935,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @VirtKeyboardCapsToggle.started -= instance.OnVirtKeyboardCapsToggle;
+            @VirtKeyboardCapsToggle.performed -= instance.OnVirtKeyboardCapsToggle;
+            @VirtKeyboardCapsToggle.canceled -= instance.OnVirtKeyboardCapsToggle;
+            @VirtKeyboardBackspace.started -= instance.OnVirtKeyboardBackspace;
+            @VirtKeyboardBackspace.performed -= instance.OnVirtKeyboardBackspace;
+            @VirtKeyboardBackspace.canceled -= instance.OnVirtKeyboardBackspace;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -2046,6 +2104,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnVirtKeyboardCapsToggle(InputAction.CallbackContext context);
+        void OnVirtKeyboardBackspace(InputAction.CallbackContext context);
     }
     public interface ILobbyActions
     {
