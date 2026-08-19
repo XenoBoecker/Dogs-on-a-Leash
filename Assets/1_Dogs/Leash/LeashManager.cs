@@ -42,6 +42,8 @@ public class LeashManager : MonoBehaviour
 
     PlayerInput playerInput;
 
+    private int playerCount;
+
     void Start()
     {
         Invoke("Setup", 0.2f);
@@ -66,6 +68,8 @@ public class LeashManager : MonoBehaviour
 
         dogLeashAttachmentPoint = GetComponent<PlayerDogVisuals>().LeashAttachmentPoint;
         humanLeashAttachmentPoint = leashTarget.GetComponent<HumanMovement>().LeashAttachmentPoint;
+
+        playerCount = FindObjectsByType<PlayerDogController>(FindObjectsSortMode.None).Length;
     }
 
     void OnDisable()
@@ -596,11 +600,11 @@ public class LeashManager : MonoBehaviour
         {
             if (leashSegments.Count > 0)
             {
-                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+                humanRigidbody.AddForce((leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * GetPlayerCountScaledHumanPullForce(), ForceMode.Impulse);
             }
             else
             {
-                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * humanPullForce, ForceMode.Impulse);
+                humanRigidbody.AddForce((gameObject.transform.position - leashTarget.position).normalized * GetPlayerCountScaledHumanPullForce(), ForceMode.Impulse);
             }
         }
     }
@@ -608,10 +612,15 @@ public class LeashManager : MonoBehaviour
     {
         if (currentLength >= (maxLeashLength - 0.5f))
         {
-            if (leashSegments.Count > 0) return (leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * humanPullForce;
-            else return (gameObject.transform.position - leashTarget.position).normalized * humanPullForce;
+            if (leashSegments.Count > 0) return (leashSegments[leashSegments.Count - 1].transform.position - leashTarget.position).normalized * GetPlayerCountScaledHumanPullForce();
+            else return (gameObject.transform.position - leashTarget.position).normalized * GetPlayerCountScaledHumanPullForce();
         }
         else return Vector3.zero;
+    }
+
+    private float GetPlayerCountScaledHumanPullForce()
+    {
+        return humanPullForce * 4 / playerCount;
     }
 
     public float GetMaxLeashLength()

@@ -96,7 +96,7 @@ public class PlayerDogController : DogController
     {
         if(playerInput == null)
         {
-            Debug.LogError("PlayerInput is null");
+            Debug.Log("PlayerInput is null");
             return null;
         }
 
