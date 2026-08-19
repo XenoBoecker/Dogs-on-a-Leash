@@ -37,6 +37,9 @@ public class GameOver : MonoBehaviour
 
     int finalScore;
 
+    private bool isCalculatingScores;
+    private bool skipCalculation;
+
     public event Action OnShowLeaderboard;
 
     // Start is called before the first frame update
@@ -65,6 +68,8 @@ public class GameOver : MonoBehaviour
 
     private IEnumerator ShowScorCalculation()
     {
+        isCalculatingScores = true;
+
         objectiveScoreText.text = "0";
         timeLeftScoreText.text = "0";
         finalScoreText.text = "0";
@@ -73,7 +78,14 @@ public class GameOver : MonoBehaviour
         plus.transform.localScale = Vector3.zero;
         equals.transform.localScale = Vector3.zero;
 
-        yield return new WaitForSeconds(waitBeforeStartingCalculation);
+        for (float i = 0; i < waitBeforeStartingCalculation; i+= Time.deltaTime)
+        {
+            if (skipCalculation)
+            {
+                break;
+            }
+            yield return null;
+        }
 
         if (objectiveScore > 0)
         {
@@ -81,6 +93,10 @@ public class GameOver : MonoBehaviour
 
             for (float i = 0; i < calcDuration; i += Time.deltaTime)
             {
+                if (skipCalculation)
+                {
+                    break;
+                }
                 int score = (int)(objectiveScore * i / calcDuration);
 
                 if (score > objectiveScore) score = objectiveScore;
@@ -94,7 +110,23 @@ public class GameOver : MonoBehaviour
 
         objectiveScoreText.text = objectiveScore.ToString();
 
-        yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
+        skipCalculation = false;
+
+
+
+
+
+
+
+
+        for (float i = 0; i < waitTimeBetweenCalculations / 2; i += Time.deltaTime)
+        {
+            if (skipCalculation)
+            {
+                break;
+            }
+            yield return null;
+        }
 
         // spawn plus poping
 
@@ -102,17 +134,34 @@ public class GameOver : MonoBehaviour
 
         for (float i = 0; i < popDuration; i += Time.deltaTime)
         {
+            if (skipCalculation)
+            {
+                break;
+            }
             plus.transform.localScale = Vector3.one * popCurve.Evaluate(i / popDuration) * popScale;
 
             yield return null;
         }
 
-        yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
+        plus.transform.localScale = Vector3.one * popCurve.Evaluate(1) * popScale;
+
+        for (float i = 0; i < waitTimeBetweenCalculations / 2; i += Time.deltaTime)
+        {
+            if (skipCalculation)
+            {
+                break;
+            }
+            yield return null;
+        }
 
         audioSource.Play();
 
         for (float i = 0; i < calcDuration; i += Time.deltaTime)
         {
+            if (skipCalculation)
+            {
+                break;
+            }
             int score = (int)(timeLeft * scorePerSecondLeft * i / calcDuration);
             timeLeftScoreText.text = score.ToString();
 
@@ -123,25 +172,58 @@ public class GameOver : MonoBehaviour
 
         timeLeftScoreText.text = (timeLeft * scorePerSecondLeft).ToString();
 
-        yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
+        skipCalculation = false;
+
+
+
+
+
+
+
+
+        for (float i = 0; i < waitTimeBetweenCalculations / 2; i += Time.deltaTime)
+        {
+            if (skipCalculation)
+            {
+                break;
+            }
+            yield return null;
+        }
 
         SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.popUp);
 
         // spawn = popping
         for (float i = 0; i < popDuration; i += Time.deltaTime)
         {
+            if (skipCalculation)
+            {
+                break;
+            }
             equals.transform.localScale = Vector3.one * popCurve.Evaluate(i / popDuration) * popScale;
 
             yield return null;
         }
 
-        yield return new WaitForSeconds(waitTimeBetweenCalculations / 2);
+        equals.transform.localScale = Vector3.one * popCurve.Evaluate(1) * popScale;
+
+        for (float i = 0; i < waitTimeBetweenCalculations / 2; i += Time.deltaTime)
+        {
+            if (skipCalculation)
+            {
+                break;
+            }
+            yield return null;
+        }
 
         audioSource.Play();
 
         //calculate final score
         for (float i = 0; i < calcDuration; i += Time.deltaTime)
         {
+            if (skipCalculation)
+            {
+                break;
+            }
             int score = (int)(finalScore * i / calcDuration);
 
             finalScoreText.text = score.ToString();
@@ -152,6 +234,9 @@ public class GameOver : MonoBehaviour
         audioSource.Stop();
 
         finalScoreText.text = finalScore.ToString();
+
+        skipCalculation = false;
+        isCalculatingScores = false;
 
         // UpdateUI();
     }
@@ -172,9 +257,16 @@ public class GameOver : MonoBehaviour
 
     public void ShowLeaderboard()
     {
-        scorePanel.SetActive(false);
+        if (isCalculatingScores)
+        {
+            skipCalculation = true;
+        }
+        else
+        {
+            scorePanel.SetActive(false);
 
-        OnShowLeaderboard?.Invoke();
+            OnShowLeaderboard?.Invoke();
+        }
     }
     private void SoundReload()
     {
