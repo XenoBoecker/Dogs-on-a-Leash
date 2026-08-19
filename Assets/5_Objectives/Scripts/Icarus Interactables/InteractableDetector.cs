@@ -205,9 +205,13 @@ public class InteractableDetector : MonoBehaviour
 
     public void EndCurrentInteraction()
     {
-        if (currentInteractingInteractable.currentInteractors.Contains(this)) return;
+        if (currentInteractingInteractable != null && currentInteractingInteractable.currentInteractors != null && currentInteractingInteractable.currentInteractors.Contains(this))
+        {
+            CancelTask();
+            return;
+        }
 
-        currentInteractingInteractable.OnInteractEnd -= EndCurrentInteraction;
+        if(currentInteractingInteractable != null) currentInteractingInteractable.OnInteractEnd -= EndCurrentInteraction;
         currentInteractingInteractable = null;
 
         playerDogController.StartMovement();
