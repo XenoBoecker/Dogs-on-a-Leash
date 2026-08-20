@@ -73,7 +73,6 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnButtonClick()
     {
-        Debug.Log("OnButtonClick");
         SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.buttonClickSound);
     }
     private System.Collections.IEnumerator SetSelectedAfterFrame()

@@ -175,8 +175,6 @@ namespace photonMenuLobby
 
         void OnSeedInputChanged(string input)
         {
-            Debug.Log("Set Seed to " + input);
-
             // Attempt to parse the string input to an integer
             if (int.TryParse(input, out int parsedSeed))
             {
