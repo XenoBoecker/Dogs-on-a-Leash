@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -23,22 +23,77 @@ public static class Achievements
     public static readonly string SameScoreTwice = "a_sameScoreTwice";
     public static readonly string Highscore10k = "a_highscore10k";
 
-
-    public static IEnumerable<string> GetAll()
+    public static readonly Achievement[] AllAchievements = new Achievement[]
     {
-        return typeof(Achievements)
-            .GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
-            .Where(f => f.FieldType == typeof(string))
-            .Select(f => f.GetValue(null) as string);
+        new Achievement(TimeLeftLessThan5, "Close One", "arrive at the bus with less than 5 seconds time left"),
+        new Achievement(NoBumps, "Guide Dog", "complete a run without letting the human bump into anything"),
+        new Achievement(NoPickups, "Clean Paws", "complete a run without picking up any bones or digging any holes"),
+        new Achievement(Bark50, "Bark", "bark 50 times in one round"),
+        new Achievement(Total5kPoints1kMax, "Lots of Action", "collect 5.000 points in total without ever having more than 1.000 points"),
+        new Achievement(AllTime100Dig, "Digging Master", "dig 100 times in total"),
+        new Achievement(AllTime50Bumps, "Ouch!", "let the human bump into things 50 times in total"),
+        new Achievement(AllTime1000Bark, "Bark Bark", "bark 1000 times in total"),
+        new Achievement(AllTime50BarkAtDuck, "DUCK!", "bark at ducks 50 times in total"),
+        new Achievement(AllTime30GamesWon, "Winner!", "win 30 rounds in total"),
+        new Achievement(AllSameDog, "Clone Dogs", "play a round where all 4 players play as the same dog"),
+        new Achievement(AllDifferentDogs, "Diversity is key", "play a round as 4 different dogs"),
+        new Achievement(SameScoreTwice, "Deja Vu", "get the exact same amount of points 2 games in a row (reset on lose)"),
+        new Achievement(Highscore10k, "Highscore!", "get a highscore of 10.000 points in one round")
+    };
+
+    public struct Achievement
+    {
+        public string ID;
+        public string Name;
+        public string Description;
+        public bool IsUnlocked;
+        public Achievement(string id, string name, string description)
+        {
+            ID = id;
+            Name = name;
+            Description = description;
+            IsUnlocked = PlayerPrefs.GetInt(id) == 1;
+        }
+    }
+
+    internal static bool AchievementExists(string achievementID)
+    {
+        for (int i = 0; i < AllAchievements.Length; i++)
+        {
+            if (AllAchievements[i].ID == achievementID) return true;
+        }
+        return false;
+    }
+
+    internal static void Unlock(string achievementID)
+    {
+        if (!AchievementExists(achievementID))
+        {
+            Debug.LogWarning($"Achievement ID {achievementID} not found in sortedAchievementIDs list.");
+        }
+        if (PlayerPrefs.GetInt(achievementID) == 1)
+        {
+            return;
+        }
+
+        Debug.Log("Unlock achievement " + achievementID);
+
+        PlayerPrefs.SetInt(achievementID, 1);
+
+        for (int i = 0; i < AllAchievements.Length; i++)
+        {
+            if (AllAchievements[i].ID == achievementID)
+            {
+                AllAchievements[i].IsUnlocked = true;
+            }
+        }
     }
 }
 
 public class AchievementManager : MonoBehaviour
 {
     [SerializeField] private int startUnlockedHatCount;
-
-    private List<string> sortedAchievementIDs;
-    public int AchievementCount => sortedAchievementIDs.Count;
+    public int AchievementCount => Achievements.AllAchievements.Length;
 
     public static AchievementManager Instance;
 
@@ -52,8 +107,6 @@ public class AchievementManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        sortedAchievementIDs = Achievements.GetAll().ToList();
     }
 
     private void Update()
@@ -71,17 +124,17 @@ public class AchievementManager : MonoBehaviour
 
     private void LockAllAchievements() // Hacks
     {
-        for (int i = 0; i < sortedAchievementIDs.Count; i++)
+        for (int i = 0; i < Achievements.AllAchievements.Length; i++)
         {
-            PlayerPrefs.SetInt(sortedAchievementIDs[i], 0);
+            PlayerPrefs.SetInt(Achievements.AllAchievements[i].ID, 0);
         }
     }
 
     private void UnlockAllAchievements()
     {
-        for (int i = 0; i < sortedAchievementIDs.Count; i++)
+        for (int i = 0; i < Achievements.AllAchievements.Length; i++)
         {
-            PlayerPrefs.SetInt(sortedAchievementIDs[i], 1);
+            PlayerPrefs.SetInt(Achievements.AllAchievements[i].ID, 1);
         }
     }
 
@@ -94,29 +147,15 @@ public class AchievementManager : MonoBehaviour
             unlockedHatIndices.Add(i);
         }
 
-        for (int i = 0; i < sortedAchievementIDs.Count; i++)
+        for (int i = 0; i < Achievements.AllAchievements.Length; i++)
         {
-            if (PlayerPrefs.GetInt(sortedAchievementIDs[i]) == 1)
+            if (PlayerPrefs.GetInt(Achievements.AllAchievements[i].ID) == 1)
             {
                 unlockedHatIndices.Add(i + startUnlockedHatCount);
             }
         }
 
         return unlockedHatIndices;
-    }
-    public void UnlockAchievement(string achievementID)
-    {
-        if (!sortedAchievementIDs.Contains(achievementID))
-        {
-            Debug.LogWarning($"Achievement ID {achievementID} not found in sortedAchievementIDs list.");
-        }
-        if (PlayerPrefs.GetInt(achievementID) == 1) return;
-
-        Debug.Log("Unlock achievement " + achievementID);
-
-        PlayerPrefs.SetInt(achievementID, 1);
-
-        // steam achievements
     }
 }
 

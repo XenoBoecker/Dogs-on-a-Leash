@@ -13,50 +13,50 @@ public class GameOverCheckAchievements : MonoBehaviour // in in game over scene
 
         if(PlayerPrefs.GetInt("TimeLeft") <= 5)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.TimeLeftLessThan5);
+            Achievements.Unlock(Achievements.TimeLeftLessThan5);
         }
 
         if(PlayerPrefs.GetInt("BumpedCount") == 0)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.NoBumps);
+            Achievements.Unlock(Achievements.NoBumps);
         }
 
         if (PlayerPrefs.GetInt("PickupCount") == 0)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.NoPickups);
+            Achievements.Unlock(Achievements.NoPickups);
         }
 
         if (PlayerPrefs.GetInt("BarkCount") >= 50)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.Bark50);
+            Achievements.Unlock(Achievements.Bark50);
         }
         if(PlayerPrefs.GetInt("TotalCollectedPoints") >= 5000 && PlayerPrefs.GetInt("ThisRoundsHighScore") <= 1000)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.Total5kPoints1kMax);
+            Achievements.Unlock(Achievements.Total5kPoints1kMax);
         }
         if(PlayerPrefs.GetInt("AllTime_DigCount") >= 100)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.AllTime100Dig);
+            Achievements.Unlock(Achievements.AllTime100Dig);
         }
 
         if (PlayerPrefs.GetInt("AllTime_BumpedCount") >= 50)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.AllTime50Bumps);
+                Achievements.Unlock(Achievements.AllTime50Bumps);
         }
 
         if (PlayerPrefs.GetInt("AllTime_BarkCount") >= 1000)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.AllTime1000Bark);
+            Achievements.Unlock(Achievements.AllTime1000Bark);
         }
 
         if (PlayerPrefs.GetInt("AllTime_BarkAtDuckCount") >= 50)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.AllTime50BarkAtDuck);
+            Achievements.Unlock(Achievements.AllTime50BarkAtDuck);
         }
 
         if (PlayerPrefs.GetInt("AllTime_GamesWon") >= 30)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.AllTime30GamesWon);
+            Achievements.Unlock(Achievements.AllTime30GamesWon);
         }
 
         CheckAllSameOrAllDifferentDogs();
@@ -73,13 +73,13 @@ public class GameOverCheckAchievements : MonoBehaviour // in in game over scene
 
         if(dogIDs[0] == dogIDs[1] && dogIDs[0] == dogIDs[2] && dogIDs[0] == dogIDs[3])
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.AllSameDog);
+            Achievements.Unlock(Achievements.AllSameDog);
         }
         else if (dogIDs[0] != dogIDs[1] && dogIDs[0] != dogIDs[2] && dogIDs[0] != dogIDs[3]
                 && dogIDs[1] != dogIDs[2] && dogIDs[1] != dogIDs[3]
                 && dogIDs[2] != dogIDs[3])
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.AllDifferentDogs);
+            Achievements.Unlock(Achievements.AllDifferentDogs);
         }
     }
 
@@ -87,14 +87,14 @@ public class GameOverCheckAchievements : MonoBehaviour // in in game over scene
     {
         if(PlayerPrefs.GetInt("LastGameFinalScore") == finalScore)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.SameScoreTwice);
+            Achievements.Unlock(Achievements.SameScoreTwice);
         }
 
         PlayerPrefs.SetInt("LastGameFinalScore", finalScore);
 
         if (finalScore > 10000)
         {
-            AchievementManager.Instance.UnlockAchievement(Achievements.Highscore10k);
+            Achievements.Unlock(Achievements.Highscore10k);
         }
     }
 }
