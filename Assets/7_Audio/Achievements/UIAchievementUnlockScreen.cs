@@ -16,7 +16,7 @@ public class UIAchievementUnlockScreen : MonoBehaviour
         {
             AchievementShow achievementShow = Instantiate(achievementShowPrefab, achievementShowParent);
 
-            achievementShow.SetLocked(!unlockedAchievements.Contains(i));
+            achievementShow.SetAchievement(Achievements.AllAchievements[i]);
         }
     }
 }
