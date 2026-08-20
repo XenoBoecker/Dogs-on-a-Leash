@@ -101,6 +101,7 @@ public class LeaderboardManager : MonoBehaviour
 
     public void ResetScores()
     {
+        if (!Input.GetKeyDown(KeyCode.LeftControl)) return;
         leaderboard.ResetLeaderboard();
     }
 
