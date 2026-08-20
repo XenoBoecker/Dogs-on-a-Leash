@@ -7463,6 +7463,7 @@ GameObject:
   - component: {fileID: 1876748377}
   - component: {fileID: 1876748376}
   - component: {fileID: 1876748378}
+  - component: {fileID: 1876748379}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -7541,6 +7542,19 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &1876748379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876748374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad02714e085e5d4da9b4edd1519eb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoSelectObject: {fileID: 0}
 --- !u!1 &1881322103
 GameObject:
   m_ObjectHideFlags: 0
