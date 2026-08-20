@@ -9,7 +9,7 @@ public class GameOverCheckAchievements : MonoBehaviour // in in game over scene
     void Start()
     {
         gameOverManager = FindAnyObjectByType<GameOver>();
-        gameOverManager.OnFinalScoreCalculated += OnFinalScoreCalculated;
+        if(gameOverManager != null) gameOverManager.OnFinalScoreCalculated += OnFinalScoreCalculated;
 
         if(PlayerPrefs.GetInt("TimeLeft") <= 5)
         {
