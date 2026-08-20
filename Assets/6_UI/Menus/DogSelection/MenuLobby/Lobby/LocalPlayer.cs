@@ -332,6 +332,15 @@ public class LocalPlayer : MonoBehaviour
 
     private void StopHoldingBackKey()
     {
+        if (lobbyManager == null)
+        {
+            lobbyManager = FindObjectOfType<photonMenuLobby.LobbyManager>();
+            if (lobbyManager == null)
+            {
+                Debug.Log("No Lobby Manager Found", this);
+                return;
+            }
+        }
         if (!lobbyManager.IsInDogSelection)
         {
             lobbyDogSelector.SetLeaveSceneButtonSelected(false);
@@ -343,6 +352,15 @@ public class LocalPlayer : MonoBehaviour
 
     private void ExitDogSelection()
     {
+        if (lobbyManager == null)
+        {
+            lobbyManager = FindObjectOfType<photonMenuLobby.LobbyManager>();
+            if (lobbyManager == null)
+            {
+                Debug.Log("No Lobby Manager Found", this);
+                return;
+            }
+        }
         lobbyManager.BackToPlayerRegistration();
     }
 }

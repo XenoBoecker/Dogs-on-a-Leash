@@ -39,6 +39,7 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void SetUnlocked(bool isUnlocked)
     {
+        Debug.Log("Setting unlocked state for achievement: " + achievement.Name + " to " + isUnlocked + ": " + showLocked.name, this);
         showLocked.SetActive(!isUnlocked);
         showUnlocked.SetActive(isUnlocked);
     }

@@ -60,6 +60,11 @@ public class AchievementManager : MonoBehaviour
     {
         List<int> unlockedHatIndices = new List<int>();
 
+        if(startUnlockedHatCount > hatSprites.Length)
+        {
+            startUnlockedHatCount = hatSprites.Length;
+        }
+
         for (int i = 0; i < startUnlockedHatCount; i++)
         {
             unlockedHatIndices.Add(i);
