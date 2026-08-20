@@ -69,6 +69,8 @@ public class ButtonHoverBobbing : ButtonHover
 
     public override void OnHoverExit()
     {
+        base.OnHoverExit();
+
         isBobbing = false;
     }
 }
