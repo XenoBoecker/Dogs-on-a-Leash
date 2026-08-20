@@ -1727,6 +1727,74 @@ MonoBehaviour:
   - {fileID: 567447602}
   - {fileID: 889846639}
   - {fileID: 418095093}
+--- !u!1001 &393236352
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800654265590300043, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5094627703031444762, guid: 42cb2be74843a7b48890b2cf4939a1b4,
+        type: 3}
+      propertyPath: m_Name
+      value: AchievementManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42cb2be74843a7b48890b2cf4939a1b4, type: 3}
 --- !u!1 &411890884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,7 +3031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.6099854, y: -16.9}
+  m_AnchoredPosition: {x: -5.6099854, y: -16.900002}
   m_SizeDelta: {x: -4.79, y: -24.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695480334
@@ -3621,7 +3689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 184, y: 71.2}
+  m_AnchoredPosition: {x: 184, y: 71.20001}
   m_SizeDelta: {x: 221.03, y: 63.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &946150935
@@ -7395,6 +7463,7 @@ GameObject:
   - component: {fileID: 1876748377}
   - component: {fileID: 1876748376}
   - component: {fileID: 1876748378}
+  - component: {fileID: 1876748379}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -7473,6 +7542,19 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &1876748379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876748374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad02714e085e5d4da9b4edd1519eb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoSelectObject: {fileID: 0}
 --- !u!1 &1881322103
 GameObject:
   m_ObjectHideFlags: 0
@@ -8736,3 +8818,4 @@ SceneRoots:
   - {fileID: 4051074885408400790}
   - {fileID: 154641895}
   - {fileID: 859532560}
+  - {fileID: 393236352}

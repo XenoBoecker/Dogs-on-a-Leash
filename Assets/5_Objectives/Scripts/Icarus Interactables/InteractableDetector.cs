@@ -11,8 +11,6 @@ public class InteractableDetector : MonoBehaviour
     PlayerDogController playerDogController;
     Rigidbody dogRB;
 
-    public static int PickupCount;
-
     private List<Interactable> _interactablesInRange = new List<Interactable>();
 
     Interactable currentClosestInteractable;
@@ -54,8 +52,6 @@ public class InteractableDetector : MonoBehaviour
             buddelVFXs[i].gameObject.SetActive(false);
             buddelVFXs[i].Stop();
         }
-
-        PickupCount = 0;
     }
 
     private void Update()

@@ -34,15 +34,19 @@ public class ScoreManager : MonoBehaviour
     float timeLeft;
     public float TimeLeft => timeLeft;
 
-    int totalScore;
+    int totalPickupScore;
+    public int TotalPickupScore => totalPickupScore;
 
     bool waitingForGameStart = true;
     bool closeToEnd;
     bool gameOver;
 
+
+    public event Action<int> OnAddScore;
     public event Action<int, bool> OnScoreChanged;
 
     public event Action OnCloseToEnd;
+    public event Action OnGameOver;
 
 
 
@@ -106,13 +110,15 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int score)
     {
+        OnAddScore?.Invoke(score);
+
         bool positive = score >= 0;
 
-        totalScore += score;
+        totalPickupScore += score;
 
-        if (totalScore < 0) totalScore = 0;
+        if (totalPickupScore < 0) totalPickupScore = 0;
 
-        OnScoreChanged?.Invoke(totalScore, positive);
+        OnScoreChanged?.Invoke(totalPickupScore, positive);
     }
 
     void EndGame()
@@ -120,13 +126,7 @@ public class ScoreManager : MonoBehaviour
         if (gameOver) return;
         gameOver = true;
 
-        PlayerPrefs.SetInt("Score", totalScore);
-        PlayerPrefs.SetInt("TimeLeft", (int)timeLeft);
-        PlayerPrefs.SetInt("Distance", (int)human.transform.position.x);
-        PlayerPrefs.SetInt("PickupCount", InteractableDetector.PickupCount);
-        PlayerPrefs.SetInt("BumpedCount", human.BumpedCount);
-        PlayerPrefs.SetInt("LevelLength", mapManager.TotalPathLength);
-
+        OnGameOver?.Invoke();
 
 
         if ((int)timeLeft == 0)
@@ -204,7 +204,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void HackSetTotalScore(int score)
     {
-        totalScore = score;
+        totalPickupScore = score;
     }
 
     public void HackEndGame()

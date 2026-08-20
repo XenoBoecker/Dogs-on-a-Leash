@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,8 @@ public class LobbyDogSelector : MonoBehaviour
 
     [SerializeField] int currentSelectedDogIndex;
     public int CurrentSelectedDogIndex => currentSelectedDogIndex;
+
+    List<int> unlockedAccessories = new List<int>();
     int currentSelectedAccessorieIndex;
     public int CurrentSelectedAccessorieIndex => currentSelectedAccessorieIndex;
 
@@ -27,6 +30,11 @@ public class LobbyDogSelector : MonoBehaviour
     private void Awake()
     {
         lobbyData = FindObjectOfType<LobbyData>();
+    }
+
+    private void Start()
+    {
+        unlockedAccessories = AchievementManager.Instance.GetUnlockedHatIndices();
     }
 
     public void SelectNextDog()
@@ -56,18 +64,30 @@ public class LobbyDogSelector : MonoBehaviour
 
     public void SelectNextAccessorie()
     {
-        currentSelectedAccessorieIndex++;
-        if (currentSelectedAccessorieIndex >= lobbyData.AvailableAccessoriesCount) currentSelectedAccessorieIndex = 0;
+        currentSelectedAccessorieIndex = GetNextUnlockedAccessorieIndex(currentSelectedAccessorieIndex);
 
         OnDataChanged?.Invoke();
     }
 
     public void SelectPreviousAccessorie()
     {
-        currentSelectedAccessorieIndex--;
-        if (currentSelectedAccessorieIndex < 0) currentSelectedAccessorieIndex = lobbyData.AvailableAccessoriesCount - 1;
+        currentSelectedAccessorieIndex = GetPreviousUnlockedAccessorieIndex(currentSelectedAccessorieIndex);
 
         OnDataChanged?.Invoke();
+    }
+
+    private int GetNextUnlockedAccessorieIndex(int currentIndex)
+    {
+        if(unlockedAccessories.Count == 0) return currentIndex;
+
+        return unlockedAccessories[unlockedAccessories.IndexOf(currentIndex) + 1 >= unlockedAccessories.Count ? 0 : unlockedAccessories.IndexOf(currentIndex) + 1];
+    }
+
+    public int GetPreviousUnlockedAccessorieIndex(int currentIndex)
+    {
+        if (unlockedAccessories.Count == 0) return currentIndex;
+
+        return unlockedAccessories[unlockedAccessories.IndexOf(currentIndex) - 1 < 0 ? unlockedAccessories.Count - 1 : unlockedAccessories.IndexOf(currentIndex) - 1];
     }
 
     public void SetSelectedAccessorieIndex(int i)

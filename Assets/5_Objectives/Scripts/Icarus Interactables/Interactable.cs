@@ -20,6 +20,7 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] protected float spawnVFXTimeDelay = 0.3f;
     public Action OnInteractEnd { get; set; }
+    public static Action<Interactable> OnTaskCompleted;
 
     public List<InteractableDetector> currentInteractors = new List<InteractableDetector>();
     bool isInteracting;
@@ -101,7 +102,7 @@ public class Interactable : MonoBehaviour
     {
         if (!isCompleted)
         {
-            InteractableDetector.PickupCount++;
+            OnTaskCompleted?.Invoke(this);
 
             StartCoroutine(SpawnVFXDelayed());
 

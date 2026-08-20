@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -12,6 +13,14 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     static bool isSelecting;
 
     float noInstantSoundTimer = 0.1f;
+
+    private bool isHovering = false;
+    public bool IsHovering => isHovering;
+
+
+    public event Action OnHoverEntered;
+
+    public event Action OnHoverExited;
 
     protected virtual void Start()
     {
@@ -41,11 +50,15 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         // if (setSelectedCoroutine != null) StopCoroutine(setSelectedCoroutine); // does not work for some reason
         StartCoroutine(SetSelectedAfterFrame());
         if (playSoundOnHover && noInstantSoundTimer < 0) SoundManager.Instance.PlaySoundWithRandomPitch(SoundManager.Instance.uiSFX.buttonHoverSound, null, audioPitchMin, audioPitchMax);
+
+        isHovering = true;
+        OnHoverEntered?.Invoke();
     }
 
     public virtual void OnHoverExit()
     {
-        
+        isHovering = false;
+        OnHoverExited?.Invoke();
     }
 
     public void OnSelect(BaseEventData eventData)
@@ -60,7 +73,6 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnButtonClick()
     {
-        Debug.Log("OnButtonClick");
         SoundManager.Instance.PlaySound(SoundManager.Instance.uiSFX.buttonClickSound);
     }
     private System.Collections.IEnumerator SetSelectedAfterFrame()

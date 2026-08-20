@@ -60,7 +60,6 @@ public class ChangeScenes : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        Debug.Log("Load Scene: " + sceneName);
 
         // Parse the animator index from the scene name (e.g., "SceneName_0" for index 0)
         string[] sceneParts = sceneName.Split('_');
@@ -86,10 +85,8 @@ public class ChangeScenes : MonoBehaviour
         isChangingScene = true;
         if (currentAnimator != null)
         {
-            Debug.Log("StartAnim " + currentAnimator.name);
             StartAnim();
         }
-        Debug.Log("Wait for animation: " + currentAnimator.runtimeAnimatorController.animationClips[0].length);
         yield return new WaitForSeconds(currentAnimator.runtimeAnimatorController.animationClips[0].length);
 
         isChangingScene = false;
@@ -97,13 +94,11 @@ public class ChangeScenes : MonoBehaviour
         // Load the scene using Photon or SceneManager
         if (PhotonNetwork.IsConnected)
         {
-            Debug.Log("Photon Load Scene");
             PhotonNetwork.LoadLevel(sceneName);
         }
         else
         {
 
-            Debug.Log("Now Load Scene");
             SceneManager.LoadScene(sceneName);
         }
     }
