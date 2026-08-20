@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
+    [SerializeField] private bool allHatsUnlocked;
     [SerializeField] private int startUnlockedHatCount;
     [SerializeField] private Sprite[] hatSprites;
     public Sprite[] HatSprites => hatSprites;
@@ -60,9 +61,9 @@ public class AchievementManager : MonoBehaviour
     {
         List<int> unlockedHatIndices = new List<int>();
 
-        if(startUnlockedHatCount > hatSprites.Length)
+        if(startUnlockedHatCount + Achievements.AllAchievements.Length > hatSprites.Length)
         {
-            startUnlockedHatCount = hatSprites.Length;
+            startUnlockedHatCount = hatSprites.Length - Achievements.AllAchievements.Length;
         }
 
         for (int i = 0; i < startUnlockedHatCount; i++)
@@ -72,7 +73,7 @@ public class AchievementManager : MonoBehaviour
 
         for (int i = 0; i < Achievements.AllAchievements.Length; i++)
         {
-            if (PlayerPrefs.GetInt(Achievements.AllAchievements[i].ID) == 1)
+            if (allHatsUnlocked || PlayerPrefs.GetInt(Achievements.AllAchievements[i].ID) == 1)
             {
                 unlockedHatIndices.Add(i + startUnlockedHatCount);
             }
