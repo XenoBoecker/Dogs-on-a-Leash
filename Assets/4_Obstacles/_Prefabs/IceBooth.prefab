@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1281009500580004404}
+  - component: {fileID: 2802375493855663075}
   m_Layer: 0
   m_Name: IceBooth
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 788438818414030498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2802375493855663075
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5095849007397694538}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6024284, y: 1.8892058, z: 2.7330122}
+  m_Center: {x: 0.73034096, y: 0.9005453, z: -0.00000023841858}
 --- !u!1001 &971547788436244809
 PrefabInstance:
   m_ObjectHideFlags: 0
