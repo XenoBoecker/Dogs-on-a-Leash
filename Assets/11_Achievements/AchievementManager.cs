@@ -25,13 +25,15 @@ public class AchievementManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.U)) // Hacks
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.L)) // Hacks
         {
+            Debug.Log("Hack used: Lock all achievements");
             LockAllAchievements();
         }
 
-        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.L)) // Hacks
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.U)) // Hacks
         {
+            Debug.Log("Hack used: Unlock all achievements");
             UnlockAllAchievements();
         }
     }
@@ -40,6 +42,7 @@ public class AchievementManager : MonoBehaviour
     {
         for (int i = 0; i < Achievements.AllAchievements.Length; i++)
         {
+            Debug.Log("Locking achievement: " + Achievements.AllAchievements[i].Name);
             PlayerPrefs.SetInt(Achievements.AllAchievements[i].ID, 0);
         }
     }
@@ -48,6 +51,7 @@ public class AchievementManager : MonoBehaviour
     {
         for (int i = 0; i < Achievements.AllAchievements.Length; i++)
         {
+            Debug.Log("Unlocking achievement: " + Achievements.AllAchievements[i].Name);
             PlayerPrefs.SetInt(Achievements.AllAchievements[i].ID, 1);
         }
     }
