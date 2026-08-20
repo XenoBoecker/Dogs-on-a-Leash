@@ -26,8 +26,6 @@ public class HumanMovement : MonoBehaviour
 
     public bool IsOnStreet;
 
-    public int BumpedCount;
-
 
     [SerializeField] VisualEffect bumpPointLossVFX, stunVFX;
 
@@ -123,8 +121,6 @@ public class HumanMovement : MonoBehaviour
         Stun(obstacle.stunTime);
 
         rb.AddForce(dir * obstacle.CurrentPushBackForce * rb.mass, ForceMode.Impulse);
-
-        BumpedCount++;
 
         SoundManager.Instance.PlaySound(SoundManager.Instance.humanSFX.hit_obstacle);
 
