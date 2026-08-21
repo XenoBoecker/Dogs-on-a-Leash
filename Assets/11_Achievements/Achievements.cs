@@ -22,20 +22,20 @@ public static class Achievements
 
     public static readonly Achievement[] AllAchievements = new Achievement[]
     {
-        new Achievement(TimeLeftLessThan5, "Close One", "arrive at the bus with less than 5 seconds time left"),
-        new Achievement(NoBumps, "Guide Dog", "complete a run without letting the human bump into anything"),
-        new Achievement(NoPickups, "Clean Paws", "complete a run without picking up any bones or digging any holes"),
-        new Achievement(Bark50, "Bark", "bark 50 times in one round"),
-        new Achievement(Total5kPoints1kMax, "Lots of Action", "collect 5.000 points in total without ever having more than 1.000 points"),
-        new Achievement(AllTime100Dig, "Digging Master", "dig 100 times in total"),
-        new Achievement(AllTime50Bumps, "Ouch!", "let the human bump into things 50 times in total"),
-        new Achievement(AllTime1000Bark, "Bark Bark", "bark 1000 times in total"),
-        new Achievement(AllTime50BarkAtDuck, "DUCK!", "bark at ducks 50 times in total"),
-        new Achievement(AllTime30GamesWon, "Winner!", "win 30 rounds in total"),
-        new Achievement(AllSameDog, "Clone Dogs", "play a round where all 4 players play as the same dog"),
-        new Achievement(AllDifferentDogs, "Diversity is key", "play a round as 4 different dogs"),
-        new Achievement(SameScoreTwice, "Deja Vu", "get the exact same amount of points 2 games in a row (reset on lose)"),
-        new Achievement(Highscore10k, "Highscore!", "get a highscore of 10.000 points in one round")
+        new Achievement(TimeLeftLessThan5, 12, "Close One", "arrive at the bus with less than 5 seconds time left"),
+        new Achievement(NoBumps, 13, "Guide Dog", "complete a run without letting the human bump into anything"),
+        new Achievement(NoPickups, 14, "Clean Paws", "complete a run without picking up any bones or digging any holes"),
+        new Achievement(Bark50, 15, "Bark", "bark 50 times in one round"),
+        new Achievement(Total5kPoints1kMax, 16, "Lots of Action", "collect 5.000 points in total without ever having more than 1.000 points"),
+        new Achievement(AllTime100Dig, 17, "Digging Master", "dig 100 times in total"),
+        new Achievement(AllTime50Bumps, 18, "Ouch!", "let the human bump into things 50 times in total"),
+        new Achievement(AllTime1000Bark, 19, "Bark Bark", "bark 1000 times in total"),
+        new Achievement(AllTime50BarkAtDuck, 20, "DUCK!", "bark at ducks 50 times in total"),
+        new Achievement(AllTime30GamesWon, 21, "Winner!", "win 30 rounds in total"),
+        new Achievement(AllSameDog, 22, "Clone Dogs", "play a round where all 4 players play as the same dog"),
+        new Achievement(AllDifferentDogs, 23, "Diversity is key", "play a round as 4 different dogs"),
+        new Achievement(SameScoreTwice, 24, "Deja Vu", "get the exact same amount of points 2 games in a row (reset on lose)"),
+        new Achievement(Highscore10k, 25, "Highscore!", "get a highscore of 10.000 points in one round")
     };
 
     public struct Achievement
@@ -44,17 +44,15 @@ public static class Achievements
         public string Name;
         public string Description;
         public bool IsUnlocked;
-        public int mySpriteIndex;
-        static int spriteIndex = 0;
-        public Achievement(string id, string name, string description)
+        public int hatIndex;
+        public Achievement(string id, int hatIndex, string name, string description)
         {
             ID = id;
             Name = name;
             Description = description;
             IsUnlocked = PlayerPrefs.GetInt(id) == 1;
 
-            mySpriteIndex = spriteIndex;
-            spriteIndex++;
+            this.hatIndex = hatIndex;
         }
     }
 

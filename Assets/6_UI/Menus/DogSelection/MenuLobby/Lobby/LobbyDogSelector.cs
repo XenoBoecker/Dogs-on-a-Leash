@@ -15,7 +15,7 @@ public class LobbyDogSelector : MonoBehaviour
     [SerializeField] int currentSelectedDogIndex;
     public int CurrentSelectedDogIndex => currentSelectedDogIndex;
 
-    List<int> unlockedAccessories = new List<int>();
+    List<int> lockedAccessories = new List<int>();
     int currentSelectedAccessorieIndex;
     public int CurrentSelectedAccessorieIndex => currentSelectedAccessorieIndex;
 
@@ -34,7 +34,7 @@ public class LobbyDogSelector : MonoBehaviour
 
     private void Start()
     {
-        unlockedAccessories = AchievementManager.Instance.GetUnlockedHatIndices();
+        lockedAccessories = AchievementManager.Instance.GetLockedHatsIndices();
     }
 
     public void SelectNextDog()
@@ -78,16 +78,25 @@ public class LobbyDogSelector : MonoBehaviour
 
     private int GetNextUnlockedAccessorieIndex(int currentIndex)
     {
-        if(unlockedAccessories.Count == 0) return currentIndex;
+        do
+        {
+            currentIndex++;
+            if (currentIndex >= AchievementManager.Instance.HatCount) currentIndex = 0;
+        }
+        while (lockedAccessories.Contains(currentIndex));
 
-        return unlockedAccessories[unlockedAccessories.IndexOf(currentIndex) + 1 >= unlockedAccessories.Count ? 0 : unlockedAccessories.IndexOf(currentIndex) + 1];
+        return currentIndex;
     }
 
     public int GetPreviousUnlockedAccessorieIndex(int currentIndex)
     {
-        if (unlockedAccessories.Count == 0) return currentIndex;
-
-        return unlockedAccessories[unlockedAccessories.IndexOf(currentIndex) - 1 < 0 ? unlockedAccessories.Count - 1 : unlockedAccessories.IndexOf(currentIndex) - 1];
+        do
+        {
+            currentIndex--;
+            if (currentIndex < 0) currentIndex = AchievementManager.Instance.HatCount - 1;
+        }
+        while (lockedAccessories.Contains(currentIndex));
+        return currentIndex;
     }
 
     public void SetSelectedAccessorieIndex(int i)

@@ -5,9 +5,9 @@ using UnityEngine;
 public class AchievementManager : MonoBehaviour
 {
     [SerializeField] private bool allHatsUnlocked;
-    [SerializeField] private int startUnlockedHatCount;
     [SerializeField] private Sprite[] hatSprites;
     public Sprite[] HatSprites => hatSprites;
+    public int HatCount => hatSprites.Length;
     public int AchievementCount => Achievements.AllAchievements.Length;
 
     public static AchievementManager Instance;
@@ -57,29 +57,21 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    public List<int> GetUnlockedHatIndices()
+    public List<int> GetLockedHatsIndices()
     {
-        List<int> unlockedHatIndices = new List<int>();
+        List<int> lockedHatIndices = new List<int>();
 
-        if(startUnlockedHatCount + Achievements.AllAchievements.Length > hatSprites.Length)
-        {
-            startUnlockedHatCount = hatSprites.Length - Achievements.AllAchievements.Length;
-        }
+        Achievements.Achievement[] allAchievements = Achievements.AllAchievements;
 
-        for (int i = 0; i < startUnlockedHatCount; i++)
+        for (int i = 0; i < allAchievements.Length; i++)
         {
-            unlockedHatIndices.Add(i);
-        }
-
-        for (int i = 0; i < Achievements.AllAchievements.Length; i++)
-        {
-            if (allHatsUnlocked || PlayerPrefs.GetInt(Achievements.AllAchievements[i].ID) == 1)
+            if (!allHatsUnlocked && PlayerPrefs.GetInt(allAchievements[i].ID) == 0)
             {
-                unlockedHatIndices.Add(i + startUnlockedHatCount);
+                lockedHatIndices.Add(allAchievements[i].hatIndex);
             }
         }
 
-        return unlockedHatIndices;
+        return lockedHatIndices;
     }
 }
 

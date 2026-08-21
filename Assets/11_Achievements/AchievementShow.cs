@@ -9,6 +9,7 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private Image bgSelectedImage, hatImage;
 
     private Tooltip tooltip;
+    private DogVisuals dogVisuals;
 
     Achievements.Achievement achievement;
 
@@ -19,22 +20,23 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
         bgSelectedImage.color = new Color(1, 1, 1, 0);
     }
 
+    private void Start()
+    {
+        dogVisuals = FindObjectOfType<DogVisuals>();
+        tooltip = FindObjectOfType<Tooltip>();
+    }
+
     internal void SetAchievement(Achievements.Achievement achievement)
     {
         SetUnlocked(achievement.IsUnlocked);
 
         this.achievement = achievement;
 
-        if (AchievementManager.Instance.HatSprites.Length > achievement.mySpriteIndex)
+        if (AchievementManager.Instance.HatSprites.Length > achievement.hatIndex)
         {
-            hatImage.sprite = AchievementManager.Instance.HatSprites[achievement.mySpriteIndex];
+            hatImage.sprite = AchievementManager.Instance.HatSprites[achievement.hatIndex];
             if (hatImage.sprite == null) hatImage.color = new Color(1, 1, 1, 0);
         }
-    }
-
-    public void SetTooltip(Tooltip tooltip)
-    {
-        this.tooltip = tooltip;
     }
 
     public void SetUnlocked(bool isUnlocked)
@@ -50,6 +52,7 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             bgSelectedImage.color = new Color(1,1,1,1);
             tooltip.Show(transform.position, achievement.Name + "\n" + achievement.Description);
+            dogVisuals.SetAccessorieIndex(achievement.hatIndex);
         }
         else
         {
