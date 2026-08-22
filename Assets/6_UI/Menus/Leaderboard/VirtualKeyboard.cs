@@ -18,6 +18,8 @@ public class VirtualKeyboard : MonoBehaviour
 
     public static VirtualKeyboard Instance;
 
+    private PlayerInputActions input;
+
     private void Awake()
     {
         Instance = this;
@@ -25,6 +27,9 @@ public class VirtualKeyboard : MonoBehaviour
 
     private void Start()
     {
+        input = new PlayerInputActions();
+        input.Enable();
+
         SetStartSelectedKeyboardKey();
     }
 
@@ -39,6 +44,15 @@ public class VirtualKeyboard : MonoBehaviour
                 nameInputField.text += Input.inputString;
                 nameInputField.caretPosition = nameInputField.text.Length;
             }
+        }
+
+        if (input.UI.VirtKeyboardBackspace.WasPressedThisFrame())
+        {
+            BackspacePressed();
+        }
+        if (input.UI.VirtKeyboardCapsToggle.WasPressedThisFrame())
+        {
+            CapsLockToggled();
         }
     }
 

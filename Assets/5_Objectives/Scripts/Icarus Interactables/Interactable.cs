@@ -73,7 +73,7 @@ public class Interactable : MonoBehaviour
         OnInteractEnd?.Invoke();
     }
 
-    public void InteractEnd(InteractableDetector interactor)
+    private void InteractEnd(InteractableDetector interactor)
     {
         Debug.Log("InteractEnd, currentCount: "+currentInteractors.Count);
 

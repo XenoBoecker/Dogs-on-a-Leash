@@ -71,6 +71,15 @@ public class LocalPlayer : MonoBehaviour
 
     private void Update()
     {
+        if(lobbyManager == null)
+        {
+            lobbyManager = FindAnyObjectByType<photonMenuLobby.LobbyManager>();
+            if(lobbyManager == null)
+            {
+                Debug.Log("No Lobby Manager Found", this);
+                return;
+            }
+        }
         if (lobbyManager.IsInDogSelection) waitTimeBeforeCanConfirmSelection -= Time.deltaTime;
         else waitTimeBeforeCanConfirmSelection = 0.1f;
 
@@ -93,6 +102,14 @@ public class LocalPlayer : MonoBehaviour
         {
             playerInput.onActionTriggered -= OnActionTriggered;
         }
+    }
+    private void OnDestroy()
+    {
+        if (lobbyManager != null)
+        {
+            lobbyManager.OnBackToPlayerRegistration -= ResetDogSelection;
+        }
+        lobbyDogSelector.OnDataChanged -= UpdateDogData;
     }
 
     private void OnActionTriggered(InputAction.CallbackContext context)
@@ -166,7 +183,7 @@ public class LocalPlayer : MonoBehaviour
             }
         }else if(context.action.name == "Back")
         {
-            if (context.phase == InputActionPhase.Performed) // Trigger toggle only on Performed
+            if (context.phase == InputActionPhase.Started) // Trigger toggle only on Performed
             {
                 UnConfirmSelection();
             }
@@ -188,8 +205,8 @@ public class LocalPlayer : MonoBehaviour
 
     private void ResetDogSelection()
     {
-        UnConfirmSelection();
-        UnConfirmSelection();
+        //UnConfirmSelection();
+        //UnConfirmSelection();
 
         lobbyDogSelector.SetSelectedDogIndex(0);
         lobbyDogSelector.SetSelectedAccessorieIndex(0);
@@ -234,6 +251,15 @@ public class LocalPlayer : MonoBehaviour
 
     public void ConfirmSelection()
     {
+        if(lobbyManager == null)
+        {
+            lobbyManager = FindObjectOfType<photonMenuLobby.LobbyManager>();
+            if(lobbyManager == null)
+            {
+                Debug.Log("No Lobby Manager Found", this);
+                return;
+            }
+        }
         if (!lobbyManager.IsInDogSelection)
         {
             return;

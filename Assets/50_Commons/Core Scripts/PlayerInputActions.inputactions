@@ -614,6 +614,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "VirtKeyboardCapsToggle",
+                    "type": "Button",
+                    "id": "e3cf2d91-7416-4a50-a973-39a8c1beb2bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "VirtKeyboardBackspace",
+                    "type": "Button",
+                    "id": "1fd556b7-bf90-4d07-b9f5-87d7ccd74f82",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1032,6 +1050,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1bb1f74-1154-475f-a637-81de78e94c08",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "VirtKeyboardCapsToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9bbcf927-7f53-4b96-9b1b-0cf3452fdc34",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "VirtKeyboardBackspace",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
