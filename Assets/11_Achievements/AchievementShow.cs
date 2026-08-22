@@ -13,6 +13,8 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     Achievements.Achievement achievement;
 
+    private bool isUnlocked;
+
     private void Awake()
     {
         showLocked.SetActive(false);
@@ -28,7 +30,7 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     internal void SetAchievement(Achievements.Achievement achievement)
     {
-        SetUnlocked(achievement.IsUnlocked);
+        SetUnlocked(achievement.IsUnlocked || AchievementManager.Instance.AllHatsUnlocked);
 
         this.achievement = achievement;
 
@@ -44,6 +46,8 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Debug.Log("Setting unlocked state for achievement: " + achievement.Name + " to " + isUnlocked + ": " + showLocked.name, this);
         showLocked.SetActive(!isUnlocked);
         showUnlocked.SetActive(isUnlocked);
+
+        this.isUnlocked = isUnlocked;
     }
 
     public void ShowHoverInfo(bool show)
@@ -52,7 +56,7 @@ public class AchievementShow : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             bgSelectedImage.color = new Color(1,1,1,1);
             tooltip.Show(transform.position, achievement.Name + "\n" + achievement.Description);
-            dogVisuals.SetAccessorieIndex(achievement.hatIndex);
+            if(isUnlocked) dogVisuals.SetAccessorieIndex(achievement.hatIndex);
         }
         else
         {

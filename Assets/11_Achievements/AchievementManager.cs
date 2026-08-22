@@ -5,6 +5,7 @@ using UnityEngine;
 public class AchievementManager : MonoBehaviour
 {
     [SerializeField] private bool allHatsUnlocked;
+    public bool AllHatsUnlocked => allHatsUnlocked;
     [SerializeField] private Sprite[] hatSprites;
     public Sprite[] HatSprites => hatSprites;
     public int HatCount => hatSprites.Length;
